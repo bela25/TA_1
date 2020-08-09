@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'customer',
-        'passwords' => 'users',
+        'passwords' => 'customers',
     ],
 
     /*
@@ -45,6 +45,11 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        'pegawai' => [
+            'driver' => 'session',
+            'provider' => 'pegawais',
+        ],
     ],
 
     /*
@@ -69,6 +74,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Customer::class,
         ],
+        
+        'pegawais' => [
+            'driver' => 'eloquent',
+            'model' => App\Pegawai::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -92,8 +102,14 @@ return [
     */
 
     'passwords' => [
-        'users' => [
+        'customers' => [
             'provider' => 'customers',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        
+        'pegawais' => [
+            'provider' => 'pegawais',
             'table' => 'password_resets',
             'expire' => 60,
         ],

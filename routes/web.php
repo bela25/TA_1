@@ -14,11 +14,14 @@
 Route::get('/', function () 
 {
     return view('layouts.master');
-});
+})->middleware('auth:pegawai');
 Route::get('/coba', function () 
 {
     return view('coba');
 });
+
+Route::get('/pegawai/login', 'Auth\PegawaiLoginController@showLoginForm')->name('pegawai.login');
+Route::post('/pegawai/login', 'Auth\PegawaiLoginController@login')->name('pegawai.login.submit');
 
 Auth::routes();
 
