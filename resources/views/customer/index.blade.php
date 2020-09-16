@@ -44,7 +44,7 @@
           <td>{{$customer->updated_at}}</td>
           <td>
             <a href="{{route('customers.edit',$customer)}}" class="btn btn-primary">Ubah</a>
-            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#delete{{$customer->idcustomers}}">Hapus</button>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$customer->idcustomers}}">Hapus</button>
             <div class="modal fade" id="delete{{$customer->idcustomers}}">
               <div class="modal-dialog">
                 <div class="modal-content">

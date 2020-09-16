@@ -7,7 +7,7 @@
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">DataTables Harga Jual</h6>
     <a href="{{ route('hargajuals.create')}}" class="btn btn-primary ">
-      <i class="fas fa-plus-square"> </i>PLUS
+      <i class="fas fa-plus-square"></i> PLUS
     </a>
   </div>
   <div class="card-body">
@@ -39,8 +39,8 @@
             <td>{{$harga_jual->created_at}}</td>
             <td>{{$harga_jual->updated_at}}</td>
             <td>
-              <a href="{{route('hargajuals.edit',$harga_jual)}}" class="btn btn-primary btn-sm">Ubah</a>
-              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#delete{{$harga_jual->idhargajual}}">Hapus</button>
+              <a href="{{route('hargajuals.edit',$harga_jual)}}" class="btn btn-primary">Ubah</a>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$harga_jual->idhargajual}}">Hapus</button>
               <div class="modal fade" id="delete{{$harga_jual->idhargajual}}">
                 <div class="modal-dialog">
                   <div class="modal-content">

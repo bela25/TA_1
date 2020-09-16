@@ -7,7 +7,7 @@
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">DataTables Transaksi</h6>
     <a href="{{ route('transaksis.create')}}" class="btn btn-primary ">
-      <i class="fas fa-plus-square"> </i>PLUS
+      <i class="fas fa-plus-square"></i> PLUS
     </a>
   </div>
   <div class="card-body">
@@ -40,8 +40,8 @@
             <td>{{$transaksi->status}}</td>
             <td>{{$transaksi->tgl_pelunasan}}</td>
             <td>
-              <a href="{{route('transaksis.edit',$transaksi)}}" class="btn btn-primary btn-sm">Ubah</a>
-              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#delete{{$transaksi->id_transaksi}}">Hapus</button>
+              <a href="{{route('transaksis.edit',$transaksi)}}" class="btn btn-primary">Ubah</a>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$transaksi->id_transaksi}}">Hapus</button>
               <div class="modal fade" id="delete{{$transaksi->id_transaksi}}">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -80,6 +80,5 @@
 </div>
 
 <!-- /.container-fluid -->
-
 
 @endsection

@@ -7,7 +7,7 @@
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">DataTables Feedback</h6>
     <a href="{{ route('feedbacks.create')}}" class="btn btn-primary ">
-      <i class="fas fa-plus-square"> </i> PLUS
+      <i class="fas fa-plus-square"></i> PLUS
     </a>
   </div>
   <div class="card-body">
@@ -37,8 +37,8 @@
             <td>{{$feedback->created_at}}</td>
             <td>{{$feedback->updated_at}}</td>
             <td>
-              <a href="{{route('feedbacks.edit',$feedback)}}" class="btn btn-primary btn-sm">Ubah</a>
-              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#delete{{$feedback->idfeedback}}">Hapus</button>
+              <a href="{{route('feedbacks.edit',$feedback)}}" class="btn btn-primary">Ubah</a>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$feedback->idfeedback}}">Hapus</button>
               <div class="modal fade" id="delete{{$feedback->idfeedback}}">
                 <div class="modal-dialog">
                   <div class="modal-content">

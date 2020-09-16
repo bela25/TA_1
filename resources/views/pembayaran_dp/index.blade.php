@@ -7,7 +7,7 @@
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">DataTables Pembayaran DP</h6>
     <a href="{{ route('pembayaran_dps.create')}}" class="btn btn-primary ">
-      <i class="fas fa-plus-square"> </i> PLUS
+      <i class="fas fa-plus-square"></i> PLUS
     </a>
   </div>
   <div class="card-body">
@@ -31,8 +31,8 @@
             <td>{{$pembayaran_dp->nominal}}</td>
             <td>{{$pembayaran_dp->gambar_bukti}}</td>
             <td>
-              <a href="{{route('pembayaran_dps.edit',$pembayaran_dp)}}" class="btn btn-primary btn-sm">Ubah</a>
-              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#delete{{$pembayaran_dp->id_pembayarandp}}">Hapus</button>
+              <a href="{{route('pembayaran_dps.edit',$pembayaran_dp)}}" class="btn btn-primary">Ubah</a>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$pembayaran_dp->id_pembayarandp}}">Hapus</button>
               <div class="modal fade" id="delete{{$pembayaran_dp->id_pembayarandp}}">
                 <div class="modal-dialog">
                   <div class="modal-content">

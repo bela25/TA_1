@@ -7,7 +7,7 @@
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">DataTables Cicilan</h6>
     <a href="{{ route('cicilans.create')}}" class="btn btn-primary ">
-      <i class="fas fa-plus-square"> </i> PLUS
+      <i class="fas fa-plus-square"></i> PLUS
     </a>
   </div>
   <div class="card-body">
@@ -31,8 +31,8 @@
             <td>{{$cicilan->tanggal_akhir}}</td>
             <td>{{$cicilan->bunga}}</td>
             <td>
-              <a href="{{route('cicilans.edit',$cicilan)}}" class="btn btn-primary btn-sm">Ubah</a>
-              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#delete{{$cicilan->id_cicilan}}">Hapus</button>
+              <a href="{{route('cicilans.edit',$cicilan)}}" class="btn btn-primary">Ubah</a>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$cicilan->id_cicilan}}">Hapus</button>
               <div class="modal fade" id="delete{{$cicilan->id_cicilan}}">
                 <div class="modal-dialog">
                   <div class="modal-content">
