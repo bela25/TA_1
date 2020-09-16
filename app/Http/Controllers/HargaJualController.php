@@ -75,7 +75,7 @@ class HargaJualController extends Controller
      */
     public function edit(HargaJual $hargaJual)
     {
-         return view('harga_jual.update',compact('harga_jual'));
+        return view('harga_jual.update',compact('harga_jual'));
         //
     }
 
@@ -107,7 +107,7 @@ class HargaJualController extends Controller
      */
     public function destroy(HargaJual $hargaJual)
     {
-         $harga_jual->delete();
+        $harga_jual->delete();
         return redirect('harga_juals');
         //
     }

@@ -8,18 +8,17 @@ class Tipe_unit extends Model
 {
     protected $primaryKey = 'id_tipe';
 
-
-     public function units()
+    public function units()
     {
     	return $this->hasMany('App\Unit');
     }
 
-     public function gambars()
+    public function gambars()
     {
     	return $this->hasMany('App\GambarProduk');
     }
 
-     public function hargajuals()
+    public function hargajuals()
     {
     	return $this->hasMany('App\HargaJual');
     }

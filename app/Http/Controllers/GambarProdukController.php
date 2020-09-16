@@ -67,7 +67,7 @@ class GambarProdukController extends Controller
      */
     public function edit(GambarProduk $gambarProduk)
     {
-       return view('gambar_produk.update',compact('gambar_produk'));
+        return view('gambar_produk.update',compact('gambar_produk'));
         //
     }
 

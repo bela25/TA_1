@@ -69,7 +69,7 @@ class PembayaranDPController extends Controller
      */
     public function edit(PembayaranDP $pembayaranDP)
     {
-         return view('pembayaran_dp.update',compact('pembayaran_dp'));
+        return view('pembayaran_dp.update',compact('pembayaran_dp'));
         //
     }
 

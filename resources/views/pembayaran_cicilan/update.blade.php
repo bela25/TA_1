@@ -9,7 +9,7 @@
       <label>Kode Cicilan</label>
       <select name="kodecicilan" class="form-control select2" style="width: 100%;">
         @foreach($cicilan as $cicilans)
-        <option value="{{$cicilans->id_cicilan}}">{{$cicilans->id_cicilan}}</option>
+          <option value="{{$cicilans->id_cicilan}}">{{$cicilans->id_cicilan}}</option>
         @endforeach
       </select>
     </div>

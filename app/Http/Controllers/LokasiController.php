@@ -14,7 +14,7 @@ class LokasiController extends Controller
      */
     public function index()
     {
-       $lokasis=lokasi::all();
+        $lokasis=lokasi::all();
         return view('lokasi.index',compact('lokasis')); 
         //
     }
@@ -26,8 +26,8 @@ class LokasiController extends Controller
      */
     public function create()
     {
-       
-       return view('lokasi.create'); //
+        return view('lokasi.create');
+        //
     }
 
     /**
@@ -98,8 +98,8 @@ class LokasiController extends Controller
      */
     public function destroy(Lokasi $lokasi)
     {
-       $lokasi->delete();
-       return redirect('lokasis');
+        $lokasi->delete();
+        return redirect('lokasis');
         //
     }
 }

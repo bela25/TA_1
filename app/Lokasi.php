@@ -8,8 +8,7 @@ class Lokasi extends Model
 {
     protected $primaryKey = 'idlokasi';
 
-
-     public function towers()
+    public function towers()
     {
     	return $this->hasMany('App\Tower');
     }

@@ -14,7 +14,7 @@ class TipeUnitController extends Controller
      */
     public function index()
     {
-       $tipe_units=Tipe_unit::all();
+        $tipe_units=Tipe_unit::all();
         return view('tipe_unit.index',compact('tipe_units'));
         //
     }
@@ -26,8 +26,8 @@ class TipeUnitController extends Controller
      */
     public function create()
     {
-         return view('tipe_unit.create');
-         //
+        return view('tipe_unit.create');
+        //
     }
 
     /**

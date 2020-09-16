@@ -69,7 +69,7 @@ class PembayaranCicilanController extends Controller
      */
     public function edit(PembayaranCicilan $pembayaranCicilan)
     {
-       return view('pembayaran_cicilan.update',compact('pembayaran_cicilan'));
+        return view('pembayaran_cicilan.update',compact('pembayaran_cicilan'));
         //
     }
 

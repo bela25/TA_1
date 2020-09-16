@@ -8,7 +8,7 @@ class Spesifikasi_bangunan extends Model
 {
     protected $primaryKey = 'idspesifikasi';
 
-     public function pegawais()
+    public function pegawais()
     {
     	return $this->belongsTo('App\Pegawai');
     }

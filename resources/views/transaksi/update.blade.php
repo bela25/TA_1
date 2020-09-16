@@ -9,7 +9,7 @@
       <label>Customer</label>
       <select name="customer" class="form-control select2" style="width: 100%;">
         @foreach($customer as $customers)
-        <option value="{{$customers->idcustomers}}">{{$customers->nama}}</option>
+          <option value="{{$customers->idcustomers}}">{{$customers->nama}}</option>
         @endforeach
       </select>
     </div>
@@ -17,7 +17,7 @@
       <label>Unit</label>
       <select name="unit" class="form-control select2" style="width: 100%;">
         @foreach($unit as $units)
-        <option value="{{$units->idunit}}">{{$units->no_unit}}</option>
+          <option value="{{$units->idunit}}">{{$units->no_unit}}</option>
         @endforeach
       </select>
     </div>
@@ -25,7 +25,7 @@
       <label>Harga Jual</label>
       <select name="hargajual" class="form-control select2" style="width: 100%;">
         @foreach($harga_jual as $harga_juals)
-        <option value="{{$harga_juals->idhargajual}}">{{$harga_juals->hargajual_cash}}</option>
+          <option value="{{$harga_juals->idhargajual}}">{{$harga_juals->hargajual_cash}}</option>
         @endforeach
       </select>
     </div>
@@ -81,7 +81,7 @@
       </div>
     </div>
     <!-- /.card-body -->
-
-    
-  </form>
-  @endsection
+  </div>
+  
+</form>
+@endsection

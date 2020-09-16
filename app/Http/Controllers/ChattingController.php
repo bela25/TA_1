@@ -72,7 +72,7 @@ class ChattingController extends Controller
      */
     public function edit(Chatting $chatting)
     {
-       return view('chatting.update',compact('chatting'));
+        return view('chatting.update',compact('chatting'));
         //
     }
 
@@ -105,7 +105,7 @@ class ChattingController extends Controller
     public function destroy(Chatting $chatting)
     {
         $chatting->delete();
-       return redirect('chattings');
+        return redirect('chattings');
         //
     }
 }

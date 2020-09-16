@@ -15,7 +15,7 @@ class PromosiController extends Controller
      */
     public function index()
     {
-       $promosis=Promosi::all();
+        $promosis=Promosi::all();
         return view('promosi.index',compact('promosis'));
         //
     }
@@ -71,7 +71,7 @@ class PromosiController extends Controller
      */
     public function edit(Promosi $promosi)
     {
-         return view('promosi.update',compact('promosi'));
+        return view('promosi.update',compact('promosi'));
         //
     }
 

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tower extends Model
 {
-   protected $primaryKey = 'id_tower';
+   	protected $primaryKey = 'id_tower';
 
     public function lokasis()
     {

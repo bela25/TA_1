@@ -74,7 +74,7 @@ class SpesifikasiBangunanController extends Controller
      */
     public function edit(Spesifikasi_bangunan $spesifikasi_bangunan)
     {
-         return view('spesifikasi_bangunan.update',compact('spesifikasi_bangunan'));
+        return view('spesifikasi_bangunan.update',compact('spesifikasi_bangunan'));
         //
     }
 

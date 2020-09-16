@@ -27,8 +27,8 @@ class ProfilController extends Controller
      */
     public function create()
     {
-         $pegawai =Pegawai::all();
-         return view('profil.create',compact('pegawai'));
+        $pegawai =Pegawai::all();
+        return view('profil.create',compact('pegawai'));
         //
     }
 

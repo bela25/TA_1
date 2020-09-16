@@ -10,31 +10,31 @@ class Pegawai extends Model
     protected $primaryKey = 'nip';
 
 
-     public function chats()
+    public function chats()
     {
     	return $this->hasMany('App\Chatting');
     }
-     public function feedbacks()
+    public function feedbacks()
     {
     	return $this->hasMany('App\Feedback');
     }
-     public function transaksis()
+    public function transaksis()
     {
     	return $this->hasMany('App\Transaksi');
     }
-      public function spesifikasis()
+    public function spesifikasis()
     {
     	return $this->hasMany('App\Spesifikasi_bangunan');
     }
-      public function promosis()
+    public function promosis()
     {
     	return $this->hasMany('App\Promosi');
     }
-      public function profils()
+    public function profils()
     {
     	return $this->hasMany('App\Profil');
     }
-      public function pembatalans()
+    public function pembatalans()
     {
     	return $this->hasMany('App\Pembatalan');
     }

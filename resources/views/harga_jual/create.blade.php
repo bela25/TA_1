@@ -31,7 +31,7 @@
       <label>Tipe</label>
       <select name="tipeunit" class="form-control select2" style="width: 100%;">
         @foreach($tipe_unit as $tipe_units)
-        <option value="{{$tipe_units->id_tipe}}">{{$tipe_units->nama}}</option>
+          <option value="{{$tipe_units->id_tipe}}">{{$tipe_units->nama}}</option>
         @endforeach
       </select>
     </div>
@@ -39,7 +39,7 @@
       <label>Tower</label>
       <select name="tower" class="form-control select2" style="width: 100%;">
         @foreach($tower as $towers)
-        <option value="{{$towers->id_tower}}">{{$towers->nama}}</option>
+          <option value="{{$towers->id_tower}}">{{$towers->nama}}</option>
         @endforeach
       </select>
     </div>
@@ -48,7 +48,7 @@
         <label>Arah</label>
         <select name="arah" class="form-control select2" style="width: 100%;">
           @foreach($arah_unit as $arah_units)
-          <option value="{{$arah_units->id_arah}}">{{$arah_units->pemandangan}}</option>
+            <option value="{{$arah_units->id_arah}}">{{$arah_units->pemandangan}}</option>
           @endforeach
         </select>
       </div>

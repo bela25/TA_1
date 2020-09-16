@@ -8,7 +8,7 @@ class HargaJual extends Model
 {
    protected $primaryKey = 'idhargajual';
 
-   public function arahs()
+    public function arahs()
     {
     	return $this->belongsTo('App\Arah_unit');
     }

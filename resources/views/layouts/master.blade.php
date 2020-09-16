@@ -20,10 +20,10 @@
   <!-- Custom styles for this page -->
   <link href="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
-   <!-- Ionicons -->
+  <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{('adminlte/dist/css/adminlte.min.css')}}">
+  <!-- <link rel="stylesheet" href="{{('adminlte/dist/css/adminlte.min.css')}}"> -->
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
@@ -56,7 +56,7 @@
           <span>Dashboard</span></a>
            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Dashboard:</h6>
+            <h6 class="collapse-header">Menu Dashboard:</h6>
             <a class="collapse-item" href="{{route('profils.index')}}">Profil</a>
             <a class="collapse-item" href="{{route('promosis.index')}}">Promosi</a>
              <a class="collapse-item" href="{{route('feedbacks.index')}}">Feedback</a>
@@ -69,7 +69,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Interface
+        Fitur
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -80,7 +80,7 @@
         </a>
         <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Transaksi:</h6>
+            <h6 class="collapse-header">Menu Transaksi:</h6>
             <a class="collapse-item" href="{{route('transaksis.index')}}">Pembelian</a>
             <a class="collapse-item" href="{{route('cicilans.index')}}">Cicilan</a>
              <a class="collapse-item" href="{{route('pembatalans.index')}}">Pembatalan</a>
@@ -96,7 +96,7 @@
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Pengguna:</h6>
+            <h6 class="collapse-header">Menu Pengguna:</h6>
             <a class="collapse-item" href="{{route('pegawais.index')}}">Pegawai</a>
             <a class="collapse-item" href="{{route('customers.index')}}">Pelanggan</a>
            
@@ -131,7 +131,6 @@
         </div>
       </li>
 
-
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -145,9 +144,7 @@
         <a class="nav-link" href="charts.html">
           <i class="fas fa-comments"></i>
           <span>Chatting</span></a>
-      </li>
-
-     
+      </li>     
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -419,18 +416,15 @@
   <!-- Custom scripts for all pages-->
   <script src="{{ asset('admin/js/sb-admin-2.min.js')}}"></script>
   <script type="text/javascript">
-  // Call the dataTables jQuery plugin
-$(document).ready(function() {
-  $('#dataTable').DataTable();
+    // Call the dataTables jQuery plugin
+    $(document).ready(function() {
+      $('#dataTable').DataTable();
 
-  $('#tgllahir').datetimepicker({
-    format: 'Y-MM-DD'
-  });
-});
- 
-
-</script>
-
+      $('#tgllahir').datetimepicker({
+        format: 'Y-MM-DD'
+      });
+    });
+  </script>
 
 </body>
 

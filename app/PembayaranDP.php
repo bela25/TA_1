@@ -8,7 +8,7 @@ class PembayaranDP extends Model
 {
     protected $primaryKey = 'id_pembayarandp';
 
-     public function transaksis()
+    public function transaksis()
     {
     	return $this->belongsTo('App\Trasaksi');
     }

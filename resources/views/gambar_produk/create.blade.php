@@ -17,14 +17,14 @@
         </div>
       </div>
     </div>
-      <div class="form-group">
-        <label>Tipe</label>
-        <select name="tipe" class="form-control select2" style="width: 100%;">
-          @foreach($tipe_unit as $tipe_units)
+    <div class="form-group">
+      <label>Tipe</label>
+      <select name="tipe" class="form-control select2" style="width: 100%;">
+        @foreach($tipe_unit as $tipe_units)
           <option value="{{$tipe_units->id_tipe}}">{{$tipe_units->nama}}</option>
-          @endforeach
-        </select>
-      </div>
+        @endforeach
+      </select>
+    </div>
   </div>
   <!-- /.card-body -->
 

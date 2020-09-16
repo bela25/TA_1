@@ -52,13 +52,14 @@
       <label>Admin</label>
       <select name="admin" class="form-control select2" style="width: 100%;">
         @foreach($pegawai as $pegawais)
-        <option value="{{$pegawais->nip}}">{{$pegawais->nama}}</option>
+          <option value="{{$pegawais->nip}}">{{$pegawais->nama}}</option>
         @endforeach
       </select>
     </div>
   </div>
-   <div class="card-footer">
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
+  
+  <div class="card-footer">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
 </form>
 @endsection

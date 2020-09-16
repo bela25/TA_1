@@ -12,15 +12,15 @@ class Transaksi extends Model
     {
     	return $this->hasOne('App\Pembatalan');
     }
-     public function cicilans()
+    public function cicilans()
     {
     	return $this->hasOne('App\Cicilan');
     }
-     public function pembayarandps()
+    public function pembayarandps()
     {
     	return $this->hasOne('App\PembayaranDP');
     }
-     public function units()
+    public function units()
     {
     	return $this->belongsTo('App\Unit');
     }
@@ -28,7 +28,7 @@ class Transaksi extends Model
     {
     	return $this->belongsTo('App\Customer');
     }
-     public function pegawais()
+    public function pegawais()
     {
     	return $this->belongsTo('App\Pegawai');
     }

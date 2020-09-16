@@ -26,7 +26,7 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-       return view ('pegawai.create');
+        return view ('pegawai.create');
         //
     }
 
@@ -74,7 +74,7 @@ class PegawaiController extends Controller
      */
     public function edit(Pegawai $pegawai)
     {
-       return view('pegawai.update',compact('pegawai'));
+        return view('pegawai.update',compact('pegawai'));
         //
     }
 
@@ -113,6 +113,6 @@ class PegawaiController extends Controller
     {
         
         $pegawai->delete();
-       return redirect('pegawais');//
+        return redirect('pegawais');//
     }
 }

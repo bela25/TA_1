@@ -13,11 +13,7 @@
 
 Route::get('/', function () 
 {
-    return view('layouts.master');
-});
-Route::get('/coba', function () 
-{
-    return view('coba');
+	return redirect('home');
 });
 
 Auth::routes();
@@ -42,6 +38,3 @@ Route::resource('profils','ProfilController');
 Route::resource('spesifikasi_bangunans','SpesifikasiBangunanController');
 Route::resource('units','UnitController');
 Route::resource('transaksis','TransaksiController');
-
-
-

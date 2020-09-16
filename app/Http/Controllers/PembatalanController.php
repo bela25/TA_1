@@ -73,7 +73,7 @@ class PembatalanController extends Controller
      */
     public function edit(Pembatalan $pembatalan)
     {
-         return view('pembatalan.update',compact('pembatalan'));
+        return view('pembatalan.update',compact('pembatalan'));
         //
     }
 

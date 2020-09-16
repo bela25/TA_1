@@ -69,7 +69,7 @@ class CicilanController extends Controller
      */
     public function edit(Cicilan $cicilan)
     {
-       return view('cicilan.update',compact('cicilan'));
+        return view('cicilan.update',compact('cicilan'));
         //
     }
 

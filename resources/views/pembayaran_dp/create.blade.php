@@ -9,7 +9,7 @@
       <label>Customer</label>
       <select name="customer" class="form-control select2" style="width: 100%;">
         @foreach($customers as $customerss)
-        <option value="{{$customers->id_customers}}">{{$customers->nama}}</option>
+          <option value="{{$customers->id_customers}}">{{$customers->nama}}</option>
         @endforeach
       </select>
     </div>

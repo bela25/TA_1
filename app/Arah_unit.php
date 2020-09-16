@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Arah_unit extends Model
 {
-   protected $primaryKey = 'id_arah';
+    protected $primaryKey = 'id_arah';
     
-     public function units()
+    public function units()
     {
     	return $this->hasMany('App\Unit');
     }
-     public function hargajuals()
+    public function hargajuals()
     {
     	return $this->hasMany('App\HargaJual');
     }

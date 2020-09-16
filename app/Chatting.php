@@ -12,7 +12,7 @@ class Chatting extends Model
     {
     	return $this->belongsTo('App\Customer');
     }
-     public function pegawais()
+    public function pegawais()
     {
     	return $this->belongsTo('App\Pegawai');
     }

@@ -8,15 +8,15 @@ class Customer extends Model
 {
     protected $primaryKey = 'idcustomers';
 
-     public function chats()
+    public function chats()
     {
     	return $this->hasMany('App\Chatting');
     }
-     public function feedbacks()
+    public function feedbacks()
     {
     	return $this->hasMany('App\Feedback');
     }
-     public function transaksis()
+    public function transaksis()
     {
     	return $this->hasMany('App\Transaksi');
     }

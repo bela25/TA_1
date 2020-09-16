@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PembayaranCicilan extends Model
 {
-   protected $primaryKey = 'id_pembayarancicilan';
+    protected $primaryKey = 'id_pembayarancicilan';
 
     public function cicilans()
     {

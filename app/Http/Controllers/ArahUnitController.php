@@ -26,7 +26,7 @@ class ArahUnitController extends Controller
      */
     public function create()
     {
-       return view('arah_unit.create');
+        return view('arah_unit.create');
         //
     }
 
@@ -92,7 +92,7 @@ class ArahUnitController extends Controller
     public function destroy(Arah_unit $arah_unit)
     {
         $arah_unit->delete();
-       return redirect('arah_units');
+        return redirect('arah_units');
         //
     }
 }

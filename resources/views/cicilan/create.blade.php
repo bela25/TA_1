@@ -9,7 +9,7 @@
       <label>Transaksi</label>
       <select name="transaksi" class="form-control select2" style="width: 100%;">
         @foreach($transaksi as $transaksis)
-        <option value="{{$transaksis->nip}}">{{$transaksis->nama}}</option>
+          <option value="{{$transaksis->nip}}">{{$transaksis->nama}}</option>
         @endforeach
       </select>
     </div>
@@ -38,8 +38,6 @@
     <div class="form-group">
       <label for="bunga">Bunga</label>
       <input type="text" class="form-control" id="bunga" placeholder="Isi Nama" name="bunga">
-      
-      
     </div>
   </div>
   <!-- /.card-body -->

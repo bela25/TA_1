@@ -8,7 +8,7 @@ class Promosi extends Model
 {
     protected $primaryKey = 'idpromosi';
 
-     public function pegawais()
+    public function pegawais()
     {
     	return $this->belongsTo('App\Pegawai');
     }
