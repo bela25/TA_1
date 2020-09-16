@@ -11,7 +11,7 @@
     </div>
     <div class="form-group">
       <label for="keterangan">Keterangan</label>
-      <input type="text" class="form-control" id="keterangan" placeholder="Isi Nama" name="keterangan" value="{{$tower->keterangan}}">
+      <input type="text" class="form-control" id="keterangan" placeholder="Isi Keterangan" name="keterangan" value="{{$tower->keterangan}}">
     </div>
     <div class="form-group">
       <label>Lokasi</label>

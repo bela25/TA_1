@@ -7,11 +7,11 @@
   <div class="card-body">
     <div class="form-group">
       <label for="pesan">Pesan</label>
-      <input type="text" class="form-control" id="pesan" placeholder="Isi Nama" name="pesan">
+      <input type="text" class="form-control" id="pesan" placeholder="Isi Pesan" name="pesan">
     </div>
     <div class="form-group">
       <label for="tglpesan">Tgl Pesan</label>
-      <input type="text" class="form-control" id="tglpesan" placeholder="Isi Nama" name="tglpesan">
+      <input type="text" class="form-control" id="tglpesan" placeholder="Isi Tanggal Pesan" name="tglpesan">
     </div>      
     <div class="form-group">
       <label>Customer</label>

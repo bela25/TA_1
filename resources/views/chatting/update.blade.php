@@ -8,11 +8,11 @@
   <div class="card-body">
     <div class="form-group">
       <label for="pesan">Pesan</label>
-      <input type="text" class="form-control" id="pesan" placeholder="Isi Nama" name="pesan" value="{{$chatting->pesan}}">
+      <input type="text" class="form-control" id="pesan" placeholder="Isi Pesan" name="pesan" value="{{$chatting->pesan}}">
     </div>
     <div class="form-group">
       <label for="tglpesan">Tgl Pesan</label>
-      <input type="text" class="form-control" id="tglpesan" placeholder="Isi Nama" name="tglpesan"value="{{$chatting->tgl_pesan}}">
+      <input type="text" class="form-control" id="tglpesan" placeholder="Isi Tanggal Pesan" name="tglpesan"value="{{$chatting->tgl_pesan}}">
     </div>
     <div class="form-group">
       <label>Customer</label>

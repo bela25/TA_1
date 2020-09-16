@@ -7,35 +7,35 @@
   <div class="card-body">
     <div class="form-group">
       <label for="lantai">Lantai</label>
-      <input type="text" class="form-control" id="lantai" placeholder="Isi lantai" name="lantai" value="{{$spesifikasi_bangunan->lantai}}">
+      <input type="text" class="form-control" id="lantai" placeholder="Isi Lantai" name="lantai" value="{{$spesifikasi_bangunan->lantai}}">
     </div>
     <div class="form-group">
       <label for="dinding">Dinding</label>
-      <input type="text" class="form-control" id="dinding" placeholder="Isi Nama" name="dinding" value="{{$spesifikasi_bangunan->dinding}}">
+      <input type="text" class="form-control" id="dinding" placeholder="Isi Dinding" name="dinding" value="{{$spesifikasi_bangunan->dinding}}">
     </div>
     <div class="form-group">
       <label for="platfon">Platfon</label>
-      <input type="text" class="form-control" id="platfon" placeholder="Isi Nama" name="platfon" value="{{$spesifikasi_bangunan->platfon}}">
+      <input type="text" class="form-control" id="platfon" placeholder="Isi Platfon" name="platfon" value="{{$spesifikasi_bangunan->platfon}}">
     </div>
     <div class="form-group">
       <label for="instalasilistrik">Instalasi Listrik</label>
-      <input type="text" class="form-control" id="instalasilistrik" placeholder="Isi Nama" name="instalasilistrik" value="{{$spesifikasi_bangunan->instalasi_listrik}}">
+      <input type="text" class="form-control" id="instalasilistrik" placeholder="Isi Instalasi Listrik" name="instalasilistrik" value="{{$spesifikasi_bangunan->instalasi_listrik}}">
     </div>
     <div class="form-group">
       <label for="sanitary">Sanitary</label>
-      <input type="text" class="form-control" id="sanitary" placeholder="Isi Nama" name="sanitary" value="{{$spesifikasi_bangunan->sanitary}}">
+      <input type="text" class="form-control" id="sanitary" placeholder="Isi Sanitary" name="sanitary" value="{{$spesifikasi_bangunan->sanitary}}">
     </div>
     <div class="form-group">
       <label for="pintu">Pintu</label>
-      <input type="text" class="form-control" id="pintu" placeholder="Isi Nama" name="pintu" value="{{$spesifikasi_bangunan->pintu}}">
+      <input type="text" class="form-control" id="pintu" placeholder="Isi Pintu" name="pintu" value="{{$spesifikasi_bangunan->pintu}}">
     </div>
     <div class="form-group">
       <label for="jendela">Jendela</label>
-      <input type="text" class="form-control" id="jendela" placeholder="Isi Nama" name="jendela" value="{{$spesifikasi_bangunan->jendela}}">
+      <input type="text" class="form-control" id="jendela" placeholder="Isi Jendela" name="jendela" value="{{$spesifikasi_bangunan->jendela}}">
     </div>
     <div class="form-group">
       <label for="air">Air</label>
-      <input type="text" class="form-control" id="air" placeholder="Isi Nama" name="air" value="{{$spesifikasi_bangunan->air}}">
+      <input type="text" class="form-control" id="air" placeholder="Isi Air" name="air" value="{{$spesifikasi_bangunan->air}}">
     </div>
     <div class="form-group">
       <label>Admin</label>

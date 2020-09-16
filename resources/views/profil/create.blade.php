@@ -7,19 +7,19 @@
   <div class="card-body">
     <div class="form-group">
       <label for="judulprofil">Judul Profil</label>
-      <input type="text" class="form-control" id="judulprofil" placeholder="Isi Nama" name="judulprofil">
+      <input type="text" class="form-control" id="judulprofil" placeholder="Isi Judul Profil" name="judulprofil">
     </div>
     <div class="form-group">
       <label>Keterangan</label>
-      <textarea class="form-control" rows="3" placeholder="ket ..." id="keterangan"></textarea>
+      <textarea class="form-control" rows="3" placeholder="Keterangan ..." id="keterangan"></textarea>
     </div>
     <div class="from-group">
       <label for="gambar">Gambar</label>
-      <input type="text" class="form-control" id="gambar" placeholder="Isi Nama" name="gambar">
+      <input type="text" class="form-control" id="gambar" placeholder="Isi Gambar" name="gambar">
     </div>
     <div class="from-group">
       <label for="tgldibuat">Tanggal Dibuat</label>
-      <input type="text" class="form-control" id="tgldibuat" placeholder="Isi Nama" name="tgldibuat">
+      <input type="text" class="form-control" id="tgldibuat" placeholder="Isi Tanggal Dibuat" name="tgldibuat">
     </div>
     <div class="form-group">
       <label>Admin</label>

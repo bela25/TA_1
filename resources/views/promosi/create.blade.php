@@ -7,23 +7,23 @@
   <div class="card-body">
     <div class="form-group">
       <label for="judulpromosi">Judul Promosi</label>
-      <input type="text" class="form-control" id="judulpromosi" placeholder="Isi Nama" name="judulpromosi">
+      <input type="text" class="form-control" id="judulpromosi" placeholder="Isi Judul Promosi" name="judulpromosi">
     </div>
     <div class="form-group">
       <label>Keterangan</label>
-      <textarea class="form-control" rows="3" placeholder="ket ..." id="keterangan"></textarea>
+      <textarea class="form-control" rows="3" placeholder="Keterangan ..." id="keterangan"></textarea>
     </div>
     <div class="form-group">
       <label for="gambar">Gambar</label>
-      <input type="text" class="form-control" id="gambar" placeholder="Isi Nama" name="gambar">
+      <input type="text" class="form-control" id="gambar" placeholder="Isi Gambar" name="gambar">
     </div>
     <div class="form-group">
       <label for="tglawal">Tanggal Awal</label>
-      <input type="text" class="form-control" id="tglawal" placeholder="Isi Nama" name="tglawal">
+      <input type="text" class="form-control" id="tglawal" placeholder="Isi Tanggal Awal" name="tglawal">
     </div>
     <div class="form-group">
       <label for="tglakhir">Tanggal Akhir</label>
-      <input type="text" class="form-control" id="tglakhir" placeholder="Isi Nama" name="tglakhir">
+      <input type="text" class="form-control" id="tglakhir" placeholder="Isi Tanggal Akhir" name="tglakhir">
     </div>
     <div class="form-group">
       <label>Admin</label>

@@ -7,23 +7,23 @@
   <div class="card-body">
     <div class="form-group">
       <label for="judulpromosi">Judul Promosi</label>
-      <input type="text" class="form-control" id="judulpromosi" placeholder="Isi Nama" name="judulpromosi"  value="{{$promosi->judul_promosi}}">
+      <input type="text" class="form-control" id="judulpromosi" placeholder="Isi Judul Promosi" name="judulpromosi"  value="{{$promosi->judul_promosi}}">
     </div>
     <div class="form-group">
       <label>Keterangan</label>
-      <textarea class="form-control" rows="3" placeholder="ket ..." id="keterangan" value="{{$profil->keterangan}}"></textarea>
+      <textarea class="form-control" rows="3" placeholder="Keterangan ..." id="keterangan" value="{{$profil->keterangan}}"></textarea>
     </div>
     <div class="form-group">
       <label for="gambar">Gambar</label>
-      <input type="text" class="form-control" id="gambar" placeholder="Isi Nama" name="gambar"  value="{{$promosi->gambar}}">
+      <input type="text" class="form-control" id="gambar" placeholder="Isi Gambar" name="gambar"  value="{{$promosi->gambar}}">
     </div>
     <div class="form-group">
       <label for="tglawal">Tanggal Awal</label>
-      <input type="text" class="form-control" id="tglawal" placeholder="Isi Nama" name="tglawal"  value="{{$promosi->tgl_awal}}">
+      <input type="text" class="form-control" id="tglawal" placeholder="Isi Tanggal Awal" name="tglawal"  value="{{$promosi->tgl_awal}}">
     </div>
     <div class="form-group">
       <label for="tglakhir">Tanggal Akhir</label>
-      <input type="text" class="form-control" id="tglakhir" placeholder="Isi Nama" name="tglakhir"  value="{{$promosi->tgl_akhir}}">
+      <input type="text" class="form-control" id="tglakhir" placeholder="Isi Tanggal Akhir" name="tglakhir"  value="{{$promosi->tgl_akhir}}">
     </div>
     <div class="form-group">
       <label>Admin</label>

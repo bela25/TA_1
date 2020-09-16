@@ -7,7 +7,7 @@
   <div class="card-body">
     <div class="form-group">
       <label for="nip">NIP</label>
-      <input type="text" class="form-control" id="nip" placeholder="Isi nip" name="nip" value="{{$pegawai->nip}}">
+      <input type="text" class="form-control" id="nip" placeholder="Isi NIP" name="nip" value="{{$pegawai->nip}}">
     </div>
     <div class="form-group">
       <label for="nama">Nama</label>
@@ -15,35 +15,35 @@
     </div>
     <div class="form-group">
       <label for="alamat">Alamat</label>
-      <input type="text" class="form-control" id="alamat" placeholder="Isi Nama" name="alamat" value="{{$pegawai->alamat}}">
+      <input type="text" class="form-control" id="alamat" placeholder="Isi Alamat" name="alamat" value="{{$pegawai->alamat}}">
     </div>
     <div class="form-group">
       <label for="tempatlahir">Tempat Lahir</label>
-      <input type="text" class="form-control" id="tempatlahir" placeholder="Isi Nama" name="tempatlahir" value="{{$pegawai->tempat_lahir}}">
+      <input type="text" class="form-control" id="tempatlahir" placeholder="Isi Tempat Lahir" name="tempatlahir" value="{{$pegawai->tempat_lahir}}">
     </div>
     <div class="form-group">
       <label for="tgllahir">Tanggal Lahir</label>
-      <input type="text" class="form-control" id="tgllahir" placeholder="Isi Nama" name="tgllahir" value="{{$pegawai->tgl_lahir}}">
+      <input type="text" class="form-control" id="tgllahir" placeholder="Isi Tanggal Lahir" name="tgllahir" value="{{$pegawai->tgl_lahir}}">
     </div>
     <div class="form-group">
       <label for="jabatan">Jabatan</label>
-      <input type="text" class="form-control" id="jabatan" placeholder="Isi Nama" name="jabatan" value="{{$pegawai->jabatan}}">
+      <input type="text" class="form-control" id="jabatan" placeholder="Isi Jabatan" name="jabatan" value="{{$pegawai->jabatan}}">
     </div>
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="text" class="form-control" id="email" placeholder="Isi Nama" name="email" value="{{$pegawai->email}}">
+      <input type="email" class="form-control" id="email" placeholder="Isi Email" name="email" value="{{$pegawai->email}}">
     </div>
     <div class="form-group">
       <label for="username">Username</label>
-      <input type="text" class="form-control" id="username" placeholder="Isi Nama" name="username" value="{{$pegawai->username}}">
+      <input type="text" class="form-control" id="username" placeholder="Isi Username" name="username" value="{{$pegawai->username}}">
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" placeholder="Password">
+      <input type="password" class="form-control" id="password" placeholder="Isi Password">
     </div>
     <div class="form-group">
       <label for="tglbergabung">Tgl Bergabung</label>
-      <input type="text" class="form-control" id="tglbergabung" placeholder="Isi tglbergabung" name="tglbergabung" value="{{$pegawai->tgl_bergabung}}">
+      <input type="text" class="form-control" id="tglbergabung" placeholder="Isi Tanggal Bergabung" name="tglbergabung" value="{{$pegawai->tgl_bergabung}}">
     </div>
   </div>
   <!-- /.card-body -->

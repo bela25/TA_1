@@ -7,35 +7,35 @@
   <div class="card-body">
     <div class="form-group">
       <label for="lantai">Lantai</label>
-      <input type="text" class="form-control" id="lantai" placeholder="Isi lantai" name="lantai">
+      <input type="text" class="form-control" id="lantai" placeholder="Isi Lantai" name="lantai">
     </div>
     <div class="form-group">
       <label for="dinding">Dinding</label>
-      <input type="text" class="form-control" id="dinding" placeholder="Isi Nama" name="dinding">
+      <input type="text" class="form-control" id="dinding" placeholder="Isi Dingin" name="dinding">
     </div>
     <div class="form-group">
       <label for="platfon">Platfon</label>
-      <input type="text" class="form-control" id="platfon" placeholder="Isi Nama" name="platfon">
+      <input type="text" class="form-control" id="platfon" placeholder="Isi Plafonn" name="platfon">
     </div>
     <div class="form-group">
       <label for="instalasilistrik">Instalasi Listrik</label>
-      <input type="text" class="form-control" id="instalasilistrik" placeholder="Isi Nama" name="instalasilistrik">
+      <input type="text" class="form-control" id="instalasilistrik" placeholder="Isi Instalasi Listrk" name="instalasilistrik">
     </div>
     <div class="form-group">
       <label for="sanitary">Sanitary</label>
-      <input type="text" class="form-control" id="sanitary" placeholder="Isi Nama" name="sanitary">
+      <input type="text" class="form-control" id="sanitary" placeholder="Isi Sanitary" name="sanitary">
     </div>
     <div class="form-group">
       <label for="pintu">Pintu</label>
-      <input type="text" class="form-control" id="pintu" placeholder="Isi Nama" name="pintu">
+      <input type="text" class="form-control" id="pintu" placeholder="Isi Pintu" name="pintu">
     </div>
     <div class="form-group">
       <label for="jendela">Jendela</label>
-      <input type="text" class="form-control" id="jendela" placeholder="Isi Nama" name="jendela">
+      <input type="text" class="form-control" id="jendela" placeholder="Isi Jendela" name="jendela">
     </div>
     <div class="form-group">
       <label for="air">Air</label>
-      <input type="text" class="form-control" id="air" placeholder="Isi Nama" name="air">
+      <input type="text" class="form-control" id="air" placeholder="Isi Air" name="air">
     </div>
     <div class="form-group">
       <label>Admin</label>

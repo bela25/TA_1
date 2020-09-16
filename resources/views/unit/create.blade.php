@@ -26,7 +26,7 @@
     </div>
     <div class="form-group">
       <label for="lantai">Lantai</label>
-      <input type="text" class="form-control" id="lantai" name="lantai">
+      <input type="text" class="form-control" id="lantai" placeholder="Isi Lantai" name="lantai">
     </div>
     <div class="form-group">
       <label>Tipe</label>

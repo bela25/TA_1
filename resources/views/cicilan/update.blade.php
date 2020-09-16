@@ -37,7 +37,7 @@
     </div>
     <div class="form-group">
       <label for="bunga">Bunga</label>
-      <input type="text" class="form-control" id="bunga" placeholder="Isi Nama" name="bunga">
+      <input type="text" class="form-control" id="bunga" placeholder="Isi Bunga" name="bunga">
     </div>
   </div>
   <!-- /.card-body -->

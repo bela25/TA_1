@@ -31,7 +31,7 @@
     </div>
     <div class="form-group">
       <label>Jenis Bayar</label>
-      <select class="form-control"  name="jenisbayar" >
+      <select class="form-control" name="jenisbayar">
         <option>KPA</option>
         <option>Lunas</option>
         <option>In House</option>

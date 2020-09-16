@@ -7,11 +7,11 @@
   <div class="card-body">
     <div class="form-group">
       <label for="namatipe">Nama Tipe</label>
-      <input type="text" class="form-control" id="namatipe" placeholder="Isi Nama" name="namatipe">
+      <input type="text" class="form-control" id="namatipe" placeholder="Isi Nama Tipe" name="namatipe">
     </div>
     <div class="form-group">
       <label for="fasilitas">Fasilitas</label>
-      <input type="text" class="form-control" id="fasilitas" placeholder="Isi Nama" name="fasilitas">
+      <input type="text" class="form-control" id="fasilitas" placeholder="Isi Fasilitas" name="fasilitas">
     </div>
   </div>
   <!-- /.card-body -->
