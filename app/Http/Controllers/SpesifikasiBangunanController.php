@@ -74,7 +74,8 @@ class SpesifikasiBangunanController extends Controller
      */
     public function edit(Spesifikasi_bangunan $spesifikasi_bangunan)
     {
-        return view('spesifikasi_bangunan.update',compact('spesifikasi_bangunan'));
+        $pegawai=Pegawai::all();
+        return view('spesifikasi_bangunan.update',compact('spesifikasi_bangunan','pegawai'));
         //
     }
 
@@ -87,9 +88,9 @@ class SpesifikasiBangunanController extends Controller
      */
     public function update(Request $request, Spesifikasi_bangunan $spesifikasi_bangunan)
     {
-        $spesifikasi_bangunan ->nama = $request->get('nama');
-        $spesifikasi_bangunan ->alamat = $request->get('alamat');
-        $spesifikasi_bangunan ->platfon = $request->get('notelp');
+        $spesifikasi_bangunan ->lantai = $request->get('lantai');
+        $spesifikasi_bangunan ->dinding = $request->get('dinding');
+        $spesifikasi_bangunan ->platfon = $request->get('platfon');
         $spesifikasi_bangunan ->instalasi_listrik = $request->get('instalasilistrik');
         $spesifikasi_bangunan ->sanitary = $request->get('sanitary');
         $spesifikasi_bangunan ->pintu = $request->get('pintu');

@@ -33,9 +33,9 @@
             <td>{{$harga_jual->hargajual_cash}}</td>
             <td>{{$harga_jual->tgl_awal}}</td>
             <td>{{$harga_jual->tgl_akhir}}</td>
-            <td><a href="{{route('tipe_units.index')}}">{{$harga_jual->tipe_unis->nama}}</a></td>
+            <td><a href="{{route('tipe_units.index')}}">{{$harga_jual->tipes->nama}}</a></td>
             <td><a href="{{route('towers.index')}}">{{$harga_jual->towers->nama}}</a></td>
-            <td><a href="{{route('arah_units.index')}}">{{$harga_jual->arah_units->pemandngan}}</a></td>
+            <td><a href="{{route('arah_units.index')}}">{{$harga_jual->arahs->pemandngan}}</a></td>
             <td>{{$harga_jual->created_at}}</td>
             <td>{{$harga_jual->updated_at}}</td>
             <td>
@@ -61,7 +61,7 @@
                     </div>
                     <div class="modal-footer justify-content-between">
                       <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                      <button type="submit" class="btn btn-primary" form="hapus{{$tower->id_tower}}">Yes</button>
+                      <button type="submit" class="btn btn-primary" form="hapus{{$harga_jual->idhargajual}}">Yes</button>
                     </div>
                   </div>
                   <!-- /.modal-content -->

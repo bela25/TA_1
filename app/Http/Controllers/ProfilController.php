@@ -16,6 +16,7 @@ class ProfilController extends Controller
     public function index()
     {
         $profils=Profil::all();
+        // dd($profils[0]->pegawais);
         return view('profil.index',compact('profils')); 
         //
     }
@@ -42,7 +43,7 @@ class ProfilController extends Controller
     {
         $post = new Profil();
         $post ->judul_profil = $request->get('judulprofil');
-        $post ->tgl = $request->get('tgldibuat');
+        // $post ->tgl = $request->get('tgldibuat');
         $post ->keterangan = $request->get('keterangan');
         $post ->gambar = $request->get('gambar');
         $post ->admin = $request->get('admin');
@@ -70,7 +71,8 @@ class ProfilController extends Controller
      */
     public function edit(Profil $profil)
     {
-        return view('profil.update',compact('profil'));
+        $pegawai=Pegawai::all();
+        return view('profil.update',compact('profil','pegawai'));
         //
     }
 
@@ -84,7 +86,7 @@ class ProfilController extends Controller
     public function update(Request $request, Profil $profil)
     {
         $profil ->judul_profil = $request->get('judulprofil');
-        $profil ->tgl = $request->get('tgldibuat');
+        // $profil ->tgl = $request->get('tgldibuat');
         $profil ->keterangan = $request->get('keterangan');
         $profil ->gambar = $request->get('gambar');
         $profil ->admin = $request->get('admin');

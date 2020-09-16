@@ -68,8 +68,8 @@ class TowerController extends Controller
      */
     public function edit(Tower $tower)
     {
-        
-        return view('tower.update',compact('tower'));//
+        $lokasi= Lokasi::all();
+        return view('tower.update',compact('tower','lokasi'));//
     }
 
     /**

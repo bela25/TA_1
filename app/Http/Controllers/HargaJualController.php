@@ -52,7 +52,7 @@ class HargaJualController extends Controller
         $post ->arah= $request->get('arah');
         $post ->tipe = $request->get('tipeunit');
         $post->save();
-        return redirect('harga_juals');
+        return redirect('hargajuals');
         //
     }
 
@@ -75,7 +75,10 @@ class HargaJualController extends Controller
      */
     public function edit(HargaJual $hargaJual)
     {
-        return view('harga_jual.update',compact('harga_jual'));
+        $tower= Tower::all();
+        $arah_unit=Arah_unit::all();
+        $tipe_unit=Tipe_unit::all();
+        return view('harga_jual.update',compact('hargaJual','tower','arah_unit','tipe_unit'));
         //
     }
 
@@ -95,7 +98,7 @@ class HargaJualController extends Controller
         $hargaJual ->arah= $request->get('arah');
         $hargaJual ->tipe = $request->get('tipe');
         $hargaJual->save();
-        return redirect('harga_juals');
+        return redirect('hargajuals');
         //
     }
 
@@ -107,8 +110,8 @@ class HargaJualController extends Controller
      */
     public function destroy(HargaJual $hargaJual)
     {
-        $harga_jual->delete();
-        return redirect('harga_juals');
+        $hargaJual->delete();
+        return redirect('hargajuals');
         //
     }
 }

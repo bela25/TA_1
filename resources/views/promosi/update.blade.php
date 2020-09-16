@@ -2,8 +2,9 @@
 
 @section('content')
 <!-- form start -->
-<form role="form" action="{{route('promosis.store')}}" method="post">
+<form role="form" action="{{route('promosis.update', $promosi)}}" method="post">
   {{csrf_field()}}
+  {{method_field('put')}}
   <div class="card-body">
     <div class="form-group">
       <label for="judulpromosi">Judul Promosi</label>
@@ -11,7 +12,7 @@
     </div>
     <div class="form-group">
       <label>Keterangan</label>
-      <textarea class="form-control" rows="3" placeholder="Keterangan ..." id="keterangan" value="{{$profil->keterangan}}"></textarea>
+      <textarea class="form-control" rows="3" placeholder="Keterangan ..." id="keterangan" name="keterangan">{{$promosi->keterangan}}</textarea>
     </div>
     <div class="form-group">
       <label for="gambar">Gambar</label>

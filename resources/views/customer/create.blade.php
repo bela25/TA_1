@@ -45,6 +45,10 @@
       </div>
     </div>
     <div class="form-group">
+      <label for="alamat">Tempat Lahir</label>
+      <input type="text" class="form-control" id="tempatlahir" placeholder="Isi Tempat Lahir" name="tempatlahir">
+    </div>
+    <div class="form-group">
       <label>Tanggal Lahir:</label>
       <div class="input-group date" id="tgllahir" data-target-input="nearest">
         <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tgllahir">

@@ -11,7 +11,7 @@
     </div>
     <div class="form-group">
       <label for="dinding">Dinding</label>
-      <input type="text" class="form-control" id="dinding" placeholder="Isi Dingin" name="dinding">
+      <input type="text" class="form-control" id="dinding" placeholder="Isi Dinding" name="dinding">
     </div>
     <div class="form-group">
       <label for="platfon">Platfon</label>

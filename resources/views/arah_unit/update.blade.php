@@ -8,7 +8,7 @@
   <div class="card-body">
     <div class="form-group">
       <label for="pemandangan">Pemandangan</label>
-      <input type="text" class="form-control" id="pemandangan" placeholder="Isi Pemandangan" name="pemandangan" value="{{$arah_unit->nama_apartemen}}">
+      <input type="text" class="form-control" id="pemandangan" placeholder="Isi Pemandangan" name="pemandangan" value="{{$arah_unit->pemandangan}}">
        
     </div>
   </div>

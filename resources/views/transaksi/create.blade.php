@@ -24,7 +24,7 @@
     <div class="form-group">
       <label>Harga jual</label>
       <select name="hargajual" class="form-control select2" style="width: 100%;">
-        @foreach($harga_jual as $harga_juals)
+        @foreach($hargajual as $harga_juals)
           <option value="{{$harga_juals->idhargajual}}">{{$harga_juals->hargajual_cash}}</option>
         @endforeach
       </select>

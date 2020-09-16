@@ -4,6 +4,7 @@
 <!-- form start -->
 <form role="form" action="{{route('towers.update',$tower)}}" method="post">
   {{csrf_field()}}
+  {{method_field('put')}}
   <div class="card-body">
     <div class="form-group">
       <label for="nama">Nama</label>

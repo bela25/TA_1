@@ -24,7 +24,7 @@
             <th>Jabatan</th>
             <th>Email</th>
             <th>Username</th>
-            <th>Password</th>
+            <!-- <th>Password</th> -->
             <th>Created_at</th>
             <th>Updated_at</th>
             <th>Interaksi</th>
@@ -42,7 +42,7 @@
             <td>{{$pegawai->jabatan}}</td>
             <td>{{$pegawai->email}}</td>
             <td>{{$pegawai->username}}</td>
-            <td>{{$pegawai->password}}</td>
+            <!-- <td>{{$pegawai->password}}</td> -->
             <td>{{$pegawai->created_at}}</td>
             <td>{{$pegawai->updated_at}}</td>
             <td>

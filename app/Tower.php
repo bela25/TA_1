@@ -10,7 +10,7 @@ class Tower extends Model
 
     public function lokasis()
     {
-    	return $this->belongsTo('App\Lokasi','id_tower','idlokasi');
+    	return $this->belongsTo('App\Lokasi','lokasi','idlokasi');
     }
     //
 }

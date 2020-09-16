@@ -46,7 +46,7 @@ class PromosiController extends Controller
         $post ->tgl_akhir = $request->get('tglakhir');
         $post ->keterangan = $request->get('keterangan');
         $post ->gambar = $request->get('gambar');
-        $post ->admin = $request->get('admin');
+        $post ->pegawai = $request->get('admin');
         $post->save();
         return redirect('promosis');
         //
@@ -71,7 +71,8 @@ class PromosiController extends Controller
      */
     public function edit(Promosi $promosi)
     {
-        return view('promosi.update',compact('promosi'));
+        $pegawai=Pegawai::all();
+        return view('promosi.update',compact('promosi','pegawai'));
         //
     }
 
@@ -84,12 +85,12 @@ class PromosiController extends Controller
      */
     public function update(Request $request, Promosi $promosi)
     {
-        $post ->judul_promosi = $request->get('judulpromosi');
-        $post ->tgl_awal = $request->get('tglawal');
-        $post ->tgl_akhir = $request->get('tglakhir');
-        $post ->keterangan = $request->get('keterangan');
-        $post ->gambar = $request->get('gambar');
-        $post ->admin = $request->get('admin');
+        $promosi ->judul_promosi = $request->get('judulpromosi');
+        $promosi ->tgl_awal = $request->get('tglawal');
+        $promosi ->tgl_akhir = $request->get('tglakhir');
+        $promosi ->keterangan = $request->get('keterangan');
+        $promosi ->gambar = $request->get('gambar');
+        $promosi ->pegawai = $request->get('admin');
         $promosi->save();
         return redirect('promosis');
         //

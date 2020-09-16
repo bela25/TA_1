@@ -2,8 +2,9 @@
 
 @section('content')
 <!-- form start -->
-<form role="form" action="{{route('spesifikasi_bangunans.store')}}" method="post">
+<form role="form" action="{{route('spesifikasi_bangunans.update',$spesifikasi_bangunan)}}" method="post">
 	{{csrf_field()}}
+  {{method_field('put')}}
   <div class="card-body">
     <div class="form-group">
       <label for="lantai">Lantai</label>

@@ -43,11 +43,12 @@ class CustomerController extends Controller
         $post ->alamat = $request->get('alamat');
         $post ->no_telp = $request->get('notelp');
         $post ->no_ktp = $request->get('noktp');
+        // $post ->tempat_lahir = $request->get('tempatlahir');
         $post ->tgl_lahir = $request->get('tgllahir');
         $post ->gender = $request->get('customRadio');
         $post ->email = $request->get('email');
         $post ->username= $request->get('username');
-        $post ->password = $request->get('password');
+        $post ->password = bcrypt($request->get('password'));
         $post->save();
         return redirect('customers');
         //
@@ -85,16 +86,17 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        
+        // dd($request->all());
         $customer ->nama = $request->get('nama');
         $customer ->alamat = $request->get('alamat');
         $customer ->no_telp = $request->get('notelp');
         $customer ->no_ktp = $request->get('noktp');
+        // $customer ->tempat_lahir = $request->get('tempatlahir');
         $customer ->tgl_lahir = $request->get('tgllahir');
         $customer ->gender = $request->get('gender');
         $customer ->email = $request->get('email');
         $customer ->username= $request->get('username');
-        $customer ->password = $request->get('password');
+        $customer ->password = bcrypt($request->get('password'));
         $customer->save();
         return redirect('customers');
         //

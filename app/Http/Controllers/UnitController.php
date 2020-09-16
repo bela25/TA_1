@@ -45,7 +45,8 @@ class UnitController extends Controller
     public function store(Request $request)
     {
         $post = new Unit();
-        $post ->cicilan = $request->get('kodecicilan');
+        // $post ->cicilan = $request->get('kodecicilan');
+        $post ->no_unit = 1;
         $post ->lantai = $request->get('lantai');
         $post ->status = $request->get('customRadio');
         $post ->tower = $request->get('tower');
@@ -75,8 +76,10 @@ class UnitController extends Controller
      */
     public function edit(Unit $unit)
     {
-        
-        return view('unit.update',compact('unit'));
+        $tower= Tower::all();
+        $arah_unit=Arah_unit::all();
+        $tipe_unit=Tipe_unit::all();
+        return view('unit.update',compact('unit','tower','arah_unit','tipe_unit'));
         //
     }
 

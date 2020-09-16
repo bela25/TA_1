@@ -10,7 +10,7 @@ class GambarProduk extends Model
 
  	public function tipes()
     {
-    	return $this->belongsTo('App\Tipe_unit');
+    	return $this->belongsTo('App\Tipe_unit','tipe','id_tipe');
     }
     //
 }

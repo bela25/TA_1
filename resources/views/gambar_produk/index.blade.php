@@ -27,11 +27,11 @@
           @foreach($gambar_produks as $gambar_produk)
           <tr>
             <td>{{$gambar_produk->nama_gambar}}</td>
-            <td><a href="{{route('tipe_units.index')}}">{{$gambar_produk->tipe_units->nama}}</a></td>
+            <td><a href="{{route('tipe_units.index')}}">{{$gambar_produk->tipes->nama}}</a></td>
             <td>{{$gambar_produk->created_at}}</td>
             <td>{{$gambar_produk->updated_at}}</td>
             <td>
-              <a href="{{route('gambarproduks.edit',$gambar_produk)}}" class="btn btn-primary">Ubah</a>
+              <a href="{{route('gambar_produks.edit',$gambar_produk)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$gambar_produk->id_gambarproduk}}">Hapus</button>
               <div class="modal fade" id="delete{{$gambar_produk->id_gambarproduk}}">
                 <div class="modal-dialog">
@@ -44,7 +44,7 @@
                     </div>
                     <div class="modal-body">
                       <p>Data ini akan dihapus secara permanen, Anda yakin untuk menghapus?&hellip;</p>
-                       <form role="form" action="{{route('gambarproduks.destroy',$gambar_produk)}}" method="post" id="hapus{{$gambar_produk->id_gambarproduk}}">
+                       <form role="form" action="{{route('gambar_produks.destroy',$gambar_produk)}}" method="post" id="hapus{{$gambar_produk->id_gambarproduk}}">
                         {{csrf_field()}}
                         {{method_field('delete')}}
                         

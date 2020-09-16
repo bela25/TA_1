@@ -10,7 +10,7 @@ class Profil extends Model
 
     public function pegawais()
     {
-    	return $this->belongsTo('App\Pegawai');
+    	return $this->belongsTo('App\Pegawai', 'admin', 'nip');
     }
     //
 }

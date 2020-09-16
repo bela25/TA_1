@@ -40,8 +40,11 @@ class GambarProdukController extends Controller
      */
     public function store(Request $request)
     {
+        $file = $request->file('file_gambar');
+        $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
+
         $post = new GambarProduk();
-        $post ->nama_gambar = $request->get('exampleInputFile');
+        $post ->nama_gambar = $nama_gambar;
         $post ->tipe = $request->get('tipe');
         $post->save();
         return redirect('gambar_produks');
@@ -67,7 +70,8 @@ class GambarProdukController extends Controller
      */
     public function edit(GambarProduk $gambarProduk)
     {
-        return view('gambar_produk.update',compact('gambar_produk'));
+        $tipe_unit=Tipe_unit::all();
+        return view('gambar_produk.update',compact('gambarProduk','tipe_unit'));
         //
     }
 
@@ -80,10 +84,12 @@ class GambarProdukController extends Controller
      */
     public function update(Request $request, GambarProduk $gambarProduk)
     {
-         
-        $gambar_produk ->nama_gambar = $request->get('exampleInputFile');
-        $gambar_produk ->tipe = $request->get('tipe');
-        $gambar_produk->save();
+        $file = $request->file('file_gambar');
+        $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
+
+        $gambarProduk ->nama_gambar = $nama_gambar;
+        $gambarProduk ->tipe = $request->get('tipe');
+        $gambarProduk->save();
         return redirect('gambar_produks');
         //
     }
@@ -96,7 +102,8 @@ class GambarProdukController extends Controller
      */
     public function destroy(GambarProduk $gambarProduk)
     {
-        $gambar_produk->delete();
+        unlink($gambarProduk->nama_gambar);
+        $gambarProduk->delete();
         return redirect('gambar_produks');
         //
     }

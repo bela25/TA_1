@@ -2,14 +2,14 @@
 
 @section('content')
 <!-- form start -->
-<form role="form" action="{{route('gambar_produks.store')}}" method="post">
+<form role="form" action="{{route('gambar_produks.store')}}" method="post" enctype="multipart/form-data">
   {{csrf_field()}}
   <div class="card-body">
     <div class="form-group">
       <label for="exampleInputFile">Gambar</label>
       <div class="input-group">
         <div class="custom-file">
-          <input type="file" class="custom-file-input" id="exampleInputFile">
+          <input type="file" class="custom-file-input" id="exampleInputFile" name="file_gambar">
           <label class="custom-file-label" for="exampleInputFile">Choose file</label>
         </div>
         <div class="input-group-append">

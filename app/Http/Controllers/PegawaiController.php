@@ -41,14 +41,14 @@ class PegawaiController extends Controller
         $post = new Pegawai();
         $post ->nama = $request->get('nama');
         $post ->alamat = $request->get('alamat');
-        $post ->tempat_lahir = $request->get('tempatllahir');
+        $post ->tempat_lahir = $request->get('tempatlahir');
         $post ->nip = $request->get('nip');
         $post ->tgl_lahir = $request->get('tgllahir');
         $post ->no_telp =$request->get('notelp');
         $post ->jabatan = $request->get('jabatan');
         $post ->email = $request->get('email');
         $post ->username= $request->get('username');
-        $post ->password = $request->get('password');
+        $post ->password = bcrypt($request->get('password'));
         $post ->tgl_bergabung = $request->get('tglbergabung');
         $post->save();
         return redirect('pegawais');
@@ -89,14 +89,14 @@ class PegawaiController extends Controller
     {
         $pegawai ->nama = $request->get('nama');
         $pegawai ->alamat = $request->get('alamat');
-        $pegawai ->tempat_lahir = $request->get('tempatllahir');
-        $pegawai ->nip = $request->get('nip');
+        $pegawai ->tempat_lahir = $request->get('tempatlahir');
+        // $pegawai ->nip = $request->get('nip');
         $pegawai ->tgl_lahir = $request->get('tgllahir');
         $pegawai ->no_telp =$request->get('notelp');
         $pegawai ->jabatan = $request->get('jabatan');
         $pegawai ->email = $request->get('email');
         $pegawai ->username= $request->get('username');
-        $pegawai ->password = $request->get('password');
+        $pegawai ->password = bcrypt($request->get('password'));
         $pegawai ->tgl_bergabung = $request->get('tglbergabung');
         $pegawai->save();
         return redirect('pegawais');

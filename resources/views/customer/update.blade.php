@@ -2,8 +2,9 @@
 
 @section('content')
 <!-- form start -->
-<form role="form" action="{{route('customers.store')}}" method="post">
+<form role="form" action="{{route('customers.update', $customer)}}" method="post">
 	{{csrf_field()}}
+  {{method_field('put')}}
   <div class="card-body">
     <div class="form-group">
       <label for="nama">Nama</label>
@@ -18,6 +19,10 @@
       <label for="noktp">No KTP</label>
       <input type="text" class="form-control" id="noktp" placeholder="Isi No KTP" name="noktp"
       value="{{$customer->no_ktp}}">
+    </div>
+    <div class="form-group">
+      <label for="alamat">Tempat Lahir</label>
+      <input type="text" class="form-control" id="tempatlahir" placeholder="Isi Tempat Lahir" name="tempatlahir" value="{{$customer->tempat_lahir}}">
     </div>
     <div class="form-group">
       <label for="tgllahir">Tanggal Lahir</label>

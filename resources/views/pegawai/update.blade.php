@@ -2,8 +2,9 @@
 
 @section('content')
 <!-- form start -->
-<form role="form" action="{{route('pegawais.store')}}" method="post">
+<form role="form" action="{{route('pegawais.update', $pegawai)}}" method="post">
   {{csrf_field()}}
+  {{method_field('put')}}
   <div class="card-body">
     <div class="form-group">
       <label for="nip">NIP</label>
@@ -28,6 +29,10 @@
     <div class="form-group">
       <label for="jabatan">Jabatan</label>
       <input type="text" class="form-control" id="jabatan" placeholder="Isi Jabatan" name="jabatan" value="{{$pegawai->jabatan}}">
+    </div>
+    <div class="form-group">
+      <label for="notelp">No Telp</label>
+      <input type="text" class="form-control" id="notelp" placeholder="Isi No Telp" name="notelp" value="{{$pegawai->no_telp}}">
     </div>
     <div class="form-group">
       <label for="email">Email</label>

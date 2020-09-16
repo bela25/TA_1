@@ -30,6 +30,10 @@
       <input type="text" class="form-control" id="jabatan" placeholder="Isi Jabatan" name="jabatan">
     </div>
     <div class="form-group">
+      <label for="notelp">No Telp</label>
+      <input type="text" class="form-control" id="notelp" placeholder="Isi No Telp" name="notelp">
+    </div>
+    <div class="form-group">
       <label for="email">Email</label>
       <input type="email" class="form-control" id="email" placeholder="Isi Email" name="email">
     </div>

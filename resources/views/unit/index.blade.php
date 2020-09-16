@@ -30,12 +30,12 @@
         <tbody>
         @foreach($units as $unit)
           <tr>
-            <td>{{$unit->Unit}}</td>
-            <td>{{$unit->Status}}</td>
-            <td>{{$unit->Lantai}}</td>
-            <td><a href="{{route('tipe_units.index')}}">{{$unit->tipe_units->nama}}</a></td>
+            <td>{{$unit->no_unit}}</td>
+            <td>{{$unit->status}}</td>
+            <td>{{$unit->lantai}}</td>
+            <td><a href="{{route('tipe_units.index')}}">{{$unit->tipes->nama}}</a></td>
             <td><a href="{{route('towers.index')}}">{{$unit->towers->nama}}</a></td>
-            <td><a href="{{route('arah_units.index')}}">{{$unit->arah_units->pemandngan}}</a></td>
+            <td><a href="{{route('arah_units.index')}}">{{$unit->arahs->pemandangan}}</a></td>
             <td>{{$unit->created_at}}</td>
             <td>{{$unit->updated_at}}</td>
             <td>
@@ -61,7 +61,7 @@
                     </div>
                     <div class="modal-footer justify-content-between">
                       <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                      <button type="submit" class="btn btn-primary" form="hapus{{$tower->id_tower}}">Yes</button>
+                      <button type="submit" class="btn btn-primary" form="hapus{{$unit->id_unit}}">Yes</button>
                     </div>
                   </div>
                   <!-- /.modal-content -->

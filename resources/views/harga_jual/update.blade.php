@@ -2,27 +2,28 @@
 
 @section('content')
 <!-- form start -->
-<form role="form" action="{{route('hargajuals.update',$harga_jual)}}" method="post">
+<form role="form" action="{{route('hargajuals.update',$hargaJual)}}" method="post">
   {{csrf_field()}}
+  {{method_field('put')}}
   <div class="card-body">
     <div class="form-group">
       <label for="hargajual">Harga Jual</label>
-      <input type="text" class="form-control" id="hargajual" placeholder="Isi Unit" name="hargajual" value="{{$harga_jual->hargajual_cash}}">
+      <input type="text" class="form-control" id="hargajual" placeholder="Isi Unit" name="hargajual" value="{{$hargaJual->hargajual_cash}}">
     </div>
     <div class="form-group">
       <label>Tanggal Awal:</label>
-      <div class="input-group date" id="tgl_awal" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tgllahir">
-        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
+      <div class="input-group date" id="tglawal" data-target-input="nearest">
+        <input type="text" class="form-control datetimepicker-input" data-target="#tglawal" name="tglawal" value="{{$hargaJual->tgl_awal}}">
+        <div class="input-group-append" data-target="#tglawal" data-toggle="datetimepicker">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
       </div>
     </div>
     <div class="form-group">
       <label>Tanggal Akhir:</label>
-      <div class="input-group date" id="tgl_akhir" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tgllahir">
-        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
+      <div class="input-group date" id="tglakhir" data-target-input="nearest">
+        <input type="text" class="form-control datetimepicker-input" data-target="#tglakhir" name="tglakhir" value="{{$hargaJual->tgl_akhir}}">
+        <div class="input-group-append" data-target="#tglakhir" data-toggle="datetimepicker">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
       </div>
