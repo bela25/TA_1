@@ -8,48 +8,48 @@
   <div class="card-body">
     <div class="form-group">
       <label for="nama">Nama</label>
-      <input type="text" class="form-control" id="nama" placeholder="Isi Nama" name="nama" value="{{$customer->nama}}">
+      <input type="text" class="form-control" id="nama" placeholder="Isi Nama" name="nama" value="{{$customer->nama}}" required>
     </div>
     <div class="form-group">
       <label for="alamat">Alamat</label>
       <input type="text" class="form-control" id="alamat" placeholder="Isi Alamat" name="alamat"
-      value="{{$customer->alamat}}">
+      value="{{$customer->alamat}}" required>
     </div>
     <div class="form-group">
       <label for="noktp">No KTP</label>
       <input type="text" class="form-control" id="noktp" placeholder="Isi No KTP" name="noktp"
-      value="{{$customer->no_ktp}}">
+      value="{{$customer->no_ktp}}" required>
     </div>
     <div class="form-group">
       <label for="alamat">Tempat Lahir</label>
-      <input type="text" class="form-control" id="tempatlahir" placeholder="Isi Tempat Lahir" name="tempatlahir" value="{{$customer->tempat_lahir}}">
+      <input type="text" class="form-control" id="tempatlahir" placeholder="Isi Tempat Lahir" name="tempatlahir" value="{{$customer->tempat_lahir}}" required>
     </div>
     <div class="form-group">
       <label for="tgllahir">Tanggal Lahir</label>
-      <input type="text" class="form-control" id="tgllahir" placeholder="Isi Tanggal Lahir" name="tgllahir" value="{{$customer->tgl_lahir}}">
+      <input type="text" class="form-control" id="tgllahir" placeholder="Isi Tanggal Lahir" name="tgllahir" value="{{$customer->tgl_lahir}}" required>
     </div>
     <div class="form-group">
       <label for="notelp">No Telp</label>
       <input type="text" class="form-control" id="notelp" placeholder="Isi No Telp" name="notelp"
-      value="{{$customer->no_telp}}">
+      value="{{$customer->no_telp}}" required>
     </div>
     <div class="form-group">
       <label for="gender">Gender</label>
       <input type="text" class="form-control" id="gender" placeholder="Isi Gender" name="gender"
-      value="{{$customer->gender}}">
+      value="{{$customer->gender}}" required>
     </div>
     <div class="form-group">
       <label for="email">Email</label>
       <input type="email" class="form-control" id="email" placeholder="Isi Email" name="email"
-      value="{{$customer->email}}">
+      value="{{$customer->email}}" required>
     </div>
     <div class="form-group">
       <label for="username">Username</label>
-      <input type="text" class="form-control" id="username" placeholder="Isi Username" name="username" value="{{$customer->username}}">
+      <input type="text" class="form-control" id="username" placeholder="Isi Username" name="username" value="{{$customer->username}}" required>
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" placeholder="Isi Password">
+      <input type="password" class="form-control" id="password" placeholder="Isi Password" required>
     </div>
   </div>
   <!-- /.card-body -->

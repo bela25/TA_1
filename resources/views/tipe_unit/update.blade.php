@@ -8,11 +8,11 @@
   <div class="card-body">
     <div class="form-group">
       <label for="namatipe">Nama Tipe</label>
-      <input type="text" class="form-control" id="namatipe" placeholder="Isi Nama Tipe" name="namatipe" value="{{$tipe_unit->nama}}">
+      <input type="text" class="form-control" id="namatipe" placeholder="Isi Nama Tipe" name="namatipe" value="{{$tipe_unit->nama}}" required>
     </div>
     <div class="form-group">
       <label for="fasilitas">Fasilitas</label>
-      <input type="text" class="form-control" id="fasilitas" placeholder="Isi Fasilitas" name="fasilitas"value="{{$tipe_unit->fasilitas}}">
+      <input type="text" class="form-control" id="fasilitas" placeholder="Isi Fasilitas" name="fasilitas"value="{{$tipe_unit->fasilitas}}" required>
     </div>
   </div>
   <!-- /.card-body -->

@@ -7,7 +7,7 @@
   <div class="card-body">
     <div class="form-group">
       <label>Customer</label>
-      <select name="customer" class="form-control select2" style="width: 100%;">
+      <select name="customer" class="form-control select2" style="width: 100%;" required>
         @foreach($customers as $customerss)
           <option value="{{$customers->id_customers}}">{{$customers->nama}}</option>
         @endforeach
@@ -17,7 +17,7 @@
       <label>Tanggal Pembayaran:</label>
 
       <div class="input-group date" id="tglpembayaran" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tgllahir">
+        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tgllahir" required>
         <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
@@ -26,7 +26,7 @@
     </div>
     <div class="form-group">
       <label>Nominal</label>
-      <select class="form-control"  name="nominal" >
+      <select class="form-control" name="nominal" required>
         <option>100jt</option>
         <option>200jt</option>
         <option>300jt</option>
@@ -37,7 +37,7 @@
       <label for="exampleInputFile">Upload Bukti</label>
       <div class="input-group">
         <div class="custom-file">
-          <input type="file" class="custom-file-input" id="exampleInputFile">
+          <input type="file" class="custom-file-input" id="exampleInputFile" required>
           <label class="custom-file-label" for="exampleInputFile">Choose file</label>
         </div>
         <div class="input-group-append">

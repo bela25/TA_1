@@ -8,19 +8,19 @@
   <div class="card-body">
     <div class="form-group">
       <label for="namaapartemen">Nama Apartemen</label>
-      <input type="text" class="form-control" id="namaapartemen" placeholder="Isi Nama Apartemen" name="namaapartemen" value="{{$lokasi->nama_apartemen}}">
+      <input type="text" class="form-control" id="namaapartemen" placeholder="Isi Nama Apartemen" name="namaapartemen" value="{{$lokasi->nama_apartemen}}" required>
     </div>
     <div class="form-group">
       <label for="namaprovinsi">Provinsi</label>
-      <input type="text" class="form-control" id="namaprovinsi" placeholder="Isi Provinsi" name="namaprovinsi"value="{{$lokasi->provinsi}}">
+      <input type="text" class="form-control" id="namaprovinsi" placeholder="Isi Provinsi" name="namaprovinsi"value="{{$lokasi->provinsi}}" required>
     </div>
     <div class="form-group">
       <label for="namakota">Kota</label>
-      <input type="text" class="form-control" id="namakota" placeholder="Isi Kota" name="namakota" value="{{$lokasi->kota}}">
+      <input type="text" class="form-control" id="namakota" placeholder="Isi Kota" name="namakota" value="{{$lokasi->kota}}" required>
     </div>
     <div class="form-group">
       <label for="namaalamat">Alamat</label>
-      <input type="text" class="form-control" id="namaalamat" placeholder="Isi Alamat" name="namaalamat" value="{{$lokasi->alamat}}">
+      <input type="text" class="form-control" id="namaalamat" placeholder="Isi Alamat" name="namaalamat" value="{{$lokasi->alamat}}" required>
     </div>
   </div>
   <!-- /.card-body -->

@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function () 
-{
-	return redirect('home');
-});
+// Route::get('/', function () 
+// {
+// 	return redirect('home');
+// });
 
 Auth::routes();
 
@@ -38,3 +38,12 @@ Route::resource('profils','ProfilController');
 Route::resource('spesifikasi_bangunans','SpesifikasiBangunanController');
 Route::resource('units','UnitController');
 Route::resource('transaksis','TransaksiController');
+
+Route::get('/', 'PengunjungController@index')->name('pengunjung.index');
+Route::get('about', 'PengunjungController@about')->name('pengunjung.about');
+Route::get('services', 'PengunjungController@services')->name('pengunjung.services');
+Route::get('agent', 'PengunjungController@agent')->name('pengunjung.agent');
+Route::get('listing', 'PengunjungController@listing')->name('pengunjung.listing');
+Route::get('listing/single', 'PengunjungController@listingSingle')->name('pengunjung.listing.single');
+Route::get('blog', 'PengunjungController@blog')->name('pengunjung.blog');
+Route::get('contact', 'PengunjungController@contact')->name('pengunjung.contact');

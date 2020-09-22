@@ -8,39 +8,39 @@
   <div class="card-body">
     <div class="form-group">
       <label for="lantai">Lantai</label>
-      <input type="text" class="form-control" id="lantai" placeholder="Isi Lantai" name="lantai" value="{{$spesifikasi_bangunan->lantai}}">
+      <input type="text" class="form-control" id="lantai" placeholder="Isi Lantai" name="lantai" value="{{$spesifikasi_bangunan->lantai}}" required>
     </div>
     <div class="form-group">
       <label for="dinding">Dinding</label>
-      <input type="text" class="form-control" id="dinding" placeholder="Isi Dinding" name="dinding" value="{{$spesifikasi_bangunan->dinding}}">
+      <input type="text" class="form-control" id="dinding" placeholder="Isi Dinding" name="dinding" value="{{$spesifikasi_bangunan->dinding}}" required>
     </div>
     <div class="form-group">
       <label for="platfon">Platfon</label>
-      <input type="text" class="form-control" id="platfon" placeholder="Isi Platfon" name="platfon" value="{{$spesifikasi_bangunan->platfon}}">
+      <input type="text" class="form-control" id="platfon" placeholder="Isi Platfon" name="platfon" value="{{$spesifikasi_bangunan->platfon}}" required>
     </div>
     <div class="form-group">
       <label for="instalasilistrik">Instalasi Listrik</label>
-      <input type="text" class="form-control" id="instalasilistrik" placeholder="Isi Instalasi Listrik" name="instalasilistrik" value="{{$spesifikasi_bangunan->instalasi_listrik}}">
+      <input type="text" class="form-control" id="instalasilistrik" placeholder="Isi Instalasi Listrik" name="instalasilistrik" value="{{$spesifikasi_bangunan->instalasi_listrik}}" required>
     </div>
     <div class="form-group">
       <label for="sanitary">Sanitary</label>
-      <input type="text" class="form-control" id="sanitary" placeholder="Isi Sanitary" name="sanitary" value="{{$spesifikasi_bangunan->sanitary}}">
+      <input type="text" class="form-control" id="sanitary" placeholder="Isi Sanitary" name="sanitary" value="{{$spesifikasi_bangunan->sanitary}}" required>
     </div>
     <div class="form-group">
       <label for="pintu">Pintu</label>
-      <input type="text" class="form-control" id="pintu" placeholder="Isi Pintu" name="pintu" value="{{$spesifikasi_bangunan->pintu}}">
+      <input type="text" class="form-control" id="pintu" placeholder="Isi Pintu" name="pintu" value="{{$spesifikasi_bangunan->pintu}}" required>
     </div>
     <div class="form-group">
       <label for="jendela">Jendela</label>
-      <input type="text" class="form-control" id="jendela" placeholder="Isi Jendela" name="jendela" value="{{$spesifikasi_bangunan->jendela}}">
+      <input type="text" class="form-control" id="jendela" placeholder="Isi Jendela" name="jendela" value="{{$spesifikasi_bangunan->jendela}}" required>
     </div>
     <div class="form-group">
       <label for="air">Air</label>
-      <input type="text" class="form-control" id="air" placeholder="Isi Air" name="air" value="{{$spesifikasi_bangunan->air}}">
+      <input type="text" class="form-control" id="air" placeholder="Isi Air" name="air" value="{{$spesifikasi_bangunan->air}}" required>
     </div>
     <div class="form-group">
       <label>Admin</label>
-      <select name="admin" class="form-control select2" style="width: 100%;">
+      <select name="admin" class="form-control select2" style="width: 100%;" required>
         @foreach($pegawai as $pegawais)
           <option value="{{$pegawais->nip}}">{{$pegawais->nama}}</option>
         @endforeach

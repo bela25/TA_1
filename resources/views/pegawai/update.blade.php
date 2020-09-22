@@ -8,47 +8,57 @@
   <div class="card-body">
     <div class="form-group">
       <label for="nip">NIP</label>
-      <input type="text" class="form-control" id="nip" placeholder="Isi NIP" name="nip" value="{{$pegawai->nip}}">
+      <input type="text" class="form-control" id="nip" placeholder="Isi NIP" name="nip" value="{{$pegawai->nip}}" required>
     </div>
     <div class="form-group">
       <label for="nama">Nama</label>
-      <input type="text" class="form-control" id="nama" placeholder="Isi Nama" name="nama" value="{{$pegawai->nama}}">
+      <input type="text" class="form-control" id="nama" placeholder="Isi Nama" name="nama" value="{{$pegawai->nama}}" required>
     </div>
     <div class="form-group">
       <label for="alamat">Alamat</label>
-      <input type="text" class="form-control" id="alamat" placeholder="Isi Alamat" name="alamat" value="{{$pegawai->alamat}}">
+      <input type="text" class="form-control" id="alamat" placeholder="Isi Alamat" name="alamat" value="{{$pegawai->alamat}}" required>
     </div>
     <div class="form-group">
       <label for="tempatlahir">Tempat Lahir</label>
-      <input type="text" class="form-control" id="tempatlahir" placeholder="Isi Tempat Lahir" name="tempatlahir" value="{{$pegawai->tempat_lahir}}">
+      <input type="text" class="form-control" id="tempatlahir" placeholder="Isi Tempat Lahir" name="tempatlahir" value="{{$pegawai->tempat_lahir}}" required>
     </div>
     <div class="form-group">
       <label for="tgllahir">Tanggal Lahir</label>
-      <input type="text" class="form-control" id="tgllahir" placeholder="Isi Tanggal Lahir" name="tgllahir" value="{{$pegawai->tgl_lahir}}">
+      <div class="input-group date" id="tgllahir" data-target-input="nearest">
+        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tgllahir" required>
+        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
+          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+        </div>
+      </div>
     </div>
     <div class="form-group">
       <label for="jabatan">Jabatan</label>
-      <input type="text" class="form-control" id="jabatan" placeholder="Isi Jabatan" name="jabatan" value="{{$pegawai->jabatan}}">
+      <input type="text" class="form-control" id="jabatan" placeholder="Isi Jabatan" name="jabatan" value="{{$pegawai->jabatan}}" required>
     </div>
     <div class="form-group">
       <label for="notelp">No Telp</label>
-      <input type="text" class="form-control" id="notelp" placeholder="Isi No Telp" name="notelp" value="{{$pegawai->no_telp}}">
+      <input type="text" class="form-control" id="notelp" placeholder="Isi No Telp" name="notelp" value="{{$pegawai->no_telp}}" required>
     </div>
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" class="form-control" id="email" placeholder="Isi Email" name="email" value="{{$pegawai->email}}">
+      <input type="email" class="form-control" id="email" placeholder="Isi Email" name="email" value="{{$pegawai->email}}" required>
     </div>
     <div class="form-group">
       <label for="username">Username</label>
-      <input type="text" class="form-control" id="username" placeholder="Isi Username" name="username" value="{{$pegawai->username}}">
+      <input type="text" class="form-control" id="username" placeholder="Isi Username" name="username" value="{{$pegawai->username}}" required>
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" placeholder="Isi Password">
+      <input type="password" class="form-control" id="password" placeholder="Isi Password" required>
     </div>
     <div class="form-group">
       <label for="tglbergabung">Tgl Bergabung</label>
-      <input type="text" class="form-control" id="tglbergabung" placeholder="Isi Tanggal Bergabung" name="tglbergabung" value="{{$pegawai->tgl_bergabung}}">
+      <div class="input-group date" id="tgllahir" data-target-input="nearest">
+        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tglbergabung" required>
+        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
+          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+        </div>
+      </div>
     </div>
   </div>
   <!-- /.card-body -->

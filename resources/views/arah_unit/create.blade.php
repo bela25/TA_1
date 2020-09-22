@@ -7,7 +7,7 @@
   <div class="card-body">
     <div class="form-group">
       <label for="pemandangan">Pemandangan</label>
-      <input type="text" class="form-control" id="pemandangan" placeholder="Isi Pemandangan" name="pemandangan"> 
+      <input type="text" class="form-control" id="pemandangan" placeholder="Isi Pemandangan" name="pemandangan" required> 
     </div>
   </div>
   <!-- /.card-body -->

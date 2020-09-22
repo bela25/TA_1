@@ -17,7 +17,7 @@
       <label>Tanggal Awal:</label>
 
       <div class="input-group date" id="tglawal" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tgllahir">
+        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tgllahir" required>
         <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
@@ -28,7 +28,7 @@
       <label>Tanggal Akhir:</label>
 
       <div class="input-group date" id="tglakhir" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tgllahir">
+        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tgllahir" required>
         <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
@@ -37,7 +37,7 @@
     </div>
     <div class="form-group">
       <label for="bunga">Bunga</label>
-      <input type="text" class="form-control" id="bunga" placeholder="Isi Bunga" name="bunga">
+      <input type="number" class="form-control" id="bunga" placeholder="Isi Bunga" name="bunga" min="0" step="0.01" required>
     </div>
   </div>
   <!-- /.card-body -->

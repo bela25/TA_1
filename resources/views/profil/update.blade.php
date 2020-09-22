@@ -16,12 +16,23 @@
       <textarea class="form-control" rows="3" placeholder="Keterangan ..." id="keterangan" name="keterangan">{{$profil->keterangan}}</textarea>
     </div>
     <div class="form-group">
-      <label for="gambar">Gambar</label>
-      <input type="text" class="form-control" id="gambar" placeholder="Isi Gambar" name="gambar" value="{{$profil->gambar}}">
+      <label for="exampleInputFile">Gambar</label>
+      <div class="input-group">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="exampleInputFile" name="gambar" value="{{$profil->gambar}}" required>
+          <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+        </div>
+        <div class="input-group-append">
+          <span class="input-group-text" id="">Upload</span>
+        </div>
+      </div>
     </div>
     <div class="form-group">
       <label for="tgldibuat">Tanggal Dibuat</label>
-      <input type="text" class="form-control" id="tgldibuat" placeholder="Isi Tanggal Dibuat" name="tgldibuat" value="">
+      <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" id="tgldibuat" placeholder="Isi Tanggal Dibuat" name="tgldibuat" required>
+      <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
+        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+      </div>
     </div>
     <div class="form-group">
       <label>Admin</label>

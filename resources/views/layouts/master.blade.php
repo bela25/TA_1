@@ -276,12 +276,6 @@
       $('#tgllahir').datetimepicker({
         format: 'Y-MM-DD'
       });
-      $('#tglawal').datetimepicker({
-        format: 'Y-MM-DD'
-      });
-      $('#tglakhir').datetimepicker({
-        format: 'Y-MM-DD'
-      });
     });
   </script>
 

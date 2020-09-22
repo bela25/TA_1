@@ -8,13 +8,13 @@
   <div class="card-body">
     <div class="form-group">
       <label for="hargajual">Harga Jual</label>
-      <input type="text" class="form-control" id="hargajual" placeholder="Isi Unit" name="hargajual" value="{{$hargaJual->hargajual_cash}}">
+      <input type="number" class="form-control" id="hargajual" placeholder="Isi Unit" name="hargajual" value="{{$hargaJual->hargajual_cash}}" min="0" required>
     </div>
     <div class="form-group">
       <label>Tanggal Awal:</label>
       <div class="input-group date" id="tglawal" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tglawal" name="tglawal" value="{{$hargaJual->tgl_awal}}">
-        <div class="input-group-append" data-target="#tglawal" data-toggle="datetimepicker">
+        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tglawal" value="{{$hargaJual->tgl_awal}}" required>
+        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
       </div>
@@ -22,15 +22,15 @@
     <div class="form-group">
       <label>Tanggal Akhir:</label>
       <div class="input-group date" id="tglakhir" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tglakhir" name="tglakhir" value="{{$hargaJual->tgl_akhir}}">
-        <div class="input-group-append" data-target="#tglakhir" data-toggle="datetimepicker">
+        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tglakhir" value="{{$hargaJual->tgl_akhir}}" required>
+        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
       </div>
     </div>
     <div class="form-group">
       <label>Tipe</label>
-      <select name="tipeunit" class="form-control select2" style="width: 100%;">
+      <select name="tipeunit" class="form-control select2" style="width: 100%;" required>
         @foreach($tipe_unit as $tipe_units)
           <option value="{{$tipe_units->id_tipe}}">{{$tipe_units->nama}}</option>
         @endforeach
@@ -38,7 +38,7 @@
     </div>
     <div class="form-group">
       <label>Tower</label>
-      <select name="tower" class="form-control select2" style="width: 100%;">
+      <select name="tower" class="form-control select2" style="width: 100%;" required>
         @foreach($tower as $towers)
           <option value="{{$towers->id_tower}}">{{$towers->nama}}</option>
         @endforeach
@@ -47,7 +47,7 @@
     <div class="form-group">
       <div class="form-group">
         <label>Arah</label>
-        <select name="arah" class="form-control select2" style="width: 100%;">
+        <select name="arah" class="form-control select2" style="width: 100%;" required>
           @foreach($arah_unit as $arah_units)
             <option value="{{$arah_units->id_arah}}">{{$arah_units->pemandangan}}</option>
           @endforeach
