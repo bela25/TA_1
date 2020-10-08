@@ -18,9 +18,9 @@
             <th>Customer</th>
             <th>Alasan</th>
             <th>Tanggal Pembatalan</th>
-            <th>Bukti</th>
             <th>Tanggal Pengembalian</th>
             <th>Admin</th>
+            <th>Bukti</th>
             <th>Interaksi</th>
           </tr>
         </thead>
@@ -28,12 +28,18 @@
         <tbody>
           @foreach($pembatalans as $pembatalan)
           <tr>
-            <td><a href="{{route('pembatalans.index')}}">{{$pembatalan->transaksis->nama}}</a></td>
+            <td><a href="#">{{$pembatalan->transaksis->customers->nama}}</a></td>
             <td>{{$pembatalan->alasan}}</td>
             <td>{{$pembatalan->tanggal_batal}}</td>
-            <td>{{$pembatalan->gambar_bukti}}</td>
             <td>{{$pembatalan->tgl_pengembalian}}</td>
-            <td><a href="{{route('pembatalans.index')}}">{{$pembatalan->pegawais->nama}}</td>
+            <td><a href="#">{{$pembatalan->pegawais->nama ?? ''}}</td>
+            <td>
+              @if($pembatalan->gambar_bukti == null)
+              <a href="{{route('pembatalans.upload',$pembatalan)}}">Upload bukti transfer</a>
+              @else
+              <a href="{{asset($pembatalan->gambar_bukti)}}" target="_blank">{{$pembatalan->gambar_bukti}}</a>
+              @endif
+            </td>
             <td>
               <a href="{{route('pembatalans.edit',$pembatalan)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$pembatalan->id_pembatalan}}">

@@ -23,7 +23,7 @@
             <th>Verifikasi</th>
             <th>Status</th>
             <th>Tanggal Pelunasan</th>
-            <th>Admin</th>
+            <th>Pegawai</th>
             <th>Interaksi</th>
           </tr>
         </thead>
@@ -31,14 +31,23 @@
         <tbody>
           @foreach($transaksis as $transaksi)
           <tr>
-            <td><a href="{{route('transaksis.index')}}">{{$transaksi->customers->nama}}</a></td>
-            <td><a href="{{route('transaksis.index')}}">{{$transaksi->units->no_unit}}</td>
-            <td><a href="{{route('transaksis.index')}}">{{$transaksi->harga_juals->hargajual_cash}}</td>
+            <td><a href="">{{$transaksi->customers->nama}}</a></td>
+            <td><a href="">{{$transaksi->units->no_unit}}</a></td>
+            <td>Rp{{$transaksi->units->hargaJual()}}</td>
             <td>{{$transaksi->jenis_bayar}}</td>
             <td>{{$transaksi->tanggal}}</td>
-            <td>{{$transaksi->veriikasi}}</td>
+            <td>{{$transaksi->verifikasi}}</td>
             <td>{{$transaksi->status}}</td>
+            @if($transaksi->tgl_pelunasan == null)
+            <td>Belum dilunasi</td>
+            @else
             <td>{{$transaksi->tgl_pelunasan}}</td>
+            @endif
+            @if($transaksi->pegawais == null)
+            <td><a href="{{route('transaksis.pegawai',$transaksi)}}">Tentukan pegawai</a></td>
+            @else
+            <td><a href="#">{{$transaksi->pegawais->nama}}</a></td>
+            @endif
             <td>
               <a href="{{route('transaksis.edit',$transaksi)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$transaksi->id_transaksi}}">Hapus</button>

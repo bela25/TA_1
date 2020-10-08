@@ -19,7 +19,15 @@ class Customer extends Authenticatable
     }
     public function transaksis()
     {
-    	return $this->hasMany('App\Transaksi');
+    	return $this->hasMany('App\Transaksi','customer','idcustomers');
+    }
+    public function transaksiUnit(Unit $unit)
+    {
+        return $this->transaksis->where('unit',$unit->id_unit)->last();
+    }
+    public function unitDimiliki($unit)
+    {
+        return $this->transaksis->where('units.id_unit',$unit->id_unit)->isNotEmpty();
     }
 
     //

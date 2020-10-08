@@ -9,7 +9,7 @@
       <label for="exampleInputFile">Gambar</label>
       <div class="input-group">
         <div class="custom-file">
-          <input type="file" class="custom-file-input" id="exampleInputFile" name="file_gambar" required>
+          <input type="file" class="custom-file-input" id="exampleInputFile" name="file_gambar" onchange="readURL(this)" required>
           <label class="custom-file-label" for="exampleInputFile">Choose file</label>
         </div>
         <div class="input-group-append">
@@ -25,6 +25,7 @@
         @endforeach
       </select>
     </div>
+    <img id="tampilangambar" src="#" alt="tampilan gambar"/>
   </div>
   <!-- /.card-body -->
 
@@ -33,3 +34,21 @@
   </div>
 </form>
 @endsection
+@push('scripts')
+<script type="text/javascript">
+  function readURL(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+              $('#tampilangambar')
+                  .attr('src', e.target.result)
+                  .width('auto')
+                  .height(200);
+          };
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+</script>
+@endpush

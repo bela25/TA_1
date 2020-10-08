@@ -26,7 +26,7 @@
         <tbody>
           @foreach($gambar_produks as $gambar_produk)
           <tr>
-            <td>{{$gambar_produk->nama_gambar}}</td>
+            <td><a href="{{asset($gambar_produk->nama_gambar)}}" target="_blank">{{$gambar_produk->nama_gambar}}</a></td>
             <td><a href="{{route('tipe_units.index')}}">{{$gambar_produk->tipes->nama}}</a></td>
             <td>{{$gambar_produk->created_at}}</td>
             <td>{{$gambar_produk->updated_at}}</td>
@@ -69,8 +69,6 @@
     </div>
   </div>
 </div>
-
 <!-- /.container-fluid -->
-
 
 @endsection

@@ -48,7 +48,7 @@ class UnitController extends Controller
         // $post ->cicilan = $request->get('kodecicilan');
         $post ->no_unit = 1;
         $post ->lantai = $request->get('lantai');
-        $post ->status = $request->get('customRadio');
+        $post ->status = 'tersedia';
         $post ->tower = $request->get('tower');
         $post ->arah= $request->get('arah');
         $post ->tipe = $request->get('tipeunit');

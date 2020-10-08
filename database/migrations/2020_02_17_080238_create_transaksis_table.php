@@ -16,9 +16,9 @@ class CreateTransaksisTable extends Migration
         Schema::create('transaksis', function (Blueprint $table) {
             $table->increments('id_transaksi');
             $table->date('tanggal');
-            $table->enum('jenis_bayar',['kpa','inhouse','lunas','cash_credit']);
+            $table->enum('jenis_bayar',['kpa','in house','lunas','kredit keras']);
             $table->enum('status',['aktif','tidak aktif']);
-            $table->enum('veriikasi',['diterima','belum diterima']);
+            $table->enum('verifikasi',['diterima','belum diterima']);
             $table->date('tgl_pelunasan');
             $table->unsignedInteger('unit');
             $table->foreign('unit')->references('id_unit')->on('units');

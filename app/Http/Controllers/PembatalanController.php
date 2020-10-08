@@ -6,6 +6,8 @@ use App\Pembatalan;
 use Illuminate\Http\Request;
 use App\Transaksi;
 use App\Pegawai;
+use App\Unit;
+use Carbon\Carbon;
 
 class PembatalanController extends Controller
 {
@@ -42,15 +44,23 @@ class PembatalanController extends Controller
      */
     public function store(Request $request)
     {
+        $transaksi = Transaksi::find($request->get('transaksi'));
+        $unit = Unit::find($transaksi->units->id_unit);
+
         $post = new Pembatalan();
-        $post ->transaksi = $request->get('customer');
+        $post ->tanggal_batal = Carbon::now();
+        $post ->transaksi = $request->get('transaksi');
         $post ->alasan = $request->get('alasan');
-        $post ->harga_jual = $request->get('hargajual');
-        $post ->gambar_bukti = $request->get('exampleInputFile');
-        $post ->tgl_pengembalian= $request->get('tglpengembalian');
+        $post ->tgl_pengembalian= Carbon::now()->addDays(7);
         $post ->admin = $request->get('admin');
         $post->save();
-        return redirect('pembatalans');
+
+        $transaksi ->status = 'tidak aktif';
+        $transaksi->save();
+        
+        $unit ->status = 'booking';
+        $unit->save();
+        return redirect('pembatalan')->with('pesan','Berhasil membatalkan transaksi');
         //
     }
 
@@ -86,12 +96,22 @@ class PembatalanController extends Controller
      */
     public function update(Request $request, Pembatalan $pembatalan)
     {
-        $pembatalan ->transaksi = $request->get('customer');
+        // $pembatalan ->transaksi = $request->get('customer');
         $pembatalan ->alasan = $request->get('alasan');
-        $pembatalan ->harga_jual = $request->get('hargajual');
-        $pembatalan ->gambar_bukti = $request->get('exampleInputFile');
+        $pembatalan ->tanggal_batal= $request->get('tanggal_batal');
         $pembatalan ->tgl_pengembalian= $request->get('tglpengembalian');
         $pembatalan ->admin = $request->get('admin');
+
+        $file = $request->file('bukti');
+        if(isset($file))
+        {
+            if(isset($pembatalan->gambar_bukti))
+            {
+                unlink(public_path($pembatalan->gambar_bukti));
+            }
+            $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
+            $pembatalan ->gambar_bukti = $nama_gambar;
+        }
         $pembatalan->save();
         return redirect('pembatalans');
         //
@@ -107,6 +127,18 @@ class PembatalanController extends Controller
     {
         $pembatalan->delete();
         return redirect('transaksis');
+        //
+    }
+
+    public function uploadBukti(Pembatalan $pembatalan)
+    {
+        $pegawais = Pegawai::all();
+        $pegawai_nip = null;
+        if(isset($pembatalan->pegawais))
+        {
+            $pegawai_nip = $pembatalan->pegawais->nip;
+        }
+        return view('pembatalan.upload',compact('pembatalan','pegawais','pegawai_nip'));
         //
     }
 }

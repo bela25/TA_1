@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\PembayaranDP;
 use Illuminate\Http\Request;
 use App\Transaksi;
+use Carbon\Carbon;
 
 class PembayaranDPController extends Controller
 {
@@ -40,13 +41,26 @@ class PembayaranDPController extends Controller
      */
     public function store(Request $request)
     {
-        $post = new PembayaranDP();
-        $post ->transaksi = $request->get('customer');
-        $post ->tanggal_bayar = $request->get('tanggalpembayaran');
-        $post ->nominal = $request->get('nominal');
-        $post ->gambar_bukti= $request->get('exampleInputFile');
-        $post->save();
-        return redirect('pembayaran_dps');
+        $transaksi = Transaksi::find($request->get('transaksi'));
+        $pembayaran_dp = PembayaranDP::where('transaksi',$request->get('transaksi'))->get();
+        if($pembayaran_dp->count() <= 0)
+        {
+            $post = new PembayaranDP();
+            $post ->tanggal_bayar = Carbon::now();
+            $post ->nominal = $request->get('nominal');
+            $post ->transaksi = $request->get('transaksi');
+            // upload bukti
+            $file = $request->file('bukti');
+            $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
+            $post ->gambar_bukti= $nama_gambar;
+            $post->save();
+            request()->session()->flash('pesan','Bukti pembayaran DP tersimpan');
+        }
+        else
+        {
+            request()->session()->flash('pesan','Anda sudah mengirim bukti pembayaran DP');   
+        }
+        return redirect()->route('pengunjung.booking',$transaksi->unit);
         //
     }
 
@@ -82,12 +96,26 @@ class PembayaranDPController extends Controller
      */
     public function update(Request $request, PembayaranDP $pembayaranDP)
     {
-        $pembayaran_dp ->transaksi = $request->get('customer');
-        $pembayaran_dp ->tanggal_bayar = $request->get('tanggalpembayaran');
-        $pembayaran_dp ->nominal = $request->get('nominal');
-        $pembayaran_dp ->gambar_bukti= $request->get('exampleInputFile');
-        $pembayaran_dp->save();
-        return redirect('pembayaran_dps');
+        $transaksi = Transaksi::find($request->get('transaksi'));
+        $pembayaran_dp = PembayaranDP::where('transaksi',$request->get('transaksi'))->get();
+        
+        $pembayaranDP ->tanggal_bayar = Carbon::now();
+        $pembayaranDP ->nominal = $request->get('nominal');
+        $pembayaranDP ->transaksi = $request->get('transaksi');
+        // upload bukti
+        $file = $request->file('bukti');
+        if(isset($file))
+        {
+            if(isset($pembayaranDP->gambar_bukti))
+            {
+                unlink(public_path($pembayaranDP->gambar_bukti));
+            }
+            $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
+            $pembayaranDP ->gambar_bukti= $nama_gambar;
+        }
+        $pembayaranDP->save();
+        request()->session()->flash('pesan','Bukti pembayaran DP tersimpan');
+        return redirect()->route('pengunjung.booking',$transaksi->unit);
         //
     }
 

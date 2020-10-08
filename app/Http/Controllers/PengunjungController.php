@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Unit;
+use App\Customer;
+use App\Transaksi;
+use App\PembayaranDP;
+use App\Pembatalan;
 
 class PengunjungController extends Controller
 {
@@ -16,39 +21,48 @@ class PengunjungController extends Controller
         // $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function login()
+    {
+        return view('pengunjung.auth.login');
+    }
+
+    public function register()
+    {
+        return view('pengunjung.auth.register');
+    }
+
+    public function profil()
+    {
+        $customer = Customer::find(2);
+        $transaksis = $customer->transaksis;
+        return view('pengunjung.auth.profil', compact('customer','transaksis'));
+    }
+
     public function index()
     {
-        return view('pengunjung.index');
+        $units = Unit::all();
+        return view('pengunjung.index', compact('units'));
     }
 
     public function about()
     {
         return view('pengunjung.about');
     }
-
-    public function services()
-    {
-        return view('pengunjung.services');
-    }
-
+    
     public function listing()
     {
-        return view('pengunjung.listing');
+        $units = Unit::all();
+        return view('pengunjung.listing', compact('units'));
     }
 
-    public function listingSingle()
+    public function listingSingle(Unit $unit)
     {
-        return view('pengunjung.listing-single');
-    }
-
-    public function agent()
-    {
-        return view('pengunjung.agent');
+        $customer = null;
+        if(auth()->check())
+        {
+            $customer = Customer::find(2);
+        }
+        return view('pengunjung.listing-single', compact('unit','customer'));
     }
 
     public function contact()
@@ -56,8 +70,30 @@ class PengunjungController extends Controller
         return view('pengunjung.contact');
     }
 
-    public function blog()
+    public function booking(Unit $unit)
     {
-        return view('pengunjung.blog');
+        $customer = Customer::find(2);
+        $transaksi = Transaksi::where('customer',$customer->idcustomers)->where('unit',$unit->id_unit)->first();
+        $pembayaranDP = null;
+        if($transaksi == null)
+        {
+            $transaksi = null;
+        }
+        else
+        {
+            $pembayaranDP = PembayaranDP::where('transaksi',$transaksi->id_transaksi)->first();
+        }
+        return view('pengunjung.transaksi.booking', compact('unit','customer','transaksi','pembayaranDP'));
+    }
+
+    public function pembatalan(Transaksi $transaksi)
+    {
+        $unit = $transaksi->units;
+        $pembatalan = Pembatalan::where('transaksi',$transaksi->id_transaksi)->first();
+        if($pembatalan == null)
+        {
+            $pembatalan = null;
+        }
+        return view('pengunjung.transaksi.pembatalan', compact('transaksi','unit','pembatalan'));
     }
 }

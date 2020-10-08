@@ -1,7 +1,7 @@
 @extends('layouts.pengunjung')
 
 @section('content')
-<section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+<section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight" style="background-image: url('{{asset('web/images/bg_1.jpg')}}');" data-stellar-background-ratio="0.5">
   <div class="overlay"></div>
   <div class="overlay-2"></div>
   <div class="container">
@@ -17,7 +17,7 @@
 <section class="ftco-section ftco-no-pb">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-6 img img-3 d-flex justify-content-center align-items-center" style="background-image: url(images/about.jpg);">
+				<div class="col-md-6 img img-3 d-flex justify-content-center align-items-center" style="background-image: url('{{asset('web/images/about.jpg')}}');">
 				</div>
 				<div class="col-md-6 wrap-about pl-md-5 ftco-animate">
           <div class="heading-section">
@@ -106,7 +106,7 @@
               <div class="text">
                 <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                 <div class="d-flex align-items-center">
-                	<div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
+                	<div class="user-img" style="background-image: url('{{asset('web/images/person_1.jpg')}}')"></div>
                 	<div class="pl-3">
 	                    <p class="name">Roger Scott</p>
 	                    <span class="position">Marketing Manager</span>
@@ -120,7 +120,7 @@
               <div class="text">
                 <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                 <div class="d-flex align-items-center">
-                	<div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
+                	<div class="user-img" style="background-image: url('{{asset('web/images/person_2.jpg')}}')"></div>
                 	<div class="pl-3">
 	                    <p class="name">Roger Scott</p>
 	                    <span class="position">Marketing Manager</span>
@@ -134,7 +134,7 @@
               <div class="text">
                 <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                 <div class="d-flex align-items-center">
-                	<div class="user-img" style="background-image: url(images/person_3.jpg)"></div>
+                	<div class="user-img" style="background-image: url('{{asset('web/images/person_3.jpg')}}')"></div>
                 	<div class="pl-3">
 	                    <p class="name">Roger Scott</p>
 	                    <span class="position">Marketing Manager</span>
@@ -148,7 +148,7 @@
               <div class="text">
                 <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                 <div class="d-flex align-items-center">
-                	<div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
+                	<div class="user-img" style="background-image: url('{{asset('web/images/person_1.jpg')}}')"></div>
                 	<div class="pl-3">
 	                    <p class="name">Roger Scott</p>
 	                    <span class="position">Marketing Manager</span>
@@ -162,7 +162,7 @@
               <div class="text">
                 <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                 <div class="d-flex align-items-center">
-                	<div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
+                	<div class="user-img" style="background-image: url('{{asset('web/images/person_2.jpg')}}')"></div>
                 	<div class="pl-3">
 	                    <p class="name">Roger Scott</p>
 	                    <span class="position">Marketing Manager</span>

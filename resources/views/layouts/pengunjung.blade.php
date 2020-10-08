@@ -25,6 +25,13 @@
     <link rel="stylesheet" href="{{asset('web/css/flaticon.css')}}">
     <link rel="stylesheet" href="{{asset('web/css/icomoon.css')}}">
     <link rel="stylesheet" href="{{asset('web/css/style.css')}}">
+    <style type="text/css">
+      .form-control:disabled, .form-control[readonly] {
+        /*background-color: #f8f9fa !important;
+        color: #6c757d !important;*/
+      }
+    </style>
+    @stack('styles')
   </head>
   <body>
     
@@ -39,11 +46,15 @@
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item @if(request()->is('/')) {{'active'}} @endif"><a href="{{route('pengunjung.index')}}" class="nav-link">Home</a></li>
 	          <li class="nav-item @if(request()->is('about')) {{'active'}} @endif"><a href="{{route('pengunjung.about')}}" class="nav-link">About</a></li>
-	          <li class="nav-item @if(request()->is('services')) {{'active'}} @endif"><a href="{{route('pengunjung.services')}}" class="nav-link">Services</a></li>
-	          <li class="nav-item @if(request()->is('agent')) {{'active'}} @endif"><a href="{{route('pengunjung.agent')}}" class="nav-link">Agent</a></li>
 	          <li class="nav-item @if(request()->is('listing')) {{'active'}} @endif"><a href="{{route('pengunjung.listing')}}" class="nav-link">Listing</a></li>
-	          <li class="nav-item @if(request()->is('blog')) {{'active'}} @endif"><a href="{{route('pengunjung.blog')}}" class="nav-link">Blog</a></li>
 	          <li class="nav-item @if(request()->is('contact')) {{'active'}} @endif"><a href="{{route('pengunjung.contact')}}" class="nav-link">Contact</a></li>
+            @guest
+            <li class="nav-item @if(request()->is('pengunjung/login')) {{'active'}} @endif"><a href="{{route('pengunjung.login')}}" class="nav-link">Login</a></li>
+            <li class="nav-item @if(request()->is('pengunjung/register')) {{'active'}} @endif"><a href="{{route('pengunjung.register')}}" class="nav-link">Register</a></li>
+            @endguest
+            @auth
+            <li class="nav-item @if(request()->is('pengunjung/profil')) {{'active'}} @endif"><a href="{{route('pengunjung.profil')}}" class="nav-link">Valerie</a></li>
+            @endauth
 	        </ul>
 	      </div>
 	    </div>
@@ -57,7 +68,7 @@
         <div class="row mb-5">
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Findstate</h2>
+              <h2 class="ftco-heading-2">TamanSari</h2>
               <p>Far far away, behind the word mountains, far from the countries.</p>
               <ul class="ftco-footer-social list-unstyled mt-5">
                 <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
@@ -68,22 +79,9 @@
           </div>
           <div class="col-md">
             <div class="ftco-footer-widget mb-4 ml-md-4">
-              <h2 class="ftco-heading-2">Community</h2>
-              <ul class="list-unstyled">
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Search Properties</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>For Agents</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Reviews</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>FAQs</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-4">
               <h2 class="ftco-heading-2">About Us</h2>
               <ul class="list-unstyled">
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Our Story</a></li>
                 <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Meet the team</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Careers</a></li>
               </ul>
             </div>
           </div>
@@ -91,10 +89,8 @@
              <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">Company</h2>
               <ul class="list-unstyled">
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>About Us</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Press</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Contact</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Careers</a></li>
+                <li><a href="{{ route('pengunjung.about') }}"><span class="icon-long-arrow-right mr-2"></span>About Us</a></li>
+                <li><a href="{{ route('pengunjung.contact') }}"><span class="icon-long-arrow-right mr-2"></span>Contact</a></li>
               </ul>
             </div>
           </div>
@@ -103,9 +99,9 @@
             	<h2 class="ftco-heading-2">Have a Questions?</h2>
             	<div class="block-23 mb-3">
 	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope pr-4"></span><span class="text">info@yourdomain.com</span></a></li>
+	                <li><span class="icon icon-map-marker"></span><span class="text">Jalan Raya No.1, Surabaya, Jawa Timur, Indonesia</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+6287 xxxx xxxx</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope pr-4"></span><span class="text">info@tamansari.com</span></a></li>
 	              </ul>
 	            </div>
             </div>
@@ -117,7 +113,7 @@
             <p>
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
               Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with
-              <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+              <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" class="text-white">Colorlib</a>
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </p>
           </div>
@@ -148,6 +144,8 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="{{asset('web/js/google-map.js')}}"></script>
   <script src="{{asset('web/js/main.js')}}"></script>
+
+  @stack('scripts')
     
   </body>
 </html>

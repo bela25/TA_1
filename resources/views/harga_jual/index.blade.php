@@ -35,7 +35,7 @@
             <td>{{$harga_jual->tgl_akhir}}</td>
             <td><a href="{{route('tipe_units.index')}}">{{$harga_jual->tipes->nama}}</a></td>
             <td><a href="{{route('towers.index')}}">{{$harga_jual->towers->nama}}</a></td>
-            <td><a href="{{route('arah_units.index')}}">{{$harga_jual->arahs->pemandngan}}</a></td>
+            <td><a href="{{route('arah_units.index')}}">{{$harga_jual->arahs->pemandangan}}</a></td>
             <td>{{$harga_jual->created_at}}</td>
             <td>{{$harga_jual->updated_at}}</td>
             <td>

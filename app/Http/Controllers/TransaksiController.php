@@ -8,6 +8,7 @@ use App\Customer;
 use App\Pegawai;
 use App\HargaJual;
 use App\Unit;
+use Carbon\Carbon;
 
 class TransaksiController extends Controller
 {
@@ -46,17 +47,31 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        $post = new Transaksi();
-        $post ->customer = $request->get('customer');
-        $post ->unit = $request->get('unit');
-        $post ->tanggal_batal = $request->get('tanggalbatal');
-        $post ->jenis_bayar = $request->get('jenisbayar');
-        $post ->tanggal= $request->get('tglpembayaran');
-        $post ->status = $request->get('customRadio');
-        $post ->verifikasi = $request->get('customRadio1');
-        $post ->tgl_pelunasan= $request->get('tglpelunasan');
-        $post->save();
-        return redirect('transaksis');
+        $transaksi = Transaksi::where('customer',$request->get('customer'))->where('unit',$request->get('unit'))->get();
+        if($transaksi->count() <= 0)
+        {
+            $post = new Transaksi();
+            $post ->tanggal = Carbon::now();
+            $post ->customer = $request->get('customer');
+            $post ->unit = $request->get('unit');
+            $post ->jenis_bayar = $request->get('jenisbayar');
+            $post ->status = 'aktif';
+            $post ->verifikasi = 'belum diterima';
+            // $post ->tanggal_batal = $request->get('tanggalbatal');
+            // $post ->tanggal= $request->get('tglpembayaran');
+            // $post ->tgl_pelunasan= $request->get('tglpelunasan');
+            $post->save();
+
+            $unit = Unit::find($request->get('unit'));
+            $unit ->status = 'booking';
+            $unit->save();
+            request()->session()->flash('pesan','Berhasil booking');
+        }
+        else
+        {
+            request()->session()->flash('pesan','Anda sudah membooking unit ini');
+        }
+        return redirect()->route('pengunjung.booking',$request->get('unit'));
         //
     }
 
@@ -79,7 +94,16 @@ class TransaksiController extends Controller
      */
     public function edit(Transaksi $transaksi)
     {
-        return view('transaksi.update',compact('transaksi'));
+        $customers = Customer::all();
+        $units = Unit::all();
+        $pegawais = Pegawai::all();
+        $pegawai_nip = null;
+        if(isset($transaksi->pegawai))
+        {
+            $pegawai_nip = $transaksi->pegawais->nip;
+        }
+        $jenisBayars = ['KPA','Lunas','In House','Cash Keras'];
+        return view('transaksi.update',compact('transaksi','customers','units','jenisBayars','pegawais','pegawai_nip'));
         //
     }
 
@@ -92,16 +116,38 @@ class TransaksiController extends Controller
      */
     public function update(Request $request, Transaksi $transaksi)
     {
-        $transaksi ->customer = $request->get('customer');
-        $transaksi ->unit = $request->get('unit');
-        $transaksi ->harga_jual = $request->get('hargajual');
+        // $transaksi ->unit = $request->get('unit');
+        // $transaksi ->tanggal= $request->get('tglpembayaran');
+        // $transaksi ->customer = $request->get('customer');
+        $transaksi ->pegawai = $request->get('pegawai');
         $transaksi ->jenis_bayar = $request->get('jenisbayar');
-        $transaksi ->tanggal= $request->get('tglpembayaran');
-        $transaksi ->status = $request->get('customRadio');
-        $transaksi ->verifikasi = $request->get('customRadio1');
-        $transaksi ->tgl_pelunasan= $request->get('tglpelunasan');
+        $transaksi ->status = $request->get('status');
+        $transaksi ->verifikasi = $request->get('verifikasi');
+        if($request->get('tglpelunasan') == null)
+        {
+            $transaksi ->tgl_pelunasan = $request->get('tglpelunasan');
+        }
         $transaksi->save();
         return redirect('transaksis');
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Transaksi  $transaksi
+     * @return \Illuminate\Http\Response
+     */
+    public function ubahPegawai(Request $request, Transaksi $transaksi)
+    {
+        $pegawais = Pegawai::all();
+        $pegawai_nip = null;
+        if(isset($transaksi->pegawai))
+        {
+            $pegawai_nip = $transaksi->pegawais->nip;
+        }
+        return view('transaksi.ubahpegawai', compact('transaksi','pegawais','pegawai_nip'));
         //
     }
 

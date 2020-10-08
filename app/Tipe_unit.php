@@ -20,7 +20,7 @@ class Tipe_unit extends Model
 
     public function hargajuals()
     {
-    	return $this->hasMany('App\HargaJual');
+    	return $this->hasMany('App\HargaJual','tipe','id_tipe');
     }
     //
 }

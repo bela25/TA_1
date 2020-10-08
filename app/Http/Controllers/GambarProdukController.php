@@ -85,9 +85,16 @@ class GambarProdukController extends Controller
     public function update(Request $request, GambarProduk $gambarProduk)
     {
         $file = $request->file('file_gambar');
-        $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
+        if(isset($file))
+        {
+            if(isset($gambarProduk->nama_gambar))
+            {
+                unlink(public_path($gambarProduk->nama_gambar));
+            }
+            $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
+            $gambarProduk ->nama_gambar = $nama_gambar;
+        }
 
-        $gambarProduk ->nama_gambar = $nama_gambar;
         $gambarProduk ->tipe = $request->get('tipe');
         $gambarProduk->save();
         return redirect('gambar_produks');

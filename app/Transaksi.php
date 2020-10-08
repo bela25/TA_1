@@ -22,15 +22,15 @@ class Transaksi extends Model
     }
     public function units()
     {
-    	return $this->belongsTo('App\Unit');
+    	return $this->belongsTo('App\Unit','unit','id_unit');
     }
     public function customers()
     {
-    	return $this->belongsTo('App\Customer');
+    	return $this->belongsTo('App\Customer','customer','idcustomers');
     }
     public function pegawais()
     {
-    	return $this->belongsTo('App\Pegawai');
+    	return $this->belongsTo('App\Pegawai','pegawai','nip');
     }
     //
 }

@@ -10,21 +10,6 @@
       <input type="text" class="form-control" id="namaunit" placeholder="Isi Unit" name="namaunit" required>
     </div>
     <div class="form-group">
-      <label>Status</label>
-      <div class="custom-control custom-radio">
-        <input class="custom-control-input" type="radio" id="terjual" name="customRadio" value="terjual" required>
-        <label for="terjual" class="custom-control-label">Terjual</label>
-      </div>
-      <div class="custom-control custom-radio">
-        <input class="custom-control-input" type="radio" id="tersedia" name="customRadio" value="tersedia" required>
-        <label for="tersedia" class="custom-control-label">Tersedia</label>
-      </div>
-      <div class="custom-control custom-radio">
-        <input class="custom-control-input" type="radio" id="terbooking" name="customRadio" value="booking" required>
-        <label for="terbooking" class="custom-control-label">Terbooking</label>
-      </div>
-    </div>
-    <div class="form-group">
       <label for="lantai">Lantai</label>
       <input type="text" class="form-control" id="lantai" placeholder="Isi Lantai" name="lantai" required>
     </div>
