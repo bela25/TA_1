@@ -60,7 +60,7 @@ class PembatalanController extends Controller
         
         $unit ->status = 'booking';
         $unit->save();
-        return redirect('pembatalan')->with('pesan','Berhasil membatalkan transaksi');
+        return redirect('pembatalan/'.$transaksi->id)->with('pesan','Berhasil membatalkan transaksi');
         //
     }
 

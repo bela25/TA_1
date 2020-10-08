@@ -6,8 +6,8 @@
   {{csrf_field()}}
   <div class="card-body">
     <div class="form-group">
-      <label for="namaunit">Unit</label>
-      <input type="text" class="form-control" id="namaunit" placeholder="Isi Unit" name="namaunit" required>
+      <label for="nounit">Unit</label>
+      <input type="text" class="form-control" id="nounit" placeholder="Isi Unit" name="nounit" required>
     </div>
     <div class="form-group">
       <label for="lantai">Lantai</label>

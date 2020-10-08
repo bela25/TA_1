@@ -46,7 +46,7 @@ class UnitController extends Controller
     {
         $post = new Unit();
         // $post ->cicilan = $request->get('kodecicilan');
-        $post ->no_unit = 1;
+        $post ->no_unit = $request->get('nounit');
         $post ->lantai = $request->get('lantai');
         $post ->status = 'tersedia';
         $post ->tower = $request->get('tower');
