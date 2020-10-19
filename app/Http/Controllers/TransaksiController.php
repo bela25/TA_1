@@ -22,7 +22,7 @@ class TransaksiController extends Controller
     {
         $transaksis = Transaksi::all();
         // pegawai yang login
-        $pegawai = Pegawai::first();
+        $pegawai = Pegawai::find(12345);
         return view('transaksi.index',compact('transaksis','pegawai'));
         //
     }
