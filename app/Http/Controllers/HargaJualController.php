@@ -62,7 +62,7 @@ class HargaJualController extends Controller
      * @param  \App\HargaJual  $hargaJual
      * @return \Illuminate\Http\Response
      */
-    public function show(HargaJual $hargaJual)
+    public function show(HargaJual $hargajual)
     {
         //
     }
@@ -73,8 +73,9 @@ class HargaJualController extends Controller
      * @param  \App\HargaJual  $hargaJual
      * @return \Illuminate\Http\Response
      */
-    public function edit(HargaJual $hargaJual)
+    public function edit(HargaJual $hargajual)
     {
+        $hargaJual=$hargajual;
         $tower= Tower::all();
         $arah_unit=Arah_unit::all();
         $tipe_unit=Tipe_unit::all();
@@ -89,15 +90,15 @@ class HargaJualController extends Controller
      * @param  \App\HargaJual  $hargaJual
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, HargaJual $hargaJual)
+    public function update(Request $request, HargaJual $hargajual)
     {
-        $hargaJual ->hargajual_cash = $request->get('hargajual');
-        $hargaJual ->tgl_awal = $request->get('tglawal');
-        $hargaJual ->tgl_akhir = $request->get('tglakhir');
-        $hargaJual ->tower = $request->get('tower');
-        $hargaJual ->arah= $request->get('arah');
-        $hargaJual ->tipe = $request->get('tipe');
-        $hargaJual->save();
+        $hargajual ->hargajual_cash = $request->get('hargajual');
+        $hargajual ->tgl_awal = $request->get('tglawal');
+        $hargajual ->tgl_akhir = $request->get('tglakhir');
+        $hargajual ->tower = $request->get('tower');
+        $hargajual ->arah= $request->get('arah');
+        $hargajual ->tipe = $request->get('tipeunit');
+        $hargajual->save();
         return redirect('hargajuals');
         //
     }
@@ -108,9 +109,9 @@ class HargaJualController extends Controller
      * @param  \App\HargaJual  $hargaJual
      * @return \Illuminate\Http\Response
      */
-    public function destroy(HargaJual $hargaJual)
+    public function destroy(HargaJual $hargajual)
     {
-        $hargaJual->delete();
+        $hargajual->delete();
         return redirect('hargajuals');
         //
     }

@@ -8,7 +8,7 @@
   <div class="card-body">
     <div class="form-group">
       <label for="hargajual">Harga Jual</label>
-      <input type="number" class="form-control" id="hargajual" placeholder="Isi Unit" name="hargajual" value="{{$hargaJual->hargajual_cash}}" min="0" required>
+      <input type="number" class="form-control" id="hargajual" placeholder="Isi harga jual" name="hargajual" value="{{$hargaJual->hargajual_cash}}" min="0" required>
     </div>
     <div class="form-group">
       <label>Tanggal Awal:</label>
@@ -32,7 +32,11 @@
       <label>Tipe</label>
       <select name="tipeunit" class="form-control select2" style="width: 100%;" required>
         @foreach($tipe_unit as $tipe_units)
+          @if($tipe_units->id_tipe == $hargaJual->tipe)
+          <option value="{{$tipe_units->id_tipe}}" selected>{{$tipe_units->nama}}</option>
+          @else
           <option value="{{$tipe_units->id_tipe}}">{{$tipe_units->nama}}</option>
+          @endif
         @endforeach
       </select>
     </div>
@@ -40,7 +44,11 @@
       <label>Tower</label>
       <select name="tower" class="form-control select2" style="width: 100%;" required>
         @foreach($tower as $towers)
+          @if($towers->id_tower == $hargaJual->tower)
+          <option value="{{$towers->id_tower}}" selected>{{$towers->nama}}</option>
+          @else
           <option value="{{$towers->id_tower}}">{{$towers->nama}}</option>
+          @endif
         @endforeach
       </select>
     </div>
@@ -49,7 +57,11 @@
         <label>Arah</label>
         <select name="arah" class="form-control select2" style="width: 100%;" required>
           @foreach($arah_unit as $arah_units)
+            @if($arah_units->id_arah == $hargaJual->arah)
+            <option value="{{$arah_units->id_arah}}" selected>{{$arah_units->pemandangan}}</option>
+            @else
             <option value="{{$arah_units->id_arah}}">{{$arah_units->pemandangan}}</option>
+            @endif
           @endforeach
         </select>
       </div>

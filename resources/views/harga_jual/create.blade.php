@@ -7,7 +7,7 @@
   <div class="card-body">
     <div class="form-group">
       <label for="hargajual">Harga Jual</label>
-      <input type="number" class="form-control" id="hargajual" placeholder="Isi Unit" name="hargajual" min="0" required>
+      <input type="number" class="form-control" id="hargajual" placeholder="Isi harga jual" name="hargajual" min="0" required>
     </div>
     <div class="form-group">
       <label>Tanggal Awal:</label>
