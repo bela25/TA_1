@@ -38,7 +38,7 @@
           {{session('pesan')}}
         </div>
       @endif
-  		@if($unit->status == 'booking' && $transaksi->verifikasi == 'diterima')
+  		@if($unit->status == 'booking' && $transaksi->verifikasi == 'diterima' && $transaksi->jenis_bayar == null)
   			<form action="{{route('transaksis.update',$transaksi)}}" method="post" class="bg-light p-5 contact-form">
   				{{csrf_field()}}
           {{method_field('put')}}
