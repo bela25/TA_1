@@ -132,7 +132,7 @@ class TransaksiController extends Controller
         }
         $transaksi->save();
         // check hak akses user, jika customer kembali ke halaman pengunjung
-        $customer = true;
+        $customer = false;
         if($customer)
         {
             return redirect('dp/'.$transaksi->id_transaksi);
