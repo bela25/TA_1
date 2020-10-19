@@ -10,7 +10,11 @@
       <label>Customer</label>
       <select name="customer" class="form-control select2" style="width: 100%;" required>
         @foreach($customers as $customer)
+          @if($customer->idcustomers == $transaksi->customer)
+          <option value="{{$customer->idcustomers}}" selected>{{$customer->nama}}</option>
+          @else
           <option value="{{$customer->idcustomers}}">{{$customer->nama}}</option>
+          @endif
         @endforeach
       </select>
     </div>
@@ -18,7 +22,11 @@
       <label>Unit</label>
       <select name="unit" class="form-control select2" style="width: 100%;" required>
         @foreach($units as $unit)
+          @if($unit->id_unit == $transaksi->unit)
+          <option value="{{$unit->id_unit}}" selected>{{$unit->nama()}}</option>
+          @else
           <option value="{{$unit->id_unit}}">{{$unit->nama()}}</option>
+          @endif
         @endforeach
       </select>
     </div>
