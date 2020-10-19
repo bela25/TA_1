@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Unit;
 use App\Customer;
 use App\Transaksi;
+use App\PembayaranBooking;
 use App\PembayaranDP;
 use App\Pembatalan;
 
@@ -73,7 +74,23 @@ class PengunjungController extends Controller
     public function booking(Unit $unit)
     {
         $customer = Customer::find(2);
-        $transaksi = Transaksi::where('customer',$customer->idcustomers)->where('unit',$unit->id_unit)->first();
+        $transaksi = Transaksi::where('customer',$customer->idcustomers)->where('unit',$unit->id_unit)->latest()->first();
+        $pembayaranBooking = null;
+        if($transaksi == null)
+        {
+            $transaksi = null;
+        }
+        else
+        {
+            $pembayaranBooking = PembayaranBooking::where('transaksi',$transaksi->id_transaksi)->first();
+        }
+        return view('pengunjung.transaksi.booking', compact('unit','customer','transaksi','pembayaranBooking'));
+    }
+
+    public function dp(Unit $unit)
+    {
+        $customer = Customer::find(2);
+        $transaksi = Transaksi::where('customer',$customer->idcustomers)->where('unit',$unit->id_unit)->latest()->first();
         $pembayaranDP = null;
         if($transaksi == null)
         {
@@ -83,7 +100,8 @@ class PengunjungController extends Controller
         {
             $pembayaranDP = PembayaranDP::where('transaksi',$transaksi->id_transaksi)->first();
         }
-        return view('pengunjung.transaksi.booking', compact('unit','customer','transaksi','pembayaranDP'));
+        // dd($transaksi->id_transaksi);
+        return view('pengunjung.transaksi.dp', compact('unit','customer','transaksi','pembayaranDP'));
     }
 
     public function pembatalan(Transaksi $transaksi)

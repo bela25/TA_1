@@ -6,5 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class KomisiPegawai extends Model
 {
-    //
+	protected $primaryKey = 'idkomisi_pegawai';
+    
+    public function transaksis()
+    {
+    	return $this->belongsTo('App\Trasaksi');
+    }
+    public function pegawais()
+    {
+    	return $this->belongsTo('App\Pegawai');
+    }
 }

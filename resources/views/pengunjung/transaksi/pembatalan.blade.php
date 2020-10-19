@@ -25,6 +25,9 @@
 	  					<span class="subheading">Tower {{$unit->towers->nama}}</span>
 	  					<p class="price d-inline"><span class="orig-price">Rp{{$unit->hargaJual()}}</span></p>
   					</div>
+            <div class="float-right">
+              <a href="{{route('pengunjung.listing.single',$unit)}}" class="btn btn-secondary py-3 px-5">Kembali</a>
+            </div>
   			</div>
   		</div>
   	</div>

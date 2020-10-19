@@ -20,6 +20,10 @@ class Transaksi extends Model
     {
     	return $this->hasOne('App\PembayaranDP');
     }
+    public function pembayaranbookings()
+    {
+        return $this->hasOne('App\PembayaranBooking');
+    }
     public function units()
     {
     	return $this->belongsTo('App\Unit','unit','id_unit');
@@ -31,6 +35,15 @@ class Transaksi extends Model
     public function pegawais()
     {
     	return $this->belongsTo('App\Pegawai','pegawai','nip');
+    }
+    public function komisipegawai()
+    {
+        return $this->hasOne('App\KomisiPegawai','transaksi');
+    }
+
+    public function formatUang($nominal)
+    {
+        return number_format($nominal,2,',','.');
     }
     //
 }

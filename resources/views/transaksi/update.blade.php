@@ -42,9 +42,9 @@
       </div>
       <div class="custom-control custom-radio">
         @if($transaksi->status == 'tidak aktif')
-        <input class="custom-control-input" type="radio" id="tidakaktif" name="status" value="tidakaktif" required checked>
+        <input class="custom-control-input" type="radio" id="tidakaktif" name="status" value="tidak aktif" required checked>
         @else
-        <input class="custom-control-input" type="radio" id="tidakaktif" name="status" value="tidakaktif" required>
+        <input class="custom-control-input" type="radio" id="tidakaktif" name="status" value="tidak aktif" required>
         @endif
         <label for="tidakaktif" class="custom-control-label">Tidak Aktif</label>
       </div>

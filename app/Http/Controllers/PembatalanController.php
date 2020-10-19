@@ -58,9 +58,9 @@ class PembatalanController extends Controller
         $transaksi ->status = 'tidak aktif';
         $transaksi->save();
         
-        $unit ->status = 'booking';
+        $unit ->status = 'tersedia';
         $unit->save();
-        return redirect('pembatalan/'.$transaksi->id)->with('pesan','Berhasil membatalkan transaksi');
+        return redirect('pembatalan/'.$transaksi->id_transaksi)->with('pesan','Berhasil membatalkan transaksi');
         //
     }
 
@@ -125,8 +125,11 @@ class PembatalanController extends Controller
      */
     public function destroy(Pembatalan $pembatalan)
     {
+        $transaksi=$pmebatalan->transaksis;
+        $transaksi->status='aktif';
+        $transaksi->save();
         $pembatalan->delete();
-        return redirect('transaksis');
+        return redirect('pembatalans');
         //
     }
 

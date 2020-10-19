@@ -37,13 +37,22 @@ class Unit extends Model
     {
         return number_format($this->hargaJualCash(),2,',','.');
     }
+    
+    public function formatUang($nominal)
+    {
+        return number_format($nominal,2,',','.');
+    }
     public function dp()
     {
         return $this->tipes->hargaJuals->last()->hargajual_cash * 20 / 100;
     }
-    public function showDp()
+    public function booking()
     {
-        return number_format($this->dp(),2,',','.');
+        return $this->tipes->hargaJuals->last()->hargajual_cash * 1 / 100;
+    }
+    public function komisi()
+    {
+        return $this->hargaJualCash() * 2 / 100;
     }
     //
 }

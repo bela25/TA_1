@@ -8,6 +8,7 @@ use App\Customer;
 use App\Pegawai;
 use App\HargaJual;
 use App\Unit;
+use App\KomisiPegawai;
 use Carbon\Carbon;
 
 class TransaksiController extends Controller
@@ -20,7 +21,9 @@ class TransaksiController extends Controller
     public function index()
     {
         $transaksis = Transaksi::all();
-        return view('transaksi.index',compact('transaksis'));
+        // pegawai yang login
+        $pegawai = Pegawai::first();
+        return view('transaksi.index',compact('transaksis','pegawai'));
         //
     }
 
@@ -54,7 +57,7 @@ class TransaksiController extends Controller
             $post ->tanggal = Carbon::now();
             $post ->customer = $request->get('customer');
             $post ->unit = $request->get('unit');
-            $post ->jenis_bayar = $request->get('jenisbayar');
+            // $post ->jenis_bayar = $request->get('jenisbayar');
             $post ->status = 'aktif';
             $post ->verifikasi = 'belum diterima';
             // $post ->tanggal_batal = $request->get('tanggalbatal');
@@ -128,26 +131,13 @@ class TransaksiController extends Controller
             $transaksi ->tgl_pelunasan = $request->get('tglpelunasan');
         }
         $transaksi->save();
-        return redirect('transaksis');
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Transaksi  $transaksi
-     * @return \Illuminate\Http\Response
-     */
-    public function ubahPegawai(Request $request, Transaksi $transaksi)
-    {
-        $pegawais = Pegawai::all();
-        $pegawai_nip = null;
-        if(isset($transaksi->pegawai))
+        // check hak akses user, jika customer kembali ke halaman pengunjung
+        $customer = true;
+        if($customer)
         {
-            $pegawai_nip = $transaksi->pegawais->nip;
+            return redirect('dp/'.$transaksi->id_transaksi);
         }
-        return view('transaksi.ubahpegawai', compact('transaksi','pegawais','pegawai_nip'));
+        return redirect('transaksis');
         //
     }
 
@@ -160,6 +150,31 @@ class TransaksiController extends Controller
     public function destroy(Transaksi $transaksi)
     {
         $transaksi->delete();
+        return redirect('transaksis');
+        //
+    }
+
+    public function ubahPegawai(Request $request, Transaksi $transaksi)
+    {
+        $pegawais = Pegawai::all();
+        $pegawai_nip = null;
+        if(isset($transaksi->pegawai))
+        {
+            $pegawai_nip = $transaksi->pegawais->nip;
+        }
+        return view('transaksi.ubahpegawai', compact('transaksi','pegawais','pegawai_nip'));
+        //
+    }
+
+    public function simpanpegawai(Request $request, Transaksi $transaksi)
+    {
+        $transaksi ->pegawai = $request->get('pegawai');
+        $transaksi->save();
+
+        $komisiPegawai = new KomisiPegawai();
+        $komisiPegawai ->bonus = $transaksi->units->hargaJualCash() * 2 / 100;
+        $komisiPegawai ->transaksi = $transaksi->id_transaksi;
+        $komisiPegawai->save();
         return redirect('transaksis');
         //
     }

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\PembayaranDP;
+use App\PembayaranBooking;
 use Illuminate\Http\Request;
 use App\Transaksi;
 use Carbon\Carbon;
 
-class PembayaranDPController extends Controller
+class PembayaranBookingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class PembayaranDPController extends Controller
      */
     public function index()
     {
-        $pembayaran_dps= PembayaranDP::all();
-        return view('pembayaran_dp.index',compact('pembayaran_dps'));
+        $pembayaran_bookings= PembayaranBooking::all();
+        return view('pembayaran_booking.index',compact('pembayaran_bookings'));
         //
     }
 
@@ -29,7 +29,7 @@ class PembayaranDPController extends Controller
     public function create()
     {
         $transaksi= Transaksi::all();
-        return view('pembayaran_dp.index',compact('transaksi'));
+        return view('pembayaran_booking.index',compact('transaksi'));
         //
     }
 
@@ -42,10 +42,10 @@ class PembayaranDPController extends Controller
     public function store(Request $request)
     {
         $transaksi = Transaksi::find($request->get('transaksi'));
-        $pembayaranDP = PembayaranDP::where('transaksi',$request->get('transaksi'))->get();
-        if($pembayaranDP->count() <= 0)
+        $pembayaranBooking = PembayaranBooking::where('transaksi',$request->get('transaksi'))->get();
+        if($pembayaranBooking->count() <= 0)
         {
-            $post = new PembayaranDP();
+            $post = new PembayaranBooking();
             $post ->tanggal_bayar = Carbon::now();
             $post ->nominal = $request->get('nominal');
             $post ->transaksi = $request->get('transaksi');
@@ -54,23 +54,23 @@ class PembayaranDPController extends Controller
             $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
             $post ->gambar_bukti= $nama_gambar;
             $post->save();
-            request()->session()->flash('pesan','Bukti pembayaran DP tersimpan');
+            request()->session()->flash('pesan','Bukti pembayaran booking tersimpan');
         }
         else
         {
-            request()->session()->flash('pesan','Anda sudah mengirim bukti pembayaran DP');   
+            request()->session()->flash('pesan','Anda sudah mengirim bukti pembayaran booking');   
         }
-        return redirect()->route('pengunjung.dp',$transaksi->unit);
+        return redirect()->route('pengunjung.booking',$transaksi->unit);
         //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\PembayaranDP  $pembayaranDP
+     * @param  \App\PembayaranBooking  $pembayaranBooking
      * @return \Illuminate\Http\Response
      */
-    public function show(PembayaranDP $pembayaran_dp)
+    public function show(PembayaranBooking $pembayaranBooking)
     {
         //
     }
@@ -78,13 +78,12 @@ class PembayaranDPController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\PembayaranDP  $pembayaranDP
+     * @param  \App\PembayaranBooking  $pembayaranBooking
      * @return \Illuminate\Http\Response
      */
-    public function edit(PembayaranDP $pembayaran_dp)
+    public function edit(PembayaranBooking $pembayaranBooking)
     {
-        $pembayaranDP = $pembayaran_dp;
-        return view('pembayaran_dp.update',compact('pembayaranDP'));
+        return view('pembayaran_booking.update',compact('pembayaranBooking'));
         //
     }
 
@@ -92,45 +91,44 @@ class PembayaranDPController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\PembayaranDP  $pembayaranDP
+     * @param  \App\PembayaranBooking  $pembayaranBooking
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PembayaranDP $pembayaran_dp)
+    public function update(Request $request, PembayaranBooking $pembayaranBooking)
     {
-        $pembayaranDP = $pembayaran_dp;
         $transaksi = Transaksi::find($request->get('transaksi'));
-        // $pembayaran_dp = PembayaranDP::where('transaksi',$request->get('transaksi'))->get();
+        // $pembayaranBooking = PembayaranBooking::where('transaksi',$request->get('transaksi'))->get();
         
-        $pembayaranDP ->tanggal_bayar = Carbon::now();
-        $pembayaranDP ->nominal = $request->get('nominal');
-        $pembayaranDP ->transaksi = $request->get('transaksi');
+        $pembayaranBooking ->tanggal_bayar = Carbon::now();
+        $pembayaranBooking ->nominal = $request->get('nominal');
+        $pembayaranBooking ->transaksi = $request->get('transaksi');
         // upload bukti
         $file = $request->file('bukti');
         if(isset($file))
         {
-            if(isset($pembayaranDP->gambar_bukti))
+            if(isset($pembayaranBooking->gambar_bukti))
             {
-                unlink(public_path($pembayaranDP->gambar_bukti));
+                unlink(public_path($pembayaranBooking->gambar_bukti));
             }
             $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
-            $pembayaranDP ->gambar_bukti= $nama_gambar;
+            $pembayaranBooking ->gambar_bukti= $nama_gambar;
         }
-        $pembayaranDP->save();
-        request()->session()->flash('pesan','Bukti pembayaran DP tersimpan');
-        return redirect()->route('pengunjung.dp',$transaksi->unit);
+        $pembayaranBooking->save();
+        request()->session()->flash('pesan','Bukti pembayaran booking tersimpan');
+        return redirect()->route('pengunjung.booking',$transaksi->unit);
         //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\PembayaranDP  $pembayaranDP
+     * @param  \App\PembayaranBooking  $pembayaranBooking
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PembayaranDP $pembayaran_dp)
+    public function destroy(PembayaranBooking $pembayaranBooking)
     {
-        $pembayaran_dp->delete();
-        return redirect('pembayaran_dps');
+        $pembayaranBooking->delete();
+        return redirect('pembayaran_bookings');
         //
     }
 }

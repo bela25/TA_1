@@ -24,10 +24,21 @@
 	  					<h2>{{$unit->tipes->nama}} No. {{$unit->no_unit}}</h2>
 	  					<span class="subheading">Tower {{$unit->towers->nama}}</span>
   						<p class="price d-inline"><span class="orig-price">Rp{{$unit->hargaJual()}}</span></p>
+              @if($customer != null && $customer->unitDimiliki($unit))
+                <p>Verifikasi: 
+                  @if($customer->transaksiUnit($unit)->verifikasi == 'belum diterima')
+                  <span class="badge badge-warning">{{$customer->transaksiUnit($unit)->verifikasi}}</span>
+                  @else
+                  <span class="badge badge-success">{{$customer->transaksiUnit($unit)->verifikasi}}</span>
+                  <p>Transaksi Anda telah diverifikasi. Silahkan melakukan pembayaran DP</p>
+                  <a href="{{route('pengunjung.dp',$unit)}}" class="btn btn-primary py-3 px-5">Bayar DP</a>
+                  @endif
+                </p>
+              @endif
   					</div>
   					<div class="float-right">
   						@if($unit->status == 'booking')
-  						<button class="btn btn-secondary py-3 px-5" disabled>Terbooking</button>
+  						<a href="{{route('pengunjung.booking',$unit)}}" class="btn btn-secondary py-3 px-5">Terbooking</a>
   						@elseif($unit->status == 'terjual')
   						<button class="btn btn-secondary py-3 px-5" disabled>Terjual</button>
   						@else
