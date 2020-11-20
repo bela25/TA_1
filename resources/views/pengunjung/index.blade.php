@@ -8,7 +8,7 @@
     <div class="row no-gutters slider-text justify-content-center align-items-center">
       <div class="col-lg-8 col-md-6 ftco-animate d-flex align-items-end">
       	<div class="text text-center w-100">
-          <h1 class="mb-4">Find Properties <br>That Make You Money</h1>
+          <h1 class="mb-4">Find Properties <br>TamanSari</h1>
           <p><a href="#" class="btn btn-primary py-3 px-4">Search Properties</a></p>
         </div>
       </div>
@@ -37,12 +37,6 @@
                       <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                       <select name="" id="" class="form-control">
                       	<option value="">Type</option>
-                        <option value="">Commercial</option>
-                        <option value="">- Office</option>
-                        <option value="">Residential</option>
-                        <option value="">Villa</option>
-                        <option value="">Condominium</option>
-                        <option value="">Apartment</option>
                       </select>
                     </div>
 		              </div>
@@ -50,25 +44,11 @@
         			</div>
         			<div class="col-lg align-items-end">
                 <div class="form-group">
-                  <label for="#">Price Limit</label>
+                  <label for="#">Location</label>
                   <div class="form-field">
                     <div class="select-wrap">
                       <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                       <select name="" id="" class="form-control">
-                        <option value="">$5,000</option>
-                        <option value="">$10,000</option>
-                        <option value="">$50,000</option>
-                        <option value="">$100,000</option>
-                        <option value="">$200,000</option>
-                        <option value="">$300,000</option>
-                        <option value="">$400,000</option>
-                        <option value="">$500,000</option>
-                        <option value="">$600,000</option>
-                        <option value="">$700,000</option>
-                        <option value="">$800,000</option>
-                        <option value="">$900,000</option>
-                        <option value="">$1,000,000</option>
-                        <option value="">$2,000,000</option>
                       </select>
                     </div>
                   </div>
@@ -81,20 +61,6 @@
           					<div class="select-wrap">
                       <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                       <select name="" id="" class="form-control">
-                        <option value="">$5,000</option>
-                        <option value="">$10,000</option>
-                        <option value="">$50,000</option>
-                        <option value="">$100,000</option>
-                        <option value="">$200,000</option>
-                        <option value="">$300,000</option>
-                        <option value="">$400,000</option>
-                        <option value="">$500,000</option>
-                        <option value="">$600,000</option>
-                        <option value="">$700,000</option>
-                        <option value="">$800,000</option>
-                        <option value="">$900,000</option>
-                        <option value="">$1,000,000</option>
-                        <option value="">$2,000,000</option>
                       </select>
                     </div>
 		              </div>

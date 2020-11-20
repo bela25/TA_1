@@ -6,7 +6,7 @@
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">DataTables Spesifikasi Bangunan</h6>
     <a href="{{ route('spesifikasi_bangunans.create')}}" class="btn btn-primary ">
-      <i class="fas fa-plus-square"></i> PLUS
+      <i class="fas fa-plus-square"></i> Tambah
     </a>
   </div>
   <div class="card-body">

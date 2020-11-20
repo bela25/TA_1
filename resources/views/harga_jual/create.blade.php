@@ -40,6 +40,7 @@
       <select name="tower" class="form-control select2" style="width: 100%;" required>
         @foreach($tower as $towers)
           <option value="{{$towers->id_tower}}">{{$towers->nama}}</option>
+          <option value="{{$towers->id_tower}}">{{$towers->lokasi}}</option>
         @endforeach
       </select>
     </div>
