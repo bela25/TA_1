@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Promosi;
 use Illuminate\Http\Request;
 use App\Pegawai;
+use App\Lokasi;
 
 class PromosiController extends Controller
 {
@@ -28,7 +29,8 @@ class PromosiController extends Controller
     public function create()
     {
         $pegawai=Pegawai::all();
-        return view('promosi.create',compact('pegawai'));
+        $lokasi=Lokasi::all();
+        return view('promosi.create',compact('pegawai','lokasi'));
         //
     }
 
@@ -45,8 +47,12 @@ class PromosiController extends Controller
         $post ->tgl_awal = $request->get('tglawal');
         $post ->tgl_akhir = $request->get('tglakhir');
         $post ->keterangan = $request->get('keterangan');
-        $post ->gambar = $request->get('gambar');
         $post ->pegawai = $request->get('admin');
+        $post ->lokasi = $request->get('lokasi');
+
+        $file = $request->file('gambar');
+        $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
+        $post ->gambar = $nama_gambar;
         $post->save();
         return redirect('promosis');
         //
@@ -72,7 +78,8 @@ class PromosiController extends Controller
     public function edit(Promosi $promosi)
     {
         $pegawai=Pegawai::all();
-        return view('promosi.update',compact('promosi','pegawai'));
+        $lokasi=Lokasi::all();
+        return view('promosi.update',compact('promosi','pegawai','lokasi'));
         //
     }
 
@@ -89,8 +96,19 @@ class PromosiController extends Controller
         $promosi ->tgl_awal = $request->get('tglawal');
         $promosi ->tgl_akhir = $request->get('tglakhir');
         $promosi ->keterangan = $request->get('keterangan');
-        $promosi ->gambar = $request->get('gambar');
         $promosi ->pegawai = $request->get('admin');
+        $promosi ->lokasi = $request->get('lokasi');
+
+        $file = $request->file('gambar');
+        if(isset($file))
+        {
+            if(isset($promosi->gambar))
+            {
+                // unlink(public_path($promosi->gambar));
+            }
+            $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
+            $promosi ->gambar = $nama_gambar;
+        }
         $promosi->save();
         return redirect('promosis');
         //

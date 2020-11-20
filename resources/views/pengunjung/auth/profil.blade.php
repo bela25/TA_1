@@ -21,6 +21,99 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+        <span class="subheading">Dokumen</span>
+        <h2 class="mb-2">Daftar dokumen untuk verifikasi</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Data Verifikasi</h6>
+            @if($customer->verifikasi == null)
+            <a href="{{ route('verifikasis.create')}}" class="btn btn-primary ">
+              Isi Data
+            </a>
+            @else
+            <a href="{{ route('verifikasis.edit', $customer->verifikasi)}}" class="btn btn-primary ">
+              Ubah Data
+            </a>
+            @endif
+          </div>
+          <div class="card-body">
+            @if($customer->verifikasi == null)
+            <p>Belum ada data</p>
+            @else
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>Tanggal</th>
+                    <th>Status</th>
+                    <th>KTP</th>
+                    <th>KK</th>
+                    <th>NPWP</th>
+                    <th>Tanggal Diterima</th>
+                    <th>Interaksi</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                 <tr>
+                    <td>{{$customer->verifikasi->tanggal}}</td>
+                    <td>{{$customer->verifikasi->status}}</td>
+                    <td><a href="{{asset($customer->verifikasi->ktp)}}" target="_blank">{{$customer->verifikasi->ktp}}</a></td>
+                    <td><a href="{{asset($customer->verifikasi->kk)}}" target="_blank">{{$customer->verifikasi->kk}}</a></td>
+                    <td><a href="{{asset($customer->verifikasi->npwp)}}" target="_blank">{{$customer->verifikasi->npwp}}</a></td>
+                    <td>
+                      @if($customer->verifikasi->tgl_diterima != null)
+                        <span class="badge badge-success">{{ $customer->verifikasi->tgl_diterima }}</span>
+                      @else
+                        <span class="badge badge-secondary">Belum diterima</span>
+                      @endif
+                    </td>
+                    <td>
+                      <!-- <a href="{{route('verifikasis.edit',$customer->verifikasi)}}" class="btn btn-primary">Ubah</a> -->
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$customer->verifikasi->idverifikasi}}">Hapus</button>
+                      <div class="modal fade" id="delete{{$customer->verifikasi->idverifikasi}}">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 class="modal-title">Peringatan</h4>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Data ini akan dihapus secara permanen, Anda yakin untuk menghapus?&hellip;</p>
+                               <form role="form" action="{{route('verifikasis.destroy',$customer->verifikasi)}}" method="post" id="hapus{{$customer->verifikasi->idverifikasi}}">
+                                {{csrf_field()}}
+                                {{method_field('delete')}}
+                                <!-- /.card-body -->
+                              </form>
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                              <button type="submit" class="btn btn-danger" form="hapus{{$customer->verifikasi->idverifikasi}}">Hapus</button>
+                            </div>
+                          </div>
+                          <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                      </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+            @endif
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-12 heading-section text-center ftco-animate mb-5">
         <span class="subheading">Listing</span>
         <h2 class="mb-2">Daftar Unit yang telah dibooking atau dibeli</h2>
       </div>

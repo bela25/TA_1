@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Spesifikasi_bangunan;
 use Illuminate\Http\Request;
 use App\Pegawai;
+use App\Lokasi;
 
 class SpesifikasiBangunanController extends Controller
 {
@@ -28,7 +29,8 @@ class SpesifikasiBangunanController extends Controller
     public function create()
     {
         $pegawai=Pegawai::all();
-        return view('spesifikasi_bangunan.create',compact('pegawai'));
+        $lokasi=Lokasi::all();
+        return view('spesifikasi_bangunan.create',compact('pegawai','lokasi'));
         //
     }
 
@@ -50,6 +52,7 @@ class SpesifikasiBangunanController extends Controller
         $post ->jendela = $request->get('jendela');
         $post ->air= $request->get('air');
         $post ->pegawai = $request->get('admin');
+        $post ->lokasi = $request->get('lokasi');
         $post->save();
         return redirect('spesifikasi_bangunans');
         //
@@ -75,7 +78,8 @@ class SpesifikasiBangunanController extends Controller
     public function edit(Spesifikasi_bangunan $spesifikasi_bangunan)
     {
         $pegawai=Pegawai::all();
-        return view('spesifikasi_bangunan.update',compact('spesifikasi_bangunan','pegawai'));
+        $lokasi=Lokasi::all();
+        return view('spesifikasi_bangunan.update',compact('spesifikasi_bangunan','pegawai','lokasi'));
         //
     }
 
@@ -97,6 +101,7 @@ class SpesifikasiBangunanController extends Controller
         $spesifikasi_bangunan ->jendela = $request->get('jendela');
         $spesifikasi_bangunan ->air= $request->get('air');
         $spesifikasi_bangunan ->pegawai = $request->get('admin');
+        $spesifikasi_bangunan ->lokasi = $request->get('lokasi');
         $spesifikasi_bangunan->save();
         return redirect('spesifikasi_bangunans');
         //

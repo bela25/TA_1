@@ -21,6 +21,8 @@ class CreatePromoosisTable extends Migration
             $table->date('tgl_akhir');
             $table->unsignedInteger('pegawai');
             $table->foreign('pegawai')->references('nip')->on('pegawais');
+            $table->unsignedInteger('lokasi');
+            $table->foreign('lokasi')->references('idlokasi')->on('lokasis');
             $table->timestamps();
         });
     }

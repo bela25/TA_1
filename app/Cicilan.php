@@ -10,7 +10,11 @@ class Cicilan extends Model
    
     public function transaksis()
     {
-    	return $this->belongsTo('App\Transaksi');
+    	return $this->belongsTo('App\Transaksi','transaksi','id_transaksi');
+    }
+    public function pembayaran_cicilans()
+    {
+    	return $this->hasMany('App\PembayaranCicilan','cicilan','id_cicilan');
     }
     //
 }

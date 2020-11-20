@@ -31,11 +31,11 @@
                   </div>
                   <form class="user" method="POST" action="{{ route('register') }}">
                     {{ csrf_field() }}
-                    <div class="form-group{{ $errors->has('nama') ? ' has-error' : '' }}">
-                      <input type="text" class="form-control form-control-user" id="nama" placeholder="Enter Name..." name="nama" value="{{ old('nama') }}" required>
-                      @if ($errors->has('nama'))
+                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                      <input type="text" class="form-control form-control-user" id="name" placeholder="Enter Name..." name="name" value="{{ old('name') }}" required>
+                      @if ($errors->has('name'))
                           <span class="help-block">
-                              <strong>{{ $errors->first('nama') }}</strong>
+                              <strong>{{ $errors->first('name') }}</strong>
                           </span>
                       @endif
                     </div>

@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{asset('web/css/aos.css')}}">
 
     <link rel="stylesheet" href="{{asset('web/css/ionicons.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/vendor/fontawesome-free/css/all.min.css')}}">
 
     <link rel="stylesheet" href="{{asset('web/css/bootstrap-datepicker.css')}}">
     <link rel="stylesheet" href="{{asset('web/css/jquery.timepicker.css')}}">
@@ -53,7 +54,19 @@
             <li class="nav-item @if(request()->is('pengunjung/register')) {{'active'}} @endif"><a href="{{route('pengunjung.register')}}" class="nav-link">Register</a></li>
             @endguest
             @auth
-            <li class="nav-item @if(request()->is('pengunjung/profil')) {{'active'}} @endif"><a href="{{route('pengunjung.profil')}}" class="nav-link">Valerie</a></li>
+            <!-- <li class="nav-item @if(request()->is('pengunjung/profil')) {{'active'}} @endif"><a href="{{route('pengunjung.profil')}}" class="nav-link">Valerie</a></li> -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle @if(request()->is('profil')) {{'active'}} @endif" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ucfirst(auth()->user()->name)}}</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{{route('pengunjung.profil')}}">Profil</a>
+                <a class="dropdown-item" href="{{route('pengunjung.ubahprofil', auth()->user()->customer)}}">Ubah Profil</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+                </form>
+              </div>
+            </li>
             @endauth
 	        </ul>
 	      </div>

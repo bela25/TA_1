@@ -21,6 +21,7 @@
             <th>Tanggal_awal</th>
             <th>Tanggal_akhir</th>
             <th>Admin</th>
+            <th>Lokasi</th>
             <th>Updated_at</th>
             <th>Interaksi</th>
           </tr>
@@ -30,11 +31,12 @@
          @foreach($promosis as $promosi)
          <tr>
             <td>{{$promosi->judul_promosi}}</td>
-            <td>{{$promosi->gambar}}</td>
+            <td><a href="{{asset($promosi->gambar)}}" target="_blank">{{$promosi->gambar}}</a></td>
             <td>{{$promosi->keterangan}}</td>
             <td>{{$promosi->tgl_awal}}</td>
             <td>{{$promosi->tgl_akhir}}</td>
             <td><a href="{{route('pegawais.index')}}">{{$promosi->pegawais->nama}}</a></td>
+            <td><a href="{{route('lokasis.index')}}">{{$promosi->lokasis->nama_apartemen}}</a></td>
             <td>{{$promosi->updated_at}}</td>
             <td>
               <a href="{{route('promosis.edit',$promosi)}}" class="btn btn-primary">Ubah</a>

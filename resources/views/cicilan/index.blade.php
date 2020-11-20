@@ -26,11 +26,12 @@
        <tbody>
          @foreach($cicilans as $cicilan)
          <tr>
-            <td><a href="{{route('transaksis.index')}}">{{$cicilan->transaksis->customer}}</a></td>
+            <td><a href="{{route('transaksis.index')}}">{{$cicilan->transaksis->nama()}}</a></td>
             <td>{{$cicilan->tanggal_mulai}}</td>
             <td>{{$cicilan->tanggal_akhir}}</td>
             <td>{{$cicilan->bunga}}</td>
             <td>
+              <a href="{{route('cicilans.show',$cicilan)}}" class="btn btn-primary">Detail</a>
               <a href="{{route('cicilans.edit',$cicilan)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$cicilan->id_cicilan}}">Hapus</button>
               <div class="modal fade" id="delete{{$cicilan->id_cicilan}}">

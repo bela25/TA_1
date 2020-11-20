@@ -16,12 +16,12 @@ class Verifikasi extends Migration
         Schema::create('verifikasis', function (Blueprint $table) {
             $table->increments('idverifikasi');
             $table->date('tanggal');
-            $table->enum('status',['menikah','belum_menikah']);
+            $table->enum('status',['menikah','belum menikah']);
             $table->string('ktp');
             $table->string('kk');
             $table->string('npwp');
-            $table->date('tgl_diterima');
-            $table->unsignedInteger('pegawai');
+            $table->date('tgl_diterima')->nullable();
+            $table->unsignedInteger('pegawai')->nullable();
             $table->foreign('pegawai')->references('nip')->on('pegawais');
             $table->unsignedInteger('customer');
             $table->foreign('customer')->references('idcustomers')->on('customers');

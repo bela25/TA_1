@@ -25,6 +25,10 @@ class CreatePegawaisTable extends Migration
             $table->string('username');
             $table->string('password');
             $table->date('tgl_bergabung');
+            $table->unsignedInteger('lokasi');
+            $table->foreign('lokasi')->references('idlokasi')->on('lokasis');
+            $table->unsignedBigInteger('user');
+            $table->foreign('user')->references('id')->on('users');
             $table->timestamps();
         });
     }

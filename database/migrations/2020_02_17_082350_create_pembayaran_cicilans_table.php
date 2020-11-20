@@ -15,10 +15,10 @@ class CreatePembayaranCicilansTable extends Migration
     {
         Schema::create('pembayaran_cicilans', function (Blueprint $table) {
             $table->increments('id_pembayarancicilan');
-            $table->date('tanggal_bayar');
-            $table->integer('cicilan-ke');
-            $table->double('nominal',10,2);
-            $table->string('gambar_bukticicilan');
+            $table->date('tanggal_bayar')->nullable();
+            $table->integer('cicilan_ke');
+            $table->bigInteger('nominal');
+            $table->string('gambar_bukticicilan')->nullable();
             $table->unsignedInteger('cicilan');
             $table->foreign('cicilan')->references('id_cicilan')->on('cicilans');
             $table->timestamps();

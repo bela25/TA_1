@@ -9,8 +9,8 @@ class Pegawai extends Authenticatable
 {
     
     protected $primaryKey = 'nip';
-
-
+    protected $rememberTokenName = false;
+    
     public function chats()
     {
     	return $this->hasMany('App\Chatting');
@@ -21,7 +21,7 @@ class Pegawai extends Authenticatable
     }
     public function transaksis()
     {
-    	return $this->hasMany('App\Transaksi');
+    	return $this->hasMany('App\Transaksi','pegawai','nip');
     }
     public function spesifikasis()
     {
@@ -38,5 +38,9 @@ class Pegawai extends Authenticatable
     public function pembatalans()
     {
     	return $this->hasMany('App\Pembatalan');
+    }
+    public function lokasipegawais()
+    {
+        return $this->hasMany('App\LokasiPegawai','pegawai','nip');
     }
 }

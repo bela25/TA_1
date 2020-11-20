@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Customer extends Authenticatable
 {
     protected $primaryKey = 'idcustomers';
+    protected $rememberTokenName = false;
 
     public function chats()
     {
@@ -16,6 +17,10 @@ class Customer extends Authenticatable
     public function feedbacks()
     {
     	return $this->hasMany('App\Feedback');
+    }
+    public function verifikasi()
+    {
+        return $this->hasOne('App\Verifikasi','customer','idcustomers');
     }
     public function transaksis()
     {
@@ -28,6 +33,10 @@ class Customer extends Authenticatable
     public function unitDimiliki($unit)
     {
         return $this->transaksis->where('units.id_unit',$unit->id_unit)->isNotEmpty();
+    }
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 
     //

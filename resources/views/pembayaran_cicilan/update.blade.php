@@ -2,48 +2,29 @@
 
 @section('content')
 <!-- form start -->
-<form role="form" action="{{route('pembayaran_cicilans.update',$pembayaran_cicilan)}}" method="post">
+<form role="form" action="{{route('pembayaran_cicilans.update',$pembayaranCicilan)}}" method="post">
   {{csrf_field()}}
+  {{method_field('put')}}
   <div class="card-body">
     <div class="form-group">
       <label>Kode Cicilan</label>
       <select name="kodecicilan" class="form-control select2" style="width: 100%;" required>
         @foreach($cicilan as $cicilans)
-          <option value="{{$cicilans->id_cicilan}}">{{$cicilans->id_cicilan}}</option>
+          @if($cicilans->id_cicilan == $pembayaranCicilan->cicilan)
+            <option value="{{$cicilans->id_cicilan}}" selected>{{$cicilans->id_cicilan}}</option>
+          @else
+            <option value="{{$cicilans->id_cicilan}}">{{$cicilans->id_cicilan}}</option>
+          @endif
         @endforeach
       </select>
     </div>
     <div class="form-group">
-      <label>Tanggal Pembayaran:</label>
-
-      <div class="input-group date" id="tglpembayaran" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tgllahir" required>
-        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
-          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-        </div>
-      </div>
-      <!-- /.input group -->
+      <label for="cicilan_ke">Cicilan ke-</label>
+      <input type="text" class="form-control" id="cicilan_ke" placeholder="Isi cicilan ke" name="cicilan_ke" min="0" step="1" value="{{$pembayaranCicilan->cicilan_ke}}" required>
     </div>
     <div class="form-group">
       <label>Nominal</label>
-      <select class="form-control" name="nominal" required>
-        <option>100jt</option>
-        <option>200jt</option>
-        <option>300jt</option>
-        <option>400jt</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputFile">Upload Bukti</label>
-      <div class="input-group">
-        <div class="custom-file">
-          <input type="file" class="custom-file-input" id="exampleInputFile" required>
-          <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-        </div>
-        <div class="input-group-append">
-          <span class="input-group-text" id="">Upload</span>
-        </div>
-      </div>
+      <input type="number" class="form-control" placeholder="Isi nominal" name="nominal" min="0" step="100000000" value="{{$pembayaranCicilan->nominal}}" required>
     </div>
     <!-- /.card-body -->
 

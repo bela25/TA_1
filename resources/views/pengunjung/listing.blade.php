@@ -42,7 +42,7 @@
     			<div class="text">
     				<p class="price mb-3"><span class="orig-price">Rp{{$unit->hargaJual()}}</span></p>
     				<h3 class="mb-0"><a href="{{route('pengunjung.listing.single',$unit)}}">{{$unit->tipes->nama}} No. {{$unit->no_unit}}</a></h3>
-    				<span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>Tower {{$unit->towers->nama}}</span>
+    				<span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>Tower {{$unit->towers->nama}}, {{$unit->towers->lokasis->nama_apartemen}}</span>
     				<!-- <ul class="property_list">
     					<li><span class="flaticon-bed"></span>3</li>
     					<li><span class="flaticon-bathtub"></span>2</li>

@@ -8,13 +8,18 @@ class Transaksi extends Model
 {
     protected $primaryKey = 'id_transaksi';
 
+    public function nama()
+    {
+        return $this->customers->nama.' ('.$this->units->nama().')';
+    }
+
     public function pembatalans()
     {
     	return $this->hasOne('App\Pembatalan');
     }
     public function cicilans()
     {
-    	return $this->hasOne('App\Cicilan');
+    	return $this->hasOne('App\Cicilan','transaksi','id_transaksi');
     }
     public function pembayarandps()
     {
@@ -44,6 +49,10 @@ class Transaksi extends Model
     public function formatUang($nominal)
     {
         return number_format($nominal,2,',','.');
+    }
+    public function lokasi()
+    {
+        return $this->units->towers->lokasis;
     }
     //
 }

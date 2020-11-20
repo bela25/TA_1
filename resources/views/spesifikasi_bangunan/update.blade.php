@@ -42,7 +42,23 @@
       <label>Admin</label>
       <select name="admin" class="form-control select2" style="width: 100%;" required>
         @foreach($pegawai as $pegawais)
+          @if($pegawais->nip == $spesifikasi_bangunan->pegawai)
+          <option value="{{$pegawais->nip}}" selected>{{$pegawais->nama}}</option>
+          @else
           <option value="{{$pegawais->nip}}">{{$pegawais->nama}}</option>
+          @endif
+        @endforeach
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Lokasi</label>
+      <select name="lokasi" class="form-control select2" style="width: 100%;" required>
+        @foreach($lokasi as $lokasis)
+          @if($lokasis->idlokasi == $spesifikasi_bangunan->lokasi)
+          <option value="{{$lokasis->idlokasi}}" selected>{{$lokasis->nama_apartemen}}</option>
+          @else
+          <option value="{{$lokasis->idlokasi}}">{{$lokasis->nama_apartemen}}</option>
+          @endif
         @endforeach
       </select>
     </div>

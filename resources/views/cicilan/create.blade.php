@@ -9,7 +9,7 @@
       <label>Transaksi</label>
       <select name="transaksi" class="form-control select2" style="width: 100%;">
         @foreach($transaksi as $transaksis)
-          <option value="{{$transaksis->nip}}">{{$transaksis->nama}}</option>
+          <option value="{{$transaksis->id_transaksi}}">{{$transaksis->nama()}}</option>
         @endforeach
       </select>
     </div>
@@ -17,7 +17,7 @@
       <label>Tanggal Awal:</label>
 
       <div class="input-group date" id="tglawal" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tgllahir" required>
+        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tanggal_mulai" required>
         <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
@@ -28,7 +28,7 @@
       <label>Tanggal Akhir:</label>
 
       <div class="input-group date" id="tglakhir" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tgllahir" required>
+        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tanggal_akhir" required>
         <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>

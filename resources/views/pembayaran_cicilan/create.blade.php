@@ -14,36 +14,12 @@
       </select>
     </div>
     <div class="form-group">
-      <label>Tanggal Pembayaran:</label>
-
-      <div class="input-group date" id="tglpembayaran" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tgllahir" required>
-        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
-          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-        </div>
-      </div>
-      <!-- /.input group -->
+      <label for="cicilan_ke">Cicilan ke-</label>
+      <input type="text" class="form-control" id="cicilan_ke" placeholder="Isi cicilan ke" name="cicilan_ke" min="0" step="1" required>
     </div>
     <div class="form-group">
       <label>Nominal</label>
-      <select class="form-control"  name="nominal" required>
-        <option>100jt</option>
-        <option>200jt</option>
-        <option>300jt</option>
-        <option>400jt</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputFile">Upload Bukti</label>
-      <div class="input-group">
-        <div class="custom-file">
-          <input type="file" class="custom-file-input" id="exampleInputFile" required>
-          <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-        </div>
-        <div class="input-group-append">
-          <span class="input-group-text" id="">Upload</span>
-        </div>
-      </div>
+      <input type="number" class="form-control" placeholder="Isi nominal" name="nominal" min="0" step="100000000" required>
     </div>
     <!-- /.card-body -->
 
@@ -52,3 +28,53 @@
     </div>
   </form>
   @endsection
+  @push('scripts')
+  <script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
+  <script type="text/javascript">
+    function NumericInput(inp, locale) {
+      var numericKeys = '0123456789';
+
+      // restricts input to numeric keys 0-9
+      inp.addEventListener('keypress', function(e) {
+        var event = e || window.event;
+        var target = event.target;
+
+        if (event.charCode == 0) {
+          return;
+        }
+
+        if (-1 == numericKeys.indexOf(event.key)) {
+          // Could notify the user that 0-9 is only acceptable input.
+          event.preventDefault();
+          return;
+        }
+      });
+
+      // add the thousands separator when the user blurs
+      inp.addEventListener('blur', function(e) {
+        var event = e || window.event;
+        var target = event.target;
+
+        var tmp = target.value.replace(/,/g, '');
+        var val = Number(tmp).toLocaleString(locale);
+
+        if (tmp == '') {
+          target.value = '';
+        } else {
+          target.value = val;
+        }
+      });
+
+      // strip the thousands separator when the user puts the input in focus.
+      inp.addEventListener('focus', function(e) {
+        var event = e || window.event;
+        var target = event.target;
+        var val = target.value.replace(/[,.]/g, '');
+
+        target.value = val;
+      });
+    }
+
+    var number = new NumericInput(document.getElementById('demo'));
+  </script>
+  @endpush

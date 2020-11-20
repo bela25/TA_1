@@ -17,11 +17,13 @@
 // });
 
 Auth::routes();
+// Route::post('pengunjung/login', 'Auth\LoginPengunjungController@login')->name('pengunjung.login');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('customers','CustomerController');
 Route::resource('towers','TowerController');
 Route::resource('pegawais','PegawaiController');
+Route::resource('lokasipegawais','LokasiPegawaiController');
 Route::resource('tipe_units','TipeUnitController');
 Route::resource('arah_units','ArahUnitController');
 Route::resource('chattings','ChattingController');
@@ -38,6 +40,8 @@ Route::resource('profils','ProfilController');
 Route::resource('spesifikasi_bangunans','SpesifikasiBangunanController');
 Route::resource('units','UnitController');
 
+Route::put('verifikasis/{verifikasi}/verifikasi','VerifikasiController@verifikasi')->name('verifikasis.verifikasi');
+Route::resource('verifikasis','VerifikasiController');
 Route::get('pembatalans/{pembatalan}/uploadbukti','PembatalanController@uploadBukti')->name('pembatalans.upload');
 Route::resource('pembatalans','PembatalanController');
 Route::put('transaksis/{transaksi}/simpanpegawai','TransaksiController@simpanPegawai')->name('transaksis.simpanpegawai');
@@ -50,8 +54,16 @@ Route::get('listing', 'PengunjungController@listing')->name('pengunjung.listing'
 Route::get('listing/{unit}', 'PengunjungController@listingSingle')->name('pengunjung.listing.single');
 Route::get('booking/{unit}', 'PengunjungController@booking')->name('pengunjung.booking');
 Route::get('dp/{unit}', 'PengunjungController@dp')->name('pengunjung.dp');
+Route::get('pembatalan/{transaksi}', 'PengunjungController@pembatalan')->name('pengunjung.pembatalan');
+Route::get('cicilan/{cicilan}', 'PengunjungController@cicilan')->name('pengunjung.cicilan');
+Route::get('cicilan/{pembayaran_cicilan}/bayar', 'PengunjungController@bayarCicilan')->name('pengunjung.bayarcicilan');
+Route::put('cicilan/{pembayaran_cicilan}/bayar', 'PengunjungController@simpanCicilan')->name('pengunjung.simpancicilan');
 Route::get('contact', 'PengunjungController@contact')->name('pengunjung.contact');
+
 Route::get('pengunjung/login', 'PengunjungController@login')->name('pengunjung.login');
 Route::get('pengunjung/register', 'PengunjungController@register')->name('pengunjung.register');
 Route::get('profil', 'PengunjungController@profil')->name('pengunjung.profil');
-Route::get('pembatalan/{transaksi}', 'PengunjungController@pembatalan')->name('pengunjung.pembatalan');
+Route::get('ubahprofil/{customer}', 'PengunjungController@ubahProfil')->name('pengunjung.ubahprofil');
+Route::put('simpanprofil/{customer}', 'PengunjungController@simpanProfil')->name('pengunjung.simpanprofil');
+
+Route::get('/home', 'HomeController@index')->name('home');

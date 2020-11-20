@@ -10,6 +10,7 @@ use App\HargaJual;
 use App\Unit;
 use App\KomisiPegawai;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class TransaksiController extends Controller
 {
@@ -20,9 +21,13 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        $transaksis = Transaksi::all();
         // pegawai yang login
         $pegawai = Pegawai::find(12345);
+        // $transaksis = Transaksi::all();
+        $transaksis = Transaksi::all()->filter(function ($item, $key) use($pegawai) {
+            return in_array($item->lokasi()->idlokasi, $pegawai->lokasipegawais->pluck('lokasi')->toArray());
+        });
+        // $transaksis = $pegawai->transaksis;
         return view('transaksi.index',compact('transaksis','pegawai'));
         //
     }

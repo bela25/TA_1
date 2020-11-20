@@ -12,5 +12,9 @@ class Spesifikasi_bangunan extends Model
     {
     	return $this->belongsTo('App\Pegawai','pegawai','nip');
     }
+    public function lokasis()
+    {
+    	return $this->belongsTo('App\Lokasi','lokasi','idlokasi');
+    }
     //
 }

@@ -42,8 +42,8 @@ class CicilanController extends Controller
     {
         $post = new Cicilan();
         $post ->transaksi = $request->get('transaksi');
-        $post ->tanggal_mulai = $request->get('tglawal');
-        $post ->tanggal_akhir = $request->get('tglakhir');
+        $post ->tanggal_mulai = $request->get('tanggal_mulai');
+        $post ->tanggal_akhir = $request->get('tanggal_akhir');
         $post ->bunga = $request->get('bunga');
         $post->save();
         return redirect('cicilans');
@@ -58,7 +58,8 @@ class CicilanController extends Controller
      */
     public function show(Cicilan $cicilan)
     {
-        //
+        $pembayaran_cicilans = $cicilan->pembayaran_cicilans;
+        return view('cicilan.show',compact('pembayaran_cicilans'));
     }
 
     /**
@@ -69,7 +70,8 @@ class CicilanController extends Controller
      */
     public function edit(Cicilan $cicilan)
     {
-        return view('cicilan.update',compact('cicilan'));
+        $transaksi=Transaksi::all();
+        return view('cicilan.update',compact('cicilan','transaksi'));
         //
     }
 
@@ -83,8 +85,8 @@ class CicilanController extends Controller
     public function update(Request $request, Cicilan $cicilan)
     {
         $cicilan ->transaksi = $request->get('transaksi');
-        $cicilan ->tanggal_mulai = $request->get('tglawal');
-        $cicilan ->tanggal_akhir = $request->get('tglakhir');
+        $cicilan ->tanggal_mulai = $request->get('tanggal_mulai');
+        $cicilan ->tanggal_akhir = $request->get('tanggal_akhir');
         $cicilan ->bunga = $request->get('bunga');
         $cicilan->save();
         return redirect('cicilans');

@@ -49,7 +49,7 @@
           {{session('pesan')}}
         </div>
       @endif
-  		@if($unit->status == 'tersedia' || ($transaksi != null && $transaksi->verifikasi == 'belum diterima' && $transaksi->status != 'tidak aktif'))
+  		@if($unit->status == 'tersedia')
   			<form action="{{route('transaksis.store')}}" method="post" class="bg-light p-5 contact-form">
   				{{csrf_field()}}
           <input type="hidden" name="unit" value="{{$unit->id_unit}}">

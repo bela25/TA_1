@@ -37,19 +37,22 @@
               @endif
   					</div>
   					<div class="float-right">
-  						@if($unit->status == 'booking')
-  						<a href="{{route('pengunjung.booking',$unit)}}" class="btn btn-secondary py-3 px-5">Terbooking</a>
-  						@elseif($unit->status == 'terjual')
-  						<button class="btn btn-secondary py-3 px-5" disabled>Terjual</button>
-  						@else
-  						<a href="{{route('pengunjung.booking',$unit)}}" class="btn btn-primary py-3 px-5">Booking</a>
-  						@endif
+              @if($unit->status == 'booking')
+              <a href="{{route('pengunjung.booking',$unit)}}" class="btn btn-secondary py-3 px-5">Terbooking</a>
+              @elseif($unit->status == 'terjual')
+              <button class="btn btn-secondary py-3 px-5" disabled>Terjual</button>
+              @else
+              <a href="{{route('pengunjung.booking',$unit)}}" class="btn btn-primary py-3 px-5">Booking</a>
+              @endif
               
               @if($customer != null && $customer->unitDimiliki($unit))
                 @if($customer->transaksiUnit($unit)->status == 'aktif')
                 <a href="{{route('pengunjung.pembatalan',$customer->transaksiUnit($unit))}}" class="btn btn-danger py-3 px-5">Batalkan</a>
                 @else
                 <a href="{{route('pengunjung.pembatalan',$customer->transaksiUnit($unit))}}" class="btn btn-danger py-3 px-5">Dibatalkan (Lihat Detail)</a>
+                @endif
+                @if($customer->transaksiUnit($unit)->cicilans != null)
+                <a href="{{route('pengunjung.cicilan',$customer->transaksiUnit($unit)->cicilans)}}" class="btn btn-info py-3 px-5">Cicilan</a>
                 @endif
               @endif
   					</div>
@@ -87,6 +90,7 @@
 					    <div class="tab-pane fade" id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
 					      <p>{{$unit->keterangan}}.</p>
 					    </div>
+
 					  </div>
 					</div>
 	      </div>

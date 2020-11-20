@@ -42,11 +42,12 @@ class PembayaranCicilanController extends Controller
     {
         $post = new PembayaranCicilan();
         $post ->cicilan = $request->get('kodecicilan');
-        $post ->tanggal_bayar = $request->get('tanggalpembayaran');
         $post ->nominal = $request->get('nominal');
-        $post ->gambar_bukticicilan= $request->get('exampleInputFile');
+        $post ->cicilan_ke = $request->get('cicilan_ke');
+        // $post ->tanggal_bayar = $request->get('tanggalpembayaran');
+        // $post ->gambar_bukticicilan= $request->get('exampleInputFile');
         $post->save();
-        return redirect('pembayaran_cicilans');
+        return redirect('cicilans/'.$request->get('kodecicilan'));
         //
     }
 
@@ -69,7 +70,8 @@ class PembayaranCicilanController extends Controller
      */
     public function edit(PembayaranCicilan $pembayaranCicilan)
     {
-        return view('pembayaran_cicilan.update',compact('pembayaran_cicilan'));
+        $cicilan= Cicilan::all();
+        return view('pembayaran_cicilan.update',compact('pembayaranCicilan','cicilan'));
         //
     }
 
@@ -82,12 +84,11 @@ class PembayaranCicilanController extends Controller
      */
     public function update(Request $request, PembayaranCicilan $pembayaranCicilan)
     {
-        $pembayaran_cicilan ->no_unit = $request->get('namaunit');
-        $pembayaran_cicilan ->tanggal_bayar = $request->get('tanggalpembayaran');
-        $pembayaran_cicilan ->nominal = $request->get('nominal');
-        $pembayaran_cicilan ->gambar_bukticicilan= $request->get('exampleInputFile');
-        $pembayaran_cicilan->save();
-        return redirect('pembayaran_cicilans');
+        $pembayaranCicilan ->cicilan = $request->get('kodecicilan');
+        $pembayaranCicilan ->nominal = $request->get('nominal');
+        $pembayaranCicilan ->cicilan_ke = $request->get('cicilan_ke');
+        $pembayaranCicilan->save();
+        return redirect('cicilans/'.$request->get('kodecicilan'));
         //
     }
 
@@ -99,8 +100,9 @@ class PembayaranCicilanController extends Controller
      */
     public function destroy(PembayaranCicilan $pembayaranCicilan)
     {
-        $pembayaran_cicilan->delete();
-        return redirect('pembayaran_cicilans');
+        $cicilan=$pembayaranCicilan->cicilan;
+        $pembayaranCicilan->delete();
+        return redirect('cicilans/'.$cicilan);
         //
     }
 }

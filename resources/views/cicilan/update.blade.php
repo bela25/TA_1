@@ -4,12 +4,17 @@
 <!-- form start -->
 <form role="form" action="{{route('cicilans.update',$cicilan)}}" method="post">
   {{csrf_field()}}
+  {{method_field('put')}}
   <div class="card-body">
     <div class="form-group">
       <label>Transaksi</label>
       <select name="transaksi" class="form-control select2" style="width: 100%;">
         @foreach($transaksi as $transaksis)
-          <option value="{{$transaksis->nip}}">{{$transaksis->nama}}</option>
+          @if($transaksis->id_transaksi == $cicilan->transaksi)
+          <option value="{{$transaksis->id_transaksi}}" selected>{{$transaksis->nama()}}</option>
+          @else
+          <option value="{{$transaksis->id_transaksi}}">{{$transaksis->nama()}}</option>
+          @endif
         @endforeach
       </select>
     </div>
@@ -17,7 +22,7 @@
       <label>Tanggal Awal:</label>
 
       <div class="input-group date" id="tglawal" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tgllahir" required>
+        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tanggal_mulai" value="{{ $cicilan->tanggal_mulai }}" required>
         <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
@@ -28,7 +33,7 @@
       <label>Tanggal Akhir:</label>
 
       <div class="input-group date" id="tglakhir" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tgllahir" required>
+        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tanggal_akhir" value="{{ $cicilan->tanggal_akhir }}" required>
         <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
@@ -37,7 +42,7 @@
     </div>
     <div class="form-group">
       <label for="bunga">Bunga</label>
-      <input type="number" class="form-control" id="bunga" placeholder="Isi Bunga" name="bunga" min="0" step="0.01" required>
+      <input type="number" class="form-control" id="bunga" placeholder="Isi Bunga" name="bunga" min="0" step="0.01" value="{{ $cicilan->bunga }}" required>
     </div>
   </div>
   <!-- /.card-body -->

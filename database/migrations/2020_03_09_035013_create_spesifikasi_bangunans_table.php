@@ -25,6 +25,8 @@ class CreateSpesifikasiBangunansTable extends Migration
             $table->string('air');
             $table->unsignedInteger('pegawai');
             $table->foreign('pegawai')->references('nip')->on('pegawais');
+            $table->unsignedInteger('lokasi');
+            $table->foreign('lokasi')->references('idlokasi')->on('lokasis');
             $table->timestamps();
         });
     }

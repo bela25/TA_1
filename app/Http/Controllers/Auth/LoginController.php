@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use App\Customer;
 use App\Pegawai;
 
@@ -45,8 +46,30 @@ class LoginController extends Controller
      *
      * @return string
      */
-    public function username()
-    {
-        return 'email';
-    }
+    // public function username()
+    // {
+    //     return 'email';
+    // }
+
+    /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    // protected function guard()
+    // {
+    //     return Auth::guard('pegawai');
+    // }
+
+    // public function login(Request $request)
+    // {
+    //     if (Auth::guard('pegawai')->attempt(['email' => $request->email, 'password' => $request->password])) {
+    //         // Authentication passed...
+    //         return redirect()->intended('home');
+    //     }
+    //     elseif (Auth::guard('customer')->attempt(['email' => $request->email, 'password' => $request->password])) {
+    //         // Authentication passed...
+    //         return redirect()->intended('home');
+    //     }
+    // }
 }

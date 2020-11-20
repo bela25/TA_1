@@ -24,6 +24,8 @@ class CreateCustomersTable extends Migration
             $table->string('email');
             $table->string('username');
             $table->string('password');
+            $table->unsignedBigInteger('user');
+            $table->foreign('user')->references('id')->on('users');
             $table->timestamps();
         });
     }

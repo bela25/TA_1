@@ -16,11 +16,13 @@
         <thead>
           <tr>
             <th>Customer</th>
+            <th>Verifikasi Customer</th>
             <th>Unit</th>
+            <th>Lokasi</th>
             <th>Harga Jual</th>
             <th>Jenis Bayar</th>
             <th>Tanggal Pembayaran</th>
-            <th>Verifikasi</th>
+            <th>Verifikasi Booking</th>
             <th>Status</th>
             <th>Tanggal Pelunasan</th>
             <th>Pegawai</th>
@@ -31,8 +33,16 @@
         <tbody>
           @foreach($transaksis as $transaksi)
           <tr>
-            <td><a href="">{{$transaksi->customers->nama}}</a></td>
+            <td><a href="{{ route('customers.show', $transaksi->customers) }}">{{$transaksi->customers->nama}}</a></td>
+            <td>
+              @if($transaksi->customers->verifikasi->tgl_diterima == null)
+                <span class="badge badge-secondary">Belum diverifikasi</span>
+              @else
+                <span class="badge badge-success">{{ $transaksi->customers->verifikasi->tgl_diterima }}</span>
+              @endif
+            </td>
             <td><a href="">{{$transaksi->units->nama()}}</a></td>
+            <td><a href="">{{$transaksi->lokasi()->nama_apartemen}}</a></td>
             <td>Rp{{$transaksi->units->hargaJual()}}</td>
             <td>{{$transaksi->jenis_bayar}}</td>
             <td>{{$transaksi->tanggal}}</td>

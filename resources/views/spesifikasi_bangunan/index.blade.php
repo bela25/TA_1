@@ -23,6 +23,7 @@
             <th>Jendela</th>
             <th>Air</th>
             <th>Admin</th>
+            <th>Lokasi</th>
             <th>Tanggal Pembuataan</th>
             <th>Updated_at</th>
             <th>Interaksi</th>
@@ -40,6 +41,7 @@
             <td>{{$spesifikasi_bangunan->jendela}}</td>
             <td>{{$spesifikasi_bangunan->air}}</td>
             <td><a href="{{route('pegawais.index')}}">{{$spesifikasi_bangunan->pegawais->nama}}</a></td>
+            <td><a href="{{route('lokasis.index')}}">{{$spesifikasi_bangunan->lokasis->nama_apartemen}}</a></td>
             <td>{{$spesifikasi_bangunan->created_at}}</td>
             <td>{{$spesifikasi_bangunan->updated_at}}</td>
             <td>

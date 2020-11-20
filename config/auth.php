@@ -15,8 +15,11 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        // 'passwords' => 'users',
-        'passwords' => 'customers',
+        'passwords' => 'users',
+        // 'guard' => 'pegawai',
+        // 'passwords' => 'pegawais',
+        // 'guard' => 'customer',
+        // 'passwords' => 'customers',
     ],
 
     /*
@@ -37,14 +40,19 @@ return [
     */
 
     'guards' => [
-        // 'web' => [
-        //     'driver' => 'session',
-        //     'provider' => 'users',
-        // ],
-
         'web' => [
             'driver' => 'session',
+            'provider' => 'users',
+        ],
+
+        'pegawai' => [
+            'driver' => 'session',
             'provider' => 'pegawais',
+        ],
+
+        'customer' => [
+            'driver' => 'session',
+            'provider' => 'customers',
         ],
 
         'api' => [
@@ -71,10 +79,10 @@ return [
     */
 
     'providers' => [
-        // 'users' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\User::class,
-        // ],
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\User::class,
+        ],
 
         'customers' => [
             'driver' => 'eloquent',
@@ -103,11 +111,11 @@ return [
     */
 
     'passwords' => [
-        // 'users' => [
-        //     'provider' => 'users',
-        //     'table' => 'password_resets',
-        //     'expire' => 60,
-        // ],
+        'users' => [
+            'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
         'customers' => [
             'provider' => 'customers',
             'table' => 'password_resets',

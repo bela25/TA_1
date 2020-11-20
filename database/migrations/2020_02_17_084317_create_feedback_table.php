@@ -22,6 +22,8 @@ class CreateFeedbackTable extends Migration
             $table->foreign('pegawai')->references('nip')->on('pegawais');
             $table->unsignedInteger('customer');
             $table->foreign('customer')->references('idcustomers')->on('customers');
+            $table->unsignedInteger('lokasi');
+            $table->foreign('lokasi')->references('idlokasi')->on('lokasis');
             $table->timestamps();
         });
     }
