@@ -41,15 +41,11 @@
     <div class="form-group">
       <label for="email">Email</label>
       <input type="email" class="form-control" id="email" placeholder="Isi Email" name="email"
-      value="{{$customer->email}}" required>
+      value="{{$customer->user->email}}" required>
     </div>
     <div class="form-group">
       <label for="username">Username</label>
-      <input type="text" class="form-control" id="username" placeholder="Isi Username" name="username" value="{{$customer->username}}" required>
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" placeholder="Isi Password" required>
+      <input type="text" class="form-control" id="username" placeholder="Isi Username" name="username" value="{{$customer->user->username ?? ''}}" required>
     </div>
   </div>
   <!-- /.card-body -->

@@ -16,8 +16,8 @@ class CreateProfilsTable extends Migration
         Schema::create('profils', function (Blueprint $table) {
             $table->increments('idprofil');
             $table->string('judul_profil');
-            $table->string('keterangan');
-            $table->string('gambar');
+            $table->text('keterangan');
+            $table->string('gambar')->nullable();
             $table->unsignedInteger('admin');
             $table->foreign('admin')->references('nip')->on('pegawais');
             $table->timestamps();

@@ -3,15 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Unit;
+use App\Profil;
+use App\Pegawai;
 use App\Customer;
+use App\Lokasi;
+use App\Unit;
 use App\Transaksi;
 use App\PembayaranBooking;
 use App\PembayaranDP;
 use App\Pembatalan;
 use App\Cicilan;
 use App\PembayaranCicilan;
+use App\Feedback;
+use App\Promosi;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class PengunjungController extends Controller
 {
@@ -63,18 +69,60 @@ class PengunjungController extends Controller
         $user ->name = $request->get('nama');
         $user ->email = $request->get('email');
         $user->save();
-        return view('pengunjung.auth.ubah', compact('customer'));
+        return redirect('ubahprofil/'.$customer->idcustomers);
+    }
+
+    public function ubahPassword(Customer $customer)
+    {
+        return view('pengunjung.auth.ubahpassword', compact('customer'));
+    }
+
+    public function simpanPassword(Request $request, Customer $customer)
+    {
+        $this->validate($request, [
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $user = $customer->user;
+        if (Hash::check($request->get('password_lama'),$user->password)) 
+        {
+            $user ->password = bcrypt($request->get('password'));
+            $user->save();
+        }
+        else
+        {
+            return redirect('ubahpassword/'.$customer->idcustomers)->with('error', 'Password lama tidak sesuai');
+        }
+        return redirect('ubahprofil/'.$customer->idcustomers);
     }
 
     public function index()
     {
         $units = Unit::all();
-        return view('pengunjung.index', compact('units'));
+        $feedbacks = Feedback::all();
+        $promosis = Promosi::where('tgl_awal','<=',date('Y-m-d'))->where('tgl_akhir','>=',date('Y-m-d'))->get();
+
+        $totalLokasi = Lokasi::count();
+        $totalUnit = Unit::count();
+        $totalCustomer = Customer::count();
+        $totalTransaksi = Transaksi::count();
+
+        return view('pengunjung.index', compact('units','feedbacks','promosis','totalLokasi','totalUnit','totalCustomer','totalTransaksi'));
     }
 
     public function about()
     {
-        return view('pengunjung.about');
+        $welcome = Profil::where('judul_profil','welcome')->first()->keterangan;
+        $visi = Profil::where('judul_profil','visi')->first()->keterangan;
+        $misi = Profil::where('judul_profil','misi')->first()->keterangan;
+        $nilai = Profil::where('judul_profil','nilai')->first()->keterangan;
+
+        $totalLokasi = Lokasi::count();
+        $totalUnit = Unit::count();
+        $totalCustomer = Customer::count();
+        $totalTransaksi = Transaksi::count();
+        $feedbacks = Feedback::all();
+        return view('pengunjung.about', compact('feedbacks','welcome','visi','misi','nilai','totalLokasi','totalUnit','totalCustomer','totalTransaksi'));
     }
     
     public function listing()
@@ -95,7 +143,26 @@ class PengunjungController extends Controller
 
     public function contact()
     {
-        return view('pengunjung.contact');
+        $pegawais = Pegawai::all();
+        $customers = Customer::all();
+        $lokasis = Lokasi::all();
+        return view('pengunjung.contact', compact('pegawais','customers','lokasis'));
+    }
+
+    public function feedback(Request $request)
+    {
+        $lokasi = Lokasi::find($request->get('lokasi'));
+        $post = new Feedback();
+        $post ->tanggal_feedback = $request->get('tanggal_feedback');
+        $post ->lokasi = $request->get('lokasi');
+        $post ->pegawai = $lokasi->lokasipegawais->first()->nip ?? Pegawai::first()->nip;
+        $post ->customer = $request->get('customer');
+        $post ->isi = $request->get('isi');
+        // $post ->reply = $request->get('reply');
+        $post ->reply = date('Y-m-d');
+        $post->save();
+        return redirect('contact');
+        //
     }
 
     public function booking(Unit $unit)

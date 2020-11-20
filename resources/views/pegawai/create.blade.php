@@ -1,6 +1,15 @@
 @extends('layouts.master')
 
 @section('content')
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <!-- form start -->
 <form role="form" action="{{route('pegawais.store')}}" method="post">
   {{csrf_field()}}
@@ -48,7 +57,11 @@
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" placeholder="Isi Password" required>
+      <input type="password" class="form-control" id="password" placeholder="Isi Password" name="password" required>
+    </div>
+    <div class="form-group">
+      <label for="password_confirmation">Konfirmasi Password</label>
+      <input type="password" class="form-control" id="password_confirmation" placeholder="Isi Password" name="password_confirmation" required>
     </div>
     <div class="form-group">
       <label for="tglbergabung">Tgl Bergabung</label>

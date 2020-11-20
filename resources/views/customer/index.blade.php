@@ -37,8 +37,8 @@
           <td>{{$customer->tgl_lahir}}</td>
           <td>{{$customer->no_telp}}</td>
           <td>{{$customer->gender}}</td>
-          <td>{{$customer->email}}</td>
-          <td>{{$customer->username}}</td>
+          <td>{{$customer->user->email}}</td>
+          <td>{{$customer->user->username ?? ''}}</td>
           <!-- <td>{{$customer->password}}</td> -->
           <td>{{$customer->created_at}}</td>
           <td>{{$customer->updated_at}}</td>

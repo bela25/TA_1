@@ -17,7 +17,7 @@ class CreatePromoosisTable extends Migration
             $table->increments('idpromosi');
             $table->string('judul_promosi');
             $table->string('gambar');
-            $table->string('keterangan');
+            $table->text('keterangan');
             $table->date('tgl_akhir');
             $table->unsignedInteger('pegawai');
             $table->foreign('pegawai')->references('nip')->on('pegawais');

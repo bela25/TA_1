@@ -7,7 +7,7 @@
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">DataTables Feedback</h6>
     <a href="{{ route('feedbacks.create')}}" class="btn btn-primary ">
-      <i class="fas fa-plus-square"></i> PLUS
+      <i class="fas fa-plus-square"></i> TAMBAH
     </a>
   </div>
   <div class="card-body">
@@ -15,13 +15,12 @@
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
           <tr>
-            <th>Judul feedback</th>
-            <th>Tanggal Dibuat</th>
-            <th>Keterangan</th>
-            <th>Gambar</th>
-            <th>Admin</th>
-            <th>Created_at</th>
-            <th>Updated_at</th>
+            <th>Tanggal Feedback</th>
+            <th>Lokasi</th>
+            <th>Pegawai</th>
+            <th>Customer</th>
+            <th>Isi</th>
+            <th>Reply</th>
             <th>Interaksi</th>
           </tr>
         </thead>
@@ -29,13 +28,12 @@
         <tbody>
           @foreach($feedbacks as $feedback)
           <tr>
-            <td>{{$feedback->judul_feedback}}</td>
-            <td>{{$feedback->tgl}}</td>
-            <td>{{$feedback->keterangan}}</td>
-            <td>{{$feedback->gambar}}</td>
-            <td>{{$feedback->admin}}</td>
-            <td>{{$feedback->created_at}}</td>
-            <td>{{$feedback->updated_at}}</td>
+            <td>{{$feedback->tanggal_feedback}}</td>
+            <td>{{$feedback->lokasis->nama_apartemen}}</td>
+            <td>{{$feedback->pegawais->nama}}</td>
+            <td>{{$feedback->customers->nama}}</td>
+            <td>{{$feedback->isi}}</td>
+            <td>{{$feedback->reply}}</td>
             <td>
               <a href="{{route('feedbacks.edit',$feedback)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$feedback->idfeedback}}">Hapus</button>

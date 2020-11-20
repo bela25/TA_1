@@ -43,4 +43,8 @@ class Pegawai extends Authenticatable
     {
         return $this->hasMany('App\LokasiPegawai','pegawai','nip');
     }
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

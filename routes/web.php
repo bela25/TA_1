@@ -22,6 +22,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('customers','CustomerController');
 Route::resource('towers','TowerController');
+Route::get('pegawais/{pegawai}/ubahprofil','PegawaiController@ubahprofil')->name('pegawais.ubahprofil');
+Route::put('pegawais/{pegawai}/simpanprofil','PegawaiController@simpanprofil')->name('pegawais.simpanprofil');
 Route::resource('pegawais','PegawaiController');
 Route::resource('lokasipegawais','LokasiPegawaiController');
 Route::resource('tipe_units','TipeUnitController');
@@ -59,11 +61,14 @@ Route::get('cicilan/{cicilan}', 'PengunjungController@cicilan')->name('pengunjun
 Route::get('cicilan/{pembayaran_cicilan}/bayar', 'PengunjungController@bayarCicilan')->name('pengunjung.bayarcicilan');
 Route::put('cicilan/{pembayaran_cicilan}/bayar', 'PengunjungController@simpanCicilan')->name('pengunjung.simpancicilan');
 Route::get('contact', 'PengunjungController@contact')->name('pengunjung.contact');
+Route::post('feedback', 'PengunjungController@feedback')->name('pengunjung.feedback');
 
 Route::get('pengunjung/login', 'PengunjungController@login')->name('pengunjung.login');
 Route::get('pengunjung/register', 'PengunjungController@register')->name('pengunjung.register');
 Route::get('profil', 'PengunjungController@profil')->name('pengunjung.profil');
 Route::get('ubahprofil/{customer}', 'PengunjungController@ubahProfil')->name('pengunjung.ubahprofil');
 Route::put('simpanprofil/{customer}', 'PengunjungController@simpanProfil')->name('pengunjung.simpanprofil');
+Route::get('ubahpassword/{customer}', 'PengunjungController@ubahPassword')->name('pengunjung.ubahpassword');
+Route::put('simpanpassword/{customer}', 'PengunjungController@simpanPassword')->name('pengunjung.simpanpassword');
 
 Route::get('/home', 'HomeController@index')->name('home');

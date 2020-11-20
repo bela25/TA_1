@@ -122,7 +122,6 @@ class PromosiController extends Controller
      */
     public function destroy(Promosi $promosi)
     {
-        
         $promosi->delete();
         return redirect('promosis');//
     }

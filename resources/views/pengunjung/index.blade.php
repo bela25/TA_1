@@ -21,6 +21,44 @@
 	</div>
 </div>
 
+<section class="ftco-section ftco-no-pb">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            @foreach($promosis as $promosi)
+            <div class="carousel-item {{$loop->first ? 'active' : ''}}">
+              <!-- <div class="alert alert-light"> -->
+                <img src="{{asset($promosi->gambar)}}" class="d-block w-100">
+                <div class="carousel-caption d-none d-md-block">
+                  <div class="alert alert-light">
+                    <h5 class="text-primary"><strong>{{$promosi->judul_promosi}}</strong></h5>
+                    <p class="text-dark">{{$promosi->keterangan}}</p>
+                  </div>
+                </div>
+              <!-- </div> -->
+            </div>
+            @endforeach
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="ftco-section ftco-no-pb">
 	<div class="container">
@@ -136,32 +174,32 @@
       <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
         <div class="block-18">
           <div class="text text-border d-flex align-items-center">
-            <strong class="number" data-number="305">0</strong>
-            <span>Area <br>Population</span>
+            <strong class="number" data-number="{{$totalLokasi}}">0</strong>
+            <span>Lokasi <br>Apartemen</span>
           </div>
         </div>
       </div>
       <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
         <div class="block-18">
           <div class="text text-border d-flex align-items-center">
-            <strong class="number" data-number="1090">0</strong>
-            <span>Total <br>Properties</span>
+            <strong class="number" data-number="{{$totalUnit}}">0</strong>
+            <span>Unit <br>Apartemen</span>
           </div>
         </div>
       </div>
       <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
         <div class="block-18">
           <div class="text text-border d-flex align-items-center">
-            <strong class="number" data-number="209">0</strong>
-            <span>Average <br>House</span>
+            <strong class="number" data-number="{{$totalCustomer}}">0</strong>
+            <span>Total <br>Pelanggan</span>
           </div>
         </div>
       </div>
       <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
         <div class="block-18">
           <div class="text d-flex align-items-center">
-            <strong class="number" data-number="67">0</strong>
-            <span>Total <br>Branches</span>
+            <strong class="number" data-number="{{$totalTransaksi}}">0</strong>
+            <span>Total <br>Transaksi</span>
           </div>
         </div>
       </div>
@@ -174,28 +212,28 @@
     <div class="row justify-content-center mb-5">
       <div class="col-md-7 text-center heading-section ftco-animate">
       	<span class="subheading">Testimonial</span>
-        <h2 class="mb-3">Happy Clients</h2>
+        <h2 class="mb-3">Feedbacks</h2>
       </div>
     </div>
     <div class="row ftco-animate">
       <div class="col-md-12">
         <div class="carousel-testimony owl-carousel ftco-owl">
-          @for($i = 0; $i < 3; $i++)
+          @foreach($feedbacks as $feedback)
           <div class="item">
             <div class="testimony-wrap py-4">
               <div class="text">
-                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                <p class="mb-4">{{$feedback->isi}}</p>
                 <div class="d-flex align-items-center">
                 	<div class="user-img" style="background-image: url('{{asset('web/images/person_1.jpg')}}')"></div>
                 	<div class="pl-3">
-                    <p class="name">Roger Scott</p>
-                    <span class="position">Marketing Manager</span>
+                  <p class="name">{{ucfirst($feedback->customers->nama)}}</p>
+                    <span class="position">Pelanggan</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          @endfor
+          @endforeach
         </div>
       </div>
     </div>

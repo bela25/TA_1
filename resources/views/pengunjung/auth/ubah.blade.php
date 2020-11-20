@@ -30,6 +30,9 @@
         <div class="card shadow mb-4">
           <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Ubah Profil</h6>
+            <a href="{{ route('pengunjung.ubahpassword', $customer)}}" class="btn btn-primary ">
+              <i class="fas fa-lock"></i> Ubah Password
+            </a>
           </div>
           <div class="card-body">
             <form action="{{route('pengunjung.simpanprofil', $customer)}}" method="post" class="bg-light p-5 contact-form" >

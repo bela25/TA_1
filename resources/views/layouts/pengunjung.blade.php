@@ -7,6 +7,7 @@
     
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
 
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="{{asset('web/css/open-iconic-bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('web/css/animate.css')}}">
     
@@ -94,7 +95,8 @@
             <div class="ftco-footer-widget mb-4 ml-md-4">
               <h2 class="ftco-heading-2">About Us</h2>
               <ul class="list-unstyled">
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Meet the team</a></li>
+                <!-- <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Meet the team</a></li> -->
+                <li><a href="{{ route('pengunjung.about') }}"><span class="icon-long-arrow-right mr-2"></span>About Us</a></li>
               </ul>
             </div>
           </div>
@@ -102,7 +104,7 @@
              <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">Company</h2>
               <ul class="list-unstyled">
-                <li><a href="{{ route('pengunjung.about') }}"><span class="icon-long-arrow-right mr-2"></span>About Us</a></li>
+                <!-- <li><a href="{{ route('pengunjung.about') }}"><span class="icon-long-arrow-right mr-2"></span>About Us</a></li> -->
                 <li><a href="{{ route('pengunjung.contact') }}"><span class="icon-long-arrow-right mr-2"></span>Contact</a></li>
               </ul>
             </div>
@@ -139,7 +141,8 @@
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
-
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script> -->
   <script src="{{asset('web/js/jquery.min.js')}}"></script>
   <script src="{{asset('web/js/jquery-migrate-3.0.1.min.js')}}"></script>
   <script src="{{asset('web/js/popper.min.js')}}"></script>

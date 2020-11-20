@@ -16,7 +16,7 @@
         <thead>
           <tr>
             <th>Judul Profil</th>
-            <th>Tanggal Dibuat</th>
+            <!-- <th>Tanggal Dibuat</th> -->
             <th>Keterangan</th>
             <th>Gambar</th>
             <th>Admin</th>
@@ -30,7 +30,7 @@
           @foreach($profils as $profil)
           <tr>
             <td>{{$profil->judul_profil}}</td>
-            <td>{{$profil->tgl}}</td>
+            <!-- <td>{{$profil->tgl}}</td> -->
             <td>{{$profil->keterangan}}</td>
             <td>{{$profil->gambar}}</td>
             <td><a href="{{route('pegawais.index')}}">{{$profil->pegawais->nama}}</a></td>

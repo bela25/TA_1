@@ -42,23 +42,37 @@
     </div>
     <div class="row block-9 justify-content-center mb-5">
       <div class="col-md-6 align-items-stretch d-flex">
-        <form action="#" class="bg-light p-5 contact-form">
+        @if(auth()->check() && auth()->user()->customer != null)
+        <form action="{{route('pengunjung.feedback')}}" method="post" class="bg-light p-5 contact-form">
+          {{csrf_field()}}
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Your Name">
+            <input type="text" class="form-control" name="tanggal_feedback" value="{{date('Y-m-d')}}" required readonly>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Your Email">
+            <input type="text" class="form-control" name="customer_name" value="{{auth()->user()->customer->nama}}" required readonly>
+            <input type="hidden" name="customer" value="{{auth()->user()->customer->idcustomers}}">
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Subject">
+            <!-- <label>Lokasi</label> -->
+            <select class="form-control" name="lokasi" required>
+              @foreach($lokasis as $lokasi)
+              <option value="{{$lokasi->idlokasi}}">{{$lokasi->nama_apartemen}}</option>
+              @endforeach
+            </select>
           </div>
           <div class="form-group">
-            <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+            <textarea name="isi" id="isi" cols="30" rows="7" class="form-control" placeholder="Berikan feedback"></textarea>
           </div>
           <div class="form-group">
-            <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+            <input type="submit" value="Send Feedback" class="btn btn-primary py-3 px-5">
           </div>
         </form>
+        @else
+        <div class="alert alert-light w-100" role="alert">
+          <p>Untuk memberikan <strong>Feedback</strong>, Harap login terlebih dahulu.</p>
+          <p><a href="{{route('pengunjung.login')}}" class="btn btn-primary py-3 px-5">Login</a></p>
+        </div>
+        @endif
       </div>
       <div class="col-md-6 align-items-stretch d-flex">
     		<div id="map" class="bg-white border"></div>

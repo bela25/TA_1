@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Feedback;
+use App\Pegawai;
+use App\Customer;
+use App\Lokasi;
 use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
@@ -14,6 +17,8 @@ class FeedbackController extends Controller
      */
     public function index()
     {
+        $feedbacks=Feedback::all();
+        return view('feedback.index',compact('feedbacks'));
         //
     }
 
@@ -24,6 +29,10 @@ class FeedbackController extends Controller
      */
     public function create()
     {
+        $pegawais=Pegawai::all();
+        $customers=Customer::all();
+        $lokasis=Lokasi::all();
+        return view('feedback.create',compact('pegawais','customers','lokasis'));
         //
     }
 
@@ -35,6 +44,16 @@ class FeedbackController extends Controller
      */
     public function store(Request $request)
     {
+        $post = new Feedback();
+        $post ->tanggal_feedback = $request->get('tanggal_feedback');
+        $post ->isi = $request->get('isi');
+        // $post ->reply = $request->get('reply');
+        $post ->reply = date('Y-m-d');
+        $post ->pegawai = $request->get('pegawai');
+        $post ->customer = $request->get('customer');
+        $post ->lokasi = $request->get('lokasi');
+        $post->save();
+        return redirect('feedbacks');
         //
     }
 
@@ -57,6 +76,10 @@ class FeedbackController extends Controller
      */
     public function edit(Feedback $feedback)
     {
+        $pegawais=Pegawai::all();
+        $customers=Customer::all();
+        $lokasis=Lokasi::all();
+        return view('feedback.update',compact('feedback','pegawais','customers','lokasis'));
         //
     }
 
@@ -69,6 +92,14 @@ class FeedbackController extends Controller
      */
     public function update(Request $request, Feedback $feedback)
     {
+        $feedback ->tanggal_feedback = $request->get('tanggal_feedback');
+        $feedback ->isi = $request->get('isi');
+        // $feedback ->reply = $request->get('reply');
+        $feedback ->pegawai = $request->get('pegawai');
+        $feedback ->customer = $request->get('customer');
+        $feedback ->lokasi = $request->get('lokasi');
+        $feedback->save();
+        return redirect('feedbacks');
         //
     }
 
@@ -80,6 +111,8 @@ class FeedbackController extends Controller
      */
     public function destroy(Feedback $feedback)
     {
+        $feedback->delete();
+        return redirect('feedbacks');
         //
     }
 }

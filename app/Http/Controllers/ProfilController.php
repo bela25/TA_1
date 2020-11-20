@@ -42,11 +42,15 @@ class ProfilController extends Controller
     public function store(Request $request)
     {
         $post = new Profil();
-        $post ->judul_profil = $request->get('judulprofil');
         // $post ->tgl = $request->get('tgldibuat');
+        // $post ->admin = $request->get('admin');
+        $post ->admin = auth()->user()->pegawai->nip;
+        $post ->judul_profil = $request->get('judulprofil');
         $post ->keterangan = $request->get('keterangan');
-        $post ->gambar = $request->get('gambar');
-        $post ->admin = $request->get('admin');
+        if($request->file('gambar') != null)
+        {
+            $post ->gambar = $request->get('gambar');
+        }
         $post->save();
         return redirect('profils');
         //
@@ -85,12 +89,15 @@ class ProfilController extends Controller
      */
     public function update(Request $request, Profil $profil)
     {
-        $profil ->judul_profil = $request->get('judulprofil');
         // $profil ->tgl = $request->get('tgldibuat');
+        // $profil ->admin = $request->get('admin');
+        $profil ->admin = auth()->user()->pegawai->nip;
+        $profil ->judul_profil = $request->get('judulprofil');
         $profil ->keterangan = $request->get('keterangan');
-        $profil ->gambar = $request->get('gambar');
-        $profil ->admin = $request->get('admin');
-        $profil->save();
+        if($request->file('gambar') != null)
+        {
+            $profil ->gambar = $request->get('gambar');
+        }
         return redirect('profils');
         //
     }

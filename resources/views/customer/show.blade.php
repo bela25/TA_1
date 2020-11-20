@@ -32,11 +32,11 @@
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
             Email
-            <strong>{{$customer->email}}</strong>
+            <strong>{{$customer->user->email}}</strong>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
             Username
-            <strong>{{$customer->username}}</strong>
+            <strong>{{$customer->user->username ?? ''}}</strong>
           </li>
         </ul>
       </div>

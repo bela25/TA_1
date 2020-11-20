@@ -38,6 +38,18 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $user = new User();
+        $user->name = $request->get('nama');
+        $user->email = $request->get('email');
+        $user->password = bcrypt($request->get('password'));
+        $user->save();
+
         $post = new Pegawai();
         $post ->nama = $request->get('nama');
         $post ->alamat = $request->get('alamat');
@@ -46,10 +58,8 @@ class PegawaiController extends Controller
         $post ->tgl_lahir = $request->get('tgllahir');
         $post ->no_telp =$request->get('notelp');
         $post ->jabatan = $request->get('jabatan');
-        $post ->email = $request->get('email');
-        $post ->username= $request->get('username');
-        $post ->password = bcrypt($request->get('password'));
         $post ->tgl_bergabung = $request->get('tglbergabung');
+        $post ->user_id = $user->id;
         $post->save();
         return redirect('pegawais');
         //
@@ -87,6 +97,15 @@ class PegawaiController extends Controller
      */
     public function update(Request $request, Pegawai $pegawai)
     {
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+        ]);
+
+        $user->name = $request->get('nama');
+        $user->email = $request->get('email');
+        $user->save();
+
         $pegawai ->nama = $request->get('nama');
         $pegawai ->alamat = $request->get('alamat');
         $pegawai ->tempat_lahir = $request->get('tempatlahir');
@@ -94,9 +113,6 @@ class PegawaiController extends Controller
         $pegawai ->tgl_lahir = $request->get('tgllahir');
         $pegawai ->no_telp =$request->get('notelp');
         $pegawai ->jabatan = $request->get('jabatan');
-        $pegawai ->email = $request->get('email');
-        $pegawai ->username= $request->get('username');
-        $pegawai ->password = bcrypt($request->get('password'));
         $pegawai ->tgl_bergabung = $request->get('tglbergabung');
         $pegawai->save();
         return redirect('pegawais');
@@ -111,8 +127,52 @@ class PegawaiController extends Controller
      */
     public function destroy(Pegawai $pegawai)
     {
-        
+        $user = $pegawai->user;
         $pegawai->delete();
+        $user->delete();
         return redirect('pegawais');//
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Pegawai  $pegawai
+     * @return \Illuminate\Http\Response
+     */
+    public function ubahprofil(Pegawai $pegawai)
+    {
+        return view('pegawai.ubahprofil',compact('pegawai'));
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Pegawai  $pegawai
+     * @return \Illuminate\Http\Response
+     */
+    public function simpanprofil(Request $request, Pegawai $pegawai)
+    {
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+        ]);
+
+        $user->name = $request->get('nama');
+        $user->email = $request->get('email');
+        $user->save();
+
+        $pegawai ->nama = $request->get('nama');
+        $pegawai ->alamat = $request->get('alamat');
+        $pegawai ->tempat_lahir = $request->get('tempatlahir');
+        // $pegawai ->nip = $request->get('nip');
+        $pegawai ->tgl_lahir = $request->get('tgllahir');
+        $pegawai ->no_telp =$request->get('notelp');
+        $pegawai ->jabatan = $request->get('jabatan');
+        $pegawai ->tgl_bergabung = $request->get('tglbergabung');
+        $pegawai->save();
+        return redirect('pegawais/'.$pegawai->nip.'/ubahprofil');
+        //
     }
 }

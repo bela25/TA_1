@@ -40,8 +40,8 @@
             <td>{{$pegawai->tempat_lahir}}</td>
             <td>{{$pegawai->no_telp}}</td>
             <td>{{$pegawai->jabatan}}</td>
-            <td>{{$pegawai->email}}</td>
-            <td>{{$pegawai->username}}</td>
+            <td>{{$pegawai->user->email}}</td>
+            <td>{{$pegawai->user->username ?? ''}}</td>
             <!-- <td>{{$pegawai->password}}</td> -->
             <td>{{$pegawai->created_at}}</td>
             <td>{{$pegawai->updated_at}}</td>

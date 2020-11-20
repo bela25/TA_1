@@ -38,6 +38,18 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $user = new User();
+        $user->name = $request->get('nama');
+        $user->email = $request->get('email');
+        $user->password = bcrypt($request->get('password'));
+        $user->save();
+
         $post = new Customer();
         $post ->nama = $request->get('nama');
         $post ->alamat = $request->get('alamat');
@@ -46,9 +58,7 @@ class CustomerController extends Controller
         // $post ->tempat_lahir = $request->get('tempatlahir');
         $post ->tgl_lahir = $request->get('tgllahir');
         $post ->gender = $request->get('customRadio');
-        $post ->email = $request->get('email');
-        $post ->username= $request->get('username');
-        $post ->password = bcrypt($request->get('password'));
+        $post ->user_id = $user->id;
         $post->save();
         return redirect('customers');
         //
@@ -86,7 +96,15 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        // dd($request->all());
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+        ]);
+
+        $user->name = $request->get('nama');
+        $user->email = $request->get('email');
+        $user->save();
+
         $customer ->nama = $request->get('nama');
         $customer ->alamat = $request->get('alamat');
         $customer ->no_telp = $request->get('notelp');
@@ -94,9 +112,6 @@ class CustomerController extends Controller
         // $customer ->tempat_lahir = $request->get('tempatlahir');
         $customer ->tgl_lahir = $request->get('tgllahir');
         $customer ->gender = $request->get('gender');
-        $customer ->email = $request->get('email');
-        $customer ->username= $request->get('username');
-        $customer ->password = bcrypt($request->get('password'));
         $customer->save();
         return redirect('customers');
         //
@@ -110,7 +125,9 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
+        $user = $customer->user;
         $customer->delete();
+        $user->delete();
         return redirect('customers');
         //
     }

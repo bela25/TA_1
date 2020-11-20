@@ -10,11 +10,11 @@ class Feedback extends Model
 
     public function customers()
     {
-    	return $this->belongsTo('App\Customer');
+    	return $this->belongsTo('App\Customer','customer','idcustomers');
     }
     public function pegawais()
     {
-    	return $this->belongsTo('App\Pegawai');
+    	return $this->belongsTo('App\Pegawai','pegawai','nip');
     }
     public function lokasis()
     {

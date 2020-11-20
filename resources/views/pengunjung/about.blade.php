@@ -21,11 +21,10 @@
 				</div>
 				<div class="col-md-6 wrap-about pl-md-5 ftco-animate">
           <div class="heading-section">
-            <h2 class="mb-4">Welcome To TAMANSARI </h2>
+            <h2 class="mb-4">Welcome To TAMANSARI</h2>
 
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-            <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country.</p>
-            <p><a href="#" class="btn btn-primary">Find Properties</a></p>
+            <p>{{$welcome}}</p>
+            <p><a href="{{url('/')}}" class="btn btn-primary">Find Properties</a></p>
           </div>
 				</div>
 			</div>
@@ -38,32 +37,32 @@
       <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
         <div class="block-18 py-4 mb-4">
           <div class="text text-border d-flex align-items-center">
-            <strong class="number" data-number="305">0</strong>
-            <span>Area <br>Population</span>
+            <strong class="number" data-number="{{$totalLokasi}}">0</strong>
+            <span>Lokasi <br>Apartemen</span>
           </div>
         </div>
       </div>
       <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
         <div class="block-18 py-4 mb-4">
           <div class="text text-border d-flex align-items-center">
-            <strong class="number" data-number="1090">0</strong>
-            <span>Total <br>Properties</span>
+            <strong class="number" data-number="{{$totalUnit}}">0</strong>
+            <span>Unit <br>Apartemen</span>
           </div>
         </div>
       </div>
       <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
         <div class="block-18 py-4 mb-4">
           <div class="text text-border d-flex align-items-center">
-            <strong class="number" data-number="209">0</strong>
-            <span>Average <br>House</span>
+            <strong class="number" data-number="{{$totalCustomer}}">0</strong>
+            <span>Total <br>Pelanggan</span>
           </div>
         </div>
       </div>
       <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
         <div class="block-18 py-4 mb-4">
           <div class="text d-flex align-items-center">
-            <strong class="number" data-number="67">0</strong>
-            <span>Total <br>Branches</span>
+            <strong class="number" data-number="{{$totalTransaksi}}">0</strong>
+            <span>Total <br>Transaksi</span>
           </div>
         </div>
       </div>
@@ -75,15 +74,15 @@
 		<div class="row">
 			<div class="col-md-4">
 				<h3 style="font-weight: 600; font-size: 20px;">Our Mission</h3>
-				<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+				<p>{{$misi}}</p>
 			</div>
 			<div class="col-md-4">
 				<h3 style="font-weight: 600; font-size: 20px;">Our Vission</h3>
-				<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+				<p>{{$visi}}</p>
 			</div>
 			<div class="col-md-4">
 				<h3 style="font-weight: 600; font-size: 20px;">Our Value</h3>
-				<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+				<p>{{$nilai}}</p>
 			</div>
 		</div>
 	</div>
@@ -95,82 +94,28 @@
     <div class="row justify-content-center mb-5">
       <div class="col-md-7 text-center heading-section ftco-animate">
       	<span class="subheading">Testimonial</span>
-        <h2 class="mb-3">Happy Clients</h2>
+        <h2 class="mb-3">Feedbacks</h2>
       </div>
     </div>
     <div class="row ftco-animate">
       <div class="col-md-12">
         <div class="carousel-testimony owl-carousel ftco-owl">
+          @foreach($feedbacks as $feedback)
           <div class="item">
             <div class="testimony-wrap py-4">
               <div class="text">
-                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                <p class="mb-4">{{$feedback->isi}}</p>
                 <div class="d-flex align-items-center">
-                	<div class="user-img" style="background-image: url('{{asset('web/images/person_1.jpg')}}')"></div>
-                	<div class="pl-3">
-	                    <p class="name">Roger Scott</p>
-	                    <span class="position">Marketing Manager</span>
-	                  </div>
+                  <div class="user-img" style="background-image: url('{{asset('web/images/person_1.jpg')}}')"></div>
+                  <div class="pl-3">
+                  <p class="name">{{ucfirst($feedback->customers->nama)}}</p>
+                    <span class="position">Pelanggan</span>
                   </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="item">
-            <div class="testimony-wrap py-4">
-              <div class="text">
-                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                <div class="d-flex align-items-center">
-                	<div class="user-img" style="background-image: url('{{asset('web/images/person_2.jpg')}}')"></div>
-                	<div class="pl-3">
-	                    <p class="name">Roger Scott</p>
-	                    <span class="position">Marketing Manager</span>
-	                  </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="testimony-wrap py-4">
-              <div class="text">
-                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                <div class="d-flex align-items-center">
-                	<div class="user-img" style="background-image: url('{{asset('web/images/person_3.jpg')}}')"></div>
-                	<div class="pl-3">
-	                    <p class="name">Roger Scott</p>
-	                    <span class="position">Marketing Manager</span>
-	                  </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="testimony-wrap py-4">
-              <div class="text">
-                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                <div class="d-flex align-items-center">
-                	<div class="user-img" style="background-image: url('{{asset('web/images/person_1.jpg')}}')"></div>
-                	<div class="pl-3">
-	                    <p class="name">Roger Scott</p>
-	                    <span class="position">Marketing Manager</span>
-	                  </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="testimony-wrap py-4">
-              <div class="text">
-                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                <div class="d-flex align-items-center">
-                	<div class="user-img" style="background-image: url('{{asset('web/images/person_2.jpg')}}')"></div>
-                	<div class="pl-3">
-	                    <p class="name">Roger Scott</p>
-	                    <span class="position">Marketing Manager</span>
-	                  </div>
-                  </div>
-              </div>
-            </div>
-          </div>
+          @endforeach
         </div>
       </div>
     </div>
