@@ -91,7 +91,8 @@ class TransaksiController extends Controller
      */
     public function show(Transaksi $transaksi)
     {
-        //
+        $pembayaran_dp=$transaksi->pembayarandps;
+        return view('transaksi.show', compact('transaksi','pembayaran_dp'));
     }
 
     /**

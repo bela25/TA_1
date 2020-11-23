@@ -143,7 +143,7 @@
 
       <!-- Nav Item - Chat -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="{{route('chattings.index')}}">
           <i class="fas fa-comments"></i>
           <span>Chatting</span></a>
       </li>     

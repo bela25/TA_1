@@ -70,5 +70,6 @@ Route::get('ubahprofil/{customer}', 'PengunjungController@ubahProfil')->name('pe
 Route::put('simpanprofil/{customer}', 'PengunjungController@simpanProfil')->name('pengunjung.simpanprofil');
 Route::get('ubahpassword/{customer}', 'PengunjungController@ubahPassword')->name('pengunjung.ubahpassword');
 Route::put('simpanpassword/{customer}', 'PengunjungController@simpanPassword')->name('pengunjung.simpanpassword');
+Route::post('chat', 'PengunjungController@chat')->name('pengunjung.chat');
 
 Route::get('/home', 'HomeController@index')->name('home');

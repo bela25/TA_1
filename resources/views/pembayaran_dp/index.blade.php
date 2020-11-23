@@ -26,10 +26,10 @@
         <tbody>
           @foreach($pembayaran_dps as $pembayaran_dp)
           <tr>
-            <td><a href="{{route('transaksis.index')}}">{{$pembayaran_dp->transaksis->customer}}</a></td>
+            <td><a href="{{route('transaksis.index')}}">{{$pembayaran_dp->transaksis->customers->nama}}</a></td>
             <td>{{$pembayaran_dp->tanggal_bayar}}</td>
-            <td>{{$pembayaran_dp->nominal}}</td>
-            <td>{{$pembayaran_dp->gambar_bukti}}</td>
+            <td>{{$pembayaran_dp->nominal()}}</td>
+            <td><a href="{{asset($pembayaran_dp->gambar_bukti)}}" target="_blank">{{$pembayaran_dp->gambar_bukti}}</a></td>
             <td>
               <a href="{{route('pembayaran_dps.edit',$pembayaran_dp)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$pembayaran_dp->id_pembayarandp}}">Hapus</button>

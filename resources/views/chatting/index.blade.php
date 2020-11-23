@@ -6,70 +6,62 @@
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">DataTables Chatting</h6>
-    <a href="{{ route('chattings.create')}}" class="btn btn-primary ">
-      <i class="fas fa-plus-square"></i> PLUS
-    </a>
   </div>
   <div class="card-body">
-    <div class="table-responsive">
-      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-        <thead>
-          <tr>
-            <th>Pesan</th>
-            <th>Tgl Pesan</th>
-            <th>Pegawai</th>
-            <th>Customer</th>
-            <th>Created_at</th>
-            <th>Updated_at</th>
-            <th>Interaksi</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          @foreach($chattings as $chatting)
-          <tr>
-            <td>{{$chatting->pesan}}</td>
-            <td>{{$chatting->tgl_pesan}}</td>
-            <td><a href="{{route('pegawais.index')}}">{{$chatting->pegawais->nama}}</a></td>
-            <td><a href="{{route('customers.index')}}">{{$chatting->customers->nama}}</a></td>
-            <td>{{$chatting->created_at}}</td>
-            <td>{{$chatting->updated_at}}</td>
-            <td>
-              <a href="{{route('chattings.edit',$chatting)}}" class="btn btn-primary">Ubah</a>
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$chatting->id_chat}}">Hapus</button>
-              <div class="modal fade" id="delete{{$chatting->id_chat}}">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h4 class="modal-title">Peringatan</h4>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <p>Data ini akan dihapus secara permanen, Anda yakin untuk menghapus?&hellip;</p>
-                       <form role="form" action="{{route('chattings.destroy',$chatting)}}" method="post" id="hapus{{$chatting->id_chat}}">
-                        {{csrf_field()}}
-                        {{method_field('delete')}}
-                        
-                        <!-- /.card-body -->
-                      </form>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                      <button type="submit" class="btn btn-primary" form="hapus{{$chatting->id_chat}}">Yes</button>
-                    </div>
-                  </div>
-                  <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-              </div>
-            </td>
-          </tr>
+    <div class="row">
+      <div class="col-3 align-items-stretch d-flex">
+        <div class="list-group w-100 overflow-auto" style="height: 360px">
+          @foreach($customers as $item)
+            @if($item->idcustomers == $customer->idcustomers)
+            <a href="{{route('chattings.index', ['customer'=>$item])}}" class="list-group-item list-group-item-action active">{{$item->nama}}</a>
+            @else
+            <a href="{{route('chattings.index', ['customer'=>$item])}}" class="list-group-item list-group-item-action">{{$item->nama}}</a>
+            @endif
           @endforeach
-
-        </tbody>
-      </table>
+        </div>
+      </div>
+      <div class="col-9 align-items-stretch d-flex">
+        <div class="card w-100">
+          <div class="card-header">
+            Chat
+          </div>
+          <div class="card-body overflow-auto" style="height: 240px">
+            @foreach($chattings as $chat)
+              @if($chat->pengirim == 'pegawai')
+              <div class="alert alert-warning text-right">
+                <small class="float-left">{{$chat->tanggal()}}</small>
+                <strong>{{$chat->pegawais->nama}}</strong>
+                <!-- <form class="float-left">
+                  <button type="submit" class="btn btn-sm p-0"><i class="fas fa-times-circle"></i></button>
+                </form> -->
+                <br>
+                {{$chat->pesan}}
+              </div>
+              @else
+              <div class="alert alert-secondary">
+                <strong>{{$chat->customers->nama}}</strong>
+                <small class="float-right">{{$chat->tanggal()}}</small>
+                <br>
+                {{$chat->pesan}}
+              </div>
+              @endif
+            @endforeach
+          </div>
+          <div class="card-footer">
+            <form action="{{route('chattings.store')}}" method="post">
+              {{csrf_field()}}
+              <div class="input-group">
+                <input type="text" class="form-control" name="pesan" placeholder="Pesan">
+                <input type="hidden" name="customer" value="{{$customer->idcustomers}}">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-success" type="submit" id="button-addon2"><i class="fas fa-paper-plane"></i></button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- card -->
+      </div>
     </div>
   </div>
 </div>

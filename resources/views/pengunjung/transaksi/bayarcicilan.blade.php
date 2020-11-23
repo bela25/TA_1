@@ -30,7 +30,6 @@
                   <span class="badge badge-warning">{{$transaksi->verifikasi}}</span>
                   @else
                   <span class="badge badge-success">{{$transaksi->verifikasi}}</span>
-                  <p>Transaksi Anda telah diverifikasi. Silahkan melakukan pembayaran DP</p>
                   @endif
                 </p>
               @endif
@@ -67,32 +66,34 @@
 					    			<p>Pembayaran Cicilan dapat dikirim ke rekening bank BCA <strong>088xxxxxx</strong> a.n <strong>Nabila</strong></p>
                     <p>Nominal Cicilan: <strong>Rp{{$pembayaran_cicilan->formatUang($pembayaran_cicilan->nominal)}}</strong></p>
 
-                    @if($pembayaran_cicilan->gambar_bukticicilan != null)
+                    @if($pembayaran_cicilan->gambar_bukticicilan == null)
+                      <form action="{{route('pengunjung.simpancicilan',$pembayaran_cicilan)}}" method="post" class="bg-light p-5 contact-form" enctype="multipart/form-data">
+                        {{csrf_field()}}
+                        {{method_field('put')}}
+                        <h5>Upload bukti transfer jika sudah melakukan pembayaran</h5>
+                        <div class="form-group">
+                          <label>Bukti Transfer</label>
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFile" name="bukti" onchange="readURL(this)">
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <img id="tampilangambar" src="{{asset($pembayaran_cicilan->gambar_bukticicilan)}}" alt="Gambar bukti transfer" height="400">
+                        </div>
+                        <div class="form-group">
+                          <input type="submit" value="Upload" class="btn btn-primary py-3 px-5">
+                        </div>
+                      </form>
+                    @else
                       <div class="alert alert-info alert-dismissible fade show" role="alert">
-                        <strong>Info!</strong> Anda sudah mengirim bukti pembayaran booking.
+                        <strong>Info!</strong> Anda sudah mengirim bukti pembayaran cicilan.
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
+                      Tanda Terima Cicilan
                     @endif
-                    <form action="{{route('pengunjung.simpancicilan',$pembayaran_cicilan)}}" method="post" class="bg-light p-5 contact-form" enctype="multipart/form-data">
-                      {{csrf_field()}}
-                      {{method_field('put')}}
-                      <h5>Upload bukti transfer jika sudah melakukan pembayaran</h5>
-                      <div class="form-group">
-                        <label>Bukti Transfer</label>
-                        <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="customFile" name="bukti" onchange="readURL(this)">
-                          <label class="custom-file-label" for="customFile">Choose file</label>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <img id="tampilangambar" src="{{asset($pembayaran_cicilan->gambar_bukticicilan)}}" alt="Gambar bukti transfer" height="400">
-                      </div>
-                      <div class="form-group">
-                        <input type="submit" value="Upload" class="btn btn-primary py-3 px-5">
-                      </div>
-                    </form>
 					    		</div>
 					    	</div>
 					    </div>

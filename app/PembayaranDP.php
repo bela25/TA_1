@@ -11,7 +11,11 @@ class PembayaranDP extends Model
 
     public function transaksis()
     {
-    	return $this->belongsTo('App\Trasaksi');
+    	return $this->belongsTo('App\Transaksi','transaksi','id_transaksi');
+    }
+    public function nominal()
+    {
+        return number_format($this->nominal,2,',','.');
     }
     //
 }

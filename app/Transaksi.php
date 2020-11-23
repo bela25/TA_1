@@ -23,7 +23,7 @@ class Transaksi extends Model
     }
     public function pembayarandps()
     {
-    	return $this->hasOne('App\PembayaranDP');
+    	return $this->hasOne('App\PembayaranDP','transaksi','id_transaksi');
     }
     public function pembayaranbookings()
     {

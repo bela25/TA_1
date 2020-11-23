@@ -16,6 +16,7 @@ use App\Cicilan;
 use App\PembayaranCicilan;
 use App\Feedback;
 use App\Promosi;
+use App\Chatting;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 
@@ -96,18 +97,29 @@ class PengunjungController extends Controller
         return redirect('ubahprofil/'.$customer->idcustomers);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $units = Unit::all();
+        $units = Unit::with('towers')->get();
+        $lokasi = $request->get('lokasi') ?? null;
+        $harga_min = $request->get('harga_min') ?? null;
+        $harga_max = $request->get('harga_max') ?? null;
+        if(count($request->all()) > 0)
+        {
+            $units = $units->filter(function ($item) use($lokasi, $harga_min, $harga_max) {
+                return $item->towers->lokasi == $lokasi && $item->hargaJualCash() >= $harga_min && $item->hargaJualCash() <= $harga_max;
+            });
+        }
+
         $feedbacks = Feedback::all();
         $promosis = Promosi::where('tgl_awal','<=',date('Y-m-d'))->where('tgl_akhir','>=',date('Y-m-d'))->get();
+        $lokasis = Lokasi::all();
 
         $totalLokasi = Lokasi::count();
         $totalUnit = Unit::count();
         $totalCustomer = Customer::count();
         $totalTransaksi = Transaksi::count();
 
-        return view('pengunjung.index', compact('units','feedbacks','promosis','totalLokasi','totalUnit','totalCustomer','totalTransaksi'));
+        return view('pengunjung.index', compact('units','feedbacks','promosis','totalLokasi','totalUnit','totalCustomer','totalTransaksi','lokasis','lokasi','harga_min','harga_max'));
     }
 
     public function about()
@@ -146,7 +158,20 @@ class PengunjungController extends Controller
         $pegawais = Pegawai::all();
         $customers = Customer::all();
         $lokasis = Lokasi::all();
-        return view('pengunjung.contact', compact('pegawais','customers','lokasis'));
+        $chattings = Chatting::where('customer',auth()->user()->customer->idcustomers)->get();
+        return view('pengunjung.contact', compact('pegawais','customers','lokasis','chattings'));
+    }
+
+    public function chat(Request $request)
+    {
+        $chat= new Chatting();
+        $chat->pesan=$request->get('pesan');
+        $chat->tgl_pesan=Carbon::now();
+        $chat->pegawai=Pegawai::where('jabatan','admin')->first()->nip ?? Pegawai::first()->nip;
+        $chat->customer=auth()->user()->customer->idcustomers;
+        $chat->pengirim='customer';
+        $chat->save();
+        return redirect('contact');
     }
 
     public function feedback(Request $request)
@@ -243,4 +268,6 @@ class PengunjungController extends Controller
         request()->session()->flash('pesan','Bukti pembayaran cicilan tersimpan');
         return redirect()->route('pengunjung.cicilan',$pembayaranCicilan->cicilans);
     }
+
+    
 }

@@ -6,6 +6,7 @@ use App\Chatting;
 use Illuminate\Http\Request;
 use App\Pegawai;
 use App\Customer;
+use Carbon\Carbon;
 
 class ChattingController extends Controller
 {
@@ -14,10 +15,17 @@ class ChattingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $chattings=Chatting::all();
-        return view('chatting.index',compact('chattings'));
+        $customers=Customer::all();
+        $customer=Customer::first();
+        if(count($request->all()) > 0)
+        {
+            $customer=Customer::find($request->get('customer'));
+        }
+        // dd($customer);
+        $chattings=Chatting::where('customer', $customer->idcustomers)->get();
+        return view('chatting.index',compact('chattings','customers','customer'));
         //
     }
 
@@ -28,10 +36,9 @@ class ChattingController extends Controller
      */
     public function create()
     {
-        $pegawai=Pegawai::all();
-        $customer=Customer::all();
-        return view('chatting.create',compact('pegawai'));
-        return view('chatting.create',compact('customer'));
+        // $pegawai=Pegawai::all();
+        // $customer=Customer::all();
+        // return view('chatting.create',compact('customer','pegawai'));
         //
     }
 
@@ -43,6 +50,13 @@ class ChattingController extends Controller
      */
     public function store(Request $request)
     {
+        $post = new Chatting();
+        $post ->pesan = $request->get('pesan');
+        $post ->tgl_pesan = Carbon::now();
+        $post ->pegawai = auth()->user()->pegawai->nip;
+        $post ->customer = $request->get('customer');
+        $post->save();
+        return redirect('chattings');
         //
     }
 
@@ -54,13 +68,6 @@ class ChattingController extends Controller
      */
     public function show(Chatting $chatting)
     {
-        $post = new Chatting();
-        $post ->pesan = $request->get('pesan');
-        $post ->tgl_pesan = $request->get('tglpesan');
-        $post ->pegawai = $request->get('admin');
-        $post ->customer = $request->get('customer');
-        $post->save();
-        return redirect('chattings');
         //
     }
 
@@ -72,7 +79,7 @@ class ChattingController extends Controller
      */
     public function edit(Chatting $chatting)
     {
-        return view('chatting.update',compact('chatting'));
+        // return view('chatting.update',compact('chatting'));
         //
     }
 
@@ -85,14 +92,12 @@ class ChattingController extends Controller
      */
     public function update(Request $request, Chatting $chatting)
     {
-       
-        $chatting ->pesan = $request->get('pesan');
-        $chatting ->tgl_pesan = $request->get('tglpesan');
-        $chatting ->pegawai = $request->get('admin');
-        $chatting ->customer = $request->get('customer');
-        $chatting->save();
-        return redirect('chattings');
-       
+        // $chatting ->pesan = $request->get('pesan');
+        // $chatting ->tgl_pesan = $request->get('tglpesan');
+        // $chatting ->pegawai = $request->get('admin');
+        // $chatting ->customer = $request->get('customer');
+        // $chatting->save();
+        // return redirect('chattings');
         //
     }
 

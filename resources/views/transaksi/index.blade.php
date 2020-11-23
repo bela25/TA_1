@@ -135,6 +135,7 @@
             </td>
             @endif
             <td>
+              <a href="{{route('transaksis.show',$transaksi)}}" class="btn btn-primary">Lihat</a>
               <a href="{{route('transaksis.edit',$transaksi)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$transaksi->id_transaksi}}">Hapus</button>
               <div class="modal fade" id="delete{{$transaksi->id_transaksi}}">

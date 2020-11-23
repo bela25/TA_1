@@ -21,6 +21,7 @@ class CreateChattingsTable extends Migration
             $table->foreign('pegawai')->references('nip')->on('pegawais');
             $table->unsignedInteger('customer');
             $table->foreign('customer')->references('idcustomers')->on('customers');
+            $table->enum('pengirim', ['pegawai','customer']);
             $table->timestamps();
         });
     }

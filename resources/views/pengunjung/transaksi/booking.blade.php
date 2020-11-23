@@ -27,11 +27,16 @@
               @if($transaksi != null)
                 <p>Verifikasi: 
                   @if($transaksi->verifikasi == 'belum diterima')
-                  <span class="badge badge-warning">{{$transaksi->verifikasi}}</span>
+                    <span class="badge badge-warning">{{$transaksi->verifikasi}}</span>
                   @else
-                  <span class="badge badge-success">{{$transaksi->verifikasi}}</span>
-                  <p>Transaksi Anda telah diverifikasi. Silahkan melakukan pembayaran DP</p>
-                  <a href="{{route('pengunjung.dp',$unit)}}" class="btn btn-primary py-3 px-5">Bayar DP</a>
+                    <span class="badge badge-success">{{$transaksi->verifikasi}}</span>
+                    @if($transaksi->pembayarandps == null)
+                      <p>Transaksi Anda telah diverifikasi. Silahkan melakukan pembayaran DP</p>
+                      <a href="{{route('pengunjung.dp',$unit)}}" class="btn btn-primary py-3 px-5">Bayar DP</a>
+                    @else
+                      <p>Transaksi Anda telah diverifikasi. Anda sudah membayar DP</p>
+                      <a href="{{route('pengunjung.dp',$unit)}}" class="btn btn-primary py-3 px-5">Lihat Tanda Terima DP</a>
+                    @endif
                   @endif
                 </p>
               @endif
@@ -111,7 +116,8 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
-                      <form action="{{route('pembayaran_bookings.update',$pembayaranBooking)}}" method="post" class="bg-light p-5 contact-form" enctype="multipart/form-data">
+                      Tanda Terima Booking
+                      <form action="{{route('pembayaran_bookings.update',$pembayaranBooking)}}" method="post" class="bg-light p-5 contact-form d-none" enctype="multipart/form-data">
                         {{csrf_field()}}
                         {{method_field('put')}}
                         <input type="hidden" name="transaksi" value="{{$transaksi->id_transaksi}}">

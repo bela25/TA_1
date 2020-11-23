@@ -44,6 +44,7 @@
       <div class="col-md-6 align-items-stretch d-flex">
         @if(auth()->check() && auth()->user()->customer != null)
         <form action="{{route('pengunjung.feedback')}}" method="post" class="bg-light p-5 contact-form">
+          <h5><strong>Feedback</strong></h5>
           {{csrf_field()}}
           <div class="form-group">
             <input type="text" class="form-control" name="tanggal_feedback" value="{{date('Y-m-d')}}" required readonly>
@@ -75,7 +76,43 @@
         @endif
       </div>
       <div class="col-md-6 align-items-stretch d-flex">
-    		<div id="map" class="bg-white border"></div>
+    		<!-- <div id="map" class="bg-white border"></div> -->
+        <div class="card w-100">
+          <div class="card-header">
+            Chat
+          </div>
+          <div class="card-body overflow-auto" style="height: 240px">
+            @foreach($chattings as $chat)
+            @if($chat->pengirim == 'customer')
+            <div class="alert alert-warning text-right">
+              <small class="float-left">{{$chat->tanggal()}}</small>
+              <strong>{{$chat->customers->nama}}</strong>
+              <br>
+              {{$chat->pesan}}
+            </div>
+            @else
+            <div class="alert alert-secondary">
+              <strong>{{$chat->pegawais->nama}}</strong>
+              <small class="float-right">{{$chat->tanggal()}}</small>
+              <br>
+              {{$chat->pesan}}
+            </div>
+            @endif
+            @endforeach
+          </div>
+          <div class="card-footer">
+            <form action="{{route('pengunjung.chat')}}" method="post">
+              {{csrf_field()}}
+              <div class="input-group">
+                <input type="text" class="form-control" name="pesan" placeholder="Pesan">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-success" type="submit" id="button-addon2"><i class="fas fa-paper-plane"></i></button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- card -->
       </div>
     </div>
   </div>

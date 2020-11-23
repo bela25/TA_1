@@ -45,6 +45,7 @@
               @endif
             </td>
             <td>
+              @if($pembayaran_cicilan->gambar_bukticicilan == null)
               <a href="{{route('pembayaran_cicilans.edit',$pembayaran_cicilan)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$pembayaran_cicilan->id_pembayarancicilan}}">Hapus</button>
               <div class="modal fade" id="delete{{$pembayaran_cicilan->id_pembayarancicilan}}">
@@ -74,6 +75,7 @@
                 </div>
                 <!-- /.modal-dialog -->
               </div>
+              @endif
             </td>
           </tr>
           @endforeach

@@ -113,7 +113,8 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
-                      <form action="{{route('pembayaran_dps.update',$pembayaranDP)}}" method="post" class="bg-light p-5 contact-form" enctype="multipart/form-data">
+                      Tanda Terima DP
+                      <form action="{{route('pembayaran_dps.update',$pembayaranDP)}}" method="post" class="bg-light p-5 contact-form d-none" enctype="multipart/form-data">
                         {{csrf_field()}}
                         {{method_field('put')}}
                         <input type="hidden" name="transaksi" value="{{$transaksi->id_transaksi}}">

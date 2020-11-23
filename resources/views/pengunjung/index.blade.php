@@ -9,7 +9,7 @@
       <div class="col-lg-8 col-md-6 ftco-animate d-flex align-items-end">
       	<div class="text text-center w-100">
           <h1 class="mb-4">Find Properties <br>TamanSari</h1>
-          <p><a href="#" class="btn btn-primary py-3 px-4">Search Properties</a></p>
+          <!-- <p><a href="#" class="btn btn-primary py-3 px-4">Search Properties</a></p> -->
         </div>
       </div>
     </div>
@@ -40,6 +40,7 @@
                   <div class="alert alert-light">
                     <h5 class="text-primary"><strong>{{$promosi->judul_promosi}}</strong></h5>
                     <p class="text-dark">{{$promosi->keterangan}}</p>
+
                   </div>
                 </div>
               <!-- </div> -->
@@ -65,42 +66,40 @@
   	<div class="row">
 			<div class="col-md-12">
 				<div class="search-wrap-1 ftco-animate">
-					<form action="#" class="search-property-1">
+					<form action="{{route('pengunjung.index')}}" method="get" class="search-property-1">
         		<div class="row">
         			<div class="col-lg align-items-end">
-        				<div class="form-group">
-        					<label for="#">Property Type</label>
-        					<div class="form-field">
-          					<div class="select-wrap">
-                      <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                      <select name="" id="" class="form-control">
-                      	<option value="">Type</option>
-                      </select>
-                    </div>
-		              </div>
-	              </div>
-        			</div>
-        			<div class="col-lg align-items-end">
                 <div class="form-group">
-                  <label for="#">Location</label>
+                  <label for="#">Lokasi</label>
                   <div class="form-field">
                     <div class="select-wrap">
                       <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                      <select name="" id="" class="form-control">
+                      <select name="lokasi" id="lokasi" class="form-control">
+                        @foreach($lokasis as $item)
+                          @if($item->idlokasi == $lokasi)
+                          <option value="{{$item->idlokasi}}" selected>{{$item->nama_apartemen}}</option>
+                          @else
+                          <option value="{{$item->idlokasi}}">{{$item->nama_apartemen}}</option>
+                          @endif
+                        @endforeach
                       </select>
                     </div>
                   </div>
                 </div>
               </div>
+              <div class="col-lg align-items-end">
+                <div class="form-group">
+                  <label for="#">Harga Terendah</label>
+                  <div class="form-field">
+                    <input type="number" name="harga_min" class="form-control" placeholder="Harga Terendah" step="100000000" value="{{$harga_min}}">
+                  </div>
+                </div>
+              </div>
         			<div class="col-lg align-items-end">
         				<div class="form-group">
-        					<label for="#">Price Limit</label>
+        					<label for="#">Harga Tertinggi</label>
         					<div class="form-field">
-          					<div class="select-wrap">
-                      <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                      <select name="" id="" class="form-control">
-                      </select>
-                    </div>
+                    <input type="number" name="harga_max" class="form-control" placeholder="Harga Tertinggi" step="100000000" value="{{$harga_max}}">
 		              </div>
 	              </div>
         			</div>

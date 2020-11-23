@@ -27,11 +27,16 @@
               @if($customer != null && $customer->unitDimiliki($unit))
                 <p>Verifikasi: 
                   @if($customer->transaksiUnit($unit)->verifikasi == 'belum diterima')
-                  <span class="badge badge-warning">{{$customer->transaksiUnit($unit)->verifikasi}}</span>
+                    <span class="badge badge-warning">{{$customer->transaksiUnit($unit)->verifikasi}}</span>
                   @else
-                  <span class="badge badge-success">{{$customer->transaksiUnit($unit)->verifikasi}}</span>
-                  <p>Transaksi Anda telah diverifikasi. Silahkan melakukan pembayaran DP</p>
-                  <a href="{{route('pengunjung.dp',$unit)}}" class="btn btn-primary py-3 px-5">Bayar DP</a>
+                    <span class="badge badge-success">{{$customer->transaksiUnit($unit)->verifikasi}}</span>
+                    @if($customer->transaksiUnit($unit)->pembayarandps == null)
+                      <p>Transaksi Anda telah diverifikasi. Silahkan melakukan pembayaran DP</p>
+                      <a href="{{route('pengunjung.dp',$unit)}}" class="btn btn-primary py-3 px-5">Bayar DP</a>
+                    @else
+                      <p>Transaksi Anda telah diverifikasi. Anda sudah membayar DP</p>
+                      <a href="{{route('pengunjung.dp',$unit)}}" class="btn btn-primary py-3 px-5">Lihat Tanda Terima DP</a>
+                    @endif
                   @endif
                 </p>
               @endif
@@ -46,13 +51,13 @@
               @endif
               
               @if($customer != null && $customer->unitDimiliki($unit))
+                @if($customer->transaksiUnit($unit)->cicilans != null)
+                <a href="{{route('pengunjung.cicilan',$customer->transaksiUnit($unit)->cicilans)}}" class="btn btn-info py-3 px-5">Cicilan</a>
+                @endif
                 @if($customer->transaksiUnit($unit)->status == 'aktif')
                 <a href="{{route('pengunjung.pembatalan',$customer->transaksiUnit($unit))}}" class="btn btn-danger py-3 px-5">Batalkan</a>
                 @else
                 <a href="{{route('pengunjung.pembatalan',$customer->transaksiUnit($unit))}}" class="btn btn-danger py-3 px-5">Dibatalkan (Lihat Detail)</a>
-                @endif
-                @if($customer->transaksiUnit($unit)->cicilans != null)
-                <a href="{{route('pengunjung.cicilan',$customer->transaksiUnit($unit)->cicilans)}}" class="btn btn-info py-3 px-5">Cicilan</a>
                 @endif
               @endif
   					</div>

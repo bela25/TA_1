@@ -95,7 +95,8 @@
                           @if($pembayaran_cicilan->gambar_bukticicilan == null)
                           <a href="{{route('pengunjung.bayarcicilan',$pembayaran_cicilan)}}" class="btn btn-primary">Bayar</a>
                           @else
-                          <a href="{{route('pengunjung.bayarcicilan',$pembayaran_cicilan)}}" class="btn btn-primary">Ganti Bukti</a>
+                          <!-- <a href="{{route('pengunjung.bayarcicilan',$pembayaran_cicilan)}}" class="btn btn-primary">Ganti Bukti</a> -->
+                          <a href="{{route('pengunjung.bayarcicilan',$pembayaran_cicilan)}}" class="btn btn-primary">Lihat Bukti</a>
                           @endif
                           <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$pembayaran_cicilan->id_pembayarancicilan}}">Hapus</button> -->
                           <div class="modal fade" id="delete{{$pembayaran_cicilan->id_pembayarancicilan}}">
