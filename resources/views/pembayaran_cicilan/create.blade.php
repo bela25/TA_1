@@ -15,7 +15,7 @@
     </div>
     <div class="form-group">
       <label for="cicilan_ke">Cicilan ke-</label>
-      <input type="text" class="form-control" id="cicilan_ke" placeholder="Isi cicilan ke" name="cicilan_ke" min="0" step="1" required>
+      <input type="number" class="form-control" id="cicilan_ke" placeholder="Isi cicilan ke" name="cicilan_ke" min="0" step="1" required>
     </div>
     <div class="form-group">
       <label>Nominal</label>
