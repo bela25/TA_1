@@ -116,8 +116,40 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
-                      Tanda Terima Booking
-                      <form action="{{route('pembayaran_bookings.update',$pembayaranBooking)}}" method="post" class="bg-light p-5 contact-form d-none" enctype="multipart/form-data">
+                      <p>
+                        Tanda Terima Booking
+                        <button class="btn btn-success" onclick="printing()">Print</button>
+                      </p>
+                      <div class="card" id="print-area">
+                        <div class="card-body p-5">
+                          <h1 class="text-primary text-center"><strong>Tamansari {{$unit->towers->lokasis->nama_apartemen}}</strong></h1>
+                          <h5 class="text-center"><strong>Tanda Terima Booking</strong></h5>
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              No. Transaksi
+                              <span><strong>{{$transaksi->id_transaksi}}</strong></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              Pembeli
+                              <span><strong>{{ucfirst($transaksi->customers->nama)}}</strong></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              Unit
+                              <span><strong>{{$unit->nama()}} Lantai {{$unit->lantai}}</strong></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              Diterima pada
+                              <span><strong>{{$transaksi->pembayaranBookings->tanggal_bayar}}</strong></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              Admin
+                              <span><strong>{{ucfirst($transaksi->pegawais->nama)}}</strong></span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      <!-- <form action="{{route('pembayaran_bookings.update',$pembayaranBooking)}}" method="post" class="bg-light p-5 contact-form" enctype="multipart/form-data">
                         {{csrf_field()}}
                         {{method_field('put')}}
                         <input type="hidden" name="transaksi" value="{{$transaksi->id_transaksi}}">
@@ -136,7 +168,7 @@
                         <div class="form-group">
                           <input type="submit" value="Upload" class="btn btn-primary py-3 px-5">
                         </div>
-                      </form>
+                      </form> -->
                     @endif
 					    		</div>
 					    	</div>

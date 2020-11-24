@@ -92,7 +92,46 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
-                      Tanda Terima Cicilan
+                      <p>
+                        Tanda Terima Cicilan
+                        <button class="btn btn-success" onclick="printing()">Print</button>
+                      </p>
+                      <div class="card" id="print-area">
+                        <div class="card-body p-5">
+                          <h1 class="text-primary text-center"><strong>Tamansari {{$unit->towers->lokasis->nama_apartemen}}</strong></h1>
+                          <h5 class="text-center"><strong>Tanda Terima Cicilan</strong></h5>
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              Sudah terima dari
+                              <span><strong>{{ucfirst($transaksi->customers->nama)}}</strong></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              Banyaknya uang
+                              <span><strong>Rp{{$pembayaran_cicilan->formatUang($pembayaran_cicilan->nominal)}}</strong></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              Angsuran Ke
+                              <span><strong>{{$pembayaran_cicilan->cicilan_ke}}</strong></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              Unit
+                              <span><strong>{{$unit->no_unit}} Lantai {{$unit->lantai}}</strong></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              Tipe
+                              <span><strong>{{$unit->tipes->nama}}</strong></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              Diterima pada
+                              <span><strong>{{$pembayaran_cicilan->tanggal_bayar}}</strong></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              Admin
+                              <span><strong>{{ucfirst($transaksi->pegawais->nama)}}</strong></span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
                     @endif
 					    		</div>
 					    	</div>

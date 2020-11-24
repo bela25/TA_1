@@ -27,7 +27,7 @@ class Transaksi extends Model
     }
     public function pembayaranbookings()
     {
-        return $this->hasOne('App\PembayaranBooking');
+        return $this->hasOne('App\PembayaranBooking','transaksi','id_transaksi');
     }
     public function units()
     {

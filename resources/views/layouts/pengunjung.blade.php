@@ -32,6 +32,17 @@
         /*background-color: #f8f9fa !important;
         color: #6c757d !important;*/
       }
+      /*.print-area {
+        display: none;
+      }
+      @media print {
+        .screen-area {
+           display: none;
+        }
+        .print-area {
+           display: block;
+        }
+      }*/
     </style>
     @stack('styles')
   </head>
@@ -160,6 +171,19 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="{{asset('web/js/google-map.js')}}"></script>
   <script src="{{asset('web/js/main.js')}}"></script>
+
+  <script type="text/javascript">
+    function printing() {
+     var printContents = document.getElementById('print-area').innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+    }
+  </script>
 
   @stack('scripts')
     
