@@ -21,27 +21,29 @@
 	</div>
 </div>
 
-@if($jatuhtempos->count() > 0)
-<section class="ftco-section ftco-no-pb">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="alert alert-danger" role="alert">
-          Anda memiliki cicilan jatuh tempo. Klik link dibawah untuk melihat.
-          <ul>
-            @foreach($jatuhtempos as $jatuhtempo)
-            <li>
-              <a href="{{ route('pengunjung.cicilan', $jatuhtempo->cicilans) }}" class="alert-link">
-                {{ $jatuhtempo->cicilans->transaksis->units->nama() }} - {{ $jatuhtempo->cicilans->transaksis->units->towers->lokasis->nama_apartemen }}
-              </a>
-            </li>
-            @endforeach
-          </ul>
+@if(auth()->check() && auth()->user()->customer != null)
+  @if($jatuhtempos->count() > 0)
+  <section class="ftco-section ftco-no-pb">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="alert alert-danger" role="alert">
+            Anda memiliki cicilan jatuh tempo. Klik link dibawah untuk melihat.
+            <ul>
+              @foreach($jatuhtempos as $jatuhtempo)
+              <li>
+                <a href="{{ route('pengunjung.cicilan', $jatuhtempo->cicilans) }}" class="alert-link">
+                  {{ $jatuhtempo->cicilans->transaksis->units->nama() }} - {{ $jatuhtempo->cicilans->transaksis->units->towers->lokasis->nama_apartemen }}
+                </a>
+              </li>
+              @endforeach
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+  @endif
 @endif
 
 <section class="ftco-section ftco-no-pb">
