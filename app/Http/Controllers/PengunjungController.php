@@ -207,7 +207,7 @@ class PengunjungController extends Controller
 
     public function booking(Unit $unit)
     {
-        $customer = Customer::find(2);
+        $customer = auth()->user()->customer;
         $transaksi = Transaksi::where('customer',$customer->idcustomers)->where('unit',$unit->id_unit)->latest()->first();
         $pembayaranBooking = null;
         if($transaksi == null)
@@ -223,7 +223,7 @@ class PengunjungController extends Controller
 
     public function dp(Unit $unit)
     {
-        $customer = Customer::find(2);
+        $customer = auth()->user()->customer;
         $transaksi = Transaksi::where('customer',$customer->idcustomers)->where('unit',$unit->id_unit)->latest()->first();
         $pembayaranDP = null;
         if($transaksi == null)
