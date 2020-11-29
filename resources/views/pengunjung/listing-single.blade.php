@@ -51,6 +51,9 @@
                 <p>Verifikasi: 
                   @if($customer->transaksiUnit($unit)->verifikasi == 'belum diterima')
                     <span class="badge badge-warning">{{$customer->transaksiUnit($unit)->verifikasi}}</span>
+                  @elseif($customer->transaksiUnit($unit)->verifikasi == 'tidak diterima')
+                    <span class="badge badge-danger">{{$customer->transaksiUnit($unit)->verifikasi}}</span>
+                    <p>Transaksi Anda tidak diterima karena Unit ini sudah di-booking orang lain</p>
                   @else
                     <span class="badge badge-success">{{$customer->transaksiUnit($unit)->verifikasi}}</span>
                     @if($customer->transaksiUnit($unit)->pembayarandps == null)
@@ -73,7 +76,7 @@
               <a href="{{route('pengunjung.booking',$unit)}}" class="btn btn-primary py-3 px-5">Booking</a>
               @endif
               
-              @if($customer != null && $customer->unitDimiliki($unit))
+              @if($customer != null && $customer->unitDimiliki($unit) && $customer->transaksiUnit($unit)->verifikasi == 'diterima')
                 @if($customer->transaksiUnit($unit)->cicilans != null)
                 <a href="{{route('pengunjung.cicilan',$customer->transaksiUnit($unit)->cicilans)}}" class="btn btn-info py-3 px-5">Cicilan</a>
                 @endif

@@ -22,7 +22,7 @@ class TransaksiController extends Controller
     public function index()
     {
         // pegawai yang login
-        $pegawai = Pegawai::find(12345);
+        $pegawai = auth()->user()->pegawai;
         // $transaksis = Transaksi::all();
         $transaksis = Transaksi::all()->filter(function ($item, $key) use($pegawai) {
             return in_array($item->lokasi()->idlokasi, $pegawai->lokasipegawais->pluck('lokasi')->toArray());
@@ -71,7 +71,7 @@ class TransaksiController extends Controller
             $post->save();
 
             $unit = Unit::find($request->get('unit'));
-            $unit ->status = 'booking';
+            // $unit ->status = 'booking';
             $unit->save();
             request()->session()->flash('pesan','Berhasil booking');
         }
@@ -132,6 +132,18 @@ class TransaksiController extends Controller
         $transaksi ->jenis_bayar = $request->get('jenisbayar');
         $transaksi ->status = $request->get('status');
         $transaksi ->verifikasi = $request->get('verifikasi');
+        if($request->get('verifikasi') == 'diterima'){
+            $unit =$transaksi->units;
+            $unit ->status = 'booking';
+            $unit->save();
+
+            $transaksi_lain = Transaksi::where('unit',$transaksi->unit)->where('id_transaksi','!=',$transaksi->id_transaksi)->get();
+            foreach($transaksi_lain as $tl)
+            {
+                $tl->verifikasi = 'tidak diterima';
+                $tl->save();
+            }
+        }
         if($request->get('tglpelunasan') == null)
         {
             $transaksi ->tgl_pelunasan = $request->get('tglpelunasan');

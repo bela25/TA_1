@@ -35,7 +35,7 @@
           <tr>
             <td><a href="{{ route('customers.show', $transaksi->customers) }}">{{$transaksi->customers->nama}}</a></td>
             <td>
-              @if($transaksi->customers->verifikasi->tgl_diterima == null)
+              @if($transaksi->customers->verifikasi == null)
                 <span class="badge badge-secondary">Belum diverifikasi</span>
               @else
                 <span class="badge badge-success">{{ $transaksi->customers->verifikasi->tgl_diterima }}</span>
@@ -49,6 +49,8 @@
             <td>
               @if($transaksi->verifikasi == 'diterima')
               <span class="badge badge-success">{{$transaksi->verifikasi}}</span>
+              @elseif($transaksi->verifikasi == 'tidak diterima')
+              <span class="badge badge-danger">{{$transaksi->verifikasi}}</span>
               @else
               <span class="badge badge-warning">{{$transaksi->verifikasi}}</span>
               @endif
@@ -135,6 +137,7 @@
             </td>
             @endif
             <td>
+              @if($transaksi->komisipegawai != null)
               <a href="{{route('transaksis.show',$transaksi)}}" class="btn btn-primary">Lihat</a>
               <a href="{{route('transaksis.edit',$transaksi)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$transaksi->id_transaksi}}">Hapus</button>
@@ -165,6 +168,7 @@
                 </div>
                 <!-- /.modal-dialog -->
               </div>
+              @endif
             </td>
           </tr>
           @endforeach

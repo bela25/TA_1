@@ -70,7 +70,7 @@
   		@endif
   		</div>
   		<div class="col-md-12 pills">
-        @if($transaksi != null)
+        @if($transaksi != null && $transaksi->verifikasi == 'diterima')
 					<div class="bd-example bd-example-tabs">
 						<div class="d-flex">
 						  <ul class="nav nav-pills mb-2" id="pills-tab" role="tablist">
