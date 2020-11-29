@@ -28,6 +28,9 @@
                 <p>Verifikasi: 
                   @if($transaksi->verifikasi == 'belum diterima')
                     <span class="badge badge-warning">{{$transaksi->verifikasi}}</span>
+                  @elseif($customer->transaksiUnit($unit)->verifikasi == 'tidak diterima')
+                    <span class="badge badge-danger">{{$customer->transaksiUnit($unit)->verifikasi}}</span>
+                    <p>Transaksi Anda tidak diterima karena Unit ini sudah di-booking orang lain</p>
                   @else
                     <span class="badge badge-success">{{$transaksi->verifikasi}}</span>
                     @if($transaksi->pembayarandps == null)
@@ -54,7 +57,7 @@
           {{session('pesan')}}
         </div>
       @endif
-  		@if($unit->status == 'tersedia')
+  		@if($unit->status == 'tersedia' && $transaksi == null)
   			<form action="{{route('transaksis.store')}}" method="post" class="bg-light p-5 contact-form">
   				{{csrf_field()}}
           <input type="hidden" name="unit" value="{{$unit->id_unit}}">
