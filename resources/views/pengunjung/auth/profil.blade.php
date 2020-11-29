@@ -17,6 +17,27 @@
   <div class="overlay-2"></div>
 </section>
 
+@if($jatuhtempos->count() > 0)
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="alert alert-danger" role="alert">
+        Anda memiliki cicilan jatuh tempo. Klik link dibawah untuk melihat.
+        <ul>
+          @foreach($jatuhtempos as $jatuhtempo)
+          <li>
+            <a href="{{ route('pengunjung.cicilan', $jatuhtempo->cicilans) }}" class="alert-link">
+              {{ $jatuhtempo->cicilans->transaksis->units->nama() }} - {{ $jatuhtempo->cicilans->transaksis->units->towers->lokasis->nama_apartemen }}
+            </a>
+          </li>
+          @endforeach
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+@endif
+
 <section class="ftco-section ftco-no-pb">
   <div class="container">
     <div class="row justify-content-center">

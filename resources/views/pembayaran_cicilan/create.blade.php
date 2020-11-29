@@ -21,6 +21,28 @@
       <label>Nominal</label>
       <input type="number" class="form-control" placeholder="Isi nominal" name="nominal" min="0" step="100000000" required>
     </div>
+    <div class="form-group">
+      <label>Tenggat Waktu</label>
+
+      <div class="input-group date" id="tglakhir" data-target-input="nearest">
+        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tenggat_waktu" required>
+        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
+          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+        </div>
+      </div>
+      <!-- /.input group -->
+    </div>
+    <div class="form-group">
+      <label>Cicilan Terakhir</label>
+      <div class="custom-control custom-radio">
+        <input class="custom-control-input" type="radio" id="iya" name="cicilan_terakhir" value="iya">
+        <label for="iya" class="custom-control-label">Iya</label>
+      </div>
+      <div class="custom-control custom-radio">
+        <input class="custom-control-input" type="radio" id="tidak" name="cicilan_terakhir" value="tidak" checked>
+        <label for="tidak" class="custom-control-label">Tidak</label>
+      </div>
+    </div>
     <!-- /.card-body -->
 
     <div class="card-footer">

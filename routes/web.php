@@ -50,6 +50,13 @@ Route::put('transaksis/{transaksi}/simpanpegawai','TransaksiController@simpanPeg
 Route::get('transaksis/{transaksi}/ubahpegawai','TransaksiController@ubahPegawai')->name('transaksis.pegawai');
 Route::resource('transaksis','TransaksiController');
 
+Route::get('laporan/penjualan', 'LaporanController@penjualan')->name('laporan.penjualan');
+Route::get('laporan/pembayaran', 'LaporanController@pembayaran')->name('laporan.pembayaran');
+Route::get('laporan/penundaan', 'LaporanController@penundaan')->name('laporan.penundaan');
+Route::get('laporan/pembatalan', 'LaporanController@pembatalan')->name('laporan.pembatalan');
+Route::get('laporan/jatuhtempo', 'LaporanController@jatuhtempo')->name('laporan.jatuhtempo');
+Route::get('laporan/cicilan', 'LaporanController@cicilan')->name('laporan.cicilan');
+
 Route::get('/', 'PengunjungController@index')->name('pengunjung.index');
 Route::get('about', 'PengunjungController@about')->name('pengunjung.about');
 Route::get('listing', 'PengunjungController@listing')->name('pengunjung.listing');

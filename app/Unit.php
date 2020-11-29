@@ -54,5 +54,14 @@ class Unit extends Model
     {
         return $this->hargaJualCash() * 2 / 100;
     }
+    public function gambar()
+    {
+        if($this->tipes->gambars->first() != null){
+            return asset(str_replace('\\', '/', $this->tipes->gambars->first()->nama_gambar));
+        }
+        else{
+            return asset('web/images/work-2.jpg');
+        }
+    }
     //
 }

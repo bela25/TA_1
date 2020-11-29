@@ -50,16 +50,35 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="
-       collapseTwo">
+       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDashboard" aria-expanded="true" aria-controls="
+       collapseDashboard">
          <i class="fas fa-chart-bar"></i>
           <span>Dashboard</span></a>
-           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+           <div id="collapseDashboard" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Menu Dashboard:</h6>
+            <a class="collapse-item" href="{{route('home')}}">Grafik</a>
             <a class="collapse-item" href="{{route('profils.index')}}">Profil</a>
             <a class="collapse-item" href="{{route('promosis.index')}}">Promosi</a>
-             <a class="collapse-item" href="{{route('feedbacks.index')}}">Feedback</a>
+            <a class="collapse-item" href="{{route('feedbacks.index')}}">Feedback</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLaporan" aria-expanded="true" aria-controls="
+       collapseLaporan">
+         <i class="fas fa-file-alt"></i>
+          <span>Laporan</span></a>
+           <div id="collapseLaporan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Menu Laporan:</h6>
+            <a class="collapse-item" href="{{ route('laporan.penjualan') }}">Penjualan</a>
+            <!-- <a class="collapse-item" href="{{ route('laporan.pembayaran') }}">Pembayaran</a> -->
+            <!-- <a class="collapse-item" href="{{ route('laporan.penundaan') }}">Penundaan</a> -->
+            <a class="collapse-item" href="{{ route('laporan.pembatalan') }}">Pembatalan</a>
+            <a class="collapse-item" href="{{ route('laporan.jatuhtempo') }}">Jatuh Tempo</a>
+            <a class="collapse-item" href="{{ route('laporan.cicilan') }}">Cicilan</a>
           </div>
         </div>
       </li>
@@ -74,11 +93,11 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransaksi" aria-expanded="true" aria-controls="collapseTransaksi">
           <i class="fas fa-funnel-dollar"></i>
           <span>Transaksi</span>
         </a>
-        <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTransaksi" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Menu Transaksi:</h6>
             <a class="collapse-item" href="{{route('transaksis.index')}}">Pembelian</a>
@@ -90,11 +109,11 @@
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePengguna" aria-expanded="true" aria-controls="collapsePengguna">
           <i class="far fa-address-card"></i>
           <span>Pengguna</span>
         </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div id="collapsePengguna" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Menu Pengguna:</h6>
             <a class="collapse-item" href="{{route('lokasipegawais.index')}}">Lokasi Pegawai</a>
@@ -114,11 +133,11 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMaster" aria-expanded="true" aria-controls="collapseMaster">
           <i class="fas fa-fw fa-folder"></i>
           <span>File Master</span>
         </a>
-        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
+        <div id="collapseMaster" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">File:</h6>
             <a class="collapse-item" href="{{route('lokasis.index')}}">Lokasi</a>
@@ -274,6 +293,7 @@
   <script src="{{asset('adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}s"></script>
   <!-- Custom scripts for all pages-->
   <script src="{{ asset('admin/js/sb-admin-2.min.js')}}"></script>
+  <script src="{{asset('admin/vendor/chart.js/Chart.min.js')}}"></script>
   <script type="text/javascript">
     // Call the dataTables jQuery plugin
     $(document).ready(function() {
@@ -283,6 +303,35 @@
         format: 'Y-MM-DD'
       });
     });
+
+    // Set new default font family and font color to mimic Bootstrap's default styling
+    Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    Chart.defaults.global.defaultFontColor = '#858796';
+
+    function number_format(number, decimals, dec_point, thousands_sep) {
+      // *     example: number_format(1234.56, 2, ',', ' ');
+      // *     return: '1 234,56'
+      number = (number + '').replace(',', '').replace(' ', '');
+      var n = !isFinite(+number) ? 0 : +number,
+        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+        s = '',
+        toFixedFix = function(n, prec) {
+          var k = Math.pow(10, prec);
+          return '' + Math.round(n * k) / k;
+        };
+      // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+      s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+      if (s[0].length > 3) {
+        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+      }
+      if ((s[1] || '').length < prec) {
+        s[1] = s[1] || '';
+        s[1] += new Array(prec - s[1].length + 1).join('0');
+      }
+      return s.join(dec);
+    }
   </script>
   @stack('scripts')
 

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Transaksi extends Model
 {
@@ -11,6 +12,16 @@ class Transaksi extends Model
     public function nama()
     {
         return $this->customers->nama.' ('.$this->units->nama().')';
+    }
+
+    public function bulanLunas()
+    {
+        return Carbon::parse($this->tgl_pelunasan)->format('F');
+    }
+
+    public function tahunLunas()
+    {
+        return Carbon::parse($this->tgl_pelunasan)->year;
     }
 
     public function pembatalans()

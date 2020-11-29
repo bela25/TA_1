@@ -66,6 +66,7 @@
                       <tr>
                         <th>Cicilan Ke</th>
                         <th>Harga Cicilan</th>
+                        <th>Tenggat Waktu</th>
                         <th>Tanggal Pembayaran</th>
                         <th>Bukti</th>
                         <th>Interaksi</th>
@@ -74,9 +75,10 @@
 
                     <tbody>
                       @foreach($pembayaran_cicilans as $pembayaran_cicilan)
-                      <tr>
+                      <tr class="{{ $pembayaran_cicilan->jatuhTempo() ? 'table-danger' : '' }}">
                         <td>{{$pembayaran_cicilan->cicilan_ke}}</td>
                         <td>Rp{{$pembayaran_cicilan->formatUang($pembayaran_cicilan->nominal)}}</td>
+                        <td>{{$pembayaran_cicilan->tenggat_waktu}}</td>
                         <td>
                           @if($pembayaran_cicilan->tanggal_bayar == null)
                           <span class="badge badge-secondary">Belum bayar</span>
@@ -132,6 +134,7 @@
 
                     </tbody>
                   </table>
+                  <p class="font-italic">*Ket: Baris berwarna merah = cicilan jatuh tempo</p>
                 </div>
                 <!-- table-responsive -->
 					    </div>

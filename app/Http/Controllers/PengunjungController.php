@@ -46,7 +46,8 @@ class PengunjungController extends Controller
     {
         $customer = auth()->user()->customer;
         $transaksis = $customer->transaksis;
-        return view('pengunjung.auth.profil', compact('customer','transaksis'));
+        $jatuhtempos = PembayaranCicilan::whereNull('tanggal_bayar')->whereDate('tenggat_waktu','<',date('Y-m-d'))->get();
+        return view('pengunjung.auth.profil', compact('customer','transaksis','jatuhtempos'));
     }
 
     public function ubahProfil(Customer $customer)
@@ -103,10 +104,22 @@ class PengunjungController extends Controller
         $lokasi = $request->get('lokasi') ?? null;
         $harga_min = $request->get('harga_min') ?? null;
         $harga_max = $request->get('harga_max') ?? null;
-        if(count($request->all()) > 0)
+        if($lokasi != null)
         {
-            $units = $units->filter(function ($item) use($lokasi, $harga_min, $harga_max) {
-                return $item->towers->lokasi == $lokasi && $item->hargaJualCash() >= $harga_min && $item->hargaJualCash() <= $harga_max;
+            $units = $units->filter(function ($item) use($lokasi) {
+                return $item->towers->lokasi == $lokasi;
+            });
+        }
+        if($harga_min != null)
+        {
+            $units = $units->filter(function ($item) use($harga_min) {
+                return $item->hargaJualCash() >= $harga_min;
+            });
+        }
+        if($harga_max != null)
+        {
+            $units = $units->filter(function ($item) use($harga_max) {
+                return $item->hargaJualCash() <= $harga_max;
             });
         }
 
@@ -119,7 +132,9 @@ class PengunjungController extends Controller
         $totalCustomer = Customer::count();
         $totalTransaksi = Transaksi::count();
 
-        return view('pengunjung.index', compact('units','feedbacks','promosis','totalLokasi','totalUnit','totalCustomer','totalTransaksi','lokasis','lokasi','harga_min','harga_max'));
+        $jatuhtempos = PembayaranCicilan::whereNull('tanggal_bayar')->whereDate('tenggat_waktu','<',date('Y-m-d'))->get();
+
+        return view('pengunjung.index', compact('units','feedbacks','promosis','totalLokasi','totalUnit','totalCustomer','totalTransaksi','lokasis','lokasi','harga_min','harga_max','jatuhtempos'));
     }
 
     public function about()

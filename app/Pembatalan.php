@@ -13,6 +13,14 @@ class Pembatalan extends Model
     {
         return Carbon::parse($this->tgl_pengembalian)->format('d F Y');   
     }
+    public function bulanLunas()
+    {
+        return Carbon::parse($this->tanggal_batal)->format('F');
+    }
+    public function tahunLunas()
+    {
+        return Carbon::parse($this->tanggal_batal)->year;
+    }
     public function pegawais()
     {
     	return $this->belongsTo('App\Pegawai','admin','nip');

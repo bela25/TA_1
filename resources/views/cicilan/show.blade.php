@@ -18,8 +18,10 @@
             <th>Transaksi</th>
             <th>Cicilan Ke- </th>
             <th>Harga Cicilan</th>
+            <th>Tenggat Waktu</th>
             <th>Tanggal Pembayaran</th>
             <th>Bukti</th>
+            <th>Cicilan Terakhir</th>
             <th>Interaksi</th>
           </tr>
         </thead>
@@ -30,6 +32,7 @@
             <td>{{$pembayaran_cicilan->cicilans->transaksis->nama()}}</td>
             <td>{{$pembayaran_cicilan->cicilan_ke}}</td>
             <td>Rp{{$pembayaran_cicilan->formatUang($pembayaran_cicilan->nominal)}}</td>
+            <td>{{$pembayaran_cicilan->tenggat_waktu}}</td>
             <td>
               @if($pembayaran_cicilan->tanggal_bayar == null)
                 <span class="badge badge-secondary">Belum dibayar</span>
@@ -44,6 +47,7 @@
                 <a href="{{ asset($pembayaran_cicilan->gambar_bukticicilan) }}">{{$pembayaran_cicilan->gambar_bukticicilan}}</a>
               @endif
             </td>
+            <td>{{ $pembayaran_cicilan->cicilan_terakhir }}</td>
             <td>
               @if($pembayaran_cicilan->gambar_bukticicilan == null)
               <a href="{{route('pembayaran_cicilans.edit',$pembayaran_cicilan)}}" class="btn btn-primary">Ubah</a>

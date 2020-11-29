@@ -19,7 +19,30 @@
   	<div class="row justify-content-center">
   		<div class="col-md-12">
   			<div class="property-details">
-  				<div class="img rounded" style="background-image: url('{{asset('web/images/work-1.jpg')}}');"></div>
+  				<!-- <div class="img rounded" style="background-image: url('{{asset('web/images/work-1.jpg')}}');"></div> -->
+          <div id="carouselUnit" class="carousel slide mb-5" data-ride="carousel">
+            <ol class="carousel-indicators">
+              @foreach($unit->tipes->gambars as $gambar)
+              <li data-target="#carouselUnit" data-slide-to="{{$loop->index}}" class="{{$loop->first ? 'active' : ''}}"></li>
+              @endforeach
+            </ol>
+            <div class="carousel-inner" style="height: 480px;">
+              @foreach($unit->tipes->gambars as $gambar)
+              <div class="carousel-item {{$loop->first ? 'active' : ''}}">
+                <img src="{{asset($gambar->nama_gambar)}}" class="d-block w-100">
+              </div>
+              @endforeach
+            </div>
+            <a class="carousel-control-prev" href="#carouselUnit" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselUnit" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+
   					<div class="text float-left">
 	  					<h2>{{$unit->tipes->nama}} No. {{$unit->no_unit}}</h2>
 	  					<span class="subheading">Tower {{$unit->towers->nama}}</span>

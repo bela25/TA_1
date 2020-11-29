@@ -44,6 +44,8 @@ class PembayaranCicilanController extends Controller
         $post ->cicilan = $request->get('kodecicilan');
         $post ->nominal = $request->get('nominal');
         $post ->cicilan_ke = $request->get('cicilan_ke');
+        $post ->tenggat_waktu = $request->get('tenggat_waktu');
+        $post ->cicilan_terakhir = $request->get('cicilan_terakhir');
         // $post ->tanggal_bayar = $request->get('tanggalpembayaran');
         // $post ->gambar_bukticicilan= $request->get('exampleInputFile');
         $post->save();
@@ -87,6 +89,8 @@ class PembayaranCicilanController extends Controller
         $pembayaranCicilan ->cicilan = $request->get('kodecicilan');
         $pembayaranCicilan ->nominal = $request->get('nominal');
         $pembayaranCicilan ->cicilan_ke = $request->get('cicilan_ke');
+        $pembayaranCicilan ->tenggat_waktu = $request->get('tenggat_waktu');
+        $pembayaranCicilan ->cicilan_terakhir = $request->get('cicilan_terakhir');
         $pembayaranCicilan->save();
         return redirect('cicilans/'.$request->get('kodecicilan'));
         //

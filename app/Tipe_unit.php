@@ -10,12 +10,12 @@ class Tipe_unit extends Model
 
     public function units()
     {
-    	return $this->hasMany('App\Unit');
+    	return $this->hasMany('App\Unit','tipe','id_tipe');
     }
 
     public function gambars()
     {
-    	return $this->hasMany('App\GambarProduk');
+    	return $this->hasMany('App\GambarProduk','tipe','id_tipe');
     }
 
     public function hargajuals()

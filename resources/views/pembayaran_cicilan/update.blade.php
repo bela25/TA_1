@@ -8,7 +8,7 @@
   <div class="card-body">
     <div class="form-group">
       <label>Kode Cicilan</label>
-      <input type="text" class="form-control" id="cicilan_ke" placeholder="Isi cicilan ke" name="cicilan_ke" value="{{$pembayaranCicilan->cicilan}}" required readonly>
+      <input type="text" class="form-control" id="kodecicilan" placeholder="Isi cicilan ke" name="kodecicilan" value="{{$pembayaranCicilan->cicilan}}" required readonly>
       <!-- <select name="kodecicilan" class="form-control select2" style="width: 100%;" required>
         @foreach($cicilan as $cicilans)
           @if($cicilans->id_cicilan == $pembayaranCicilan->cicilan)
@@ -26,6 +26,36 @@
     <div class="form-group">
       <label>Nominal</label>
       <input type="number" class="form-control" placeholder="Isi nominal" name="nominal" min="0" step="100000000" value="{{$pembayaranCicilan->nominal}}" required>
+    </div>
+    <div class="form-group">
+      <label>Tenggat Waktu</label>
+
+      <div class="input-group date" id="tglakhir" data-target-input="nearest">
+        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tenggat_waktu" required>
+        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
+          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+        </div>
+      </div>
+      <!-- /.input group -->
+    </div>
+    <div class="form-group">
+      <label>Cicilan Terakhir</label>
+      <div class="custom-control custom-radio">
+        @if($pembayaranCicilan->cicilan_terakhir == 'iya')
+        <input class="custom-control-input" type="radio" id="iya" name="cicilan_terakhir" value="iya" checked>
+        @else
+        <input class="custom-control-input" type="radio" id="iya" name="cicilan_terakhir" value="iya">
+        @endif
+        <label for="iya" class="custom-control-label">Iya</label>
+      </div>
+      <div class="custom-control custom-radio">
+        @if($pembayaranCicilan->cicilan_terakhir == 'tidak')
+        <input class="custom-control-input" type="radio" id="tidak" name="cicilan_terakhir" value="tidak" checked>
+        @else
+        <input class="custom-control-input" type="radio" id="tidak" name="cicilan_terakhir" value="tidak">
+        @endif
+        <label for="tidak" class="custom-control-label">Tidak</label>
+      </div>
     </div>
     <!-- /.card-body -->
 

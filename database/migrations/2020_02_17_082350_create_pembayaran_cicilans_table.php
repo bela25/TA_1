@@ -20,6 +20,8 @@ class CreatePembayaranCicilansTable extends Migration
             $table->bigInteger('nominal');
             $table->string('gambar_bukticicilan')->nullable();
             $table->unsignedInteger('cicilan');
+            $table->date('tenggat_waktu')->nullable();
+            $table->enum('cicilan_terakhir',['iya','tidak'])->nullable();
             $table->foreign('cicilan')->references('id_cicilan')->on('cicilans');
             $table->timestamps();
         });

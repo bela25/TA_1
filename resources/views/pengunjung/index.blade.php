@@ -21,6 +21,29 @@
 	</div>
 </div>
 
+@if($jatuhtempos->count() > 0)
+<section class="ftco-section ftco-no-pb">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="alert alert-danger" role="alert">
+          Anda memiliki cicilan jatuh tempo. Klik link dibawah untuk melihat.
+          <ul>
+            @foreach($jatuhtempos as $jatuhtempo)
+            <li>
+              <a href="{{ route('pengunjung.cicilan', $jatuhtempo->cicilans) }}" class="alert-link">
+                {{ $jatuhtempo->cicilans->transaksis->units->nama() }} - {{ $jatuhtempo->cicilans->transaksis->units->towers->lokasis->nama_apartemen }}
+              </a>
+            </li>
+            @endforeach
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+@endif
+
 <section class="ftco-section ftco-no-pb">
   <div class="container">
     <div class="row">
@@ -75,6 +98,7 @@
                     <div class="select-wrap">
                       <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                       <select name="lokasi" id="lokasi" class="form-control">
+                        <option value="">Semua</option>
                         @foreach($lokasis as $item)
                           @if($item->idlokasi == $lokasi)
                           <option value="{{$item->idlokasi}}" selected>{{$item->nama_apartemen}}</option>
@@ -130,7 +154,7 @@
       @foreach($units as $unit)
     	<div class="col-md-4">
     		<div class="property-wrap ftco-animate">
-    			<div class="img d-flex align-items-center justify-content-center" style="background-image: url('{{asset('web/images/work-2.jpg')}}');">
+    			<div class="img d-flex align-items-center justify-content-center" style="background-image: url('{{$unit->gambar()}}');">
     				<a href="{{route('pengunjung.listing.single',$unit)}}" class="icon d-flex align-items-center justify-content-center btn-custom">
     					<span class="ion-ios-link"></span>
     				</a>
