@@ -57,7 +57,7 @@
            <div id="collapseDashboard" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Menu Dashboard:</h6>
-            <a class="collapse-item" href="{{route('home')}}">Grafik</a>
+            <!-- <a class="collapse-item" href="{{route('home')}}">Grafik</a> -->
             <a class="collapse-item" href="{{route('profils.index')}}">Profil</a>
             <a class="collapse-item" href="{{route('promosis.index')}}">Promosi</a>
             <a class="collapse-item" href="{{route('feedbacks.index')}}">Feedback</a>
