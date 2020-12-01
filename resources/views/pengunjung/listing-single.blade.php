@@ -77,7 +77,7 @@
               @endif
               
               @if($customer != null && $customer->unitDimiliki($unit) && $customer->transaksiUnit($unit)->verifikasi == 'diterima')
-                @if($customer->transaksiUnit($unit)->cicilans != null)
+                @if($customer->transaksiUnit($unit)->cicilans != null && $customer->transaksiUnit($unit)->jenis_bayar != 'lunas')
                 <a href="{{route('pengunjung.cicilan',$customer->transaksiUnit($unit)->cicilans)}}" class="btn btn-info py-3 px-5">Cicilan</a>
                 @endif
                 @if($customer->transaksiUnit($unit)->status == 'aktif')

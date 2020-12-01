@@ -46,6 +46,7 @@
             <td>{{$pegawai->created_at}}</td>
             <td>{{$pegawai->updated_at}}</td>
             <td>
+              @if($pegawai->transaksis->count() <= 0)
               <a href="{{route('pegawais.edit',$pegawai)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$pegawai->nip}}">Hapus</button>
               <div class="modal fade" id="delete{{$pegawai->nip}}">
@@ -75,6 +76,7 @@
                 </div>
                 <!-- /.modal-dialog -->
               </div>
+              @endif
             </td>
           </tr>
           @endforeach

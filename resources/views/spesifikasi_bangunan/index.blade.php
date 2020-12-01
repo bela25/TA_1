@@ -45,6 +45,7 @@
             <td>{{$spesifikasi_bangunan->created_at}}</td>
             <td>{{$spesifikasi_bangunan->updated_at}}</td>
             <td>
+              @if(!$spesifikasi_bangunan->adaTransaksi())
               <a href="{{route('spesifikasi_bangunans.edit',$spesifikasi_bangunan)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$spesifikasi_bangunan->idspesikasi}}">Hapus</button>
               <div class="modal fade" id="delete{{$spesifikasi_bangunan->idspesikasi}}">
@@ -74,6 +75,7 @@
                 </div>
                 <!-- /.modal-dialog -->
               </div>
+              @endif
             </td>
           </tr>
           @endforeach

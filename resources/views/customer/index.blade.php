@@ -25,7 +25,7 @@
             <!-- <th>Password</th> -->
             <th>Created_at</th>
             <th>Updated_at</th>
-            <th>Interaksi</th>
+            <!-- <th>Interaksi</th> -->
           </tr>
         </thead>
         <tbody>
@@ -42,7 +42,7 @@
           <!-- <td>{{$customer->password}}</td> -->
           <td>{{$customer->created_at}}</td>
           <td>{{$customer->updated_at}}</td>
-          <td>
+          <!-- <td>
             <a href="{{route('customers.edit',$customer)}}" class="btn btn-primary">Ubah</a>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$customer->idcustomers}}">Hapus</button>
             <div class="modal fade" id="delete{{$customer->idcustomers}}">
@@ -58,9 +58,7 @@
                     <p>Data ini akan dihapus secara permanen, Anda yakin untuk menghapus?&hellip;</p>
                      <form role="form" action="{{route('customers.destroy',$customer)}}" method="post" id="hapus{{$customer->idcustomers}}">
                       {{csrf_field()}}
-                      {{method_field('delete')}}
-                      
-                      <!-- /.card-body -->
+                      {{method_field('delete')}}                      
                     </form>
                   </div>
                   <div class="modal-footer justify-content-between">
@@ -68,11 +66,11 @@
                     <button type="submit" class="btn btn-primary" form="hapus{{$customer->idcustomers}}">Yes</button>
                   </div>
                 </div>
-                <!-- /.modal-content -->
+                
               </div>
-              <!-- /.modal-dialog -->
+              
             </div>
-          </td>
+          </td> -->
         </tr>
 
         @endforeach

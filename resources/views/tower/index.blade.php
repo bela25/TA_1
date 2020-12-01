@@ -32,6 +32,7 @@
             <td>{{$tower->created_at}}</td>
             <td>{{$tower->updated_at}}</td>
             <td>
+              @if(!$tower->adaTransaksi())
               <a href="{{route('towers.edit',$tower)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$tower->id_tower}}">Hapus</button>
               <div class="modal fade" id="delete{{$tower->id_tower}}">
@@ -61,6 +62,7 @@
                 </div>
                 <!-- /.modal-dialog -->
               </div>
+              @endif
             </td>
           </tr>
           @endforeach

@@ -10,7 +10,7 @@ class Lokasi extends Model
 
     public function towers()
     {
-    	return $this->hasMany('App\Tower');
+    	return $this->hasMany('App\Tower','lokasi','idlokasi');
     }
     public function lokasipegawais()
     {

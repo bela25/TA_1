@@ -21,6 +21,7 @@
             <th>Tipe</th>
             <th>Tower</th>
             <th>Arah</th>
+            <th>Lokasi</th>
             <th>Created_at</th>
             <th>Updated_at</th>
             <th>Interaksi</th>
@@ -36,9 +37,11 @@
             <td><a href="{{route('tipe_units.index')}}">{{$harga_jual->tipes->nama}}</a></td>
             <td><a href="{{route('towers.index')}}">{{$harga_jual->towers->nama}}</a></td>
             <td><a href="{{route('arah_units.index')}}">{{$harga_jual->arahs->pemandangan}}</a></td>
+            <td><a href="{{route('lokasis.index')}}">{{$harga_jual->towers->lokasis->nama_apartemen}}</a></td>
             <td>{{$harga_jual->created_at}}</td>
             <td>{{$harga_jual->updated_at}}</td>
             <td>
+              @if(!$harga_jual->adaTransaksi() || ($harga_jual->tgl_awal > date('Y-m-d') && $harga_jual->tgl_akhir < date('Y-m-d')))
               <a href="{{route('hargajuals.edit',$harga_jual)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$harga_jual->idhargajual}}">Hapus</button>
               <div class="modal fade" id="delete{{$harga_jual->idhargajual}}">
@@ -68,6 +71,7 @@
                 </div>
                 <!-- /.modal-dialog -->
               </div>
+              @endif
             </td>
           </tr>
           @endforeach

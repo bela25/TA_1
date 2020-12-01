@@ -26,7 +26,7 @@
 
         <tbody>
           <tr>
-            <td><a href="{{route('transaksis.index')}}">{{$pembayaran_dp->transaksi}}</a></td>
+            <td><a href="{{route('transaksis.index')}}">{{$pembayaran_dp->transaksis->id_transaksi}}</a></td>
             <td><a href="{{route('transaksis.index')}}">{{$pembayaran_dp->transaksis->customers->nama}}</a></td>
             <td>{{$pembayaran_dp->tanggal_bayar}}</td>
             <td>{{$pembayaran_dp->nominal()}}</td>

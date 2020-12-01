@@ -27,7 +27,7 @@ class CicilanController extends Controller
      */
     public function create()
     {
-        $transaksi=Transaksi::all();
+        $transaksi=Transaksi::where('jenis_bayar','!=','lunas')->get();
         return view('cicilan.create',compact('transaksi'));
         //
     }

@@ -70,6 +70,7 @@
             @if($transaksi->pegawais == null)
             <!-- <td><a href="{{route('transaksis.pegawai',$transaksi)}}">Tentukan pegawai</a></td> -->
             <td>
+              @if($transaksi->verifikasi == 'diterima' && $transaksi->status == 'aktif')
               <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#handle{{$transaksi->id_transaksi}}">Tangani</button>
               <div class="modal fade" id="handle{{$transaksi->id_transaksi}}">
                 <div class="modal-dialog">
@@ -105,6 +106,9 @@
                 </div>
                 <!-- /.modal-dialog -->
               </div>
+              @else
+              <p>Sudah diproses</p>
+              @endif
             </td>
             @else
             <td>
@@ -139,35 +143,37 @@
             <td>
               @if($transaksi->komisipegawai != null)
               <a href="{{route('transaksis.show',$transaksi)}}" class="btn btn-primary">Lihat</a>
-              <a href="{{route('transaksis.edit',$transaksi)}}" class="btn btn-primary">Ubah</a>
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$transaksi->id_transaksi}}">Hapus</button>
-              <div class="modal fade" id="delete{{$transaksi->id_transaksi}}">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h4 class="modal-title">Peringatan</h4>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <p>Data ini akan dihapus secara permanen, Anda yakin untuk menghapus?&hellip;</p>
-                      <form role="form" action="{{route('transaksis.destroy',$transaksi)}}" method="post" id="hapus{{$transaksi->id_transaksi}}">
-                        {{csrf_field()}}
-                        {{method_field('delete')}}
+                @if($transaksi->verifikasi == 'belum diterima' || $transaksi->aktif == 'aktif')
+                <a href="{{route('transaksis.edit',$transaksi)}}" class="btn btn-primary">Ubah</a>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$transaksi->id_transaksi}}">Hapus</button>
+                <div class="modal fade" id="delete{{$transaksi->id_transaksi}}">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Peringatan</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Data ini akan dihapus secara permanen, Anda yakin untuk menghapus?&hellip;</p>
+                        <form role="form" action="{{route('transaksis.destroy',$transaksi)}}" method="post" id="hapus{{$transaksi->id_transaksi}}">
+                          {{csrf_field()}}
+                          {{method_field('delete')}}
 
-                        <!-- /.card-body -->
-                      </form>
+                          <!-- /.card-body -->
+                        </form>
+                      </div>
+                      <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                        <button type="submit" class="btn btn-primary" form="hapus{{$transaksi->id_transaksi}}">Yes</button>
+                      </div>
                     </div>
-                    <div class="modal-footer justify-content-between">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                      <button type="submit" class="btn btn-primary" form="hapus{{$transaksi->id_transaksi}}">Yes</button>
-                    </div>
+                    <!-- /.modal-content -->
                   </div>
-                  <!-- /.modal-content -->
+                  <!-- /.modal-dialog -->
                 </div>
-                <!-- /.modal-dialog -->
-              </div>
+                @endif
               @endif
             </td>
           </tr>

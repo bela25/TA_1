@@ -32,6 +32,7 @@
             <td>{{$cicilan->bunga}}</td>
             <td>
               <a href="{{route('cicilans.show',$cicilan)}}" class="btn btn-primary">Detail</a>
+              @if(!$cicilan->adaPembayaran())
               <a href="{{route('cicilans.edit',$cicilan)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$cicilan->id_cicilan}}">Hapus</button>
               <div class="modal fade" id="delete{{$cicilan->id_cicilan}}">
@@ -61,6 +62,7 @@
                 </div>
                 <!-- /.modal-dialog -->
               </div>
+              @endif
             </td>
           </tr>
           @endforeach

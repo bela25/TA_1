@@ -72,7 +72,7 @@
         <label for="belumditerima" class="custom-control-label">Belum Diterima</label>
       </div>
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label>Tanggal Pelunasan:</label>
       <div class="input-group date" id="tglpelunasan" data-target-input="nearest">
         <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tgllahir" value="{{$transaksi->tgl_pelunasan}}">
@@ -80,7 +80,7 @@
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="form-group">
       <label>Pilih Pegawai:</label>
       <select name="pegawai" class="form-control select2" style="width: 100%;" required>

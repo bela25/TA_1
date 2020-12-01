@@ -20,5 +20,24 @@ class HargaJual extends Model
     {
     	return $this->belongsTo('App\Tower','tower','id_tower');
     }
+    public function adaTransaksi()
+    {
+        $jumlah = 0;
+        foreach($this->tipes->units as $unit)
+        {
+            if($this->hargajual_cash == $unit->hargaJualCash() && $unit->transaksis->count() > 0)
+            {
+                $jumlah++;
+            }
+        }
+        if($jumlah > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     //
 }

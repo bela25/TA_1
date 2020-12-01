@@ -27,6 +27,18 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
+  <style type="text/css" media="print">
+    * {
+        -webkit-print-color-adjust: exact !important; /*Chrome, Safari */
+        color-adjust: exact !important;  /*Firefox*/
+    }
+    @media print {
+      .screen-area {
+         display: none;
+      }
+    }
+  </style>
+
 </head>
 
 <body id="page-top">
@@ -331,6 +343,18 @@
         s[1] += new Array(prec - s[1].length + 1).join('0');
       }
       return s.join(dec);
+    }
+
+    function printing() {
+      var printContents = document.getElementById('print-area').innerHTML;
+
+      var originalContents = document.body.innerHTML;
+
+      document.body.innerHTML = printContents;
+
+      window.print();
+
+      document.body.innerHTML = originalContents;
     }
   </script>
   @stack('scripts')

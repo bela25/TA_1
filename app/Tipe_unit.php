@@ -22,5 +22,25 @@ class Tipe_unit extends Model
     {
     	return $this->hasMany('App\HargaJual','tipe','id_tipe');
     }
+
+    public function adaTransaksi()
+    {
+        $jumlah = 0;
+        foreach($this->units as $unit)
+        {
+            if($unit->transaksis->count() > 0)
+            {
+                $jumlah++;
+            }
+        }
+        if($jumlah > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     //
 }

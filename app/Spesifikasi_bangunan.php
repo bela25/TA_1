@@ -16,5 +16,27 @@ class Spesifikasi_bangunan extends Model
     {
     	return $this->belongsTo('App\Lokasi','lokasi','idlokasi');
     }
+    public function adaTransaksi()
+    {
+        $jumlah = 0;
+        foreach($this->lokasis->towers as $tower)
+        {
+            foreach($tower->units as $unit)
+            {
+                if($unit->transaksis->count() > 0)
+                {
+                    $jumlah++;
+                }
+            }
+        }
+        if($jumlah > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     //
 }

@@ -30,6 +30,7 @@
             <td>{{$tipe_unit->created_at}}</td>
             <td>{{$tipe_unit->updated_at}}</td>
             <td>
+              @if(!$tipe_unit->adaTransaksi())
               <a href="{{route('tipe_units.edit',$tipe_unit)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$tipe_unit->id_tipe}}">Hapus</button>
               <div class="modal fade" id="delete{{$tipe_unit->id_tipe}}">
@@ -59,6 +60,7 @@
                 </div>
                 <!-- /.modal-dialog -->
               </div>
+              @endif
             </td>
           </tr>
           @endforeach

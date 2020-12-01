@@ -31,6 +31,7 @@
             <td>{{$gambar_produk->created_at}}</td>
             <td>{{$gambar_produk->updated_at}}</td>
             <td>
+              @if(!$gambar_produk->adaTransaksi())
               <a href="{{route('gambar_produks.edit',$gambar_produk)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$gambar_produk->id_gambarproduk}}">Hapus</button>
               <div class="modal fade" id="delete{{$gambar_produk->id_gambarproduk}}">
@@ -60,6 +61,7 @@
                 </div>
                 <!-- /.modal-dialog -->
               </div>
+              @endif
             </td>
           </tr>
           @endforeach

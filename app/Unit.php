@@ -27,7 +27,7 @@ class Unit extends Model
     }
     public function transaksis()
     {
-    	return $this->hasMany('App\Transaksi');
+    	return $this->hasMany('App\Transaksi','unit','id_unit');
     }
     public function hargaJualCash()
     {

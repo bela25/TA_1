@@ -34,15 +34,15 @@
       }
       /*.print-area {
         display: none;
-      }
+      }*/
       @media print {
         .screen-area {
            display: none;
         }
-        .print-area {
+        /*.print-area {
            display: block;
-        }
-      }*/
+        }*/
+      }
     </style>
     @stack('styles')
   </head>
@@ -59,7 +59,7 @@
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item @if(request()->is('/')) {{'active'}} @endif"><a href="{{route('pengunjung.index')}}" class="nav-link">Home</a></li>
 	          <li class="nav-item @if(request()->is('about')) {{'active'}} @endif"><a href="{{route('pengunjung.about')}}" class="nav-link">About</a></li>
-	          <li class="nav-item @if(request()->is('listing')) {{'active'}} @endif"><a href="{{route('pengunjung.listing')}}" class="nav-link">Listing</a></li>
+	          <!-- <li class="nav-item @if(request()->is('listing')) {{'active'}} @endif"><a href="{{route('pengunjung.listing')}}" class="nav-link">Listing</a></li> -->
 	          <li class="nav-item @if(request()->is('contact')) {{'active'}} @endif"><a href="{{route('pengunjung.contact')}}" class="nav-link">Contact</a></li>
             @guest
             <li class="nav-item @if(request()->is('pengunjung/login')) {{'active'}} @endif"><a href="{{route('pengunjung.login')}}" class="nav-link">Login</a></li>

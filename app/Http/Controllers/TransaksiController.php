@@ -144,9 +144,21 @@ class TransaksiController extends Controller
                 $tl->save();
             }
         }
-        if($request->get('tglpelunasan') == null)
+        // if($request->get('tglpelunasan') == null)
+        // {
+        //     $transaksi ->tgl_pelunasan = $request->get('tglpelunasan');
+        // }
+        if($request->get('jenisbayar') == 'kpa')
         {
-            $transaksi ->tgl_pelunasan = $request->get('tglpelunasan');
+            $transaksi ->tgl_pelunasan = Carbon::now()->addDays(30);
+        }
+        elseif($request->get('jenisbayar') == 'cash keras')
+        {
+            $transaksi ->tgl_pelunasan = Carbon::now()->addMonths(6);   
+        }
+        elseif($request->get('jenisbayar') == 'in house')
+        {
+            $transaksi ->tgl_pelunasan = Carbon::now()->addYears(10);   
         }
         $transaksi->save();
         // check hak akses user, jika customer kembali ke halaman pengunjung

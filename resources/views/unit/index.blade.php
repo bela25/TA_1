@@ -39,6 +39,7 @@
             <td>{{$unit->created_at}}</td>
             <td>{{$unit->updated_at}}</td>
             <td>
+              @if($unit->transaksis->count() <= 0)
               <a href="{{route('units.edit',$unit)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$unit->id_unit}}">Hapus</button>
               <div class="modal fade" id="delete{{$unit->id_unit}}">
@@ -68,6 +69,7 @@
                 </div>
                 <!-- /.modal-dialog -->
               </div>
+              @endif
             </td>
           </tr>
           @endforeach

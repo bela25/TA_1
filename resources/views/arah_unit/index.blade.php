@@ -29,6 +29,7 @@
           <td>{{$arah_unit->created_at}}</td>
           <td>{{$arah_unit->updated_at}}</td>
           <td>
+            @if(!$arah_unit->adaTransaksi())
             <a href="{{route('arah_units.edit',$arah_unit)}}" class="btn btn-primary">Ubah</a>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$arah_unit->id_arah}}">Hapus</button>
             <div class="modal fade" id="delete{{$arah_unit->id_arah}}">
@@ -58,6 +59,7 @@
               </div>
               <!-- /.modal-dialog -->
             </div>
+            @endif
           </td>
         </tr>
         @endforeach
