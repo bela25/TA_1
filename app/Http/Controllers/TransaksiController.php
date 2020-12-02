@@ -92,6 +92,10 @@ class TransaksiController extends Controller
     public function show(Transaksi $transaksi)
     {
         $pembayaran_dp=$transaksi->pembayarandps;
+        if($pembayaran_dp == null)
+        {
+            return redirect('transaksis')->with('pesan', 'Belum ada pembayaran DP');
+        }
         return view('transaksi.show', compact('transaksi','pembayaran_dp'));
     }
 

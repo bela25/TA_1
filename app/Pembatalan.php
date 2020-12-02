@@ -35,7 +35,7 @@ class Pembatalan extends Model
     }
     public function showNominal()
     {
-        return number_format($this->nominal(),2,',','.');
+        return 'Rp'.number_format($this->nominal(),2,',','.');
     }
     //
 }

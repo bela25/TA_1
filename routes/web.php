@@ -56,28 +56,26 @@ Route::middleware('auth')->group(function () {
 	Route::get('laporan/pembatalan', 'LaporanController@pembatalan')->name('laporan.pembatalan');
 	Route::get('laporan/jatuhtempo', 'LaporanController@jatuhtempo')->name('laporan.jatuhtempo');
 	Route::get('laporan/cicilan', 'LaporanController@cicilan')->name('laporan.cicilan');
-
-	Route::get('/', 'PengunjungController@index')->name('pengunjung.index');
-	Route::get('about', 'PengunjungController@about')->name('pengunjung.about');
-	Route::get('listing', 'PengunjungController@listing')->name('pengunjung.listing');
-	Route::get('listing/{unit}', 'PengunjungController@listingSingle')->name('pengunjung.listing.single');
-	Route::get('booking/{unit}', 'PengunjungController@booking')->name('pengunjung.booking');
-	Route::get('dp/{unit}', 'PengunjungController@dp')->name('pengunjung.dp');
-	Route::get('pembatalan/{transaksi}', 'PengunjungController@pembatalan')->name('pengunjung.pembatalan');
-	Route::get('cicilan/{cicilan}', 'PengunjungController@cicilan')->name('pengunjung.cicilan');
-	Route::get('cicilan/{pembayaran_cicilan}/bayar', 'PengunjungController@bayarCicilan')->name('pengunjung.bayarcicilan');
-	Route::put('cicilan/{pembayaran_cicilan}/bayar', 'PengunjungController@simpanCicilan')->name('pengunjung.simpancicilan');
-	Route::get('contact', 'PengunjungController@contact')->name('pengunjung.contact');
-	Route::post('feedback', 'PengunjungController@feedback')->name('pengunjung.feedback');
-
-	Route::get('pengunjung/login', 'PengunjungController@login')->name('pengunjung.login');
-	Route::get('pengunjung/register', 'PengunjungController@register')->name('pengunjung.register');
-	Route::get('profil', 'PengunjungController@profil')->name('pengunjung.profil');
-	Route::get('ubahprofil/{customer}', 'PengunjungController@ubahProfil')->name('pengunjung.ubahprofil');
-	Route::put('simpanprofil/{customer}', 'PengunjungController@simpanProfil')->name('pengunjung.simpanprofil');
-	Route::get('ubahpassword/{customer}', 'PengunjungController@ubahPassword')->name('pengunjung.ubahpassword');
-	Route::put('simpanpassword/{customer}', 'PengunjungController@simpanPassword')->name('pengunjung.simpanpassword');
-	Route::post('chat', 'PengunjungController@chat')->name('pengunjung.chat');
-
-	Route::get('/home', 'HomeController@index')->name('home');
 });
+Route::get('/', 'PengunjungController@index')->name('pengunjung.index');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('pengunjung/login', 'PengunjungController@login')->name('pengunjung.login');
+Route::get('pengunjung/register', 'PengunjungController@register')->name('pengunjung.register');
+Route::get('about', 'PengunjungController@about')->name('pengunjung.about');
+Route::get('listing', 'PengunjungController@listing')->name('pengunjung.listing');
+Route::get('listing/{unit}', 'PengunjungController@listingSingle')->name('pengunjung.listing.single');
+Route::get('booking/{unit}', 'PengunjungController@booking')->name('pengunjung.booking');
+Route::get('dp/{unit}', 'PengunjungController@dp')->name('pengunjung.dp');
+Route::get('pembatalan/{transaksi}', 'PengunjungController@pembatalan')->name('pengunjung.pembatalan');
+Route::get('cicilan/{cicilan}', 'PengunjungController@cicilan')->name('pengunjung.cicilan');
+Route::get('cicilan/{pembayaran_cicilan}/bayar', 'PengunjungController@bayarCicilan')->name('pengunjung.bayarcicilan');
+Route::put('cicilan/{pembayaran_cicilan}/bayar', 'PengunjungController@simpanCicilan')->name('pengunjung.simpancicilan');
+Route::get('contact', 'PengunjungController@contact')->name('pengunjung.contact');
+Route::post('feedback', 'PengunjungController@feedback')->name('pengunjung.feedback');
+
+Route::get('profil', 'PengunjungController@profil')->name('pengunjung.profil');
+Route::get('ubahprofil/{customer}', 'PengunjungController@ubahProfil')->name('pengunjung.ubahprofil');
+Route::put('simpanprofil/{customer}', 'PengunjungController@simpanProfil')->name('pengunjung.simpanprofil');
+Route::get('ubahpassword/{customer}', 'PengunjungController@ubahPassword')->name('pengunjung.ubahpassword');
+Route::put('simpanpassword/{customer}', 'PengunjungController@simpanPassword')->name('pengunjung.simpanpassword');
+Route::post('chat', 'PengunjungController@chat')->name('pengunjung.chat');

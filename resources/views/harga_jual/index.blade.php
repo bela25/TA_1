@@ -31,7 +31,7 @@
         <tbody>
         @foreach($harga_juals as $harga_jual)
          <tr>
-            <td>{{$harga_jual->hargajual_cash}}</td>
+            <td>{{$harga_jual->formatUang($harga_jual->hargajual_cash)}}</td>
             <td>{{$harga_jual->tgl_awal}}</td>
             <td>{{$harga_jual->tgl_akhir}}</td>
             <td><a href="{{route('tipe_units.index')}}">{{$harga_jual->tipes->nama}}</a></td>

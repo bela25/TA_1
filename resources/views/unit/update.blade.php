@@ -12,7 +12,8 @@
     </div>
     <div class="form-group">
       <label>Status</label>
-      <div class="custom-control custom-radio">
+      <input type="text" class="form-control" id="status" placeholder="Isi Unit" name="customRadio" value="{{$unit->status}}" readonly>
+      <!-- <div class="custom-control custom-radio">
         @if($unit->status == 'terjual')
         <input class="custom-control-input" type="radio" id="terjual" name="customRadio" value="terjual" checked>
         @else
@@ -35,7 +36,7 @@
         <input class="custom-control-input" type="radio" id="terbooking" name="customRadio" value="booking">
         @endif
         <label for="terbooking" class="custom-control-label">Terbooking</label>
-      </div>
+      </div> -->
     </div>
     <div class="form-group">
       <label for="lantai">Lantai</label>
@@ -53,7 +54,7 @@
       <label>Tower</label>
       <select name="tower" class="form-control select2" style="width: 100%;" required>
         @foreach($tower as $towers)
-          <option value="{{$towers->id_tower}}">{{$towers->nama}}</option>
+          <option value="{{$towers->id_tower}}">{{$towers->nama}} - {{$towers->lokasis->nama_apartemen}}</option>
         @endforeach
       </select>
     </div>

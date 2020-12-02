@@ -2,7 +2,7 @@
 
 
 @section('content')
-<div id="print-area">
+<div>
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -50,7 +50,7 @@
       <button class="btn btn-success screen-area mt-2" onclick="printing()">Print</button>
     </div>
     <div class="card-body">
-      <div class="table-responsive">
+      <div class="table-responsive" id="print-area">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
           @if($tahun != null && $bulan == null)
           <thead>

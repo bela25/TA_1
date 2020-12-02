@@ -51,20 +51,11 @@
         <div class="card shadow mb-4">
           <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Data Verifikasi</h6>
-            @if($customer->verifikasi == null)
             <a href="{{ route('verifikasis.create')}}" class="btn btn-primary ">
-              Isi Data
+              Tambah Data
             </a>
-            @else
-            <a href="{{ route('verifikasis.edit', $customer->verifikasi)}}" class="btn btn-primary ">
-              Ubah Data
-            </a>
-            @endif
           </div>
           <div class="card-body">
-            @if($customer->verifikasi == null)
-            <p>Belum ada data</p>
-            @else
             <div class="table-responsive">
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
@@ -80,23 +71,26 @@
                 </thead>
 
                 <tbody>
-                 <tr>
-                    <td>{{$customer->verifikasi->tanggal}}</td>
-                    <td>{{$customer->verifikasi->status}}</td>
-                    <td><a href="{{asset($customer->verifikasi->ktp)}}" target="_blank">{{$customer->verifikasi->ktp}}</a></td>
-                    <td><a href="{{asset($customer->verifikasi->kk)}}" target="_blank">{{$customer->verifikasi->kk}}</a></td>
-                    <td><a href="{{asset($customer->verifikasi->npwp)}}" target="_blank">{{$customer->verifikasi->npwp}}</a></td>
+                  @forelse($customer->verifikasis as $verifikasi)
+                  <tr>
+                    <td>{{$verifikasi->tanggal}}</td>
+                    <td>{{$verifikasi->status}}</td>
+                    <td><a href="{{asset($verifikasi->ktp)}}" target="_blank">{{$verifikasi->ktp}}</a></td>
+                    <td><a href="{{asset($verifikasi->kk)}}" target="_blank">{{$verifikasi->kk}}</a></td>
+                    <td><a href="{{asset($verifikasi->npwp)}}" target="_blank">{{$verifikasi->npwp}}</a></td>
                     <td>
-                      @if($customer->verifikasi->tgl_diterima != null)
-                        <span class="badge badge-success">{{ $customer->verifikasi->tgl_diterima }}</span>
+                      @if($verifikasi->tgl_diterima != null)
+                        <span class="badge badge-success">{{ $verifikasi->tgl_diterima }}</span>
                       @else
                         <span class="badge badge-secondary">Belum diterima</span>
                       @endif
                     </td>
                     <td>
-                      <!-- <a href="{{route('verifikasis.edit',$customer->verifikasi)}}" class="btn btn-primary">Ubah</a> -->
-                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$customer->verifikasi->idverifikasi}}">Hapus</button>
-                      <div class="modal fade" id="delete{{$customer->verifikasi->idverifikasi}}">
+                      @if($verifikasi->tgl_diterima == null)
+                      <!-- <a href="{{route('verifikasis.edit',$verifikasi)}}" class="btn btn-primary">Ubah</a> -->
+                      <a href="{{ route('verifikasis.edit', $customer->verifikasi)}}" class="btn btn-primary">Ubah Data</a>
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$verifikasi->idverifikasi}}">Hapus</button>
+                      <div class="modal fade" id="delete{{$verifikasi->idverifikasi}}">
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -107,7 +101,7 @@
                             </div>
                             <div class="modal-body">
                               <p>Data ini akan dihapus secara permanen, Anda yakin untuk menghapus?&hellip;</p>
-                               <form role="form" action="{{route('verifikasis.destroy',$customer->verifikasi)}}" method="post" id="hapus{{$customer->verifikasi->idverifikasi}}">
+                               <form role="form" action="{{route('verifikasis.destroy',$verifikasi)}}" method="post" id="hapus{{$verifikasi->idverifikasi}}">
                                 {{csrf_field()}}
                                 {{method_field('delete')}}
                                 <!-- /.card-body -->
@@ -115,20 +109,25 @@
                             </div>
                             <div class="modal-footer justify-content-between">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                              <button type="submit" class="btn btn-danger" form="hapus{{$customer->verifikasi->idverifikasi}}">Hapus</button>
+                              <button type="submit" class="btn btn-danger" form="hapus{{$verifikasi->idverifikasi}}">Hapus</button>
                             </div>
                           </div>
                           <!-- /.modal-content -->
                         </div>
                         <!-- /.modal-dialog -->
                       </div>
+                      @endif
                     </td>
                   </tr>
+                  @empty
+                  <tr>
+                    Belum ada data.
+                  </tr>
+                  @endforelse
 
                 </tbody>
               </table>
             </div>
-            @endif
           </div>
         </div>
       </div>

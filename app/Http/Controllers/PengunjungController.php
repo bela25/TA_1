@@ -173,7 +173,10 @@ class PengunjungController extends Controller
         $pegawais = Pegawai::all();
         $customers = Customer::all();
         $lokasis = Lokasi::all();
-        $chattings = Chatting::where('customer',auth()->user()->customer->idcustomers)->get();
+        $chattings = [];
+        if(auth()->check()){
+            $chattings = Chatting::where('customer',auth()->user()->customer->idcustomers)->get();
+        }
         return view('pengunjung.contact', compact('pegawais','customers','lokasis','chattings'));
     }
 

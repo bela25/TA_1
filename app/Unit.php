@@ -35,7 +35,7 @@ class Unit extends Model
     }
     public function hargaJual()
     {
-        return number_format($this->hargaJualCash(),2,',','.');
+        return 'Rp'.number_format($this->hargaJualCash(),2,',','.');
     }
     
     public function formatUang($nominal)

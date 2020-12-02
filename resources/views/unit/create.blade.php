@@ -1,4 +1,4 @@
-@extends('layouts.master')
+ @extends('layouts.master')
 
 @section('content')
 <!-- form start -->
@@ -25,7 +25,7 @@
       <label>Tower</label>
       <select name="tower" class="form-control select2" style="width: 100%;" required>
         @foreach($tower as $towers)
-          <option value="{{$towers->id_tower}}">{{$towers->nama}}</option>
+          <option value="{{$towers->id_tower}}">{{$towers->nama}} - {{$towers->lokasis->nama_apartemen}}</option>
         @endforeach
       </select>
     </div>

@@ -18,9 +18,9 @@ class Customer extends Authenticatable
     {
     	return $this->hasMany('App\Feedback');
     }
-    public function verifikasi()
+    public function verifikasis()
     {
-        return $this->hasOne('App\Verifikasi','customer','idcustomers');
+        return $this->hasMany('App\Verifikasi','customer','idcustomers');
     }
     public function transaksis()
     {

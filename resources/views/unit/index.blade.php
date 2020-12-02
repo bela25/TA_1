@@ -20,6 +20,7 @@
             <th>Lantai</th>
             <th>Tipe</th>
             <th>Tower</th>
+            <th>Lokasi</th>
             <th>Arah</th>
             <th>Created_at</th>
             <th>Updated_at</th>
@@ -35,6 +36,7 @@
             <td>{{$unit->lantai}}</td>
             <td><a href="{{route('tipe_units.index')}}">{{$unit->tipes->nama}}</a></td>
             <td><a href="{{route('towers.index')}}">{{$unit->towers->nama}}</a></td>
+            <td><a href="{{route('towers.index')}}">{{$unit->towers->lokasis->nama_apartemen}}</a></td>
             <td><a href="{{route('arah_units.index')}}">{{$unit->arahs->pemandangan}}</a></td>
             <td>{{$unit->created_at}}</td>
             <td>{{$unit->updated_at}}</td>

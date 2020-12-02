@@ -113,13 +113,49 @@
 					    				<li class="check"><span class="ion-ios-checkmark-circle"></span>Lantai: {{$unit->lantai}}</li>
 					    				<li class="check"><span class="ion-ios-checkmark-circle"></span>Pemandangan: {{$unit->arahs->pemandangan}}</li>
 					    				<li class="check"><span class="ion-ios-checkmark-circle"></span>Fasilitas: {{$unit->tipes->fasilitas}}</li>
+                      <li class="check"><span class="ion-ios-checkmark-circle"></span>Lokasi: {{$unit->towers->lokasis->nama_apartemen}}</li>
 					    			</ul>
 					    		</div>
 					    	</div>
 					    </div>
 
 					    <div class="tab-pane fade" id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
-					      <p>{{$unit->keterangan}}.</p>
+					      <ul class="features">
+                  @if($unit->towers->lokasis->spesifikasi_bangunan != null)
+                  <li class="check">
+                    <span class="ion-ios-checkmark-circle"></span>
+                    Lantai: {{$unit->towers->lokasis->spesifikasi_bangunan->lantai}}
+                  </li>
+                  <li class="check">
+                    <span class="ion-ios-checkmark-circle"></span>
+                    Dinding: {{$unit->towers->lokasis->spesifikasi_bangunan->dinding}}
+                  </li>
+                  <li class="check">
+                    <span class="ion-ios-checkmark-circle"></span>
+                    Plafon: {{$unit->towers->lokasis->spesifikasi_bangunan->platfon}}
+                  </li>
+                  <li class="check">
+                    <span class="ion-ios-checkmark-circle"></span>
+                    Instalasi Listrik: {{$unit->towers->lokasis->spesifikasi_bangunan->instalasi_listrik}}
+                  </li>
+                  <li class="check">
+                    <span class="ion-ios-checkmark-circle"></span>
+                    Sanitary: {{$unit->towers->lokasis->spesifikasi_bangunan->sanitary}}
+                  </li>
+                  <li class="check">
+                    <span class="ion-ios-checkmark-circle"></span>
+                    Pintu: {{$unit->towers->lokasis->spesifikasi_bangunan->pintu}}
+                  </li>
+                  <li class="check">
+                    <span class="ion-ios-checkmark-circle"></span>
+                    Jendela: {{$unit->towers->lokasis->spesifikasi_bangunan->jendela}}
+                  </li>
+                  <li class="check">
+                    <span class="ion-ios-checkmark-circle"></span>
+                    Air: {{$unit->towers->lokasis->spesifikasi_bangunan->air}}
+                  </li>
+                  @endif
+                </ul>
 					    </div>
 
 					  </div>

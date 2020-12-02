@@ -16,7 +16,7 @@ class CreatePembayaranDPsTable extends Migration
         Schema::create('pembayaran_dps', function (Blueprint $table) {
             $table->increments('id_pembayarandp');
             $table->date('tanggal_bayar');
-            $table->double('nominal',10,2);
+            $table->bigIntegers('nominal');
             $table->string('gambar_bukti');
             $table->unsignedInteger('transaksi');
             $table->foreign('transaksi')->references('id_transaksi')->on('transaksis');

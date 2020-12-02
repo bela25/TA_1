@@ -15,7 +15,7 @@ class PembayaranDP extends Model
     }
     public function nominal()
     {
-        return number_format($this->nominal,2,',','.');
+        return 'Rp'.number_format($this->nominal,2,',','.');
     }
     //
 }

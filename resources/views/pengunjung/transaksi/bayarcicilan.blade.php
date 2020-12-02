@@ -127,7 +127,7 @@
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                               Admin
-                              <span><strong>{{ucfirst($transaksi->pegawais->nama)}}</strong></span>
+                              <span><strong>{{ucfirst($transaksi->pegawais->nama ?? '')}}</strong></span>
                             </li>
                           </ul>
                         </div>

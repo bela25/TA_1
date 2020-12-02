@@ -11,6 +11,11 @@
     </a>
   </div>
   <div class="card-body">
+    @if(session('pesan'))
+      <div class="alert alert-danger" role="alert">
+        {{session('pesan')}}
+      </div>
+    @endif
     <div class="table-responsive">
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
@@ -70,7 +75,7 @@
             @if($transaksi->pegawais == null)
             <!-- <td><a href="{{route('transaksis.pegawai',$transaksi)}}">Tentukan pegawai</a></td> -->
             <td>
-              @if($transaksi->verifikasi == 'diterima' && $transaksi->status == 'aktif')
+              @if($transaksi->verifikasi == 'belum diterima' && $transaksi->status == 'aktif')
               <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#handle{{$transaksi->id_transaksi}}">Tangani</button>
               <div class="modal fade" id="handle{{$transaksi->id_transaksi}}">
                 <div class="modal-dialog">

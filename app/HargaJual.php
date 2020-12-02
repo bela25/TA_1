@@ -20,6 +20,10 @@ class HargaJual extends Model
     {
     	return $this->belongsTo('App\Tower','tower','id_tower');
     }
+    public function formatUang($nominal)
+    {
+        return 'Rp'.number_format($nominal,2,',','.');
+    }
     public function adaTransaksi()
     {
         $jumlah = 0;

@@ -70,35 +70,36 @@
         </form>
         @else
         <div class="alert alert-light w-100" role="alert">
-          <p>Untuk memberikan <strong>Feedback</strong>, Harap login terlebih dahulu.</p>
+          <p>Untuk memberikan <strong>Feedback</strong> dan <strong>Chatting</strong>, Harap login terlebih dahulu.</p>
           <p><a href="{{route('pengunjung.login')}}" class="btn btn-primary py-3 px-5">Login</a></p>
         </div>
         @endif
       </div>
       <div class="col-md-6 align-items-stretch d-flex">
     		<!-- <div id="map" class="bg-white border"></div> -->
+        @if(auth()->check())
         <div class="card w-100">
           <div class="card-header">
             Chat
           </div>
           <div class="card-body overflow-auto" style="height: 240px">
-            @foreach($chattings as $chat)
-            @if($chat->pengirim == 'customer')
-            <div class="alert alert-warning text-right">
-              <small class="float-left">{{$chat->tanggal()}}</small>
-              <strong>{{$chat->customers->nama}}</strong>
-              <br>
-              {{$chat->pesan}}
-            </div>
-            @else
-            <div class="alert alert-secondary">
-              <strong>{{$chat->pegawais->nama}}</strong>
-              <small class="float-right">{{$chat->tanggal()}}</small>
-              <br>
-              {{$chat->pesan}}
-            </div>
-            @endif
-            @endforeach
+              @foreach($chattings as $chat)
+              @if($chat->pengirim == 'customer')
+              <div class="alert alert-warning text-right">
+                <small class="float-left">{{$chat->tanggal()}}</small>
+                <strong>{{$chat->customers->nama}}</strong>
+                <br>
+                {{$chat->pesan}}
+              </div>
+              @else
+              <div class="alert alert-secondary">
+                <strong>{{$chat->pegawais->nama}}</strong>
+                <small class="float-right">{{$chat->tanggal()}}</small>
+                <br>
+                {{$chat->pesan}}
+              </div>
+              @endif
+              @endforeach
           </div>
           <div class="card-footer">
             <form action="{{route('pengunjung.chat')}}" method="post">
@@ -113,6 +114,7 @@
           </div>
         </div>
         <!-- card -->
+        @endif
       </div>
     </div>
   </div>
