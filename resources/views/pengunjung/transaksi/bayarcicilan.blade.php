@@ -23,9 +23,9 @@
   					<div class="text float-left">
 	  					<h2>{{$unit->tipes->nama}} No. {{$unit->no_unit}}</h2>
 	  					<span class="subheading">Tower {{$unit->towers->nama}}</span>
-	  					<p class="price d-inline"><span class="orig-price">Rp{{$unit->hargaJual()}}</span></p>
+	  					<p class="price d-inline"><span class="orig-price">{{$unit->hargaJual()}}</span></p>
               @if($transaksi != null)
-                <p>Verifikasi: 
+                <p>Verifikasi Pembelian: 
                   @if($transaksi->verifikasi == 'belum diterima')
                   <span class="badge badge-warning">{{$transaksi->verifikasi}}</span>
                   @else
@@ -92,6 +92,10 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
+                      @if($pembayaran_cicilan->verifikasi == 'diterima')
+                      <p>
+                        Status pembayaran cicilan anda : <span class="badge badge-success">{{ $pembayaran_cicilan->verifikasi }}</span>
+                      </p>
                       <p>
                         Tanda Terima Cicilan
                         <button class="btn btn-success" onclick="printing()">Print</button>
@@ -132,6 +136,15 @@
                           </ul>
                         </div>
                       </div>
+                      @elseif($pembayaran_cicilan->verifikasi == 'tidak diterima')
+                      <p>
+                        Status pembayaran cicilan anda : <span class="badge badge-danger">{{ $pembayaran_cicilan->verifikasi }}</span>
+                      </p>
+                      @else
+                      <p>
+                        Status pembayaran cicilan anda : <span class="badge badge-warning">{{ $pembayaran_cicilan->verifikasi }}</span>
+                      </p>
+                      @endif
                     @endif
 					    		</div>
 					    	</div>

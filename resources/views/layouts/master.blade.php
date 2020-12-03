@@ -114,7 +114,7 @@
             <h6 class="collapse-header">Menu Transaksi:</h6>
             <a class="collapse-item" href="{{route('transaksis.index')}}">Pembelian</a>
             <a class="collapse-item" href="{{route('cicilans.index')}}">Cicilan</a>
-             <a class="collapse-item" href="{{route('pembatalans.index')}}">Pembatalan</a>
+            <a class="collapse-item" href="{{route('pembatalans.index')}}">Pembatalan</a>
           </div>
         </div>
       </li>
@@ -135,6 +135,8 @@
           </div>
         </div>
       </li>
+
+      @if(auth()->user()->pegawai != null && auth()->user()->pegawai->jabatan == 'admin')
        <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -163,6 +165,7 @@
           </div>
         </div>
       </li>
+      @endif
 
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -310,6 +313,7 @@
     // Call the dataTables jQuery plugin
     $(document).ready(function() {
       $('#dataTable').DataTable();
+      $('.dataTable').DataTable();
 
       $('#tgllahir').datetimepicker({
         format: 'Y-MM-DD'

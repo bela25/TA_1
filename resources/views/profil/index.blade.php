@@ -6,9 +6,11 @@
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">DataTables Profil</h6>
+    @if(auth()->user()->pegawai->jabatan == 'admin')
     <a href="{{ route('profils.create')}}" class="btn btn-primary ">
       <i class="fas fa-plus-square"></i> Tambah
     </a>
+    @endif
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -37,6 +39,7 @@
             <td>{{$profil->created_at}}</td>
             <td>{{$profil->updated_at}}</td>
             <td>
+              @if(auth()->user()->pegawai->jabatan == 'admin')
               <a href="{{route('profils.edit',$profil)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$profil->idprofil}}">Hapus</button>
               <div class="modal fade" id="delete{{$profil->idprofil}}">
@@ -66,6 +69,7 @@
                 </div>
                 <!-- /.modal-dialog -->
               </div>
+              @endif
             </td>
           </tr>
           @endforeach

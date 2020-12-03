@@ -23,7 +23,7 @@
   					<div class="text float-left">
 	  					<h2>{{$unit->tipes->nama}} No. {{$unit->no_unit}}</h2>
 	  					<span class="subheading">Tower {{$unit->towers->nama}}</span>
-	  					<p class="price d-inline"><span class="orig-price">Rp{{$unit->hargaJual()}}</span></p>
+	  					<p class="price d-inline"><span class="orig-price">{{$unit->hargaJual()}}</span></p>
   					</div>
             <div class="float-right">
               <a href="{{route('pengunjung.booking',$unit)}}" class="btn btn-secondary py-3 px-5">Kembali</a>
@@ -83,8 +83,8 @@
 					    	<div class="row">
 					    		<div class="col-md-12">
 					    			<p>Pembayaran DP dapat dikirim ke rekening bank BCA <strong>088xxxxxx</strong> a.n <strong>Nabila</strong></p>
-                    <p>Harga Jual: <strong>Rp{{$unit->hargaJual()}}</strong></p>
-                    <p>Nominal DP: <strong>Rp{{$unit->formatUang($unit->dp())}}</strong> (20% dari Harga Jual)</p>
+                    <p>Harga Jual: <strong>{{$unit->hargaJual()}}</strong></p>
+                    <p>Nominal DP: <strong>{{$unit->formatUang($unit->dp())}}</strong> (20% dari Harga Jual)</p>
 
                     @if($pembayaranDP == null)
   					    			<form action="{{route('pembayaran_dps.store')}}" method="post" class="bg-light p-5 contact-form" enctype="multipart/form-data">
@@ -113,6 +113,10 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
+                      @if($pembayaranDP->verifikasi == 'diterima')
+                      <p>
+                        Status pembayaran DP anda : <span class="badge badge-success">{{ $pembayaranDP->verifikasi }}</span>
+                      </p>
                       <p>
                         Tanda Terima DP
                         <button class="btn btn-success" onclick="printing()">Print</button>
@@ -181,6 +185,15 @@
                           <input type="submit" value="Upload" class="btn btn-primary py-3 px-5">
                         </div>
                       </form> -->
+                      @elseif($pembayaranDP->verifikasi == 'tidak diterima')
+                      <p>
+                        Status pembayaran DP anda : <span class="badge badge-danger">{{ $pembayaranDP->verifikasi }}</span>
+                      </p>
+                      @else
+                      <p>
+                        Status pembayaran DP anda : <span class="badge badge-warning">{{ $pembayaranDP->verifikasi }}</span>
+                      </p>
+                      @endif
                     @endif
 					    		</div>
 					    	</div>

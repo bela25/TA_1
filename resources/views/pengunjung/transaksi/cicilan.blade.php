@@ -69,6 +69,7 @@
                         <th>Tenggat Waktu</th>
                         <th>Tanggal Pembayaran</th>
                         <th>Bukti</th>
+                        <th>Verifikasi Pembayaran</th>
                         <th>Interaksi</th>
                       </tr>
                     </thead>
@@ -91,6 +92,19 @@
                           <span class="badge badge-secondary">Belum bayar</span>
                           @else
                           <a href="{{asset($pembayaran_cicilan->gambar_bukticicilan)}}" target="_blank">{{$pembayaran_cicilan->gambar_bukticicilan}}</a>
+                          @endif
+                        </td>
+                        <td>
+                          @if($pembayaran_cicilan->gambar_bukticicilan != null)
+                            @if($pembayaran_cicilan->verifikasi == 'diterima')
+                            <span class="badge badge-success">diterima</span>
+                            @elseif($pembayaran_cicilan->verifikasi == 'tidak diterima')
+                            <span class="badge badge-danger">tidak diterima</span>
+                            @else
+                            <span class="badge badge-warning">diproses</span>
+                            @endif
+                          @else
+                            <span class="badge badge-secondary">Belum bayar</span>
                           @endif
                         </td>
                         <td>

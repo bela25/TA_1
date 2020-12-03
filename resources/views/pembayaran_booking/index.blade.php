@@ -5,8 +5,8 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">DataTables Pembayaran DP</h6>
-    <a href="{{ route('pembayaran_dps.create')}}" class="btn btn-primary ">
+    <h6 class="m-0 font-weight-bold text-primary">DataTables Pembayaran Booking</h6>
+    <a href="{{ route('pembayaran_bookings.create')}}" class="btn btn-primary ">
       <i class="fas fa-plus-square"></i> Tambah
     </a>
   </div>
@@ -15,7 +15,7 @@
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
           <tr>
-            <th>Customer</th>
+            <th>ID Transaksi</th>
             <th>Tanggal Pembayaran</th>
             <th>Nominal</th>
             <th>Bukti</th>
@@ -25,25 +25,26 @@
         </thead>
 
         <tbody>
-          @foreach($pembayaran_dps as $pembayaran_dp)
+          @foreach($pembayaran_bookings as $pembayaran_booking)
           <tr>
-            <td><a href="{{route('transaksis.index')}}">{{$pembayaran_dp->transaksis->customers->nama}}</a></td>
-            <td>{{$pembayaran_dp->tanggal_bayar}}</td>
-            <td>{{$pembayaran_dp->nominal()}}</td>
-            <td><a href="{{asset($pembayaran_dp->gambar_bukti)}}" target="_blank">{{$pembayaran_dp->gambar_bukti}}</a></td>
+            <td><a href="{{route('transaksis.index')}}">{{$pembayaran_booking->transaksis->id_transaksi}}</a></td>
+            <td>{{$pembayaran_booking->tanggal_bayar}}</td>
+            <td>{{$pembayaran_booking->formatUang($pembayaran_booking->nominal)}}</td>
+            <td>{{$pembayaran_booking->gambar_bukti}}</td>
             <td>
-              @if($pembayaran_dp->verifikasi == 'diterima')
+              @if($pembayaran_booking->verifikasi == 'diterima')
               <span class="badge badge-success">diterima</span>
-              @elseif($pembayaran_dp->verifikasi == 'diterima')
+              @elseif($pembayaran_booking->verifikasi == 'diterima')
               <span class="badge badge-danger">tidak diterima</span>
               @else
               <span class="badge badge-warning">diproses</span>
               @endif
             </td>
             <td>
-              <a href="{{route('pembayaran_dps.edit',$pembayaran_dp)}}" class="btn btn-primary">Ubah</a>
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$pembayaran_dp->id_pembayarandp}}">Hapus</button>
-              <div class="modal fade" id="delete{{$pembayaran_dp->id_pembayarandp}}">
+              @if($pembayaran_booking->gambar_bukti == null)
+              <a href="{{route('pembayaran_bookings.edit',$pembayaran_booking)}}" class="btn btn-primary">Ubah</a>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$pembayaran_booking->id_pembayaranbooking}}">Hapus</button>
+              <div class="modal fade" id="delete{{$pembayaran_booking->id_pembayaranbooking}}">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -54,7 +55,7 @@
                     </div>
                     <div class="modal-body">
                       <p>Data ini akan dihapus secara permanen, Anda yakin untuk menghapus?&hellip;</p>
-                       <form role="form" action="{{route('pembayaran_dps.destroy',$pembayaran_dp)}}" method="post" id="hapus{{$pembayaran_dp->id_pembayarancicilan}}">
+                       <form role="form" action="{{route('pembayaran_bookings.destroy',$pembayaran_booking)}}" method="post" id="hapus{{$pembayaran_booking->id_pembayaranbooking}}">
                         {{csrf_field()}}
                         {{method_field('delete')}}
                         
@@ -63,13 +64,14 @@
                     </div>
                     <div class="modal-footer justify-content-between">
                       <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                      <button type="submit" class="btn btn-primary" form="hapus{{$pembayaran_dp->id_pembayarandp}}">Yes</button>
+                      <button type="submit" class="btn btn-primary" form="hapus{{$pembayaran_booking->id_pembayaranbooking}}">Yes</button>
                     </div>
                   </div>
                   <!-- /.modal-content -->
                 </div>
                 <!-- /.modal-dialog -->
               </div>
+              @endif
             </td>
           </tr>
           @endforeach

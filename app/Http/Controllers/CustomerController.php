@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Transaksi;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -15,6 +16,20 @@ class CustomerController extends Controller
     public function index()
     {
         $customers=Customer::all();
+        if(auth()->user()->pegawai->jabatan == 'marketing')
+        {
+            $customers=$customers->filter(function($item,$key) {
+                $transaksi = Transaksi::where('customer',$item->idcustomers)->where('pegawai',auth()->user()->pegawai->nip)->count();
+                if($transaksi > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            });
+        }
         return view('customer.index',compact('customers'));
         //
     }

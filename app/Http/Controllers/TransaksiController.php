@@ -27,6 +27,7 @@ class TransaksiController extends Controller
         $transaksis = Transaksi::all()->filter(function ($item, $key) use($pegawai) {
             return in_array($item->lokasi()->idlokasi, $pegawai->lokasipegawais->pluck('lokasi')->toArray());
         });
+        // dd($transaksis[1]->customers->verifikasis->last()->tgl_diterima);
         // $transaksis = $pegawai->transaksis;
         return view('transaksi.index',compact('transaksis','pegawai'));
         //
@@ -92,11 +93,13 @@ class TransaksiController extends Controller
     public function show(Transaksi $transaksi)
     {
         $pembayaran_dp=$transaksi->pembayarandps;
-        if($pembayaran_dp == null)
-        {
-            return redirect('transaksis')->with('pesan', 'Belum ada pembayaran DP');
-        }
-        return view('transaksi.show', compact('transaksi','pembayaran_dp'));
+        $pembayaran_booking=$transaksi->pembayaranbookings;
+        $cicilan=$transaksi->cicilans;
+        // if($pembayaran_dp == null)
+        // {
+        //     return redirect('transaksis')->with('pesan', 'Belum ada pembayaran DP');
+        // }
+        return view('transaksi.show', compact('transaksi','pembayaran_dp','pembayaran_booking','cicilan'));
     }
 
     /**

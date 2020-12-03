@@ -42,6 +42,11 @@ Route::middleware('auth')->group(function () {
 	Route::resource('spesifikasi_bangunans','SpesifikasiBangunanController');
 	Route::resource('units','UnitController');
 
+	// verifikasi pembayaran
+	Route::put('pembayaran_bookings/{pembayaranBooking}/verifikasi', 'PembayaranBookingController@verifikasi')->name('pembayaran_bookings.verifikasi');
+	Route::put('pembayaran_cicilans/{pembayaranCicilan}/verifikasi', 'PembayaranCicilanController@verifikasi')->name('pembayaran_cicilans.verifikasi');
+	Route::put('pembayaran_dps/{pembayaranDp}/verifikasi', 'PembayaranDpController@verifikasi')->name('pembayaran_dps.verifikasi');
+
 	Route::put('verifikasis/{verifikasi}/verifikasi','VerifikasiController@verifikasi')->name('verifikasis.verifikasi');
 	Route::resource('verifikasis','VerifikasiController');
 	Route::get('pembatalans/{pembatalan}/uploadbukti','PembatalanController@uploadBukti')->name('pembatalans.upload');

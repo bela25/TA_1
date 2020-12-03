@@ -131,4 +131,11 @@ class PembayaranBookingController extends Controller
         return redirect('pembayaran_bookings');
         //
     }
+
+    public function verifikasi(Request $request, PembayaranBooking $pembayaranBooking)
+    {
+        $pembayaranBooking->verifikasi = $request->verifikasi;
+        $pembayaranBooking->save();
+        return redirect('transaksis/'.$pembayaranBooking->transaksis->id_transaksi);
+    }
 }

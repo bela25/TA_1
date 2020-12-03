@@ -40,7 +40,7 @@ class Unit extends Model
     
     public function formatUang($nominal)
     {
-        return number_format($nominal,2,',','.');
+        return 'Rp'.number_format($nominal,2,',','.');
     }
     public function dp()
     {

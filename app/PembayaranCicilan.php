@@ -21,6 +21,10 @@ class PembayaranCicilan extends Model
     {
         return Carbon::parse($this->tanggal_bayar)->year;
     }
+    public function nominal()
+    {
+        return 'Rp'.number_format($this->nominal,2,',','.');
+    }
     public function formatUang($nominal)
     {
         return number_format($nominal,2,',','.');

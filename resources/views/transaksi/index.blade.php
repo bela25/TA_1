@@ -40,10 +40,10 @@
           <tr>
             <td><a href="{{ route('customers.show', $transaksi->customers) }}">{{$transaksi->customers->nama}}</a></td>
             <td>
-              @if($transaksi->customers->verifikasi == null)
-                <span class="badge badge-secondary">Belum diverifikasi</span>
+              @if($transaksi->customers->verifikasis->count() > 0 && $transaksi->customers->verifikasis->last()->tgl_diterima != null)
+                <span class="badge badge-success">{{ $transaksi->customers->verifikasis->last()->tgl_diterima }}</span>
               @else
-                <span class="badge badge-success">{{ $transaksi->customers->verifikasi->tgl_diterima }}</span>
+                <span class="badge badge-secondary">Belum diverifikasi</span>
               @endif
             </td>
             <td><a href="">{{$transaksi->units->nama()}}</a></td>

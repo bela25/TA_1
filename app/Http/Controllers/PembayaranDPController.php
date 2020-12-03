@@ -50,11 +50,18 @@ class PembayaranDPController extends Controller
             $post ->nominal = $request->get('nominal');
             $post ->transaksi = $request->get('transaksi');
             // upload bukti
-            $file = $request->file('bukti');
-            $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
-            $post ->gambar_bukti= $nama_gambar;
-            $post->save();
-            request()->session()->flash('pesan','Bukti pembayaran DP tersimpan');
+            if(isset($request->bukti))
+            {
+                $file = $request->file('bukti');
+                $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
+                $post ->gambar_bukti= $nama_gambar;
+                $post->save();
+                request()->session()->flash('pesan','Bukti pembayaran DP tersimpan');
+            }
+            else
+            {
+                request()->session()->flash('pesan','Anda belum memilih gambar');
+            }
         }
         else
         {
@@ -132,5 +139,12 @@ class PembayaranDPController extends Controller
         $pembayaran_dp->delete();
         return redirect('pembayaran_dps');
         //
+    }
+
+    public function verifikasi(Request $request, PembayaranDp $pembayaranDp)
+    {
+        $pembayaranDp->verifikasi = $request->verifikasi;
+        $pembayaranDp->save();
+        return redirect('transaksis/'.$pembayaranDp->transaksis->id_transaksi);
     }
 }

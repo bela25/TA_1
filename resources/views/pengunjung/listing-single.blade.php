@@ -46,9 +46,9 @@
   					<div class="text float-left">
 	  					<h2>{{$unit->tipes->nama}} No. {{$unit->no_unit}}</h2>
 	  					<span class="subheading">Tower {{$unit->towers->nama}}</span>
-  						<p class="price d-inline"><span class="orig-price">Rp{{$unit->hargaJual()}}</span></p>
+  						<p class="price d-inline"><span class="orig-price">{{$unit->hargaJual()}}</span></p>
               @if($customer != null && $customer->unitDimiliki($unit))
-                <p>Verifikasi: 
+                <p>Verifikasi Pembelian: 
                   @if($customer->transaksiUnit($unit)->verifikasi == 'belum diterima')
                     <span class="badge badge-warning">{{$customer->transaksiUnit($unit)->verifikasi}}</span>
                   @elseif($customer->transaksiUnit($unit)->verifikasi == 'tidak diterima')

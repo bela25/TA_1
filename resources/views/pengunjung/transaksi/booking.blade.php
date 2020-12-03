@@ -23,9 +23,9 @@
   					<div class="text float-left">
 	  					<h2>{{$unit->tipes->nama}} No. {{$unit->no_unit}}</h2>
 	  					<span class="subheading">Tower {{$unit->towers->nama}}</span>
-	  					<p class="price d-inline"><span class="orig-price">Rp{{$unit->hargaJual()}}</span></p>
+	  					<p class="price d-inline"><span class="orig-price">{{$unit->hargaJual()}}</span></p>
               @if($transaksi != null)
-                <p>Verifikasi: 
+                <p>Verifikasi Pembelian: 
                   @if($transaksi->verifikasi == 'belum diterima')
                     <span class="badge badge-warning">{{$transaksi->verifikasi}}</span>
                   @elseif($customer->transaksiUnit($unit)->verifikasi == 'tidak diterima')
@@ -33,10 +33,10 @@
                     <p>Transaksi Anda tidak diterima karena Unit ini sudah di-booking orang lain</p>
                   @else
                     <span class="badge badge-success">{{$transaksi->verifikasi}}</span>
-                    @if($transaksi->pembayarandps == null)
+                    @if($transaksi->pembayarandps == null && $transaksi->pembayaranbookings != null && $transaksi->pembayaranbookings->verifikasi == 'diterima')
                       <p>Transaksi Anda telah diverifikasi. Silahkan melakukan pembayaran DP</p>
                       <a href="{{route('pengunjung.dp',$unit)}}" class="btn btn-primary py-3 px-5">Bayar DP</a>
-                    @else
+                    @elseif($transaksi->pembayarandps != null)
                       <p>Transaksi Anda telah diverifikasi. Anda sudah membayar DP</p>
                       <a href="{{route('pengunjung.dp',$unit)}}" class="btn btn-primary py-3 px-5">Lihat Tanda Terima DP</a>
                     @endif
@@ -89,8 +89,8 @@
 					    	<div class="row">
 					    		<div class="col-md-12">
 					    			<p>Pembayaran Booking dapat dikirim ke rekening bank BCA <strong>088xxxxxx</strong> a.n <strong>Nabila</strong></p>
-                    <p>Harga Jual: <strong>Rp{{$unit->hargaJual()}}</strong></p>
-                    <p>Nominal Booking: <strong>Rp{{$unit->formatUang($unit->booking())}}</strong> (1% dari Harga Jual)</p>
+                    <p>Harga Jual: <strong>{{$unit->hargaJual()}}</strong></p>
+                    <p>Nominal Booking: <strong>{{$unit->formatUang($unit->booking())}}</strong> (1% dari Harga Jual)</p>
 
                     @if($pembayaranBooking == null)
   					    			<form action="{{route('pembayaran_bookings.store')}}" method="post" class="bg-light p-5 contact-form" enctype="multipart/form-data">
@@ -119,6 +119,10 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
+                      @if($pembayaranBooking->verifikasi == 'diterima')
+                      <p>
+                        Status pembayaran booking anda : <span class="badge badge-success">{{ $pembayaranBooking->verifikasi }}</span>
+                      </p>
                       <p>
                         Tanda Terima Booking
                         <button class="btn btn-success" onclick="printing()">Print</button>
@@ -172,6 +176,15 @@
                           <input type="submit" value="Upload" class="btn btn-primary py-3 px-5">
                         </div>
                       </form> -->
+                      @elseif($pembayaranBooking->verifikasi == 'tidak diterima')
+                      <p>
+                        Status pembayaran booking anda : <span class="badge badge-danger">{{ $pembayaranBooking->verifikasi }}</span>
+                      </p>
+                      @else
+                      <p>
+                        Status pembayaran booking anda : <span class="badge badge-warning">{{ $pembayaranBooking->verifikasi }}</span>
+                      </p>
+                      @endif
                     @endif
 					    		</div>
 					    	</div>

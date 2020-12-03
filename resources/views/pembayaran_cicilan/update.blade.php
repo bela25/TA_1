@@ -6,19 +6,15 @@
   {{csrf_field()}}
   {{method_field('put')}}
   <div class="card-body">
+    <input type="hidden" name="transaksi" value="{{$pembayaranCicilan->cicilans->transaksis->id_transaksi}}">
     <div class="form-group">
+      <label>Transaksi</label>
+      <input type="text" name="transaksi_name" value="{{$pembayaranCicilan->cicilans->transaksis->nama()}}" class="form-control" readonly>
+    </div>
+    <!-- <div class="form-group">
       <label>Kode Cicilan</label>
       <input type="text" class="form-control" id="kodecicilan" placeholder="Isi cicilan ke" name="kodecicilan" value="{{$pembayaranCicilan->cicilan}}" required readonly>
-      <!-- <select name="kodecicilan" class="form-control select2" style="width: 100%;" required>
-        @foreach($cicilan as $cicilans)
-          @if($cicilans->id_cicilan == $pembayaranCicilan->cicilan)
-            <option value="{{$cicilans->id_cicilan}}" selected>{{$cicilans->id_cicilan}}</option>
-          @else
-            <option value="{{$cicilans->id_cicilan}}">{{$cicilans->id_cicilan}}</option>
-          @endif
-        @endforeach
-      </select> -->
-    </div>
+    </div> -->
     <div class="form-group">
       <label for="cicilan_ke">Cicilan ke-</label>
       <input type="number" class="form-control" id="cicilan_ke" placeholder="Isi cicilan ke" name="cicilan_ke" min="0" step="1" value="{{$pembayaranCicilan->cicilan_ke}}" required readonly>
@@ -31,7 +27,7 @@
       <label>Tenggat Waktu</label>
 
       <div class="input-group date" id="tglakhir" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tenggat_waktu" required>
+        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tenggat_waktu" required value="{{$pembayaranCicilan->tenggat_waktu}}">
         <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>

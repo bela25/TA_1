@@ -20,6 +20,7 @@
             <th>Tanggal Pembayaran</th>
             <th>Harga Cicilan</th>
             <th>Bukti</th>
+            <th>Verifikasi</th>
             <th>Interaksi</th>
           </tr>
         </thead>
@@ -32,6 +33,15 @@
             <td>{{$pembayaran_cicilan->tanggal_bayar}}</td>
             <td>{{$pembayaran_cicilan->nominal}}</td>
             <td>{{$pembayaran_cicilan->gambar_bukticicilan}}</td>
+            <td>
+              @if($pembayaran_cicilan->verifikasi == 'diterima')
+              <span class="badge badge-success">diterima</span>
+              @elseif($pembayaran_cicilan->verifikasi == 'diterima')
+              <span class="badge badge-danger">tidak diterima</span>
+              @else
+              <span class="badge badge-warning">diproses</span>
+              @endif
+            </td>
             <td>
               @if($pembayaran_cicilan->gambar_bukticicilan == null)
               <a href="{{route('pembayaran_cicilans.edit',$pembayaran_cicilan)}}" class="btn btn-primary">Ubah</a>
