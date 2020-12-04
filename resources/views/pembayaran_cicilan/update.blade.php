@@ -21,7 +21,7 @@
     </div>
     <div class="form-group">
       <label>Nominal</label>
-      <input type="number" class="form-control" placeholder="Isi nominal" name="nominal" min="0" step="100000000" value="{{$pembayaranCicilan->nominal}}" required>
+      <input type="number" class="form-control" placeholder="Isi nominal" name="nominal" min="0" value="{{$pembayaranCicilan->nominal}}" required>
     </div>
     <div class="form-group">
       <label>Tenggat Waktu</label>

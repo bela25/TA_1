@@ -5,9 +5,9 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">DataTables Transaksi</h6>
-    <a href="{{ route('transaksis.create')}}" class="btn btn-primary ">
-      <i class="fas fa-plus-square"></i> Tambah
+    <h6 class="m-0 font-weight-bold text-primary">Transaksi</h6>
+   <!-- <a href="{{ route('transaksis.create')}}" class="btn btn-primary ">
+      <i class="fas fa-plus-square"></i>Tambah -->
     </a>
   </div>
   <div class="card-body">
@@ -97,7 +97,7 @@
                         </div>
                         <div class="form-group">
                           <label>Komisi</label>
-                          <input type="text" name="komisi" class="form-control" value="Rp{{$transaksi->units->formatUang($transaksi->units->komisi())}}" readonly>
+                          <input type="text" name="komisi" class="form-control" value="{{$transaksi->units->formatUang($transaksi->units->komisi())}}" readonly>
                         </div>
                         <!-- /.card-body -->
                       </form>
@@ -131,7 +131,7 @@
                       <p class="text-primary">{{$pegawai->nip}} - {{$pegawai->nama}}</p>
                       <h5>
                         <span class="badge badge-success">
-                          Rp{{$transaksi->formatUang($transaksi->komisipegawai->bonus)}}
+                          {{$transaksi->formatUang($transaksi->komisipegawai->bonus)}}
                         </span>
                       </h5>
                     </div>

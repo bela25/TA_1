@@ -5,7 +5,7 @@
 <!-- Booking -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">DataTables Pembayaran Booking</h6>
+    <h6 class="m-0 font-weight-bold text-primary">Pembayaran Booking</h6>
     <!-- <a href="{{ route('pembayaran_bookings.create')}}" class="btn btn-primary ">
       <i class="fas fa-plus-square"></i> Tambah
     </a> -->
@@ -146,7 +146,7 @@
 <!-- DataTales DP -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">DataTables Pembayaran DP</h6>
+    <h6 class="m-0 font-weight-bold text-primary">Pembayaran DP</h6>
     <!-- <a href="{{ route('pembayaran_dps.create')}}" class="btn btn-primary ">
       <i class="fas fa-plus-square"></i> Tambah
     </a> -->
@@ -286,7 +286,7 @@
 <!-- DataTales Cicilan -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">DataTables Pembayaran Cicilan</h6>
+    <h6 class="m-0 font-weight-bold text-primary">Pembayaran Cicilan</h6>
     <form method="get" action="{{ route('pembayaran_cicilans.create') }}">
       <input type="hidden" name="transaksi" value="{{$transaksi->id_transaksi}}">
       <button type="submit" class="btn btn-primary"><i class="fas fa-plus-square"></i> Tambah</button>

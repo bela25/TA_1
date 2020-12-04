@@ -84,6 +84,7 @@
 					    		<div class="col-md-12">
 					    			<p>Pembayaran DP dapat dikirim ke rekening bank BCA <strong>088xxxxxx</strong> a.n <strong>Nabila</strong></p>
                     <p>Harga Jual: <strong>{{$unit->hargaJual()}}</strong></p>
+                     <p> Jika dalam waktu 7x24 jam Anda tidak membayar, maka otomatis unit Anda akan dijual kembali </p>
                     <p>Nominal DP: <strong>{{$unit->formatUang($unit->dp())}}</strong> (20% dari Harga Jual)</p>
 
                     @if($pembayaranDP == null)
@@ -129,7 +130,7 @@
                           <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                               Terima uang muka sebesar
-                              <span><strong>Rp{{$transaksi->pembayarandps->nominal()}}</strong></span>
+                              <span><strong>{{$transaksi->pembayarandps->nominal()}}</strong></span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                               Diterima pada tanggal

@@ -52,7 +52,7 @@
     </div>
     <div class="form-group">
       <label>Nominal</label>
-      <input type="number" class="form-control" placeholder="Isi nominal" name="nominal" min="0" step="100000000" required>
+      <input type="number" class="form-control" placeholder="Isi nominal" name="nominal" min="1000000" required>
     </div>
     <div class="form-group">
       <label>Tenggat Waktu</label>

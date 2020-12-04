@@ -112,7 +112,7 @@
         <div id="collapseTransaksi" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Menu Transaksi:</h6>
-            <a class="collapse-item" href="{{route('transaksis.index')}}">Pembelian</a>
+            <a class="collapse-item" href="{{route('transaksis.index')}}">Penjualan</a>
             <a class="collapse-item" href="{{route('cicilans.index')}}">Cicilan</a>
             <a class="collapse-item" href="{{route('pembatalans.index')}}">Pembatalan</a>
           </div>

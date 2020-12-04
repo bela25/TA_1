@@ -89,6 +89,7 @@
 					    	<div class="row">
 					    		<div class="col-md-12">
 					    			<p>Pembayaran Booking dapat dikirim ke rekening bank BCA <strong>088xxxxxx</strong> a.n <strong>Nabila</strong></p>
+                    <p> Jika dalam waktu 1x24 jam Anda tidak membayar, maka otomatis booking Anda akan dibatalkan </p>
                     <p>Harga Jual: <strong>{{$unit->hargaJual()}}</strong></p>
                     <p>Nominal Booking: <strong>{{$unit->formatUang($unit->booking())}}</strong> (1% dari Harga Jual)</p>
 
@@ -135,6 +136,10 @@
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                               No. Transaksi
                               <span><strong>{{$transaksi->id_transaksi}}</strong></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              Banyaknya uang
+                              <span><strong>{{$pembayaranBooking->nominal($pembayaranBooking->nominal)}}</strong></span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                               Pembeli

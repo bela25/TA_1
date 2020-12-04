@@ -98,6 +98,7 @@ class ProfilController extends Controller
         {
             $profil ->gambar = $request->get('gambar');
         }
+        $profil->save();
         return redirect('profils');
         //
     }

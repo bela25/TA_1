@@ -176,7 +176,7 @@
     				</div> -->
     			</div>
     			<div class="text">
-    				<p class="price mb-3"><!-- <span class="old-price">800,000</span> --><span class="orig-price">Rp{{$unit->hargaJual()}}<small>/mo</small></span></p>
+    				<p class="price mb-3"><!-- <span class="old-price">800,000</span> --><span class="orig-price">{{$unit->hargaJual()}}<small>/mo</small></span></p>
     				<h3 class="mb-0"><a href="{{route('pengunjung.listing.single',$unit)}}">{{$unit->tipes->nama}} No. {{$unit->no_unit}}</a></h3>
     				<span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>Tower {{$unit->towers->nama}}, {{$unit->towers->lokasis->nama_apartemen}}</span>
     				<!-- <ul class="property_list">

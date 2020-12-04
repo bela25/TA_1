@@ -5,7 +5,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">DataTables Profil</h6>
+    <h6 class="m-0 font-weight-bold text-primary">Profil</h6>
     @if(auth()->user()->pegawai->jabatan == 'admin')
     <a href="{{ route('profils.create')}}" class="btn btn-primary ">
       <i class="fas fa-plus-square"></i> Tambah

@@ -111,7 +111,7 @@
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                               Banyaknya uang
-                              <span><strong>Rp{{$pembayaran_cicilan->formatUang($pembayaran_cicilan->nominal)}}</strong></span>
+                              <span><strong>{{$pembayaran_cicilan->formatUang($pembayaran_cicilan->nominal)}}</strong></span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                               Angsuran Ke
