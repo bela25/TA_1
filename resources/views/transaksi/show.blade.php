@@ -2,6 +2,28 @@
 
 
 @section('content')
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Transaksi</h6>
+    <!-- <a href="{{ route('pembayaran_bookings.create')}}" class="btn btn-primary ">
+      <i class="fas fa-plus-square"></i> Tambah
+    </a> -->
+  </div>
+  <div class="card-body">
+    <ul class="list-group">
+      <li class="list-group-item">
+        Unit: {{$transaksi->units->nama()}} - Tower {{$transaksi->units->towers->nama}}, {{$transaksi->units->towers->lokasis->nama_apartemen}}
+      </li>
+      <li class="list-group-item">
+        Customer: {{$transaksi->customers->nama}}
+      </li>
+      <li class="list-group-item">
+        Pegawai: {{$transaksi->pegawais->nama ?? ''}}
+      </li>
+    </ul>
+  </div>
+</div>
+
 <!-- Booking -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
@@ -287,10 +309,12 @@
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">Pembayaran Cicilan</h6>
+    @if($transaksi->status == 'aktif')
     <form method="get" action="{{ route('pembayaran_cicilans.create') }}">
       <input type="hidden" name="transaksi" value="{{$transaksi->id_transaksi}}">
       <button type="submit" class="btn btn-primary"><i class="fas fa-plus-square"></i> Tambah</button>
     </form>
+    @endif
   </div>
   <div class="card-body">
     @if($cicilan != null)
@@ -323,7 +347,7 @@
             <td>{{$pembayaran_cicilan->cicilan_ke}}</td>
             <td>{{$pembayaran_cicilan->nominal()}}</td>
             <td>{{$pembayaran_cicilan->tanggal_bayar}}</td>
-            <td><a href="{{asset($pembayaran_cicilan->gambar_bukti)}}" target="_blank">{{$pembayaran_cicilan->gambar_bukti}}</a></td>
+            <td><a href="{{asset($pembayaran_cicilan->gambar_bukticicilan)}}" target="_blank">{{$pembayaran_cicilan->gambar_bukticicilan}}</a></td>
             <td>{{$pembayaran_cicilan->tenggat_waktu}}</td>
             <td>
               @if($pembayaran_cicilan->gambar_bukticicilan != null)
@@ -438,6 +462,85 @@
     @else
     Belum ada daftar cicilan
     @endif
+  </div>
+</div>
+
+<!-- Pembatalan -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Pembatalan</h6>
+    <!-- <a href="{{ route('pembayaran_bookings.create')}}" class="btn btn-primary ">
+      <i class="fas fa-plus-square"></i> Tambah
+    </a> -->
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Transaksi</th>
+            <th>Customer</th>
+            <th>Alasan</th>
+            <th>Nominal</th>
+            <th>Tanggal Pembatalan</th>
+            <th>Tanggal Pengembalian</th>
+            <th>Bukti</th>
+            <th>Interaksi</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @if(isset($pembatalan))
+          <tr>
+            <td><a href="{{route('transaksis.show', $pembatalan->transaksis)}}">{{$pembatalan->transaksis->id_transaksi}}</a></td>
+            <td><a href="#">{{$pembatalan->transaksis->customers->nama}}</a></td>
+            <td>{{$pembatalan->alasan}}</td>
+            <td>{{$pembatalan->showNominal()}}</td>
+            <td>{{$pembatalan->tanggal_batal}}</td>
+            <td>{{$pembatalan->tgl_pengembalian}}</td>
+            <td>
+              @if($pembatalan->gambar_bukti == null)
+              <a href="{{route('pembatalans.upload',$pembatalan)}}">Upload bukti transfer</a>
+              @else
+              <a href="{{asset($pembatalan->gambar_bukti)}}" target="_blank">{{$pembatalan->gambar_bukti}}</a>
+              @endif
+            </td>
+            <td>
+              @if($pembatalan->gambar_bukti == null)
+              <!-- <a href="{{route('pembatalans.edit',$pembatalan)}}" class="btn btn-primary">Ubah</a>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$pembatalan->id_pembatalan}}">
+               Hapus</button>
+              <div class="modal fade" id="delete{{$pembatalan->id_pembatalan}}">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Peringatan</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Data ini akan dihapus secara permanen, Anda yakin untuk menghapus?&hellip;</p>
+                      <form role="form" action="{{route('pembatalans.destroy',$pembatalan)}}" method="post" id="hapus{{$pembatalan->id_pembatalan}}">
+                        {{csrf_field()}}
+                        {{method_field('delete')}}
+
+                      </form>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                      <button type="submit" class="btn btn-primary" form="hapus{{$pembatalan->id_pembatalan}}">Yes</button>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              @endif
+            </td>
+          </tr>
+          @endif
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 <!-- /.container-fluid -->

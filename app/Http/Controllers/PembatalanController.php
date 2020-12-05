@@ -115,7 +115,8 @@ class PembatalanController extends Controller
             $pembatalan ->gambar_bukti = $nama_gambar;
         }
         $pembatalan->save();
-        return redirect('pembatalans');
+        // return redirect('pembatalans');
+        return redirect()->route('transaksis.show', $pembatalan->transaksis);
         //
     }
 

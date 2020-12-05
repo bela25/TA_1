@@ -36,7 +36,7 @@ class VerifikasiController extends Controller
      */
     public function store(Request $request)
     {
-        $customer=Customer::find(2);
+        $customer=auth()->user()->customer;
 
         $verifikasi= new Verifikasi();
         $verifikasi->customer=$customer->idcustomers;

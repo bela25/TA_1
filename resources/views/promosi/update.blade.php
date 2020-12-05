@@ -8,14 +8,15 @@
   <div class="card-body">
     <div class="form-group">
       <label for="judulpromosi">Judul Promosi</label>
-      <input type="text" class="form-control" id="judulpromosi" placeholder="Isi Judul Promosi" name="judulpromosi"  value="{{$promosi->judul_promosi}}" required>
+      <input type="text" class="form-control" id="judulpromosi" placeholder="Isi Judul Promosi" name="judulpromosi"  value="{{$promosi->judul_promosi}}" required {{ $promosi->sudahBerlaku() ? 'readonly' : '' }}>
     </div>
     <div class="form-group">
       <label>Keterangan</label>
-      <textarea class="form-control" rows="3" placeholder="Keterangan ..." id="keterangan" name="keterangan" required>{{$promosi->keterangan}}</textarea>
+      <textarea class="form-control" rows="3" placeholder="Keterangan ..." id="keterangan" name="keterangan" required {{ $promosi->sudahBerlaku() ? 'readonly' : '' }}>{{$promosi->keterangan}}</textarea>
     </div>
     <div class="form-group">
       <label for="exampleInputFile">Gambar</label>
+      @if(!$promosi->sudahBerlaku())
       <div class="input-group">
         <div class="custom-file">
           <input type="file" class="custom-file-input" id="exampleInputFile" name="gambar" value="{{$promosi->gambar}}">
@@ -25,11 +26,14 @@
           <span class="input-group-text" id="">Upload</span>
         </div>
       </div>
+      @else
+      <img src="{{asset($promosi->gambar)}}" class="img-fluid d-block">
+      @endif
     </div>
     <div class="form-group">
       <label for="tglawal">Tanggal Awal</label>
       <div class="input-group">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" id="tglawal" placeholder="Isi Tanggal Dibuat" name="tglawal" value="{{$promosi->tgl_awal}}" required>
+        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" id="tglawal" placeholder="Isi Tanggal Dibuat" name="tglawal" value="{{$promosi->tgl_awal}}" required {{ $promosi->sudahBerlaku() ? 'readonly' : '' }}>
         <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
@@ -46,7 +50,9 @@
     </div>
     <div class="form-group">
       <label>Admin</label>
-      <select name="admin" class="form-control select2" style="width: 100%;" required>
+      <input type="text" name="admin_name" value="{{$promosi->pegawais->nama}}" class="form-control" readonly>
+      <input type="hidden" name="admin" value="{{$promosi->pegawai}}">
+      <!-- <select name="admin" class="form-control select2" style="width: 100%;" required>
         @foreach($pegawai as $pegawais)
           @if($pegawais->nip == $promosi->pegawai)
           <option value="{{$pegawais->nip}}" selected>{{$pegawais->nama}}</option>
@@ -54,10 +60,14 @@
           <option value="{{$pegawais->nip}}">{{$pegawais->nama}}</option>
           @endif
         @endforeach
-      </select>
+      </select> -->
     </div>
     <div class="form-group">
       <label>Lokasi</label>
+      @if($promosi->sudahBerlaku())
+      <input type="text" name="lokasi_name" value="{{$promosi->lokasis->nama_apartemen}}" class="form-control" readonly>
+      <input type="hidden" name="lokasi" value="{{$promosi->lokasi}}">
+      @else
       <select name="lokasi" class="form-control select2" style="width: 100%;" required>
         @foreach($lokasi as $lokasis)
           @if($lokasis->idlokasi == $promosi->lokasi)
@@ -67,6 +77,7 @@
           @endif
         @endforeach
       </select>
+      @endif
     </div>
   </div>
   <!-- /.card-body -->

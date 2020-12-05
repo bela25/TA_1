@@ -15,6 +15,7 @@
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
           <tr>
+            <th>Transaksi</th>
             <th>Customer</th>
             <th>Alasan</th>
             <th>Nominal</th>
@@ -29,6 +30,7 @@
         <tbody>
           @foreach($pembatalans as $pembatalan)
           <tr>
+            <td><a href="{{route('transaksis.show', $pembatalan->transaksis)}}">{{$pembatalan->transaksis->id_transaksi}}</a></td>
             <td><a href="#">{{$pembatalan->transaksis->customers->nama}}</a></td>
             <td>{{$pembatalan->alasan}}</td>
             <td>{{$pembatalan->showNominal()}}</td>

@@ -19,6 +19,7 @@
             <th>Provinsi</th>
             <th>Kota</th>
             <th>Alamat</th>
+            <th>Latitude Longitude</th>
             <th>Created_at</th>
             <th>Updated_at</th>
             <th>Interaksi</th>
@@ -32,6 +33,7 @@
             <td>{{$lokasi->provinsi}}</td>
             <td>{{$lokasi->kota}}</td>
             <td>{{$lokasi->alamat}}</td>
+            <td>{{$lokasi->latitude}}, {{$lokasi->longitude}}</td>
             <td>{{$lokasi->created_at}}</td>
             <td>{{$lokasi->updated_at}}</td>
             <td>

@@ -19,6 +19,8 @@ class CreateLokasisTable extends Migration
             $table->string('provinsi');
             $table->string('kota');
             $table->string('alamat');
+            $table->double('longitude');
+            $table->double('latitude');
             $table->timestamps();
         });
     }

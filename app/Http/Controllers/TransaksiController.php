@@ -95,11 +95,12 @@ class TransaksiController extends Controller
         $pembayaran_dp=$transaksi->pembayarandps;
         $pembayaran_booking=$transaksi->pembayaranbookings;
         $cicilan=$transaksi->cicilans;
+        $pembatalan=$transaksi->pembatalans;
         // if($pembayaran_dp == null)
         // {
         //     return redirect('transaksis')->with('pesan', 'Belum ada pembayaran DP');
         // }
-        return view('transaksi.show', compact('transaksi','pembayaran_dp','pembayaran_booking','cicilan'));
+        return view('transaksi.show', compact('transaksi','pembayaran_dp','pembayaran_booking','cicilan','pembatalan'));
     }
 
     /**

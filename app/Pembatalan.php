@@ -31,12 +31,13 @@ class Pembatalan extends Model
     }
     public function biayaBatal()
     {
-        $nominal = 0;
-        if($this->transaksis->pembayarandps != null && $this->transaksis->pembayarandps->gambar_bukti != null && $this->transaksis->pembayarandps->verifikasi == 'diterima')
-        {
-            $nominal = $this->transaksis->pembayarandps->nominal;
-        }
-        return $nominal;
+        // $nominal = 0;
+        // if($this->transaksis->pembayarandps != null && $this->transaksis->pembayarandps->gambar_bukti != null && $this->transaksis->pembayarandps->verifikasi == 'diterima')
+        // {
+        //     $nominal = $this->transaksis->pembayarandps->nominal;
+        // }
+        // return $nominal;
+        return $this->nominal() * 20 / 100;
     }
     public function nominal()
     {

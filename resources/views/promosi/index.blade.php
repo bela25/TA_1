@@ -39,7 +39,9 @@
             <td><a href="{{route('lokasis.index')}}">{{$promosi->lokasis->nama_apartemen}}</a></td>
             <td>{{$promosi->updated_at}}</td>
             <td>
+              @if(!$promosi->sudahBerakhir())
               <a href="{{route('promosis.edit',$promosi)}}" class="btn btn-primary">Ubah</a>
+              @endif
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$promosi->idpromosi}}">Hapus</button>
               <div class="modal fade" id="delete{{$promosi->idpromosi}}">
                 <div class="modal-dialog">

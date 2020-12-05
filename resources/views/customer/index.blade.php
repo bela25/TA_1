@@ -31,7 +31,7 @@
         <tbody>
         @foreach($customers as $customer)
         <tr>
-          <td>{{$customer->nama}}</td>
+          <td><a href="{{ route('customers.show', $customer) }}">{{$customer->nama}}</a></td>
           <td>{{$customer->alamat}}</td>
           <td>{{$customer->no_ktp}}</td>
           <td>{{$customer->tgl_lahir}}</td>

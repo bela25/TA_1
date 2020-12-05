@@ -28,7 +28,9 @@
     </div>
     <div class="form-group">
       <label>Admin</label>
-      <select name="admin" class="form-control select2" style="width: 100%;" required>
+      <input type="text" name="admin_name" class="form-control" value="{{$pembatalan->pegawais->nama}}" readonly>
+      <input type="hidden" name="admin" value="{{$pembatalan->pegawais->nip}}">
+      <!-- <select name="admin" class="form-control select2" style="width: 100%;" required>
         @foreach($pegawais as $pegawai)
           @if($pegawai->nip == $pegawai_nip)
           <option value="{{$pegawai->nip}}" selected>{{$pegawai->nama}}</option>
@@ -36,7 +38,7 @@
           <option value="{{$pegawai->nip}}">{{$pegawai->nama}}</option>
           @endif
         @endforeach
-      </select>
+      </select> -->
     </div>
     <div class="form-group">
       <label for="exampleInputFile">Upload Bukti</label>

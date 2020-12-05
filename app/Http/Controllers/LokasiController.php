@@ -43,6 +43,10 @@ class LokasiController extends Controller
         $post ->provinsi = $request->get('namaprovinsi');
         $post ->kota = $request->get('namakota');
         $post ->alamat = $request->get('namaalamat');
+        $koma = strpos(',',$request->latlon);
+        $lat = substr($request->latlon,0,$koma);
+        $lon = substr($request->latlon,$pos);
+        dd($lat);
         $post->save();
         return redirect('lokasis');
         //
@@ -85,6 +89,15 @@ class LokasiController extends Controller
         $lokasi ->provinsi = $request->get('namaprovinsi');
         $lokasi ->kota = $request->get('namakota');
         $lokasi ->alamat = $request->get('namaalamat');
+
+        $tanpaspasi = str_replace(' ', '', $request->latlon);
+        $koma = strpos($tanpaspasi,',');
+        $lat = substr($tanpaspasi,0,$koma);
+        $lon = substr($tanpaspasi,$koma+1);
+
+        $lokasi ->latitude = $lat;
+        $lokasi ->longitude = $lon;
+        // dd($lon);
         $lokasi->save();
         return redirect('lokasis');
         //

@@ -21,6 +21,10 @@
       <label for="namaalamat">Alamat</label>
       <input type="text" class="form-control" id="namaalamat" placeholder="Isi Alamat" name="namaalamat" required>
     </div>
+    <div class="form-group">
+      <label for="latlon">Latitude, Longitude</label>
+      <input type="text" class="form-control" id="lonlat" placeholder="contoh: -7.319951871469308, 112.76722279848939. copy dari google maps" name="lonlat" required>
+    </div>
   </div>
   <!-- /.card-body -->
 

@@ -166,9 +166,14 @@
           </div>
           <div class="text d-flex justify-content-between">
             <div>
-              <p class="price mb-3"><span class="orig-price">Rp{{$transaksi->units->hargaJual()}}</span></p>
+              <p class="price mb-3"><span class="orig-price">{{$transaksi->units->hargaJual()}}</span></p>
               <h3 class="mb-0"><a href="{{route('pengunjung.listing.single',$transaksi->units)}}">{{$transaksi->units->nama()}}</a></h3>
-              <span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>Tower {{$transaksi->units->towers->nama}}</span>
+              <span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>
+                Tower {{$transaksi->units->towers->nama}}, 
+                <a href="{{route('pengunjung.map', $transaksi->units->towers->lokasis)}}">
+                  {{$transaksi->units->towers->lokasis->nama_apartemen}}
+                </a>
+              </span>
               <!-- <ul class="property_list">
                 <li><span class="flaticon-bed"></span>3</li>
                 <li><span class="flaticon-bathtub"></span>2</li>

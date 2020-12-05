@@ -312,5 +312,8 @@ class PengunjungController extends Controller
         return redirect()->route('pengunjung.cicilan',$pembayaranCicilan->cicilans);
     }
 
-    
+    public function map(Lokasi $lokasi)
+    {
+        return view('pengunjung.maps', compact('lokasi'));
+    }
 }

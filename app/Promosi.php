@@ -16,5 +16,13 @@ class Promosi extends Model
     {
     	return $this->belongsTo('App\Lokasi','lokasi','idlokasi');
     }
+    public function sudahBerlaku()
+    {
+        return $this->tgl_awal <= date('Y-m-d');
+    }
+    public function sudahBerakhir()
+    {
+        return $this->tgl_akhir <= date('Y-m-d');
+    }
     //
 }

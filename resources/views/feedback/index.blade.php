@@ -6,9 +6,9 @@
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">Feedback</h6>
-    <a href="{{ route('feedbacks.create')}}" class="btn btn-primary ">
+    <!-- <a href="{{ route('feedbacks.create')}}" class="btn btn-primary ">
       <i class="fas fa-plus-square"></i> TAMBAH
-    </a>
+    </a> -->
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -35,7 +35,7 @@
             <td>{{$feedback->isi}}</td>
             <td>{{$feedback->reply}}</td>
             <td>
-              <a href="{{route('feedbacks.edit',$feedback)}}" class="btn btn-primary">Ubah</a>
+              <!-- <a href="{{route('feedbacks.edit',$feedback)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$feedback->idfeedback}}">Hapus</button>
               <div class="modal fade" id="delete{{$feedback->idfeedback}}">
                 <div class="modal-dialog">
@@ -52,7 +52,6 @@
                         {{csrf_field()}}
                         {{method_field('delete')}}
                         
-                        <!-- /.card-body -->
                       </form>
                     </div>
                     <div class="modal-footer justify-content-between">
@@ -60,10 +59,8 @@
                       <button type="submit" class="btn btn-primary" form="hapus{{$feedback->idfeedback}}">Yes</button>
                     </div>
                   </div>
-                  <!-- /.modal-content -->
                 </div>
-                <!-- /.modal-dialog -->
-              </div>
+              </div> -->
             </td>
           </tr>
           @endforeach
