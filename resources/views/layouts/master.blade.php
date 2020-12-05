@@ -309,6 +309,7 @@
   <!-- Custom scripts for all pages-->
   <script src="{{ asset('admin/js/sb-admin-2.min.js')}}"></script>
   <script src="{{asset('admin/vendor/chart.js/Chart.min.js')}}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
   <script type="text/javascript">
     // Call the dataTables jQuery plugin
     $(document).ready(function() {
@@ -319,6 +320,51 @@
         format: 'Y-MM-DD'
       });
     });
+
+    function NumericInput(inp, locale) {
+      var numericKeys = '0123456789';
+
+      // restricts input to numeric keys 0-9
+      inp.addEventListener('keypress', function(e) {
+        var event = e || window.event;
+        var target = event.target;
+
+        if (event.charCode == 0) {
+          return;
+        }
+
+        if (-1 == numericKeys.indexOf(event.key)) {
+          // Could notify the user that 0-9 is only acceptable input.
+          event.preventDefault();
+          return;
+        }
+      });
+
+      // add the thousands separator when the user blurs
+      inp.addEventListener('blur', function(e) {
+        var event = e || window.event;
+        var target = event.target;
+
+        var tmp = target.value.replace(/,/g, '');
+        var val = Number(tmp).toLocaleString(locale);
+
+        if (tmp == '') {
+          target.value = '';
+        } else {
+          target.value = val;
+        }
+      });
+
+      // strip the thousands separator when the user puts the input in focus.
+      inp.addEventListener('focus', function(e) {
+        var event = e || window.event;
+        var target = event.target;
+        var val = target.value.replace(/[,.]/g, '');
+
+        target.value = val;
+      });
+    }
+    // var number = new NumericInput(document.getElementById('demo'));
 
     // Set new default font family and font color to mimic Bootstrap's default styling
     Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';

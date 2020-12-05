@@ -8,7 +8,9 @@
   <div class="card-body">
     <div class="form-group">
       <label>Customer</label>
-      <select name="customer" class="form-control select2" style="width: 100%;" required>
+      <input type="text" name="customer_name" value="{{$transaksi->customers->nama}}" class="form-control" readonly>
+      <input type="hidden" name="customer" value="{{$transaksi->customer}}">
+      <!-- <select name="customer" class="form-control select2" style="width: 100%;" required>
         @foreach($customers as $customer)
           @if($customer->idcustomers == $transaksi->customer)
           <option value="{{$customer->idcustomers}}" selected>{{$customer->nama}}</option>
@@ -16,11 +18,13 @@
           <option value="{{$customer->idcustomers}}">{{$customer->nama}}</option>
           @endif
         @endforeach
-      </select>
+      </select> -->
     </div>
     <div class="form-group">
       <label>Unit</label>
-      <select name="unit" class="form-control select2" style="width: 100%;" required>
+      <input type="text" name="unit_name" value="{{$transaksi->units->nama()}}" class="form-control" readonly>
+      <input type="hidden" name="unit" value="{{$transaksi->unit}}">
+      <!-- <select name="unit" class="form-control select2" style="width: 100%;" required>
         @foreach($units as $unit)
           @if($unit->id_unit == $transaksi->unit)
           <option value="{{$unit->id_unit}}" selected>{{$unit->nama()}}</option>
@@ -28,9 +32,9 @@
           <option value="{{$unit->id_unit}}">{{$unit->nama()}}</option>
           @endif
         @endforeach
-      </select>
+      </select> -->
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label>Jenis Bayar</label>
       <select class="form-control" name="jenisbayar" required>
         @foreach($jenisBayars as $jenisBayar)
@@ -41,7 +45,7 @@
         @endif
         @endforeach
       </select>
-    </div>
+    </div> -->
     <div class="form-group">
       <label>Status</label>
       <div class="custom-control custom-radio">
@@ -82,8 +86,10 @@
       </div>
     </div> -->
     <div class="form-group">
-      <label>Pilih Pegawai:</label>
-      <select name="pegawai" class="form-control select2" style="width: 100%;" required>
+      <label>Pegawai:</label>
+      <input type="text" name="pegawai_name" value="{{$transaksi->pegawais->nama}}" class="form-control" readonly>
+      <input type="hidden" name="pegawai" value="{{$transaksi->pegawai}}">
+      <!-- <select name="pegawai" class="form-control select2" style="width: 100%;" required>
         @foreach($pegawais as $pegawai)
           @if($pegawai->nip == $pegawai_nip)
           <option value="{{$pegawai->nip}}" selected>{{$pegawai->nama}}</option>
@@ -91,7 +97,7 @@
           <option value="{{$pegawai->nip}}">{{$pegawai->nama}}</option>
           @endif
         @endforeach
-      </select>
+      </select> -->
     </div>
     <!-- /.card-body -->
   </div>

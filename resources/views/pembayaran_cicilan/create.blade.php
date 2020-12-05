@@ -52,7 +52,8 @@
     </div>
     <div class="form-group">
       <label>Nominal</label>
-      <input type="number" class="form-control" placeholder="Isi nominal" name="nominal" min="1000000" required>
+      <!-- <input type="number" class="form-control" placeholder="Isi nominal" name="nominal" min="1000000" required> -->
+      <input type="text" class="form-control" placeholder="Isi nominal" name="nominal" required onchange="NumericInput(this)">
     </div>
     <div class="form-group">
       <label>Tenggat Waktu</label>
@@ -83,53 +84,3 @@
     </div>
   </form>
   @endsection
-  @push('scripts')
-  <script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
-  <script type="text/javascript">
-    function NumericInput(inp, locale) {
-      var numericKeys = '0123456789';
-
-      // restricts input to numeric keys 0-9
-      inp.addEventListener('keypress', function(e) {
-        var event = e || window.event;
-        var target = event.target;
-
-        if (event.charCode == 0) {
-          return;
-        }
-
-        if (-1 == numericKeys.indexOf(event.key)) {
-          // Could notify the user that 0-9 is only acceptable input.
-          event.preventDefault();
-          return;
-        }
-      });
-
-      // add the thousands separator when the user blurs
-      inp.addEventListener('blur', function(e) {
-        var event = e || window.event;
-        var target = event.target;
-
-        var tmp = target.value.replace(/,/g, '');
-        var val = Number(tmp).toLocaleString(locale);
-
-        if (tmp == '') {
-          target.value = '';
-        } else {
-          target.value = val;
-        }
-      });
-
-      // strip the thousands separator when the user puts the input in focus.
-      inp.addEventListener('focus', function(e) {
-        var event = e || window.event;
-        var target = event.target;
-        var val = target.value.replace(/[,.]/g, '');
-
-        target.value = val;
-      });
-    }
-
-    var number = new NumericInput(document.getElementById('demo'));
-  </script>
-  @endpush

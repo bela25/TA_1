@@ -7,7 +7,8 @@
   <div class="card-body">
     <div class="form-group">
       <label for="hargajual">Harga Jual</label>
-      <input type="number" class="form-control" id="hargajual" placeholder="Isi harga jual" name="hargajual" min="0" required>
+      <!-- <input type="number" class="form-control" id="hargajual" placeholder="Isi harga jual" name="hargajual" min="0" required> -->
+      <input type="text" class="form-control" id="hargajual" placeholder="Isi harga jual" name="hargajual" min="0" required onchange="NumericInput(this)">
     </div>
     <div class="form-group">
       <label>Tanggal Awal:</label>

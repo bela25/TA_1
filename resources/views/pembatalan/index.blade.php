@@ -17,6 +17,7 @@
           <tr>
             <th>Customer</th>
             <th>Alasan</th>
+            <th>Nominal</th>
             <th>Tanggal Pembatalan</th>
             <th>Tanggal Pengembalian</th>
             <th>Admin</th>
@@ -30,6 +31,7 @@
           <tr>
             <td><a href="#">{{$pembatalan->transaksis->customers->nama}}</a></td>
             <td>{{$pembatalan->alasan}}</td>
+            <td>{{$pembatalan->showNominal()}}</td>
             <td>{{$pembatalan->tanggal_batal}}</td>
             <td>{{$pembatalan->tgl_pengembalian}}</td>
             <td><a href="#">{{$pembatalan->pegawais->nama ?? ''}}</td>

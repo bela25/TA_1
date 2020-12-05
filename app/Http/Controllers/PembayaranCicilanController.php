@@ -56,7 +56,7 @@ class PembayaranCicilanController extends Controller
         
         $post = new PembayaranCicilan();
         $post ->cicilan = $cicilan->id_cicilan;
-        $post ->nominal = $request->get('nominal');
+        $post ->nominal = str_replace(',','',$request->get('nominal'));
         $post ->cicilan_ke = $request->get('cicilan_ke');
         $post ->tenggat_waktu = $request->get('tenggat_waktu');
         $post ->cicilan_terakhir = $request->get('cicilan_terakhir');

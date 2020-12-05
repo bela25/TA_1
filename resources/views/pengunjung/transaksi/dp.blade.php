@@ -24,6 +24,9 @@
 	  					<h2>{{$unit->tipes->nama}} No. {{$unit->no_unit}}</h2>
 	  					<span class="subheading">Tower {{$unit->towers->nama}}</span>
 	  					<p class="price d-inline"><span class="orig-price">{{$unit->hargaJual()}}</span></p>
+              @if($transaksi->jenis_bayar != null)
+              <p>Jenis Bayar: <strong>{{strtoupper($transaksi->jenis_bayar)}}</strong></p>
+              @endif
   					</div>
             <div class="float-right">
               <a href="{{route('pengunjung.booking',$unit)}}" class="btn btn-secondary py-3 px-5">Kembali</a>
@@ -39,13 +42,11 @@
         </div>
       @endif
   		@if($unit->status == 'booking' && $transaksi->verifikasi == 'diterima' && $transaksi->jenis_bayar == null)
-  			<form action="{{route('transaksis.update',$transaksi)}}" method="post" class="bg-light p-5 contact-form">
+  			<form action="{{route('pengunjung.simpanjenisbayar',$transaksi)}}" method="post" class="bg-light p-5 contact-form">
   				{{csrf_field()}}
           {{method_field('put')}}
           <h5>Pilih jenis bayar sebelum melakukan pembayaran DP</h5>
-          <input type="hidden" name="unit" value="{{$unit->id_unit}}">
-          <input type="hidden" name="status" value="{{$transaksi->status}}">
-          <input type="hidden" name="verifikasi" value="{{$transaksi->verifikasi}}">
+          <input type="hidden" name="transaksi" value="{{$transaksi->id_transaksi}}">
           <div class="form-group">
             <label>Customer</label>
             <input type="text" class="form-control" name="customer_nama" value="{{$customer->nama}}" readonly="true">
@@ -57,7 +58,7 @@
               <option value="kpa">KPA</option>
               <option value="lunas">Lunas</option>
               <option value="in house">In House</option>
-              <option value="cash keras">Cash Keras</option>
+              <option value="kredit keras">Kredit Keras</option>
             </select>
           </div>
           <div class="form-group">
@@ -145,7 +146,7 @@
                           <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                               Harga
-                              <span><strong>Rp{{$unit->hargaJual()}}</strong></span>
+                              <span><strong>{{$unit->hargaJual()}}</strong></span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                               Unit

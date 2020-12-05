@@ -50,11 +50,18 @@ class PembayaranBookingController extends Controller
             $post ->nominal = $request->get('nominal');
             $post ->transaksi = $request->get('transaksi');
             // upload bukti
-            $file = $request->file('bukti');
-            $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
-            $post ->gambar_bukti= $nama_gambar;
-            $post->save();
-            request()->session()->flash('pesan','Bukti pembayaran booking tersimpan');
+            if(isset($request->bukti))
+            {
+                $file = $request->file('bukti');
+                $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
+                $post ->gambar_bukti= $nama_gambar;
+                $post->save();
+                request()->session()->flash('pesan','Bukti pembayaran booking tersimpan');
+            }
+            else
+            {
+                request()->session()->flash('pesan','Anda belum memilih gambar');
+            }
         }
         else
         {
@@ -134,6 +141,14 @@ class PembayaranBookingController extends Controller
 
     public function verifikasi(Request $request, PembayaranBooking $pembayaranBooking)
     {
+        if($request->verifikasi == 'diterima')
+        {
+            $pembayaranBooking->transaksis->units->status = 'booking';
+        }
+        else
+        {
+            $pembayaranBooking->transaksis->units->status = 'tersedia';   
+        }
         $pembayaranBooking->verifikasi = $request->verifikasi;
         $pembayaranBooking->save();
         return redirect('transaksis/'.$pembayaranBooking->transaksis->id_transaksi);

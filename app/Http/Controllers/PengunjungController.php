@@ -100,6 +100,10 @@ class PengunjungController extends Controller
 
     public function index(Request $request)
     {
+        if(auth()->check() && auth()->user()->pegawai != null)
+        {
+            return redirect('home');
+        }
         $units = Unit::with('towers')->get();
         $lokasi = $request->get('lokasi') ?? null;
         $harga_min = $request->get('harga_min') ?? null;
@@ -239,6 +243,27 @@ class PengunjungController extends Controller
         }
         // dd($transaksi->id_transaksi);
         return view('pengunjung.transaksi.dp', compact('unit','customer','transaksi','pembayaranDP'));
+    }
+
+    public function simpanJenisBayar(Request $request, Transaksi $transaksi)
+    {
+        $transaksi->jenis_bayar = $request->jenisbayar;
+        if($request->get('jenisbayar') == 'kpa')
+        {
+            $transaksi ->tgl_pelunasan = Carbon::now()->addDays(30);
+        }
+        elseif($request->get('jenisbayar') == 'cash keras')
+        {
+            $transaksi ->tgl_pelunasan = Carbon::now()->addMonths(6);   
+        }
+        elseif($request->get('jenisbayar') == 'in house')
+        {
+            $transaksi ->tgl_pelunasan = Carbon::now()->addYears(10);   
+        }
+        $transaksi->save();
+        // dd($transaksi->id_transaksi);
+        return redirect()->route('pengunjung.dp', $transaksi->units);
+        // return view('pengunjung.transaksi.dp', compact('unit','customer','transaksi','pembayaranDP'));
     }
 
     public function pembatalan(Transaksi $transaksi)

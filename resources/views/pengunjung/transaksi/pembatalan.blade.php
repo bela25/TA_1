@@ -84,11 +84,19 @@
                     <ul class="list-group">
                       <li class="list-group-item d-flex justify-content-between align-items-center">
                         Harga Beli
-                        <strong>Rp{{$transaksi->units->hargaJual()}}</strong>
+                        <strong>{{$transaksi->units->hargaJual()}}</strong>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Nominal Pengembalian (dipotong 20% biaya pembatalan)
-                        <strong>Rp{{$pembatalan->showNominal()}}</strong>
+                        Total yang Sudah Dibayarkan
+                        <strong>{{$pembatalan->formatUang($pembatalan->nominal())}}</strong>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Biaya Pembatalan
+                        <strong>{{$pembatalan->formatUang($pembatalan->biayaBatal())}}</strong>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Nominal Pengembalian
+                        <strong>{{$pembatalan->showNominal()}}</strong>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-center">
                         Tanggal Pengembalian

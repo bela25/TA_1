@@ -29,13 +29,52 @@ class Pembatalan extends Model
     {
     	return $this->belongsTo('App\Transaksi','transaksi','id_transaksi');
     }
+    public function biayaBatal()
+    {
+        $nominal = 0;
+        if($this->transaksis->pembayarandps != null && $this->transaksis->pembayarandps->gambar_bukti != null && $this->transaksis->pembayarandps->verifikasi == 'diterima')
+        {
+            $nominal = $this->transaksis->pembayarandps->nominal;
+        }
+        return $nominal;
+    }
     public function nominal()
     {
-        return $this->transaksis->units->hargaJualCash() * 80 / 100;
+        // $nominal = [];
+        $nominal = 0;
+        if($this->transaksis->pembayaranbookings != null && $this->transaksis->pembayaranbookings->gambar_bukti != null && $this->transaksis->pembayaranbookings->verifikasi == 'diterima')
+        {
+            // $nominal['booking']= $this->transaksis->pembayaranbookings->nominal;
+            $nominal+= $this->transaksis->pembayaranbookings->nominal;
+        }
+        if($this->transaksis->pembayarandps != null && $this->transaksis->pembayarandps->gambar_bukti != null && $this->transaksis->pembayarandps->verifikasi == 'diterima')
+        {
+            // $nominal['dp']= $this->transaksis->pembayarandps->nominal;
+            $nominal+= $this->transaksis->pembayarandps->nominal;
+        }
+        if($this->transaksis->cicilans != null && $this->transaksis->cicilans->pembayaran_cicilans->count() > 0)
+        {
+            foreach($this->transaksis->cicilans->pembayaran_cicilans as $pembayaran_cicilan)
+            {
+                if($pembayaran_cicilan->gambar_bukticicilan != null && $pembayaran_cicilan->verifikasi == 'diterima')
+                {
+                    // $nominal ['cicilan '.$pembayaran_cicilan->cicilan_ke]= $pembayaran_cicilan->nominal;
+                    $nominal+= $pembayaran_cicilan->nominal;
+                }
+            }
+        }
+        // return $this->transaksis->units->hargaJualCash() * 80 / 100;
+        // dd($nominal);
+        return $nominal;
     }
     public function showNominal()
     {
-        return 'Rp'.number_format($this->nominal(),2,',','.');
+        $nominal = $this->nominal() - $this->biayaBatal();
+        return 'Rp'.number_format($nominal,2,',','.');
+    }
+    public function formatUang($nominal)
+    {
+        return 'Rp'.number_format($nominal,2,',','.');
     }
     //
 }

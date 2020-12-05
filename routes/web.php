@@ -71,6 +71,7 @@ Route::get('listing', 'PengunjungController@listing')->name('pengunjung.listing'
 Route::get('listing/{unit}', 'PengunjungController@listingSingle')->name('pengunjung.listing.single');
 Route::get('booking/{unit}', 'PengunjungController@booking')->name('pengunjung.booking');
 Route::get('dp/{unit}', 'PengunjungController@dp')->name('pengunjung.dp');
+Route::put('simpanjenisbayar/{transaksi}', 'PengunjungController@simpanJenisBayar')->name('pengunjung.simpanjenisbayar');
 Route::get('pembatalan/{transaksi}', 'PengunjungController@pembatalan')->name('pengunjung.pembatalan');
 Route::get('cicilan/{cicilan}', 'PengunjungController@cicilan')->name('pengunjung.cicilan');
 Route::get('cicilan/{pembayaran_cicilan}/bayar', 'PengunjungController@bayarCicilan')->name('pengunjung.bayarcicilan');

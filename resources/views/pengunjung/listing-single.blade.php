@@ -56,10 +56,10 @@
                     <p>Transaksi Anda tidak diterima karena Unit ini sudah di-booking orang lain</p>
                   @else
                     <span class="badge badge-success">{{$customer->transaksiUnit($unit)->verifikasi}}</span>
-                    @if($customer->transaksiUnit($unit)->pembayarandps == null)
+                    @if($customer->transaksiUnit($unit)->pembayarandps == null  && $customer->transaksiUnit($unit)->pembayaranbookings != null && $customer->transaksiUnit($unit)->pembayaranbookings->verifikasi == 'diterima')
                       <p>Transaksi Anda telah diverifikasi. Silahkan melakukan pembayaran DP</p>
                       <a href="{{route('pengunjung.dp',$unit)}}" class="btn btn-primary py-3 px-5">Bayar DP</a>
-                    @else
+                    @elseif($customer->transaksiUnit($unit)->pembayarandps != null  && $customer->transaksiUnit($unit)->pembayaranbookings != null && $customer->transaksiUnit($unit)->pembayaranbookings->verifikasi == 'diterima')
                       <p>Transaksi Anda telah diverifikasi. Anda sudah membayar DP</p>
                       <a href="{{route('pengunjung.dp',$unit)}}" class="btn btn-primary py-3 px-5">Lihat Tanda Terima DP</a>
                     @endif
@@ -92,6 +92,11 @@
   	</div>
   	<div class="row">
   		<div class="col-md-12 pills">
+          @if($customer != null && $customer->unitDimiliki($unit) && $customer->transaksiUnit($unit)->verifikasi == 'diterima')
+          <div class="alert alert-info mt-3" role="alert">
+            Silahkan periksa pembayaran booking Anda dengan menekan tombol TERBOOKING berwarna abu-abu di pojok kanan.
+          </div>
+          @endif
 					<div class="bd-example bd-example-tabs">
 						<div class="d-flex">
 						  <ul class="nav nav-pills mb-2" id="pills-tab" role="tablist">
