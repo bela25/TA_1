@@ -2,6 +2,18 @@
 
 
 @section('content')
+@if($feedbacks->count() > 0)
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Grafik Feedback</h6>
+  </div>
+  <div class="card-body">
+    <div class="chart-pie">
+      <canvas id="grafikFeedback"></canvas>
+    </div>
+  </div>
+</div>
+@endif
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
@@ -73,3 +85,41 @@
 <!-- /.container-fluid -->
 
 @endsection
+
+@push('scripts')
+ <script type="text/javascript">
+   // Pie Chart Example
+   // var sentimen = '{{ $positif }}';
+   // console.log(sentimen);
+   var ctx = document.getElementById("grafikFeedback");
+   var grafikFeedback = new Chart(ctx, {
+     type: 'doughnut',
+     data: {
+       labels: ["Positif", "Negatif"],
+       datasets: [{
+         data: ['{{ $positif }}','{{ $negatif }}'],
+         backgroundColor: ['#4e73df', '#e74a3b'],
+         hoverBackgroundColor: ['#345eda', '#e33221'],
+         hoverBorderColor: "rgba(234, 236, 244, 1)",
+       }],
+     },
+     options: {
+       maintainAspectRatio: false,
+       tooltips: {
+         backgroundColor: "rgb(255,255,255)",
+         bodyFontColor: "#858796",
+         borderColor: '#dddfeb',
+         borderWidth: 1,
+         xPadding: 15,
+         yPadding: 15,
+         displayColors: false,
+         caretPadding: 10,
+       },
+       legend: {
+         display: true
+       },
+       cutoutPercentage: 80,
+     },
+   });
+ </script>
+@endpush

@@ -35,5 +35,39 @@ class Cicilan extends Model
             return false;
         }
     }
+    public function totalCicilan()
+    {
+        $total = 0;
+        foreach($this->pembayaran_cicilans as $cicilan)
+        {
+            $total += $cicilan->nominal;
+        }
+        return $total;
+    }
+    public function totalSesuaiHarga()
+    {
+        $booking = $this->transaksis->pembayaranbookings->nominal ?? 0;
+        $dp = $this->transaksis->pembayarandps->nominal ?? 0;
+        $total = $this->transaksis->units->hargaJualCash() - $booking - $dp;
+        if($this->totalCicilan() == $total)
+        {
+            // return ['hasil'=>'sesuai','selisih'=>0];
+            return 0;
+        }
+        elseif($this->totalCicilan() > $total)
+        {
+            // return ['hasil'=>'kelebihan','selisih'=>($this->totalCicilan() - $total)];
+            return $this->totalCicilan() - $total;
+        }
+        else
+        {
+            // return ['hasil'=>'kekurangan','selisih'=>($total - $this->totalCicilan())];
+            return $total - $this->totalCicilan();
+        }
+    }
+    public function formatUang($nominal)
+    {
+        return 'Rp'.number_format($nominal,2,'.',',');
+    }
     //
 }

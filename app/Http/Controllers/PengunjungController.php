@@ -19,6 +19,7 @@ use App\Promosi;
 use App\Chatting;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use App\Classes\PHPInsight\Sentiment;
 
 class PengunjungController extends Controller
 {
@@ -198,6 +199,10 @@ class PengunjungController extends Controller
 
     public function feedback(Request $request)
     {
+        $sentiment = new Sentiment();
+        $scores = $sentiment->score($request->get('isi'));
+        $class = $sentiment->categorise($request->get('isi'));
+
         $lokasi = Lokasi::find($request->get('lokasi'));
         $post = new Feedback();
         $post ->tanggal_feedback = $request->get('tanggal_feedback');
@@ -206,6 +211,7 @@ class PengunjungController extends Controller
         $post ->customer = $request->get('customer');
         $post ->isi = $request->get('isi');
         // $post ->reply = $request->get('reply');
+        $post ->sentimen = $class;
         $post ->reply = date('Y-m-d');
         $post->save();
         return redirect('contact');

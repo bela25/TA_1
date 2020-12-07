@@ -7,6 +7,7 @@ use App\Pegawai;
 use App\Customer;
 use App\Lokasi;
 use Illuminate\Http\Request;
+use App\Classes\PHPInsight\Sentiment;
 
 class FeedbackController extends Controller
 {
@@ -17,8 +18,15 @@ class FeedbackController extends Controller
      */
     public function index()
     {
+        $sentiment = new Sentiment();
+        $scores = $sentiment->score('test');
+        $class = $sentiment->categorise('test');
+        // dd([$scores,$class]);
         $feedbacks=Feedback::all();
-        return view('feedback.index',compact('feedbacks'));
+        $positif = $feedbacks->where('sentimen','positif')->count();
+        $negatif = $feedbacks->where('sentimen','negatif')->count();
+        // dd($sentimen);
+        return view('feedback.index',compact('feedbacks','positif','negatif'));
         //
     }
 
@@ -44,6 +52,10 @@ class FeedbackController extends Controller
      */
     public function store(Request $request)
     {
+        $sentiment = new Sentiment();
+        $scores = $sentiment->score($request->get('isi'));
+        $class = $sentiment->categorise($request->get('isi'));
+
         $post = new Feedback();
         $post ->tanggal_feedback = $request->get('tanggal_feedback');
         $post ->isi = $request->get('isi');
@@ -52,6 +64,7 @@ class FeedbackController extends Controller
         $post ->pegawai = $request->get('pegawai');
         $post ->customer = $request->get('customer');
         $post ->lokasi = $request->get('lokasi');
+        $post ->sentimen = $class;
         $post->save();
         return redirect('feedbacks');
         //
@@ -92,12 +105,17 @@ class FeedbackController extends Controller
      */
     public function update(Request $request, Feedback $feedback)
     {
+        $sentiment = new Sentiment();
+        $scores = $sentiment->score($request->get('isi'));
+        $class = $sentiment->categorise($request->get('isi'));
+
         $feedback ->tanggal_feedback = $request->get('tanggal_feedback');
         $feedback ->isi = $request->get('isi');
         // $feedback ->reply = $request->get('reply');
         $feedback ->pegawai = $request->get('pegawai');
         $feedback ->customer = $request->get('customer');
         $feedback ->lokasi = $request->get('lokasi');
+        $post ->sentimen = $class;
         $feedback->save();
         return redirect('feedbacks');
         //

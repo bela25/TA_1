@@ -52,7 +52,7 @@
     <div class="card-body">
       <!-- <a href="" class="btn btn-success mb-3">Print</a> -->
       <div class="table-responsive" id="print-area">
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <table class="table table-bordered" width="100%" cellspacing="0">
           @if($tahun != null && $bulan == null)
           <thead>
             <tr>

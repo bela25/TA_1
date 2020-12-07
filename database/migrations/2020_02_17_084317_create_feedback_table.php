@@ -24,6 +24,7 @@ class CreateFeedbackTable extends Migration
             $table->foreign('customer')->references('idcustomers')->on('customers');
             $table->unsignedInteger('lokasi');
             $table->foreign('lokasi')->references('idlokasi')->on('lokasis');
+            $table->enum('sentimen', ['positif','negatif'])->nullable();
             $table->timestamps();
         });
     }
