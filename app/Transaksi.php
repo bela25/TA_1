@@ -65,5 +65,12 @@ class Transaksi extends Model
     {
         return $this->units->towers->lokasis;
     }
+    public function cicilanYangHarusDibayar()
+    {
+        $booking = $this->pembayaranbookings->nominal ?? 0;
+        $dp = $this->pembayarandps->nominal ?? 0;
+        $total = $this->units->hargaJualCash() - $booking - $dp;
+        return $total;
+    }
     //
 }

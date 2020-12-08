@@ -96,7 +96,11 @@
       function cekTotalCicilan(){
         var value = $("input[name=cicilan_terakhir]:checked").val();
         var nominal = $("input[name=nominal]").val();
+        @if($transaksi->cicilans != null)
         var selisih = '{{ $transaksi->cicilans->totalSesuaiHarga() }}';
+        @else
+        var selisih = '{{ $transaksi->cicilanYangHarusDibayar() }}';
+        @endif
         // console.log(value,nominal,number_format(selisih));
         if(value == 'iya'){
           if(nominal < selisih){
