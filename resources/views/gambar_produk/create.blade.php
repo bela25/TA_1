@@ -25,6 +25,14 @@
         @endforeach
       </select>
     </div>
+    <div class="form-group">
+      <label>Lokasi</label>
+      <select name="lokasi" class="form-control select2" style="width: 100%;" required>
+        @foreach($lokasi as $lokasis)
+          <option value="{{$lokasis->idlokasi}}">{{$lokasis->nama_apartemen}}</option>
+        @endforeach
+      </select>
+    </div>
     <img id="tampilangambar" src="#" alt="tampilan gambar"/>
   </div>
   <!-- /.card-body -->

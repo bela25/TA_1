@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\GambarProduk;
 use Illuminate\Http\Request;
 use App\Tipe_unit;
+use App\Lokasi;
 
 class GambarProdukController extends Controller
 {
@@ -28,7 +29,8 @@ class GambarProdukController extends Controller
     public function create()
     {
         $tipe_unit=Tipe_unit::all();
-        return view('gambar_produk.create',compact('tipe_unit'));
+        $lokasi=Lokasi::all();
+        return view('gambar_produk.create',compact('tipe_unit','lokasi'));
         //
     }
 
@@ -46,6 +48,7 @@ class GambarProdukController extends Controller
         $post = new GambarProduk();
         $post ->nama_gambar = $nama_gambar;
         $post ->tipe = $request->get('tipe');
+        $post ->lokasi = $request->get('lokasi');
         $post->save();
         return redirect('gambar_produks');
         //
@@ -71,7 +74,8 @@ class GambarProdukController extends Controller
     public function edit(GambarProduk $gambarProduk)
     {
         $tipe_unit=Tipe_unit::all();
-        return view('gambar_produk.update',compact('gambarProduk','tipe_unit'));
+        $lokasi=Lokasi::all();
+        return view('gambar_produk.update',compact('gambarProduk','tipe_unit','lokasi'));
         //
     }
 
@@ -96,6 +100,7 @@ class GambarProdukController extends Controller
         }
 
         $gambarProduk ->tipe = $request->get('tipe');
+        $gambarProduk ->lokasi = $request->get('lokasi');
         $gambarProduk->save();
         return redirect('gambar_produks');
         //

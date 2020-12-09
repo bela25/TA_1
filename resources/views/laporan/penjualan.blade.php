@@ -33,11 +33,19 @@
         <input type="text" class="form-control mt-2 mr-sm-2" name="pegawai" placeholder="Pegawai" value="{{ $pegawai_login->nama }}" readonly>
         @endif
 
-        <label class="mt-2 mr-sm-2" for="customer">Customer</label>
+        <!-- <label class="mt-2 mr-sm-2" for="customer">Customer</label>
         <select class="form-control mt-2 mr-sm-2" name="customer">
           <option value="">Semua Customer</option>
             @foreach($customers as $item)
             <option value="{{ $item->idcustomers }}" {{ $customer == $item->idcustomers ? 'selected' : '' }}>{{ $item->nama }}</option>
+            @endforeach
+        </select> -->
+
+        <label class="mt-2 mr-sm-2" for="lokasi">Lokasi</label>
+        <select class="form-control mt-2 mr-sm-2" name="lokasi">
+          <option value="">Semua Lokasi</option>
+            @foreach($lokasis as $item)
+            <option value="{{ $item->idlokasi }}" {{ $lokasi == $item->idlokasi ? 'selected' : '' }}>{{ $item->nama_apartemen }}</option>
             @endforeach
         </select>
 
@@ -46,8 +54,27 @@
 
       <button class="btn btn-success screen-area mt-2" onclick="printing()">Print</button>
     </div>
-    <div class="card-body">
-      <div class="table-responsive" id="print-area">
+    <div class="card-body" id="print-area">
+      <div class="text-center my-5">
+        <h3 class="text-primary font-weight-bold">Laporan Penjualan</h3>
+        <h4 class="text-dark">TamanSari Urban</h4>
+      </div>
+      @if($tahun != null && $bulan == null)
+      <p>Tahun: <span class="text-primary font-weight-bold">{{$tahun}}</span></p>
+      @elseif($tahun != null && $bulan != null)
+      <p>Bulan: <span class="text-primary font-weight-bold">{{$bulan}} {{$tahun}}</span></p>
+      @endif
+      @if($pegawai == null)
+      <p>Pegawai: <span class="text-primary font-weight-bold">Semua Pegawai</span></p>
+      @else
+      <p>Pegawai: <span class="text-primary font-weight-bold">{{ \App\Pegawai::find($pegawai)->nama }}</span></p>
+      @endif
+      @if($lokasi == null)
+      <p>Lokasi: <span class="text-primary font-weight-bold">Semua Lokasi</span></p>
+      @else
+      <p>Lokasi: <span class="text-primary font-weight-bold">{{ \App\Lokasi::find($lokasi)->nama_apartemen }}</span></p>
+      @endif
+      <div class="table-responsive">
         <table class="table table-bordered" width="100%" cellspacing="0">
           @if($tahun != null && $bulan == null)
           <thead>
@@ -69,25 +96,42 @@
           @elseif($tahun != null && $bulan != null)
           <thead>
             <tr>
-              <th>Tanggal</th>
-              <!-- <th>ID Transaksi</th> -->
-              <th>Tipe</th>
+              <th>No</th>
+              <th>ID Transaksi</th>
+              <th>Nama Customer</th>
+              <th>Tanggal Beli</th>
+              <th>Unit</th>
+              @if($lokasi == null)
+              <th>Lokasi</th>
+              @endif
+              <th>Jenis Bayar</th>
+              <th>Lunas</th>
+              @if($pegawai == null)
               <th>Pegawai</th>
-              <th>Customer</th>
+              @endif
+              <th>Status</th>
             </tr>
           </thead>
 
           <tbody>
             @foreach($transaksis as $key => $transaksi)
               <tr>
-                <td>{{ $transaksi->tanggal }}</td>
-                <!-- <td>{{ $transaksi->id_transaksi }}</td> -->
-                <td>{{ $transaksi->units->tipes->nama ?? '' }}</td>
-                <td>{{ $transaksi->pegawais->nama ?? '' }}</td>
+                <td>{{ $loop->index + 1 }}</td>
+                <td>{{ $transaksi->id_transaksi }}</td>
                 <td>{{ $transaksi->customers->nama ?? '' }}</td>
+                <td>{{ $transaksi->tanggal }}</td>
+                <td>{{ $transaksi->units->nama() ?? '' }}</td>
+                @if($lokasi == null)
+                <td>{{ $transaksi->units->towers->lokasis->nama_apartemen ?? '' }}</td>
+                @endif
+                <td>{{ $transaksi->jenis_bayar }}</td>
+                <td>{{ $transaksi->tgl_pelunasan }}</td>
+                @if($pegawai == null)
+                <td>{{ $transaksi->pegawais->nama ?? '' }}</td>
+                @endif
+                <td><span class="{{$transaksi->status == 'aktif' ? 'text-success' : 'text-danger'}}">{{ $transaksi->status }}</span></td>
               </tr>
             @endforeach
-
           </tbody>
           @else
           <thead>
@@ -109,6 +153,11 @@
           @endif
         </table>
       </div>
+      @if($tahun != null && $bulan != null)
+      <p>Unit Terjual: <span class="text-primary font-weight-bold">{{$transaksis->count()}}</span></p>
+      <p>Status Aktif: <span class="text-primary font-weight-bold">{{$transaksis->where('status','aktif')->count()}}</span></p>
+      <p>Status Tidak Aktif: <span class="text-primary font-weight-bold">{{$transaksis->where('status','tidak aktif')->count()}}</span></p>
+      @endif
     </div>
   </div>
 

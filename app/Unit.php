@@ -56,8 +56,8 @@ class Unit extends Model
     }
     public function gambar()
     {
-        if($this->tipes->gambars->first() != null){
-            return asset(str_replace('\\', '/', $this->tipes->gambars->first()->nama_gambar));
+        if($this->tipes->gambars->where('lokasi',$this->towers->lokasis->idlokasi)->first() != null){
+            return asset(str_replace('\\', '/', $this->tipes->gambars->where('lokasi',$this->towers->lokasis->idlokasi)->first()->nama_gambar));
         }
         else{
             return asset('web/images/work-2.jpg');

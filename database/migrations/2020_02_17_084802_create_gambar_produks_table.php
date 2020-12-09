@@ -18,6 +18,7 @@ class CreateGambarProduksTable extends Migration
             $table->longtext('nama_gambar');
             $table->unsignedInteger('tipe');
             $table->foreign('tipe')->references('id_tipe')->on('tipe_units');
+            $table->foreign('lokasi')->references('idlokasi')->on('lokasis');
             $table->timestamps();
         });
     }

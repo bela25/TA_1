@@ -17,6 +17,7 @@
           <tr>
             <th>Nama Gambar</th>
             <th>Tipe</th>
+            <th>Lokasi</th>
             <th>Created_at</th>
             <th>Updated_at</th>
             <th>Interaksi</th>
@@ -28,6 +29,7 @@
           <tr>
             <td><a href="{{asset($gambar_produk->nama_gambar)}}" target="_blank">{{$gambar_produk->nama_gambar}}</a></td>
             <td><a href="{{route('tipe_units.index')}}">{{$gambar_produk->tipes->nama}}</a></td>
+            <td><a href="{{route('lokasis.index')}}">{{$gambar_produk->lokasis->nama_apartemen}}</a></td>
             <td>{{$gambar_produk->created_at}}</td>
             <td>{{$gambar_produk->updated_at}}</td>
             <td>

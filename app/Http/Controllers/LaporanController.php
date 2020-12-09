@@ -7,6 +7,7 @@ use App\Pembatalan;
 use App\PembayaranCicilan;
 use App\Pegawai;
 use App\Customer;
+use App\Lokasi;
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
@@ -32,7 +33,8 @@ class LaporanController extends Controller
     	$bulan = $request->bulan;
         $pegawai = $request->pegawai;
         $customer = $request->customer;
-    	$transaksis = Transaksi::whereNotNull('tgl_pelunasan')->get();
+        $lokasi = $request->lokasi;
+    	$transaksis = Transaksi::all();
 
     	// pegawai jabatan marketing
     	$pegawai_login = auth()->user()->pegawai ?? null;
@@ -45,6 +47,11 @@ class LaporanController extends Controller
         }
         if($customer != null){
             $transaksis = $transaksis->where('customer', $customer);
+        }
+        if($lokasi != null){
+            $transaksis = $transaksis->filter(function($item,$key) use($lokasi) {
+                return $item->units->towers->lokasis->idlokasi == $lokasi;
+            });
         }
 
         // filter tahun, bulan
@@ -69,23 +76,14 @@ class LaporanController extends Controller
         $bulans = $this->bulans;
         $pegawais = Pegawai::all();
         $customers = Customer::all();
+        $lokasis = Lokasi::all();
 
         $labels = $transaksis->keys();
         $data = $transaksis->map(function($item,$key) {
             return $item->count();
         });
     	
-    	return view('laporan.penjualan', compact('transaksis','bulans','bulan','tahun','pegawais','pegawai','pegawai_login','customers','customer','labels','data'));
-    }
-
-    public function pembayaran()
-    {
-    	
-    }
-
-    public function penundaan()
-    {
-    	
+    	return view('laporan.penjualan', compact('transaksis','bulans','bulan','tahun','pegawais','pegawai','pegawai_login','customers','customer','labels','data','lokasis','lokasi'));
     }
 
     public function pembatalan(Request $request)
@@ -95,6 +93,7 @@ class LaporanController extends Controller
         $pegawai = $request->pegawai;
         $customer = $request->customer;
     	$pembatalans = Pembatalan::all();
+        $lokasi = $request->lokasi;
 
     	// pegawai jabatan marketing
     	$pegawai_login = auth()->user()->pegawai ?? null;
@@ -117,6 +116,11 @@ class LaporanController extends Controller
                     return $item->transaksis->customers->idcustomers == $customer;
                 }
                 return false;
+            });
+        }
+        if($lokasi != null){
+            $pembatalans = $pembatalans->filter(function($item,$key) use($lokasi) {
+                return $item->transaksis->units->towers->lokasis->idlokasi == $lokasi;
             });
         }
 
@@ -142,12 +146,13 @@ class LaporanController extends Controller
     	$bulans = $this->bulans;
         $pegawais = Pegawai::all();
         $customers = Customer::all();
+        $lokasis = Lokasi::all();
 
         $labels = $pembatalans->keys();
         $data = $pembatalans->map(function($item,$key) {
             return $item->count();
         });
-    	return view('laporan.pembatalan', compact('pembatalans','bulans','tahun','bulan','pegawais','pegawai','pegawai_login','customers','customer','labels','data'));
+    	return view('laporan.pembatalan', compact('pembatalans','bulans','tahun','bulan','pegawais','pegawai','pegawai_login','customers','customer','labels','data','lokasis','lokasi'));
     }
 
     public function cicilan(Request $request)
@@ -156,6 +161,7 @@ class LaporanController extends Controller
         $bulan = $request->bulan;
         $pegawai = $request->pegawai;
         $customer = $request->customer;
+        $lokasi = $request->lokasi;
         $cicilans = PembayaranCicilan::whereNotNull('tanggal_bayar')->get();
 
         // pegawai jabatan marketing
@@ -181,6 +187,11 @@ class LaporanController extends Controller
                 return false;
             });
         }
+        if($lokasi != null){
+            $cicilans = $cicilans->filter(function($item,$key) use($lokasi) {
+                return $item->cicilans->transaksis->units->towers->lokasis->idlokasi == $lokasi;
+            });
+        }
 
         // filter tahun, bulan
         if($tahun != null && $bulan == null){
@@ -204,12 +215,13 @@ class LaporanController extends Controller
         $bulans = $this->bulans;
         $pegawais = Pegawai::all();
         $customers = Customer::all();
+        $lokasis = Lokasi::all();
 
         $labels = $cicilans->keys();
         $data = $cicilans->map(function($item,$key) {
             return $item->count();
         });
-        return view('laporan.cicilan', compact('cicilans','bulans','tahun','bulan','pegawais','pegawai','pegawai_login','customers','customer','labels','data'));
+        return view('laporan.cicilan', compact('cicilans','bulans','tahun','bulan','pegawais','pegawai','pegawai_login','customers','customer','labels','data','lokasis','lokasi'));
     }
 
     public function jatuhtempo(Request $request)
@@ -218,8 +230,12 @@ class LaporanController extends Controller
         $bulan = $request->bulan;
         $pegawai = $request->pegawai;
         $customer = $request->customer;
+        $lokasi = $request->lokasi;
         $cicilans = PembayaranCicilan::whereNull('tanggal_bayar')->whereDate('tenggat_waktu', '<', date('Y-m-d'))->get();
-        // dd(date('Y-m-d'));
+
+        $cicilans = $cicilans->filter(function($item,$key) {
+            return $item->cicilans->transaksis->status == 'aktif';
+        });
 
         // pegawai jabatan marketing
         $pegawai_login = auth()->user()->pegawai ?? null;
@@ -244,6 +260,11 @@ class LaporanController extends Controller
                 return false;
             });
         }
+        if($lokasi != null){
+            $cicilans = $cicilans->filter(function($item,$key) use($lokasi) {
+                return $item->cicilans->transaksis->units->towers->lokasis->idlokasi == $lokasi;
+            });
+        }
 
         // filter tahun, bulan
         if($tahun != null && $bulan == null){
@@ -267,12 +288,13 @@ class LaporanController extends Controller
         $bulans = $this->bulans;
         $pegawais = Pegawai::all();
         $customers = Customer::all();
+        $lokasis = Lokasi::all();
 
         $labels = $cicilans->keys();
         $data = $cicilans->map(function($item,$key) {
             return $item->count();
         });
 
-        return view('laporan.jatuhtempo', compact('cicilans','bulans','tahun','bulan','pegawais','pegawai','pegawai_login','customers','customer','labels','data'));
+        return view('laporan.jatuhtempo', compact('cicilans','bulans','tahun','bulan','pegawais','pegawai','pegawai_login','customers','customer','labels','data','lokasis','lokasi'));
     }
 }

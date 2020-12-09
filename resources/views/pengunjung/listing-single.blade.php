@@ -22,12 +22,12 @@
   				<!-- <div class="img rounded" style="background-image: url('{{asset('web/images/work-1.jpg')}}');"></div> -->
           <div id="carouselUnit" class="carousel slide mb-5" data-ride="carousel">
             <ol class="carousel-indicators">
-              @foreach($unit->tipes->gambars as $gambar)
+              @foreach($unit->tipes->gambars->where('lokasi',$unit->towers->lokasis->idlokasi) as $gambar)
               <li data-target="#carouselUnit" data-slide-to="{{$loop->index}}" class="{{$loop->first ? 'active' : ''}}"></li>
               @endforeach
             </ol>
             <div class="carousel-inner" style="height: 480px;">
-              @foreach($unit->tipes->gambars as $gambar)
+              @foreach($unit->tipes->gambars->where('lokasi',$unit->towers->lokasis->idlokasi) as $gambar)
               <div class="carousel-item {{$loop->first ? 'active' : ''}}">
                 <img src="{{asset($gambar->nama_gambar)}}" class="d-block w-100">
               </div>

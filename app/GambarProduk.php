@@ -12,6 +12,10 @@ class GambarProduk extends Model
     {
     	return $this->belongsTo('App\Tipe_unit','tipe','id_tipe');
     }
+    public function lokasis()
+    {
+        return $this->belongsTo('App\Lokasi','lokasi','idlokasi');
+    }
     public function adaTransaksi()
     {
         $jumlah = 0;

@@ -22,10 +22,22 @@
       <label>Tipe</label>
       <select name="tipe" class="form-control select2" style="width: 100%;" required>
         @foreach($tipe_unit as $tipe_units)
-          @if($tipe_units->id_tipe == $gambarProduk->id_tipe)
+          @if($tipe_units->id_tipe == $gambarProduk->tipe)
           <option value="{{$tipe_units->id_tipe}}" selected>{{$tipe_units->nama}}</option>
           @else
           <option value="{{$tipe_units->id_tipe}}">{{$tipe_units->nama}}</option>
+          @endif
+        @endforeach
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Lokasi</label>
+      <select name="lokasi" class="form-control select2" style="width: 100%;" required>
+        @foreach($lokasi as $lokasis)
+          @if($lokasis->idlokasi == $gambarProduk->lokasi)
+          <option value="{{$lokasis->idlokasi}}" selected>{{$lokasis->nama_apartemen}}</option>
+          @else
+          <option value="{{$lokasis->idlokasi}}">{{$lokasis->nama_apartemen}}</option>
           @endif
         @endforeach
       </select>
