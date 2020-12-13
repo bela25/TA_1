@@ -135,7 +135,7 @@
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                               Diterima pada tanggal
-                              <span><strong>{{$transaksi->pembayarandps->tanggal_bayar}}</strong></span>
+                              <span><strong>{{$transaksi->pembayarandps->tanggalBayar()}}</strong></span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                               Admin

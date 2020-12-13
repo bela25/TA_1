@@ -57,8 +57,8 @@
 
 					  <div class="tab-content" id="pills-tabContent">
 					    <div class="tab-pane fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
-                <p>Tangal Mulai: <strong>{{$cicilan->tanggal_mulai}}</strong></p>
-                <p>Tangal Akhir: <strong>{{$cicilan->tanggal_akhir}}</strong></p>
+                <p>Tangal Mulai: <strong>{{$cicilan->tanggalMulai()}}</strong></p>
+                <p>Tangal Akhir: <strong>{{$cicilan->tanggalAkhir()}}</strong></p>
                 <p>Bunga: <strong>{{$cicilan->bunga}}%</strong></p>
 					    	<div class="table-responsive">
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -84,7 +84,7 @@
                           @if($pembayaran_cicilan->tanggal_bayar == null)
                           <span class="badge badge-secondary">Belum bayar</span>
                           @else
-                          <span class="badge badge-success">{{$pembayaran_cicilan->tanggal_bayar}}</span>
+                          <span class="badge badge-success">{{$pembayaran_cicilan->tanggalBayar()}}</span>
                           @endif
                         </td>
                         <td>

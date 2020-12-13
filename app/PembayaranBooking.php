@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class PembayaranBooking extends Model
 {
@@ -16,6 +17,10 @@ class PembayaranBooking extends Model
     public function nominal()
     {
         return 'Rp'.number_format($this->nominal,2,',','.');
+    }
+    public function tanggalBayar()
+    {
+        return Carbon::parse($this->tanggal_bayar)->format('d M Y');
     }
     //
 }

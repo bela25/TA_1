@@ -26,7 +26,7 @@
             <th>Lokasi</th>
             <th>Harga Jual</th>
             <th>Jenis Bayar</th>
-            <th>Tanggal Pembayaran</th>
+            <th>Tanggal Pembelian</th>
             <th>Verifikasi Booking</th>
             <th>Status</th>
             <th>Tanggal Pelunasan</th>
@@ -50,7 +50,7 @@
             <td><a href="">{{$transaksi->lokasi()->nama_apartemen}}</a></td>
             <td>Rp{{$transaksi->units->hargaJual()}}</td>
             <td>{{$transaksi->jenis_bayar}}</td>
-            <td>{{$transaksi->tanggal}}</td>
+            <td>{{$transaksi->tanggal()}}</td>
             <td>
               @if($transaksi->verifikasi == 'diterima')
               <span class="badge badge-success">{{$transaksi->verifikasi}}</span>
@@ -70,7 +70,7 @@
             @if($transaksi->tgl_pelunasan == null)
             <td>Belum dilunasi</td>
             @else
-            <td>{{$transaksi->tgl_pelunasan}}</td>
+            <td>{{$transaksi->tanggalPelunasan()}}</td>
             @endif
             @if($transaksi->pegawais == null)
             <!-- <td><a href="{{route('transaksis.pegawai',$transaksi)}}">Tentukan pegawai</a></td> -->

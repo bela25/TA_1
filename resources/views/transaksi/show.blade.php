@@ -53,7 +53,7 @@
             <td><a href="{{route('transaksis.index')}}">{{$transaksi->id_transaksi}}</a></td>
             <td><a href="{{route('transaksis.index')}}">{{$transaksi->customers->nama}}</a></td>
             <td>{{$pembayaran_booking->nominal()}}</td>
-            <td>{{$pembayaran_booking->tanggal_bayar}}</td>
+            <td>{{$pembayaran_booking->tanggalBayar()}}</td>
             <td><a href="{{asset($pembayaran_booking->gambar_bukti)}}" target="_blank">{{$pembayaran_booking->gambar_bukti}}</a></td>
             <td>
               @if($pembayaran_booking->gambar_bukti != null)
@@ -194,7 +194,7 @@
             <td><a href="{{route('transaksis.index')}}">{{$transaksi->id_transaksi}}</a></td>
             <td><a href="{{route('transaksis.index')}}">{{$transaksi->customers->nama}}</a></td>
             <td>{{$pembayaran_dp->nominal()}}</td>
-            <td>{{$pembayaran_dp->tanggal_bayar}}</td>
+            <td>{{$pembayaran_dp->tanggalBayar()}}</td>
             <td><a href="{{asset($pembayaran_dp->gambar_bukti)}}" target="_blank">{{$pembayaran_dp->gambar_bukti}}</a></td>
             <td>
               @if($pembayaran_dp->gambar_bukti != null)
@@ -321,8 +321,8 @@
   <div class="card-body">
     @if($cicilan != null)
     <div class="row mb-3">
-      <div class="col">Tanggal Awal: {{ $cicilan->tanggal_mulai }}</div>
-      <div class="col">Tanggal Akhir: {{ $cicilan->tanggal_akhir }}</div>
+      <div class="col">Tanggal Awal: {{ $cicilan->tanggalMulai() }}</div>
+      <div class="col">Tanggal Akhir: {{ $cicilan->tanggalAkhir() }}</div>
       <div class="col">Bunga: {{ $cicilan->bunga }}</div>
     </div>
     <div class="table-responsive">
@@ -348,9 +348,9 @@
             <td><a href="{{route('transaksis.index')}}">{{$transaksi->customers->nama}}</a></td>
             <td>{{$pembayaran_cicilan->cicilan_ke}}</td>
             <td>{{$pembayaran_cicilan->nominal()}}</td>
-            <td>{{$pembayaran_cicilan->tanggal_bayar}}</td>
+            <td>{{$pembayaran_cicilan->tanggalBayar()}}</td>
             <td><a href="{{asset($pembayaran_cicilan->gambar_bukticicilan)}}" target="_blank">{{$pembayaran_cicilan->gambar_bukticicilan}}</a></td>
-            <td>{{$pembayaran_cicilan->tenggat_waktu}}</td>
+            <td>{{$pembayaran_cicilan->tenggatWaktu()}}</td>
             <td>
               @if($pembayaran_cicilan->gambar_bukticicilan != null)
                 @if($pembayaran_cicilan->verifikasi == 'diterima')
@@ -498,8 +498,8 @@
             <td><a href="#">{{$pembatalan->transaksis->customers->nama}}</a></td>
             <td>{{$pembatalan->alasan}}</td>
             <td>{{$pembatalan->showNominal()}}</td>
-            <td>{{$pembatalan->tanggal_batal}}</td>
-            <td>{{$pembatalan->tgl_pengembalian}}</td>
+            <td>{{$pembatalan->tanggalBatal()}}</td>
+            <td>{{$pembatalan->tanggalPengembalian()}}</td>
             <td>
               @if($pembatalan->gambar_bukti == null)
               <a href="{{route('pembatalans.upload',$pembatalan)}}">Upload bukti transfer</a>

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Cicilan extends Model
 {
@@ -15,6 +16,14 @@ class Cicilan extends Model
     public function pembayaran_cicilans()
     {
     	return $this->hasMany('App\PembayaranCicilan','cicilan','id_cicilan');
+    }
+    public function tanggalMulai()
+    {
+        return Carbon::parse($this->tanggal_mulai)->format('d M Y');
+    }
+    public function tanggalAkhir()
+    {
+        return Carbon::parse($this->tanggal_akhir)->format('d M Y');
     }
     public function adaPembayaran()
     {

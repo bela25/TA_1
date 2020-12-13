@@ -21,6 +21,14 @@ class PembayaranCicilan extends Model
     {
         return Carbon::parse($this->tanggal_bayar)->year;
     }
+    public function tanggalBayar()
+    {
+        return Carbon::parse($this->tanggal_bayar)->format('d M Y');
+    }
+    public function tenggatWaktu()
+    {
+        return Carbon::parse($this->tenggat_waktu)->format('d M Y');
+    }
     public function nominal()
     {
         return 'Rp'.number_format($this->nominal,2,',','.');

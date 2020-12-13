@@ -151,7 +151,7 @@
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                               Diterima pada
-                              <span><strong>{{$transaksi->pembayaranBookings->tanggal_bayar}}</strong></span>
+                              <span><strong>{{$transaksi->pembayaranBookings->tanggalBayar()}}</strong></span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                               Admin

@@ -9,9 +9,13 @@ class Pembatalan extends Model
 {
     protected $primaryKey = 'id_pembatalan';
 
+    public function tanggalBatal()
+    {
+        return Carbon::parse($this->tanggal_batal)->format('d M Y');
+    }
     public function tanggalPengembalian()
     {
-        return Carbon::parse($this->tgl_pengembalian)->format('d F Y');   
+        return Carbon::parse($this->tgl_pengembalian)->format('d M Y');   
     }
     public function bulanLunas()
     {

@@ -73,7 +73,7 @@
                 <tbody>
                   @forelse($customer->verifikasis as $verifikasi)
                   <tr>
-                    <td>{{$verifikasi->tanggal}}</td>
+                    <td>{{$verifikasi->tanggal()}}</td>
                     <td>{{$verifikasi->status}}</td>
                     <td><a href="{{asset($verifikasi->ktp)}}" target="_blank">{{$verifikasi->ktp}}</a></td>
                     <td><a href="{{asset($verifikasi->kk)}}" target="_blank">{{$verifikasi->kk}}</a></td>

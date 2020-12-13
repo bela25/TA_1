@@ -127,7 +127,7 @@
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                               Diterima pada
-                              <span><strong>{{$pembayaran_cicilan->tanggal_bayar}}</strong></span>
+                              <span><strong>{{$pembayaran_cicilan->tanggalBayar()}}</strong></span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                               Admin

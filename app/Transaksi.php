@@ -24,6 +24,16 @@ class Transaksi extends Model
         return Carbon::parse($this->tgl_pelunasan)->year;
     }
 
+    public function tanggal()
+    {
+        return Carbon::parse($this->tanggal)->format('d M Y');
+    }
+
+    public function tanggalPelunasan()
+    {
+        return Carbon::parse($this->tgl_pelunasan)->format('d M Y');
+    }
+
     public function pembatalans()
     {
     	return $this->hasOne('App\Pembatalan','transaksi','id_transaksi');

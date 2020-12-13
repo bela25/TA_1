@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Verifikasi extends Model
 {
@@ -15,5 +16,9 @@ class Verifikasi extends Model
     public function pegawais()
     {
     	return $this->belongsTo('App\Pegawai','pegawai','nip');
+    }
+    public function tanggal()
+    {
+        return Carbon::parse($this->tanggal)->format('d M Y');
     }
 }
