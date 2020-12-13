@@ -274,15 +274,15 @@ class PengunjungController extends Controller
         $transaksi->jenis_bayar = $request->jenisbayar;
         if($request->get('jenisbayar') == 'kpa')
         {
-            $transaksi ->tgl_pelunasan = Carbon::now()->addDays(30);
+            $transaksi ->tgl_pelunasan = Carbon::now()->addMonths(2);
         }
-        elseif($request->get('jenisbayar') == 'cash keras')
+        elseif($request->get('jenisbayar') == 'kredit keras')
         {
             $transaksi ->tgl_pelunasan = Carbon::now()->addMonths(6);   
         }
         elseif($request->get('jenisbayar') == 'in house')
         {
-            $transaksi ->tgl_pelunasan = Carbon::now()->addYears(10);   
+            $transaksi ->tgl_pelunasan = Carbon::now()->addYears(3);   
         }
         $transaksi->save();
         // dd($transaksi->id_transaksi);
