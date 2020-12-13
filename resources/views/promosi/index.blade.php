@@ -6,9 +6,11 @@
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">Promosi</h6>
+    @if(auth()->user()->pegawai->jabatan == 'admin')
     <a href="{{ route('promosis.create')}}" class="btn btn-primary ">
       <i class="fas fa-plus-square"></i> Tambah
     </a>
+    @endif
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -39,6 +41,7 @@
             <td><a href="{{route('lokasis.index')}}">{{$promosi->lokasis->nama_apartemen}}</a></td>
             <td>{{$promosi->updated_at}}</td>
             <td>
+            @if(auth()->user()->pegawai->jabatan == 'admin')
               @if(!$promosi->sudahBerakhir())
               <a href="{{route('promosis.edit',$promosi)}}" class="btn btn-primary">Ubah</a>
               @endif
@@ -70,6 +73,7 @@
                 </div>
                 <!-- /.modal-dialog -->
               </div>
+            @endif
             </td>
           </tr>
           @endforeach
