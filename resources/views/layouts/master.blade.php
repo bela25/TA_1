@@ -364,7 +364,7 @@
         var event = e || window.event;
         var target = event.target;
 
-        var tmp = target.value.replace(/,/g, '');
+        var tmp = target.value.replace(/[,.RrPp]/g, '');
         var val = Number(tmp).toLocaleString(locale);
 
         if (tmp == '') {

@@ -21,7 +21,7 @@
     </div>
     <div class="form-group">
       <label>Nominal</label>
-      <input type="number" class="form-control" placeholder="Isi nominal" name="nominal" min="0" value="{{$pembayaranCicilan->nominal}}" required>
+      <input type="number" class="form-control" placeholder="Isi nominal" name="nominal" min="0" value="{{$pembayaranCicilan->nominal}}" required onchange="NumericInput(this); cekTotalCicilan();">
     </div>
     <div class="form-group">
       <label>Tenggat Waktu</label>
@@ -59,3 +59,40 @@
     </div>
   </form>
   @endsection
+
+  @push('scripts')
+    <script type="text/javascript">
+      function cekTotalCicilan(){
+        var value = $("input[name=cicilan_terakhir]:checked").val();
+        var nominal = $("input[name=nominal]").val();
+        @if($pembayaranCicilan->cicilans != null)
+        var selisih = '{{ $pembayaranCicilan->cicilans->totalSesuaiHarga() }}';
+        @else
+        var selisih = '{{ $pembayaranCicilan->cicilanYangHarusDibayar() }}';
+        @endif
+        // console.log(value,nominal,number_format(selisih));
+        if(value == 'iya'){
+          if(nominal < selisih){
+            $('.cekTotalCicilan').removeClass('d-none');
+            $('.pesan').html('Total cicilan belum mencapai harga yang belum dibayarkan. Ganti nominal cicilan terakhir menjadi: Rp '+(selisih));
+            $('.submit').prop('disabled',true);
+          }
+          else if(nominal > selisih){
+            $('.cekTotalCicilan').removeClass('d-none');
+            $('.pesan').html('Total cicilan telah melewati harga yang belum dibayarkan. Ganti nominal cicilan terakhir menjadi: Rp '+(selisih));
+            $('.submit').prop('disabled',true);
+          }
+          else{
+            $('.cekTotalCicilan').addClass('d-none');
+            $('.pesan').html('Total cicilan sudah sesuai harga yang belum dibayarkan.');
+            $('.submit').prop('disabled',false);
+          }
+        }
+        else{
+          $('.cekTotalCicilan').addClass('d-none');
+          $('.pesan').html('Total cicilan sudah sesuai harga yang belum dibayarkan.');
+          $('.submit').prop('disabled',false);
+        }
+      }
+    </script>
+  @endpush
