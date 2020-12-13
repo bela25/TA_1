@@ -133,8 +133,10 @@
         <div id="collapsePengguna" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Menu Pengguna:</h6>
+            @if(auth()->user()->pegawai->jabatan == 'admin')
             <a class="collapse-item" href="{{route('lokasipegawais.index')}}">Lokasi Pegawai</a>
             <a class="collapse-item" href="{{route('pegawais.index')}}">Pegawai</a>
+            @endif
             <a class="collapse-item" href="{{route('customers.index')}}">Pelanggan</a>
            
           </div>

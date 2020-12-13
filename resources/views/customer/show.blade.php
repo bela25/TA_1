@@ -105,6 +105,7 @@
                   </div>
                   
                 </div> -->
+              @if(auth()->user()->pegawai->jabatan == 'admin')
                 @if($verifikasi->tgl_diterima == null)
                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#accept">Terima</button>
                 <div class="modal fade" id="accept">
@@ -161,6 +162,7 @@
                   </div>
                 </div> -->
                 @endif
+              @endif
               </td>
             </tr>
 
