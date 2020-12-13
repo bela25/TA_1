@@ -17,8 +17,11 @@ class UnitController extends Controller
      */
     public function index()
     {
-       $units = Unit::all();
-       return view('unit.index',compact('units'));
+        $pegawai = auth()->user()->pegawai;
+        $units = Unit::all()->filter(function ($item, $key) use($pegawai) {
+            return in_array($item->towers->lokasis->idlokasi, $pegawai->lokasipegawais->pluck('lokasi')->toArray());
+        });
+        return view('unit.index',compact('units'));
         //
     }
 

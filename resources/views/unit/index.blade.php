@@ -6,9 +6,11 @@
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">Unit</h6>
+    @if(auth()->user()->pegawai->jabatan == 'admin')
     <a href="{{ route('units.create')}}" class="btn btn-primary ">
       <i class="fas fa-plus-square"></i> Tambah
     </a>
+    @endif
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -41,6 +43,7 @@
             <td>{{$unit->created_at}}</td>
             <td>{{$unit->updated_at}}</td>
             <td>
+            @if(auth()->user()->pegawai->jabatan == 'admin')
               @if($unit->transaksis->count() <= 0)
               <a href="{{route('units.edit',$unit)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$unit->id_unit}}">Hapus</button>
@@ -72,6 +75,7 @@
                 <!-- /.modal-dialog -->
               </div>
               @endif
+            @endif
             </td>
           </tr>
           @endforeach

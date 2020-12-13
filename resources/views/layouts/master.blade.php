@@ -108,7 +108,14 @@
         <a class="nav-link" href="{{route('transaksis.index')}}">
           <i class="fas fa-funnel-dollar"></i>
           <span>Transaksi</span></a>
-      </li>     
+      </li>
+      @if(auth()->user()->pegawai != null && auth()->user()->pegawai->jabatan == 'marketing')
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('units.index')}}">
+          <i class="fas fa-building"></i>
+          <span>Unit</span></a>
+      </li>
+      @endif
       <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransaksi" aria-expanded="true" aria-controls="collapseTransaksi">
           <i class="fas fa-funnel-dollar"></i>
@@ -143,10 +150,10 @@
         </div>
       </li>
 
-      @if(auth()->user()->pegawai != null && auth()->user()->pegawai->jabatan == 'admin')
        <!-- Divider -->
       <hr class="sidebar-divider">
 
+      @if(auth()->user()->pegawai != null && auth()->user()->pegawai->jabatan == 'admin')
       <!-- Heading -->
       <div class="sidebar-heading">
         Master
@@ -172,10 +179,10 @@
           </div>
         </div>
       </li>
-      @endif
 
       <!-- Divider -->
       <hr class="sidebar-divider">
+      @endif
 
       <!-- Heading -->
       <div class="sidebar-heading">
