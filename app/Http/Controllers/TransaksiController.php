@@ -96,6 +96,7 @@ class TransaksiController extends Controller
         $pembayaran_booking=$transaksi->pembayaranbookings;
         $cicilan=$transaksi->cicilans;
         $pembatalan=$transaksi->pembatalans;
+        // dd($cicilan->pembayaran_cicilans->where('cicilan_terakhir','iya')->count());
         // if($pembayaran_dp == null)
         // {
         //     return redirect('transaksis')->with('pesan', 'Belum ada pembayaran DP');

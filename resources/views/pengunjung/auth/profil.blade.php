@@ -88,7 +88,7 @@
                     <td>
                       @if($verifikasi->tgl_diterima == null)
                       <!-- <a href="{{route('verifikasis.edit',$verifikasi)}}" class="btn btn-primary">Ubah</a> -->
-                      <a href="{{ route('verifikasis.edit', $customer->verifikasi)}}" class="btn btn-primary">Ubah Data</a>
+                      <a href="{{ route('verifikasis.edit', $verifikasi->idverifikasi)}}" class="btn btn-primary">Ubah Data</a>
                       <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$verifikasi->idverifikasi}}">Hapus</button>
                       <div class="modal fade" id="delete{{$verifikasi->idverifikasi}}">
                         <div class="modal-dialog">

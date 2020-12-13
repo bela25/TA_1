@@ -309,11 +309,13 @@
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">Pembayaran Cicilan</h6>
-    @if($transaksi->status == 'aktif')
+    @if($transaksi->status == 'aktif' && $cicilan->pembayaran_cicilans->where('cicilan_terakhir','iya')->count() <= 0)
     <form method="get" action="{{ route('pembayaran_cicilans.create') }}">
       <input type="hidden" name="transaksi" value="{{$transaksi->id_transaksi}}">
       <button type="submit" class="btn btn-primary"><i class="fas fa-plus-square"></i> Tambah</button>
     </form>
+    @else
+    Tidak bisa menambah cicilan karena transaksi dibatalkan (tidak aktif) atau sudah ada cicilan terakhir
     @endif
   </div>
   <div class="card-body">

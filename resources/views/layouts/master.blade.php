@@ -105,6 +105,11 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
+        <a class="nav-link" href="{{route('transaksis.index')}}">
+          <i class="fas fa-funnel-dollar"></i>
+          <span>Transaksi</span></a>
+      </li>     
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransaksi" aria-expanded="true" aria-controls="collapseTransaksi">
           <i class="fas fa-funnel-dollar"></i>
           <span>Transaksi</span>
@@ -117,7 +122,7 @@
             <a class="collapse-item" href="{{route('pembatalans.index')}}">Pembatalan</a>
           </div>
         </div>
-      </li>
+      </li> -->
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
@@ -180,7 +185,7 @@
         <a class="nav-link" href="{{route('chattings.index')}}">
           <i class="fas fa-comments"></i>
           <span>Chatting</span></a>
-      </li>     
+      </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -351,7 +356,7 @@
         if (tmp == '') {
           target.value = '';
         } else {
-          target.value = val;
+          target.value = 'Rp'+val;
         }
       });
 

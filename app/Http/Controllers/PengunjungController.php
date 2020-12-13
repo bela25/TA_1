@@ -47,7 +47,16 @@ class PengunjungController extends Controller
     {
         $customer = auth()->user()->customer;
         $transaksis = $customer->transaksis;
-        $jatuhtempos = PembayaranCicilan::whereNull('tanggal_bayar')->whereDate('tenggat_waktu','<',date('Y-m-d'))->get();
+        $jatuhtempos = [];
+        if(auth()->check() && auth()->user()->customer != null)
+        {
+            $jatuhtempos = PembayaranCicilan::whereNull('tanggal_bayar')
+                ->whereDate('tenggat_waktu','<',date('Y-m-d'))
+                ->get()
+                ->filter(function ($value, $key) {
+                    return $value->cicilans->transaksis->customers->idcustomers == auth()->user()->customer->idcustomers;
+                });
+        }
         return view('pengunjung.auth.profil', compact('customer','transaksis','jatuhtempos'));
     }
 
@@ -137,7 +146,16 @@ class PengunjungController extends Controller
         $totalCustomer = Customer::count();
         $totalTransaksi = Transaksi::count();
 
-        $jatuhtempos = PembayaranCicilan::whereNull('tanggal_bayar')->whereDate('tenggat_waktu','<',date('Y-m-d'))->get();
+        $jatuhtempos = [];
+        if(auth()->check() && auth()->user()->customer != null)
+        {
+            $jatuhtempos = PembayaranCicilan::whereNull('tanggal_bayar')
+                ->whereDate('tenggat_waktu','<',date('Y-m-d'))
+                ->get()
+                ->filter(function ($value, $key) {
+                    return $value->cicilans->transaksis->customers->idcustomers == auth()->user()->customer->idcustomers;
+                });
+        }
 
         return view('pengunjung.index', compact('units','feedbacks','promosis','totalLokasi','totalUnit','totalCustomer','totalTransaksi','lokasis','lokasi','harga_min','harga_max','jatuhtempos'));
     }
