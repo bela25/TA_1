@@ -45,7 +45,7 @@ class HargaJualController extends Controller
     public function store(Request $request)
     {
         $post = new HargaJual();
-        $post ->hargajual_cash = str_replace(',','',$request->get('hargajual'));
+        $post ->hargajual_cash = str_replace([',','.','Rp','rp'],'',$request->get('hargajual'));
         $post ->tgl_awal = $request->get('tglawal');
         $post ->tgl_akhir = $request->get('tglakhir');
         $post ->tower = $request->get('tower');
@@ -92,7 +92,7 @@ class HargaJualController extends Controller
      */
     public function update(Request $request, HargaJual $hargajual)
     {
-        $hargajual ->hargajual_cash = str_replace(',','',$request->get('hargajual'));
+        $hargajual ->hargajual_cash = str_replace([',','.','Rp','rp'],'',$request->get('hargajual'));
         $hargajual ->tgl_awal = $request->get('tglawal');
         $hargajual ->tgl_akhir = $request->get('tglakhir');
         $hargajual ->tower = $request->get('tower');
