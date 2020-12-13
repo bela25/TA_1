@@ -27,18 +27,18 @@
     </div>
     <div class="form-group">
       <label for="tglawal">Tanggal Awal</label>
-      <div class="input-group">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" id="tglawal" placeholder="Isi Tanggal Dibuat" name="tglawal" required>
-        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
+      <div class="input-group date" id="tglawal" data-target-input="nearest">
+        <input type="text" class="form-control datetimepicker-input" name="tglawal" id="pilihtanggal" data-target="#pilihtanggal" data-toggle="datetimepicker" required>
+        <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
       </div>
     </div>
     <div class="form-group">
       <label for="tglakhir">Tanggal Akhir</label>
-      <div class="input-group">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" id="tglakhir" placeholder="Isi Tanggal Dibuat" name="tglakhir" required>
-        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
+      <div class="input-group date" id="tglakhir" data-target-input="nearest">
+        <input type="text" class="form-control datetimepicker-input pilihtanggal" name="tglakhir" data-target=".pilihtanggal" data-toggle="datetimepicker" required>
+        <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
       </div>

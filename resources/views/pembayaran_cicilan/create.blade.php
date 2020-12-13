@@ -15,8 +15,8 @@
       <label>Tanggal Awal</label>
 
       <div class="input-group date" id="tglawal" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tanggal_mulai" required>
-        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
+        <input type="text" class="form-control datetimepicker-input" name="tanggal_mulai" id="pilihtanggal" data-target="#pilihtanggal" data-toggle="datetimepicker" required>
+        <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
       </div>
@@ -59,8 +59,8 @@
       <label>Tenggat Waktu</label>
 
       <div class="input-group date" id="tglakhir" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tenggat_waktu" required>
-        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
+        <input type="text" class="form-control datetimepicker-input pilihtanggal" name="tenggat_waktu" data-target=".pilihtanggal" data-toggle="datetimepicker" required>
+        <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
       </div>

@@ -33,8 +33,8 @@
     <div class="form-group">
       <label for="tgllahir">Tanggal Lahir</label>
       <div class="input-group date" id="tgllahir" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tgllahir" required>
-        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
+        <input type="text" class="form-control datetimepicker-input" name="tgllahir" id="pilihtanggal" data-target="#pilihtanggal" data-toggle="datetimepicker" required>
+        <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
       </div>
@@ -65,9 +65,9 @@
     </div>
     <div class="form-group">
       <label for="tglbergabung">Tgl Bergabung</label>
-      <div class="input-group date" id="tgllahir" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tglbergabung" required>
-        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
+      <div class="input-group date" id="tglbergabung" data-target-input="nearest">
+        <input type="text" class="form-control datetimepicker-input pilihtanggal" name="tglbergabung" data-target=".pilihtanggal" data-toggle="datetimepicker" required>
+        <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
       </div>

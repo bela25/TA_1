@@ -7,8 +7,8 @@
   <div class="card-body">
     <div class="form-group">
       <label for="tglawal">Tanggal Feedback</label>
-      <div class="input-group">
-        <input type="text" class="form-control" id="tglawal" placeholder="Isi Tanggal Dibuat" name="tanggal_feedback" value="{{date('Y-m-d')}}" required readonly>
+      <div class="input-group date" id="tanggal_feedback" data-target-input="nearest">
+        <input type="text" class="form-control datetimepicker-input" name="tanggal_feedback" id="pilihtanggal" data-target="#pilihtanggal" data-toggle="datetimepicker" required>
         <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>

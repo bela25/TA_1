@@ -25,10 +25,9 @@
     </div>
     <div class="form-group">
       <label>Tenggat Waktu</label>
-
-      <div class="input-group date" id="tglakhir" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tenggat_waktu" required value="{{$pembayaranCicilan->tenggat_waktu}}">
-        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
+      <div class="input-group date" id="tenggat_waktu" data-target-input="nearest">
+        <input type="text" class="form-control datetimepicker-input pilihtanggal" name="tenggat_waktu" data-target=".pilihtanggal" data-toggle="datetimepicker" required value="{{ $pembayaranCicilan->tenggat_waktu }}">
+        <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
       </div>

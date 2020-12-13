@@ -17,8 +17,8 @@
     <div class="form-group">
       <label>Tanggal Pembatalan:</label>
       <div class="input-group date" id="tanggalbatal" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tgllahir" required value="{{ $pembatalan->tanggal_batal }}">
-        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
+        <input type="text" class="form-control datetimepicker-input" name="tanggalbatal" id="pilihtanggal" data-target="#pilihtanggal" data-toggle="datetimepicker" required value="{{ $pembatalan->tanggal_batal }}">
+        <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
       </div>
@@ -37,10 +37,9 @@
     </div>
     <div class="form-group">
       <label>Tanggal Pengembalian:</label>
-
       <div class="input-group date" id="tglpengembalian" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tgllahir" required value="{{$pembatalan->tgl_pengembalian}}">
-        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
+        <input type="text" class="form-control datetimepicker-input pilihtanggal" name="tglpengembalian" data-target=".pilihtanggal" data-toggle="datetimepicker" required value="{{ $pembatalan->tgl_pengembalian }}">
+        <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
       </div>

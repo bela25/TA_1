@@ -7,9 +7,9 @@
   <div class="card-body">
     <div class="from-group">
       <label for="tgldibuat">Tanggal Dibuat</label>
-      <div class="input-group">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" id="tgldibuat" placeholder="Isi Tanggal Dibuat" name="tgldibuat" value="{{date('Y-m-d')}}" required readonly>
-        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
+      <div class="input-group date" id="tgldibuat" data-target-input="nearest">
+        <input type="text" class="form-control datetimepicker-input" name="tgldibuat" id="pilihtanggal" data-target="#pilihtanggal" data-toggle="datetimepicker" value="{{date('Y-m-d')}}" required readonly>
+        <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
       </div>

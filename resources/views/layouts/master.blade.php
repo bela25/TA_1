@@ -18,12 +18,14 @@
   <!-- Custom styles for this template-->
   <link href="{{asset('admin/css/sb-admin-2.min.css')}}" rel="stylesheet">
   <!-- Custom styles for this page -->
-  <link href="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+  <link href="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <!-- <link rel="stylesheet" href="{{('adminlte/dist/css/adminlte.min.css')}}"> -->
+    <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="{{asset('adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
@@ -319,7 +321,7 @@
   <script src="{{asset('adminlte/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script>
   <script src="{{asset('adminlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
   <!-- bs-custom-file-input -->
-  <script src="{{asset('adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}s"></script>
+  <script src="{{asset('adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
   <!-- Custom scripts for all pages-->
   <script src="{{ asset('admin/js/sb-admin-2.min.js')}}"></script>
   <script src="{{asset('admin/vendor/chart.js/Chart.min.js')}}"></script>
@@ -330,7 +332,10 @@
       $('#dataTable').DataTable();
       $('.dataTable').DataTable();
 
-      $('#tgllahir').datetimepicker({
+      $('#pilihtanggal').datetimepicker({
+        format: 'Y-MM-DD'
+      });
+      $('.pilihtanggal').datetimepicker({
         format: 'Y-MM-DD'
       });
     });
@@ -373,7 +378,7 @@
       inp.addEventListener('focus', function(e) {
         var event = e || window.event;
         var target = event.target;
-        var val = target.value.replace(/[,.]/g, '');
+        var val = target.value.replace(/[,.RrPp]/g, '');
 
         target.value = val;
       });

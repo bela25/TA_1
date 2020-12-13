@@ -15,10 +15,9 @@
     </div>
     <div class="form-group">
       <label>Tanggal Pembayaran:</label>
-
       <div class="input-group date" id="tglpembayaran" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tgllahir" required>
-        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
+        <input type="text" class="form-control datetimepicker-input" name="tglpembayaran" id="pilihtanggal" data-target="#pilihtanggal" data-toggle="datetimepicker" required>
+        <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
       </div>

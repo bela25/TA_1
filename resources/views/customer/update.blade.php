@@ -26,7 +26,12 @@
     </div>
     <div class="form-group">
       <label for="tgllahir">Tanggal Lahir</label>
-      <input type="text" class="form-control" id="tgllahir" placeholder="Isi Tanggal Lahir" name="tgllahir" value="{{$customer->tgl_lahir}}" required>
+      <div class="input-group date" id="tgllahir" data-target-input="nearest">
+        <input type="text" class="form-control datetimepicker-input" name="tgllahir" id="pilihtanggal" data-target="#pilihtanggal" data-toggle="datetimepicker" required value="{{ $customer->tgl_lahir }}">
+        <div class="input-group-append">
+          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+        </div>
+      </div>
     </div>
     <div class="form-group">
       <label for="notelp">No Telp</label>

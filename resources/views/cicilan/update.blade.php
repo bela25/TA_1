@@ -21,9 +21,9 @@
     <div class="form-group">
       <label>Tanggal Awal:</label>
 
-      <div class="input-group date" id="tglawal" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tanggal_mulai" value="{{ $cicilan->tanggal_mulai }}" required>
-        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
+      <div class="input-group date" id="tanggal_mulai" data-target-input="nearest">
+        <input type="text" class="form-control datetimepicker-input" name="tanggal_mulai" id="pilihtanggal" data-target="#pilihtanggal" data-toggle="datetimepicker" required value="{{ $cicilan->tanggal_mulai }}">
+        <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
       </div>
@@ -33,8 +33,8 @@
       <label>Tanggal Akhir:</label>
 
       <div class="input-group date" id="tglakhir" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-target="#tgllahir" name="tanggal_akhir" value="{{ $cicilan->tanggal_akhir }}" required>
-        <div class="input-group-append" data-target="#tgllahir" data-toggle="datetimepicker">
+        <input type="text" class="form-control datetimepicker-input pilihtanggal" name="tglakhir" data-target=".pilihtanggal" data-toggle="datetimepicker" required value="{{ $cicilan->tanggal_akhir }}">
+        <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
       </div>
