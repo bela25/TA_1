@@ -16,12 +16,12 @@ class Transaksi extends Model
 
     public function bulanLunas()
     {
-        return Carbon::parse($this->tgl_pelunasan)->format('F');
+        return Carbon::parse($this->tanggal)->format('F');
     }
 
     public function tahunLunas()
     {
-        return Carbon::parse($this->tgl_pelunasan)->year;
+        return Carbon::parse($this->tanggal)->year;
     }
 
     public function tanggal()
