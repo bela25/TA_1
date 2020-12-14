@@ -162,7 +162,7 @@ class LaporanController extends Controller
         $pegawai = $request->pegawai;
         $customer = $request->customer;
         $lokasi = $request->lokasi;
-        $cicilans = PembayaranCicilan::whereNotNull('tanggal_bayar')->get();
+        $cicilans = PembayaranCicilan::all();
 
         // pegawai jabatan marketing
         $pegawai_login = auth()->user()->pegawai ?? null;
