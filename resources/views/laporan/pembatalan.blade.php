@@ -34,6 +34,7 @@
         </select>
         @else
         <input type="text" class="form-control mt-2 mr-sm-2" name="pegawai" placeholder="Pegawai" value="{{ $pegawai_login->nama }}" readonly>
+        <input type="hidden" name="pegawai" value="{{$pegawai_login->nip}}">
         @endif
 
         <!-- <label class="mt-2 mr-sm-2" for="customer">Customer</label>
