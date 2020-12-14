@@ -36,8 +36,6 @@ class LaporanController extends Controller
         $lokasi = $request->lokasi;
     	$transaksis = Transaksi::all();
 
-        // dd(Pegawai::find($pegawai));
-
     	// pegawai jabatan marketing
     	$pegawai_login = auth()->user()->pegawai ?? null;
         // dd($pegawai_login->nip);
