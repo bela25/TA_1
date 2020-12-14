@@ -29,7 +29,7 @@
           <tr>
             <th>Tanggal Feedback</th>
             <th>Lokasi</th>
-            <th>Pegawai</th>
+            <!-- <th>Pegawai</th> -->
             <th>Customer</th>
             <th>Isi</th>
             <th>Reply</th>
@@ -42,7 +42,7 @@
           <tr>
             <td>{{$feedback->tanggal_feedback}}</td>
             <td>{{$feedback->lokasis->nama_apartemen}}</td>
-            <td>{{$feedback->pegawais->nama}}</td>
+            <!-- <td>{{$feedback->pegawais->nama}}</td> -->
             <td>{{$feedback->customers->nama}}</td>
             <td>{{$feedback->isi}}</td>
             <td>{{$feedback->reply}}</td>

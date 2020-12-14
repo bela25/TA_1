@@ -23,6 +23,13 @@ class FeedbackController extends Controller
         $class = $sentiment->categorise('test');
         // dd([$scores,$class]);
         $feedbacks=Feedback::all();
+        $pegawai = auth()->user()->pegawai;
+        if($pegawai->jabatan == 'marketing')
+        {
+            $feedbacks = $feedbacks->filter(function ($item, $key) use ($pegawai) {
+                return in_array($item->lokasis->idlokasi, $pegawai->lokasipegawais->pluck('lokasi')->toArray());
+            });
+        }
         $positif = $feedbacks->where('sentimen','positif')->count();
         $negatif = $feedbacks->where('sentimen','negatif')->count();
         // dd($sentimen);

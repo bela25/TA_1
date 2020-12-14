@@ -101,7 +101,8 @@ class PembatalanController extends Controller
         // $pembatalan ->transaksi = $request->get('customer');
         $pembatalan ->alasan = $request->get('alasan');
         $pembatalan ->tanggal_batal= $request->get('tanggal_batal');
-        $pembatalan ->tgl_pengembalian= $request->get('tglpengembalian');
+        // $pembatalan ->tgl_pengembalian= $request->get('tglpengembalian');
+        $pembatalan ->tgl_pengembalian= date('Y-m-d');
         $pembatalan ->admin = $request->get('admin');
 
         $file = $request->file('bukti');
