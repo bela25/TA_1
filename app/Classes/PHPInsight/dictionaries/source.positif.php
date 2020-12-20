@@ -598,6 +598,7 @@ $pos = array(
 'manja',
 'manjur',
 'mantab',
+'mantap',
 'manusiawi',
 'mapan',
 'martabat',

@@ -2006,6 +2006,7 @@ $neg = array(
 'sandalbakiak',
 'sandera',
 'sangat',
+'sangatburuk',
 'sangatefektif',
 'sangatjahat',
 'sangatlapar',

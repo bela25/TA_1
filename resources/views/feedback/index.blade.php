@@ -33,7 +33,7 @@
             <th>Customer</th>
             <th>Isi</th>
             <th>Reply</th>
-            <th>Interaksi</th>
+            <th>Sentimen</th>
           </tr>
         </thead>
 
@@ -46,7 +46,8 @@
             <td>{{$feedback->customers->nama}}</td>
             <td>{{$feedback->isi}}</td>
             <td>{{$feedback->reply}}</td>
-            <td>
+            <td>{{$feedback->sentimen}}</td>
+            <!-- <td> -->
               <!-- <a href="{{route('feedbacks.edit',$feedback)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$feedback->idfeedback}}">Hapus</button>
               <div class="modal fade" id="delete{{$feedback->idfeedback}}">
@@ -73,7 +74,7 @@
                   </div>
                 </div>
               </div> -->
-            </td>
+            <!-- </td> -->
           </tr>
           @endforeach
 
