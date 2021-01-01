@@ -45,7 +45,6 @@
 <script type="text/javascript">
   var lon = ('{{$lokasi->longitude}}');
   var lat = ('{{$lokasi->latitude}}');
-  console.log(lon,lat);
   var stroke_hitam = new ol.style.Stroke({color: 'black', width: 1});
   var fill_orange = new ol.style.Fill({color: 'rgba(255, 140, 0, 0.5)'});
   var style_circle = new ol.style.Style({
