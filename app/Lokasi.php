@@ -20,5 +20,9 @@ class Lokasi extends Model
     {
         return $this->hasOne('App\Spesifikasi_bangunan','lokasi','idlokasi');
     }
+    public function beritas()
+    {
+    	return $this->hasMany('App\Berita','lokasi','idlokasi');
+    }
     //
 }

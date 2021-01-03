@@ -45,7 +45,7 @@
 
   					<div class="text float-left">
 	  					<h2>{{$unit->tipes->nama}} No. {{$unit->no_unit}}</h2>
-	  					<span class="subheading">Tower {{$unit->towers->nama}}</span>
+	  					<span class="subheading">Tower {{$unit->towers->nama}} - {{$unit->towers->lokasis->nama_apartemen}}</span>
   						<p class="price d-inline"><span class="orig-price">{{$unit->hargaJual()}}</span></p>
               @if($customer != null && $customer->unitDimiliki($unit))
                 <p>Verifikasi Pembelian: 
@@ -107,6 +107,9 @@
 						    <li class="nav-item">
 						      <a class="nav-link" id="pills-manufacturer-tab" data-toggle="pill" href="#pills-manufacturer" role="tab" aria-controls="pills-manufacturer" aria-expanded="true">Description</a>
 						    </li>
+                <li class="nav-item">
+						      <a class="nav-link" id="pills-progress-tab" data-toggle="pill" href="#pills-progress" role="tab" aria-controls="pills-progress" aria-expanded="true">Progress</a>
+						    </li>
 						  </ul>
 						</div>
 
@@ -161,6 +164,18 @@
                   </li>
                   @endif
                 </ul>
+					    </div>
+
+              <div class="tab-pane fade" id="pills-progress" role="tabpanel" aria-labelledby="pills-progress-tab">
+					    	<div class="row">
+					    		<div class="col-md-4">
+					    			<ul class="features">
+                      @foreach($unit->towers->lokasis->beritas->sortBy('tanggal') as $berita)
+					    				<li class="check"><span class="ion-ios-checkmark-circle"></span>{{$berita->tanggalBerita()}}: <strong>{{$berita->progress}}</strong></li>
+                      @endforeach
+					    			</ul>
+					    		</div>
+					    	</div>
 					    </div>
 
 					  </div>

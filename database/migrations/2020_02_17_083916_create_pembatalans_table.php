@@ -23,6 +23,8 @@ class CreatePembatalansTable extends Migration
             $table->foreign('transaksi')->references('id_transaksi')->on('transaksis');
             $table->string('gambar_bukti');
             $table->date('tgl_pengembalian');
+            $table->enum('status', ['aktif','tidak aktif']);
+            $table->text('alasan_pegawai')->nullable();
             $table->timestamps();
         });
     }

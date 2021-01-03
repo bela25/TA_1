@@ -14,7 +14,7 @@ class BookSeeder extends Seeder
     {
         Model::unguard();
         $this->call(UsersTableSeeder::class);
-        foreach ($i=0; $i<100; $i++) 
+        for ($i = 0; $i < 100; $i++)
         {
         	DB::table('users')->inset([
         		'name' => str_random(10),

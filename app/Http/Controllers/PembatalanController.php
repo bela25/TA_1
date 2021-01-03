@@ -129,7 +129,7 @@ class PembatalanController extends Controller
      */
     public function destroy(Pembatalan $pembatalan)
     {
-        $transaksi=$pmebatalan->transaksis;
+        $transaksi=$pembatalan->transaksis;
         $transaksi->status='aktif';
         $transaksi->save();
         $pembatalan->delete();
@@ -147,5 +147,23 @@ class PembatalanController extends Controller
         }
         return view('pembatalan.upload',compact('pembatalan','pegawais','pegawai_nip'));
         //
+    }
+
+    public function cancel(Request $request, Pembatalan $pembatalan)
+    {
+        $pembatalan->status = 'tidak aktif';
+        $pembatalan->alasan_pegawai = $request->alasan_pegawai;
+        $pembatalan->save();
+
+        $pembatalan->transaksis->status = 'aktif';
+        $pembatalan->transaksis->save();
+        return redirect()->route('transaksis.show', $pembatalan->transaksis);
+    }
+
+    public function alasan(Request $request, Pembatalan $pembatalan)
+    {
+        $pembatalan->alasan_pegawai = $request->alasan_pegawai;
+        $pembatalan->save();
+        return redirect()->route('transaksis.show', $pembatalan->transaksis);
     }
 }

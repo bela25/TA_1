@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
 	Route::resource('profils','ProfilController');
 	Route::resource('spesifikasi_bangunans','SpesifikasiBangunanController');
 	Route::resource('units','UnitController');
+	Route::resource('beritas','BeritaController');
 
 	// verifikasi pembayaran
 	Route::put('pembayaran_bookings/{pembayaranBooking}/verifikasi', 'PembayaranBookingController@verifikasi')->name('pembayaran_bookings.verifikasi');
@@ -51,6 +52,8 @@ Route::middleware('auth')->group(function () {
 	Route::put('verifikasis/{verifikasi}/verifikasi','VerifikasiController@verifikasi')->name('verifikasis.verifikasi');
 	Route::resource('verifikasis','VerifikasiController');
 	Route::get('pembatalans/{pembatalan}/uploadbukti','PembatalanController@uploadBukti')->name('pembatalans.upload');
+	Route::put('pembatalans/{pembatalan}/cancel','PembatalanController@cancel')->name('pembatalans.cancel');
+	Route::put('pembatalans/{pembatalan}/alasan','PembatalanController@alasan')->name('pembatalans.alasan');
 	Route::resource('pembatalans','PembatalanController');
 	Route::put('transaksis/{transaksi}/simpanpegawai','TransaksiController@simpanPegawai')->name('transaksis.simpanpegawai');
 	Route::get('transaksis/{transaksi}/ubahpegawai','TransaksiController@ubahPegawai')->name('transaksis.pegawai');

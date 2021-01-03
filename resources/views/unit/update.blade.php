@@ -8,11 +8,11 @@
   <div class="card-body">
     <div class="form-group">
       <label for="namaunit">Unit</label>
-      <input type="text" class="form-control" id="namaunit" placeholder="Isi Unit" name="namaunit" value="{{$unit->no_unit}}"> 
+      <input type="text" class="form-control" id="namaunit" placeholder="Isi Unit" name="namaunit" value="{{$unit->no_unit}}" required> 
     </div>
     <div class="form-group">
       <label>Status</label>
-      <input type="text" class="form-control" id="status" placeholder="Isi Unit" name="customRadio" value="{{$unit->status}}" readonly>
+      <input type="text" class="form-control" id="status" placeholder="Isi Unit" name="customRadio" value="{{$unit->status}}" required readonly>
       <!-- <div class="custom-control custom-radio">
         @if($unit->status == 'terjual')
         <input class="custom-control-input" type="radio" id="terjual" name="customRadio" value="terjual" checked>

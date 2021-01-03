@@ -486,6 +486,8 @@
             <th>Nominal</th>
             <th>Tanggal Pembatalan</th>
             <th>Tanggal Pengembalian</th>
+            <th>Status</th>
+            <th>Alasan dari Pegawai</th>
             <th>Bukti</th>
             <th>Interaksi</th>
           </tr>
@@ -500,6 +502,8 @@
             <td>{{$pembatalan->showNominal()}}</td>
             <td>{{$pembatalan->tanggalBatal()}}</td>
             <td>{{$pembatalan->tanggalPengembalian()}}</td>
+            <td><span class="badge {{ $pembatalan->status == 'aktif' ? 'badge-success' : 'badge-danger' }}">{{$pembatalan->status}}</span></td>
+            <td>{{$pembatalan->alasan_pegawai}}</td>
             <td>
               @if($pembatalan->gambar_bukti == null)
               <a href="{{route('pembatalans.upload',$pembatalan)}}">Upload bukti transfer</a>
@@ -508,7 +512,68 @@
               @endif
             </td>
             <td>
-              @if($pembatalan->gambar_bukti == null)
+            @if($pembatalan->gambar_bukti == null)
+              @if($pembatalan->bolehDibatalkan())
+              <button type="button" class="btn btn-danger mb-1" data-toggle="modal" data-target="#cancel{{$pembatalan->id_pembatalan}}">
+              Cancel</button>
+              <div class="modal fade" id="cancel{{$pembatalan->id_pembatalan}}">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Peringatan</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Apakah Anda yakin ingin meng-cancel pengajuan pembatalan transaksi ini?&hellip;</p>
+                      <form role="form" action="{{route('pembatalans.cancel',$pembatalan)}}" method="post" id="batal{{$pembatalan->id_pembatalan}}">
+                        {{csrf_field()}}
+                        {{method_field('put')}}
+                        <div class="form-group">
+                          <textarea name="alasan_pegawai" id="alasan_pegawai" cols="30" rows="7" class="form-control" placeholder="Berikan alasan" required>{{$pembatalan->alasan_pegawai}}</textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                      <button type="submit" class="btn btn-primary" form="batal{{$pembatalan->id_pembatalan}}">Simpan</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              @endif
+              <button type="button" class="btn btn-primary mb-1" data-toggle="modal" data-target="#reason{{$pembatalan->id_pembatalan}}">
+              Tambah Alasan</button>
+              <div class="modal fade" id="reason{{$pembatalan->id_pembatalan}}">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Peringatan</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Silahkan berikan alasan tambahan pada pengajuan pembatalan transaksi ini?&hellip;</p>
+                      <form role="form" action="{{route('pembatalans.alasan',$pembatalan)}}" method="post" id="alasan{{$pembatalan->id_pembatalan}}">
+                        {{csrf_field()}}
+                        {{method_field('put')}}
+                        <div class="form-group">
+                          <input type="text" class="form-control" name="admin" value="{{$pembatalan->pegawais->nama}}" required readonly>
+                        </div>
+                        <div class="form-group">
+                          <textarea name="alasan_pegawai" id="alasan_pegawai" cols="30" rows="7" class="form-control" placeholder="Berikan alasan" required>{{$pembatalan->alasan_pegawai}}</textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                      <button type="submit" class="btn btn-primary" form="alasan{{$pembatalan->id_pembatalan}}">Simpan</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <!-- <a href="{{route('pembatalans.edit',$pembatalan)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$pembatalan->id_pembatalan}}">
                Hapus</button>

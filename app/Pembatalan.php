@@ -81,5 +81,9 @@ class Pembatalan extends Model
     {
         return 'Rp'.number_format($nominal,2,',','.');
     }
+    public function bolehDibatalkan()
+    {
+        return Carbon::parse($this->tanggal_batal)->diff(Carbon::now())->days < 10 && $this->status == 'aktif';
+    }
     //
 }

@@ -62,7 +62,7 @@
             </select>
           </div>
           <div class="form-group">
-            <textarea name="isi" id="isi" cols="30" rows="7" class="form-control" placeholder="Berikan feedback"></textarea>
+            <textarea name="isi" id="isi" cols="30" rows="7" class="form-control" placeholder="Berikan feedback" required></textarea>
           </div>
           <div class="form-group">
             <input type="submit" value="Send Feedback" class="btn btn-primary py-3 px-5">
@@ -105,7 +105,7 @@
             <form action="{{route('pengunjung.chat')}}" method="post">
               {{csrf_field()}}
               <div class="input-group">
-                <input type="text" class="form-control" name="pesan" placeholder="Pesan">
+                <input type="text" class="form-control" name="pesan" placeholder="Pesan" required>
                 <div class="input-group-append">
                   <button class="btn btn-outline-success" type="submit" id="button-addon2"><i class="fas fa-paper-plane"></i></button>
                 </div>

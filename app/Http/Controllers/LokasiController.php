@@ -64,7 +64,8 @@ class LokasiController extends Controller
      */
     public function show(Lokasi $lokasi)
     {
-        //
+        $beritas = $lokasi->beritas;
+        return view('lokasi.show', compact('lokasi','beritas'));
     }
 
     /**

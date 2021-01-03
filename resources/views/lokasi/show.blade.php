@@ -2,11 +2,22 @@
 
 
 @section('content')
-<!-- DataTales Example -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">Lokasi</h6>
-    <a href="{{ route('lokasis.create')}}" class="btn btn-primary ">
+    <a href="{{ route('lokasis.index')}}" class="btn btn-secondary ">
+      <i class="fas fa-arrow-left"></i> Kembali
+    </a>
+  </div>
+  <div class="card-body">
+    <h3 class="text-primary">{{ $lokasi->nama_apartemen }}</h3>
+  </div>
+</div>
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Berita</h6>
+    <a href="{{ route('beritas.create', ['lokasi' => $lokasi->idlokasi])}}" class="btn btn-primary">
       <i class="fas fa-plus-square"></i> Tambah
     </a>
   </div>
@@ -16,10 +27,8 @@
         <thead>
           <tr>
             <th>Nama Apartemen</th>
-            <th>Provinsi</th>
-            <th>Kota</th>
-            <th>Alamat</th>
-            <th>Latitude Longitude</th>
+            <th>Tanggal</th>
+            <th>Progres</th>
             <th>Created_at</th>
             <th>Updated_at</th>
             <th>Interaksi</th>
@@ -27,20 +36,17 @@
         </thead>
 
         <tbody>
-         @foreach($lokasis as $lokasi)
+         @foreach($beritas as $berita)
          <tr>
-            <td>{{$lokasi->nama_apartemen}}</td>
-            <td>{{$lokasi->provinsi}}</td>
-            <td>{{$lokasi->kota}}</td>
-            <td>{{$lokasi->alamat}}</td>
-            <td>{{$lokasi->latitude}}, {{$lokasi->longitude}}</td>
-            <td>{{$lokasi->created_at}}</td>
-            <td>{{$lokasi->updated_at}}</td>
+            <td>{{$berita->lokasis->nama_apartemen}}</td>
+            <td>{{$berita->tanggalBerita()}}</td>
+            <td>{{$berita->progress}}</td>
+            <td>{{$berita->created_at}}</td>
+            <td>{{$berita->updated_at}}</td>
             <td>
-              <a href="{{route('lokasis.show',$lokasi)}}" class="btn btn-primary">Lihat</a>
-              <a href="{{route('lokasis.edit',$lokasi)}}" class="btn btn-primary">Ubah</a>
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$lokasi->idlokasi}}">Hapus</button>
-              <div class="modal fade" id="delete{{$lokasi->idlokasi}}">
+              <a href="{{route('beritas.edit',$berita)}}" class="btn btn-primary">Ubah</a>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$berita->id}}">Hapus</button>
+              <div class="modal fade" id="delete{{$berita->id}}">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -51,7 +57,7 @@
                     </div>
                     <div class="modal-body">
                       <p>Data ini akan dihapus secara permanen, Anda yakin untuk menghapus?&hellip;</p>
-                       <form role="form" action="{{route('lokasis.destroy',$lokasi)}}" method="post" id="hapus{{$lokasi->idlokasi}}">
+                       <form role="form" action="{{route('beritas.destroy',$berita)}}" method="post" id="hapus{{$berita->id}}">
                         {{csrf_field()}}
                         {{method_field('delete')}}
                         
@@ -60,7 +66,7 @@
                     </div>
                     <div class="modal-footer justify-content-between">
                       <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                      <button type="submit" class="btn btn-primary" form="hapus{{$lokasi->idlokasi}}">Yes</button>
+                      <button type="submit" class="btn btn-primary" form="hapus{{$berita->id}}">Yes</button>
                     </div>
                   </div>
                   <!-- /.modal-content -->
