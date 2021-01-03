@@ -34,7 +34,7 @@
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                       <input type="email" class="form-control form-control-user" id="email" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email" value="{{ old('email') }}" required autofocus>
                       @if ($errors->has('email'))
-                          <span class="help-block">
+                          <span class="help-block text-danger">
                               <strong>{{ $errors->first('email') }}</strong>
                           </span>
                       @endif
@@ -42,7 +42,7 @@
                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                       <input type="password" class="form-control form-control-user" id="password" placeholder="Password" name="password" required>
                       @if ($errors->has('password'))
-                          <span class="help-block">
+                          <span class="help-block text-danger">
                               <strong>{{ $errors->first('password') }}</strong>
                           </span>
                       @endif

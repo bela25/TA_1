@@ -51,7 +51,7 @@
             <form action="{{route('chattings.store')}}" method="post">
               {{csrf_field()}}
               <div class="input-group">
-                <input type="text" class="form-control" name="pesan" placeholder="Pesan">
+                <input type="text" class="form-control" name="pesan" placeholder="Pesan" required>
                 <input type="hidden" name="customer" value="{{$customer->idcustomers}}">
                 <div class="input-group-append">
                   <button class="btn btn-outline-success" type="submit" id="button-addon2"><i class="fas fa-paper-plane"></i></button>

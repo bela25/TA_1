@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Customer;
 use App\Pegawai;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -61,6 +62,27 @@ class LoginController extends Controller
     //     return Auth::guard('pegawai');
     // }
 
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (User::where('email', $request->get('email'))->count() > 0) {
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
+    
+                return redirect()->intended('home');
+            }
+            else {
+                $errors['password'] = 'The provided password do not match our records.';
+            }
+        }
+        else {
+            $errors['email'] = 'The provided email do not match our records.';
+        }        
+
+        return back()->withErrors($errors)->withInput($request->except('password'));
+    }
+
     // public function login(Request $request)
     // {
     //     if (Auth::guard('pegawai')->attempt(['email' => $request->email, 'password' => $request->password])) {
@@ -85,6 +107,10 @@ class LoginController extends Controller
 
         $request->session()->invalidate();
 
+        if($request->has('from') && $request->get('from') == 'pengunjung')
+        {
+            return redirect('/');
+        }
         return redirect('/home');
     }
 }
