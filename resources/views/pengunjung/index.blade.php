@@ -33,6 +33,7 @@
               @foreach($jatuhtempos as $jatuhtempo)
               <li>
                 <a href="{{ route('pengunjung.cicilan', $jatuhtempo->cicilans) }}" class="alert-link">
+                  <!-- -> buat manggil atribut atau method (bisa jadi inner join) -->
                   {{ $jatuhtempo->cicilans->transaksis->units->nama() }} - {{ $jatuhtempo->cicilans->transaksis->units->towers->lokasis->nama_apartemen }}
                 </a>
               </li>

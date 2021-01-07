@@ -140,7 +140,6 @@ class PengunjungController extends Controller
         $feedbacks = Feedback::all();
         $promosis = Promosi::where('tgl_awal','<=',date('Y-m-d'))->where('tgl_akhir','>=',date('Y-m-d'))->get();
         $lokasis = Lokasi::all();
-
         $totalLokasi = Lokasi::count();
         $totalUnit = Unit::count();
         $totalCustomer = Customer::count();
