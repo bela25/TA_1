@@ -77,6 +77,7 @@ class Transaksi extends Model
     }
     public function cicilanYangHarusDibayar()
     {
+        //?? jika tdak ada data diblah kiri pakai data di sblah kanan
         $booking = $this->pembayaranbookings->nominal ?? 0;
         $dp = $this->pembayarandps->nominal ?? 0;
         $total = $this->units->hargaJualCash() - $booking - $dp;

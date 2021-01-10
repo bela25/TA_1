@@ -141,7 +141,7 @@ class Sentiment {
 			}
 		}
 
-		//Tokenise Document
+		//Tokenise Document(get token : untuk mecah kalimat menjadi per kata baku)
 		$tokens = $this->_getTokens($sentence);
 		// calculate the score in each category
 
@@ -184,10 +184,11 @@ class Sentiment {
 		}
 
 		foreach ($this->classes as $class) {
+			//angka 3 artinya untuk pembulat 3 angka dibelkng koma
 			$scores[$class] = round($scores[$class] / $total_score, 3);
 		}
 
-		//Sort array in reverse order
+		//arsort untuk ngurutin dari yang terbesar- terkecil
 		arsort($scores);
 
 		return $scores;
