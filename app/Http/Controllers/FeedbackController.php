@@ -32,8 +32,9 @@ class FeedbackController extends Controller
         }
         $positif = $feedbacks->where('sentimen','positif')->count();
         $negatif = $feedbacks->where('sentimen','negatif')->count();
+        $netral = $feedbacks->where('sentimen','netral')->count();
         // dd($sentimen);
-        return view('feedback.index',compact('feedbacks','positif','negatif'));
+        return view('feedback.index',compact('feedbacks','positif','negatif','netral'));
         //
     }
 

@@ -95,11 +95,11 @@
    var grafikFeedback = new Chart(ctx, {
      type: 'doughnut',
      data: {
-       labels: ["Positif", "Negatif"],
+       labels: ["Positif", "Negatif", "Netral"],
        datasets: [{
-         data: ['{{ $positif }}','{{ $negatif }}'],
-         backgroundColor: ['#4e73df', '#e74a3b'],
-         hoverBackgroundColor: ['#345eda', '#e33221'],
+         data: ['{{ $positif }}','{{ $negatif }}','{{ $netral }}'],
+         backgroundColor: ['#4e73df', '#e74a3b', '#bbb'],
+         hoverBackgroundColor: ['#345eda', '#e33221', '#aaa'],
          hoverBorderColor: "rgba(234, 236, 244, 1)",
        }],
      },
