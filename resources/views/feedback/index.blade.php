@@ -32,7 +32,7 @@
             <!-- <th>Pegawai</th> -->
             <th>Customer</th>
             <th>Isi</th>
-            <th>Reply</th>
+            <!-- <th>Reply</th> -->
             <th>Sentimen</th>
           </tr>
         </thead>
@@ -45,7 +45,6 @@
             <!-- <td>{{$feedback->pegawais->nama}}</td> -->
             <td>{{$feedback->customers->nama}}</td>
             <td>{{$feedback->isi}}</td>
-            <td>{{$feedback->reply}}</td>
             <td>{{$feedback->sentimen}}</td>
             <!-- <td> -->
               <!-- <a href="{{route('feedbacks.edit',$feedback)}}" class="btn btn-primary">Ubah</a>

@@ -230,7 +230,7 @@ class PengunjungController extends Controller
         $post ->isi = $request->get('isi');
         // $post ->reply = $request->get('reply');
         $post ->sentimen = $class;
-        $post ->reply = date('Y-m-d');
+        // $post ->reply = date('Y-m-d');
         $post->save();
         return redirect('contact');
         //

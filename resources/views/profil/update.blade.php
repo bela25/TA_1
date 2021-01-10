@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- form start -->
-<form role="form" action="{{route('profils.update',$profil)}}" method="post">
+<form role="form" action="{{route('profils.update',$profil)}}" method="post" enctype="multipart/form-data">
   {{csrf_field()}}
   {{method_field('put')}}
   <div class="card-body">
@@ -36,13 +36,16 @@
       <label for="exampleInputFile">Gambar</label>
       <div class="input-group">
         <div class="custom-file">
-          <input type="file" class="custom-file-input" id="exampleInputFile" name="gambar">
+          <input type="file" class="custom-file-input" id="exampleInputFile" name="gambar" onchange="readURL(this)">
           <label class="custom-file-label" for="exampleInputFile">Choose file</label>
         </div>
         <div class="input-group-append">
           <span class="input-group-text" id="">Upload</span>
         </div>
       </div>
+    </div>
+    <div class="form-group">
+      <img id="tampilangambar" src="{{$profil->gambar}}" alt="Gambar">
     </div>
   </div>
   <!-- /.card-body -->
@@ -52,3 +55,25 @@
   </div>
 </form>
 @endsection
+@push('scripts')
+<script>
+  $('#pilihtanggal1').datetimepicker({
+    defaultDate: moment(), 
+    format: 'DD-MM-YYYY', 
+  });
+  function readURL(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+              $('#tampilangambar')
+                  .attr('src', e.target.result)
+                  .width('auto')
+                  .height(400);
+          };
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+</script>
+@endpush

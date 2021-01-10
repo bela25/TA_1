@@ -15,25 +15,9 @@
       <textarea class="form-control" rows="3" placeholder="Keterangan ..." id="keterangan" name="keterangan" required {{ $promosi->sudahBerlaku() ? 'readonly' : '' }}>{{$promosi->keterangan}}</textarea>
     </div>
     <div class="form-group">
-      <label for="exampleInputFile">Gambar</label>
-      @if(!$promosi->sudahBerlaku())
-      <div class="input-group">
-        <div class="custom-file">
-          <input type="file" class="custom-file-input" id="exampleInputFile" name="gambar" value="{{$promosi->gambar}}">
-          <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-        </div>
-        <div class="input-group-append">
-          <span class="input-group-text" id="">Upload</span>
-        </div>
-      </div>
-      @else
-      <img src="{{asset($promosi->gambar)}}" class="img-fluid d-block">
-      @endif
-    </div>
-    <div class="form-group">
       <label for="tglawal">Tanggal Awal</label>
       <div class="input-group date" id="tglawal" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" name="tglawal" id="pilihtanggal" data-target="#pilihtanggal" data-toggle="datetimepicker" required value="{{ $promosi->tgl_awal }}" {{ $promosi->sudahBerlaku() ? 'readonly' : '' }}>
+        <input type="text" class="form-control datetimepicker-input" name="tglawal" id="pilihtanggal1" data-target="#pilihtanggal" data-toggle="datetimepicker" required value="{{ $promosi->tgl_awal }}" {{ $promosi->sudahBerlaku() ? 'readonly' : '' }}>
         <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
@@ -42,7 +26,7 @@
     <div class="form-group">
       <label for="tglakhir">Tanggal Akhir</label>
       <div class="input-group date" id="tglakhir" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input pilihtanggal" name="tglakhir" data-target=".pilihtanggal" data-toggle="datetimepicker" required value="{{ $promosi->tgl_akhir }}">
+        <input type="text" class="form-control datetimepicker-input pilihtanggal2" name="tglakhir" data-target=".pilihtanggal" data-toggle="datetimepicker" required value="{{ $promosi->tgl_akhir }}">
         <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
@@ -79,6 +63,22 @@
       </select>
       @endif
     </div>
+    <div class="form-group">
+      <label for="exampleInputFile">Gambar</label>
+      @if(!$promosi->sudahBerlaku())
+      <div class="input-group">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="exampleInputFile" name="gambar" value="{{$promosi->gambar}}">
+          <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+        </div>
+        <div class="input-group-append">
+          <span class="input-group-text" id="">Upload</span>
+        </div>
+      </div>
+      @else
+      <img src="{{asset($promosi->gambar)}}" class="img-fluid d-block">
+      @endif
+    </div>
   </div>
   <!-- /.card-body -->
 
@@ -87,3 +87,15 @@
   </div>
 </form>
 @endsection
+@push('scripts')
+<script>
+  $('#pilihtanggal1').datetimepicker({
+    defaultDate: moment('{{$promosi->tgl_awal}}'), 
+    format: 'YYYY-MM-DD', 
+  });
+  $('.pilihtanggal2').datetimepicker({
+    defaultDate: moment('{{$promosi->tgl_akhir}}'), 
+    format: 'YYYY-MM-DD', 
+  });
+</script>
+@endpush

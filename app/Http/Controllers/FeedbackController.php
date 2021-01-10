@@ -44,11 +44,10 @@ class FeedbackController extends Controller
      */
     public function create()
     {
-        $pegawais=Pegawai::all();
-        $customers=Customer::all();
-        $lokasis=Lokasi::all();
-        return view('feedback.create',compact('pegawais','customers','lokasis'));
-        //
+        // $pegawais=Pegawai::all();
+        // $customers=Customer::all();
+        // $lokasis=Lokasi::all();
+        // return view('feedback.create',compact('pegawais','customers','lokasis'));
     }
 
     /**
@@ -59,22 +58,21 @@ class FeedbackController extends Controller
      */
     public function store(Request $request)
     {
-        $sentiment = new Sentiment();
-        $scores = $sentiment->score($request->get('isi'));
-        $class = $sentiment->categorise($request->get('isi'));
+        // $sentiment = new Sentiment();
+        // $scores = $sentiment->score($request->get('isi'));
+        // $class = $sentiment->categorise($request->get('isi'));
 
-        $post = new Feedback();
-        $post ->tanggal_feedback = $request->get('tanggal_feedback');
-        $post ->isi = $request->get('isi');
-        // $post ->reply = $request->get('reply');
-        $post ->reply = date('Y-m-d');
-        $post ->pegawai = $request->get('pegawai');
-        $post ->customer = $request->get('customer');
-        $post ->lokasi = $request->get('lokasi');
-        $post ->sentimen = $class;
-        $post->save();
-        return redirect('feedbacks');
-        //
+        // $post = new Feedback();
+        // $post ->tanggal_feedback = $request->get('tanggal_feedback');
+        // $post ->isi = $request->get('isi');
+        // // $post ->reply = $request->get('reply');
+        // // $post ->reply = date('Y-m-d');
+        // $post ->pegawai = $request->get('pegawai');
+        // $post ->customer = $request->get('customer');
+        // $post ->lokasi = $request->get('lokasi');
+        // $post ->sentimen = $class;
+        // $post->save();
+        // return redirect('feedbacks');
     }
 
     /**
@@ -96,11 +94,10 @@ class FeedbackController extends Controller
      */
     public function edit(Feedback $feedback)
     {
-        $pegawais=Pegawai::all();
-        $customers=Customer::all();
-        $lokasis=Lokasi::all();
-        return view('feedback.update',compact('feedback','pegawais','customers','lokasis'));
-        //
+        // $pegawais=Pegawai::all();
+        // $customers=Customer::all();
+        // $lokasis=Lokasi::all();
+        // return view('feedback.update',compact('feedback','pegawais','customers','lokasis'));
     }
 
     /**
@@ -112,20 +109,19 @@ class FeedbackController extends Controller
      */
     public function update(Request $request, Feedback $feedback)
     {
-        $sentiment = new Sentiment();
-        $scores = $sentiment->score($request->get('isi'));
-        $class = $sentiment->categorise($request->get('isi'));
+        // $sentiment = new Sentiment();
+        // $scores = $sentiment->score($request->get('isi'));
+        // $class = $sentiment->categorise($request->get('isi'));
 
-        $feedback ->tanggal_feedback = $request->get('tanggal_feedback');
-        $feedback ->isi = $request->get('isi');
-        // $feedback ->reply = $request->get('reply');
-        $feedback ->pegawai = $request->get('pegawai');
-        $feedback ->customer = $request->get('customer');
-        $feedback ->lokasi = $request->get('lokasi');
-        $post ->sentimen = $class;
-        $feedback->save();
-        return redirect('feedbacks');
-        //
+        // $feedback ->tanggal_feedback = $request->get('tanggal_feedback');
+        // $feedback ->isi = $request->get('isi');
+        // // $feedback ->reply = $request->get('reply');
+        // $feedback ->pegawai = $request->get('pegawai');
+        // $feedback ->customer = $request->get('customer');
+        // $feedback ->lokasi = $request->get('lokasi');
+        // $post ->sentimen = $class;
+        // $feedback->save();
+        // return redirect('feedbacks');
     }
 
     /**
@@ -136,8 +132,7 @@ class FeedbackController extends Controller
      */
     public function destroy(Feedback $feedback)
     {
-        $feedback->delete();
-        return redirect('feedbacks');
-        //
+        // $feedback->delete();
+        // return redirect('feedbacks');
     }
 }

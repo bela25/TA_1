@@ -6,51 +6,29 @@
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">Pegawai</h6>
-    @if(auth()->user()->pegawai->jabatan == 'admin')
-    <a href="{{ route('pegawais.create')}}" class="btn btn-primary ">
-      <i class="fas fa-plus-square"></i> Tambah
+    <a href="{{ route('pegawais.index')}}" class="btn btn-secondary ">
+       Kembali
     </a>
-    @endif
   </div>
   <div class="card-body">
+    <h5>Nama: <strong>{{ $pegawai->nama }}</strong></h5>
+    <p>NIP: <strong>{{ $pegawai->nip }}</strong></p>
     <div class="table-responsive">
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
           <tr>
-            <th>NIP</th>
-            <th>Nama</th>
-            <th>Alamat</th>
-            <th>Tempat Lahir</th>
-            <th>Tanggal Lahir</th>
-            <th>No telp</th>
-            <th>Jabatan</th>
-            <th>Email</th>
-            <!-- <th>Username</th> -->
-            <!-- <th>Password</th> -->
-            <th>Created_at</th>
-            <th>Updated_at</th>
+            <th>Transaksi</th>
+            <th>Bonus</th>
             <th>Interaksi</th>
           </tr>
         </thead>
         <tbody>
-          @foreach($pegawais as $pegawai)
+          @foreach($transaksis as $transaksi)
           <tr>
-            <td>{{$pegawai->nip}}</td>
-            <td>{{$pegawai->nama}}</td>
-            <td>{{$pegawai->alamat}}</td>
-            <td>{{$pegawai->tgl_lahir}}</td>
-            <td>{{$pegawai->tempat_lahir}}</td>
-            <td>{{$pegawai->no_telp}}</td>
-            <td>{{$pegawai->jabatan}}</td>
-            <td>{{$pegawai->user->email}}</td>
-            <!-- <td>{{$pegawai->user->username ?? ''}}</td> -->
-            <!-- <td>{{$pegawai->password}}</td> -->
-            <td>{{$pegawai->created_at}}</td>
-            <td>{{$pegawai->updated_at}}</td>
+            <td><a href="{{ route('transaksis.show', $transaksi) }}">{{$transaksi->id_transaksi}}</a></td>
+            <td>{{$transaksi->komisipegawai->formatBonus()}}</td>
             <td>
-              <a href="{{route('pegawais.show',$pegawai)}}" class="btn btn-primary">Lihat</a>
-              @if($pegawai->transaksis->count() <= 0)
-              <a href="{{route('pegawais.edit',$pegawai)}}" class="btn btn-primary">Ubah</a>
+              <!-- <a href="{{route('pegawais.edit',$pegawai)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$pegawai->nip}}">Hapus</button>
               <div class="modal fade" id="delete{{$pegawai->nip}}">
                 <div class="modal-dialog">
@@ -66,8 +44,6 @@
                        <form role="form" action="{{route('pegawais.destroy',$pegawai)}}" method="post" id="hapus{{$pegawai->nip}}">
                         {{csrf_field()}}
                         {{method_field('delete')}}
-                        
-                        <!-- /.card-body -->
                       </form>
                     </div>
                     <div class="modal-footer justify-content-between">
@@ -75,11 +51,8 @@
                       <button type="submit" class="btn btn-primary" form="hapus{{$pegawai->nip}}">Yes</button>
                     </div>
                   </div>
-                  <!-- /.modal-content -->
                 </div>
-                <!-- /.modal-dialog -->
-              </div>
-              @endif
+              </div> -->
             </td>
           </tr>
           @endforeach

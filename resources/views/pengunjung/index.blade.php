@@ -1,5 +1,16 @@
 @extends('layouts.pengunjung')
 
+@push('styles')
+<style>
+.img-fit {
+		width: 100%;
+		height: 480px;
+		max-height: 480px;
+		object-fit: cover;
+	}
+</style>
+@endpush
+
 @section('content')
 <div class="hero-wrap" style="background-image: url('{{asset('web/images/bg_2.jpg')}}');" data-stellar-background-ratio="0.5">
   <div class="overlay"></div>
@@ -60,7 +71,7 @@
             @foreach($promosis as $promosi)
             <div class="carousel-item {{$loop->first ? 'active' : ''}}">
               <!-- <div class="alert alert-light"> -->
-                <img src="{{asset($promosi->gambar)}}" class="d-block w-100">
+                <img src="{{asset($promosi->gambar)}}" class="img-fit">
                 <div class="carousel-caption d-none d-md-block">
                   <div class="alert alert-light">
                     <h5 class="text-primary"><strong>{{$promosi->judul_promosi}}</strong></h5>

@@ -21,7 +21,7 @@
             <th>No telp</th>
             <th>Gender</th>
             <th>Email</th>
-            <th>Username</th>
+            <!-- <th>Username</th> -->
             <!-- <th>Password</th> -->
             <th>Created_at</th>
             <th>Updated_at</th>
@@ -38,7 +38,7 @@
           <td>{{$customer->no_telp}}</td>
           <td>{{$customer->gender}}</td>
           <td>{{$customer->user->email}}</td>
-          <td>{{$customer->user->username ?? ''}}</td>
+          <!-- <td>{{$customer->user->username ?? ''}}</td> -->
           <!-- <td>{{$customer->password}}</td> -->
           <td>{{$customer->created_at}}</td>
           <td>{{$customer->updated_at}}</td>

@@ -30,7 +30,7 @@
             <td>{{$lokasipegawai->pegawais->nama}}</td>
             <td>
               @if(auth()->user()->pegawai->jabatan == 'admin')
-              <a href="{{route('lokasipegawais.edit',$lokasipegawai)}}" class="btn btn-primary">Ubah</a>
+              <!-- <a href="{{route('lokasipegawais.edit',$lokasipegawai)}}" class="btn btn-primary">Ubah</a> -->
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$lokasipegawai->id}}">Hapus</button>
               <div class="modal fade" id="delete{{$lokasipegawai->id}}">
                 <div class="modal-dialog">

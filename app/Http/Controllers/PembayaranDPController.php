@@ -145,6 +145,11 @@ class PembayaranDPController extends Controller
     {
         $pembayaranDp->verifikasi = $request->verifikasi;
         $pembayaranDp->save();
+        if($request->verifikasi== 'diterima')
+        {
+            $pembayaranDp->transaksis->units->status = 'terjual';
+            $pembayaranDp->transaksis->units->save();
+        }
         return redirect('transaksis/'.$pembayaranDp->transaksis->id_transaksi);
     }
 }

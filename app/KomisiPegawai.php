@@ -16,4 +16,8 @@ class KomisiPegawai extends Model
     {
     	return $this->belongsTo('App\Pegawai');
     }
+    public function formatBonus()
+    {
+        return 'Rp'.number_format($this->bonus,2,',','.');
+    }
 }

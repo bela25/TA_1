@@ -505,7 +505,7 @@
             <td><span class="badge {{ $pembatalan->status == 'aktif' ? 'badge-success' : 'badge-danger' }}">{{$pembatalan->status}}</span></td>
             <td>{{$pembatalan->alasan_pegawai}}</td>
             <td>
-              @if($pembatalan->gambar_bukti == null)
+              @if($pembatalan->gambar_bukti == null && auth()->user()->pegawai->jabatan == 'admin')
               <a href="{{route('pembatalans.upload',$pembatalan)}}">Upload bukti transfer</a>
               @else
               <a href="{{asset($pembatalan->gambar_bukti)}}" target="_blank">{{$pembatalan->gambar_bukti}}</a>

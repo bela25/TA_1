@@ -74,7 +74,8 @@ class PegawaiController extends Controller
      */
     public function show(Pegawai $pegawai)
     {
-        //
+        $transaksis = $pegawai->transaksis;
+        return view('pegawai.show', compact('pegawai', 'transaksis'));
     }
 
     /**

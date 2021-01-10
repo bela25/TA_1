@@ -47,9 +47,17 @@ class ProfilController extends Controller
         $post ->admin = auth()->user()->pegawai->nip;
         $post ->judul_profil = $request->get('judulprofil');
         $post ->keterangan = $request->get('keterangan');
-        if($request->file('gambar') != null)
+        // upload bukti
+        if(isset($request->gambar))
         {
-            $post ->gambar = $request->get('gambar');
+            $file = $request->file('gambar');
+            $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
+            $post ->gambar= $nama_gambar;
+            request()->session()->flash('pesan','Profil tersimpan');
+        }
+        else
+        {
+            request()->session()->flash('pesan','Anda belum memilih gambar');
         }
         $post->save();
         return redirect('profils');
@@ -94,10 +102,14 @@ class ProfilController extends Controller
         $profil ->admin = auth()->user()->pegawai->nip;
         $profil ->judul_profil = $request->get('judulprofil');
         $profil ->keterangan = $request->get('keterangan');
-        if($request->file('gambar') != null)
+        // upload bukti
+        if(isset($request->gambar))
         {
-            $profil ->gambar = $request->get('gambar');
+            $file = $request->file('gambar');
+            $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
+            $profil ->gambar= $nama_gambar;
         }
+        request()->session()->flash('pesan','Profil tersimpan');
         $profil->save();
         return redirect('profils');
         //

@@ -14,18 +14,6 @@
       <textarea class="form-control" rows="3" placeholder="Keterangan ..." id="keterangan" name="keterangan" required></textarea>
     </div>
     <div class="form-group">
-      <label for="exampleInputFile">Gambar</label>
-      <div class="input-group">
-        <div class="custom-file">
-          <input type="file" class="custom-file-input" id="exampleInputFile" name="gambar" required>
-          <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-        </div>
-        <div class="input-group-append">
-          <span class="input-group-text" id="">Upload</span>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
       <label for="tglawal">Tanggal Awal</label>
       <div class="input-group date" id="tglawal" data-target-input="nearest">
         <input type="text" class="form-control datetimepicker-input" name="tglawal" id="pilihtanggal" data-target="#pilihtanggal" data-toggle="datetimepicker" required>
@@ -59,6 +47,21 @@
         @endforeach
       </select>
     </div>
+    <div class="form-group">
+      <label for="exampleInputFile">Gambar</label>
+      <div class="input-group">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="exampleInputFile" name="gambar" required onchange="readURL(this)">
+          <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+        </div>
+        <div class="input-group-append">
+          <span class="input-group-text" id="">Upload</span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <img id="tampilangambar" src="#" alt="Gambar">
+    </div>
   </div>
   <!-- /.card-body -->
 
@@ -67,3 +70,21 @@
   </div>
 </form>
 @endsection
+@push('scripts')
+<script>
+  function readURL(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+              $('#tampilangambar')
+                  .attr('src', e.target.result)
+                  .width('auto')
+                  .height(400);
+          };
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+</script>
+@endpush

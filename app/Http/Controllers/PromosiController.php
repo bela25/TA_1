@@ -50,9 +50,12 @@ class PromosiController extends Controller
         $post ->pegawai = $request->get('admin');
         $post ->lokasi = $request->get('lokasi');
 
-        $file = $request->file('gambar');
-        $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
-        $post ->gambar = $nama_gambar;
+        if(isset($request->gambar))
+        {
+            $file = $request->file('gambar');
+            $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
+            $post ->gambar = $nama_gambar;
+        }
         $post->save();
         return redirect('promosis');
         //
