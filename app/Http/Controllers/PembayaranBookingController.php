@@ -64,7 +64,7 @@ class PembayaranBookingController extends Controller
                 $notif->pesan = $namaNotif.' dibayar';
                 $notif->dibaca = 'belum';
                 $notif->pegawai = $transaksi->pegawais->nip;
-                dd($transaksi->pegawais->nip);
+                // dd($notif);
                 $notif->save();
                 request()->session()->flash('pesan','Bukti pembayaran booking tersimpan');
             }
@@ -123,13 +123,14 @@ class PembayaranBookingController extends Controller
         $file = $request->file('bukti');
         if(isset($file))
         {
-            if(isset($pembayaranBooking->gambar_bukti))
+            if(isset($pembayaranBooking->gambar_bukti) && is_file($pembayaranBooking->gambar_bukti))
             {
                 unlink(public_path($pembayaranBooking->gambar_bukti));
             }
             $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
             $pembayaranBooking ->gambar_bukti= $nama_gambar;
         }
+        $pembayaranBooking->verifikasi = 'diproses';
         $pembayaranBooking->save();
 
         $namaNotif = 'Booking Transaksi '.$transaksi->id_transaksi;
@@ -137,7 +138,7 @@ class PembayaranBookingController extends Controller
         $notif->nama = $namaNotif;
         $notif->pesan = $namaNotif.' gambar bukti diganti';
         $notif->dibaca = 'belum';
-        $notif->pegawai = $transaksis->pegawais->nip;
+        $notif->pegawai = $transaksi->pegawais->nip;
         $notif->save();
         request()->session()->flash('pesan','Bukti pembayaran booking tersimpan');
         return redirect()->route('pengunjung.booking',$transaksi->unit);

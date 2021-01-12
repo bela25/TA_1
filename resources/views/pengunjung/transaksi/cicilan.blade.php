@@ -108,7 +108,7 @@
                           @endif
                         </td>
                         <td>
-                          @if($pembayaran_cicilan->gambar_bukticicilan == null)
+                          @if($pembayaran_cicilan->gambar_bukticicilan == null || $pembayaran_cicilan->verifikasi == 'tidak diterima')
                           <a href="{{route('pengunjung.bayarcicilan',$pembayaran_cicilan)}}" class="btn btn-primary">Bayar</a>
                           @else
                           <!-- <a href="{{route('pengunjung.bayarcicilan',$pembayaran_cicilan)}}" class="btn btn-primary">Ganti Bukti</a> -->

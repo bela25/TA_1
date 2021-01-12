@@ -61,6 +61,7 @@ class PembayaranCicilanController extends Controller
         $post ->cicilan_ke = $request->get('cicilan_ke');
         $post ->tenggat_waktu = $request->get('tenggat_waktu');
         $post ->cicilan_terakhir = $request->get('cicilan_terakhir');
+        $post ->verifikasi = 'diproses';
         // $post ->tanggal_bayar = $request->get('tanggalpembayaran');
         // $post ->gambar_bukticicilan= $request->get('exampleInputFile');
         $post->save();

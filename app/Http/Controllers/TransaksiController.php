@@ -81,7 +81,7 @@ class TransaksiController extends Controller
             $notif->nama = $namaNotif;
             $notif->pesan = $namaNotif.' dibooking';
             $notif->dibaca = 'belum';
-            $notif->pegawai = Pegawai::where('nama', 'Admin')->first()->nip;
+            $notif->pegawai = Pegawai::where('jabatan', 'admin')->first()->nip;
             $notif->save();
             request()->session()->flash('pesan','Berhasil booking');
         }
@@ -164,18 +164,18 @@ class TransaksiController extends Controller
             $notif->customer = $transaksi->customers->idcustomers;
             $notif->save();
 
-            $transaksi_lain = Transaksi::where('unit',$transaksi->unit)->where('id_transaksi','!=',$transaksi->id_transaksi)->get();
+            $transaksi_lain = Transaksi::where('unit',$transaksi->unit)->where('id_transaksi','!=',$transaksi->id_transaksi)->where('verifikasi','belum diterima')->get();
             foreach($transaksi_lain as $tl)
             {
                 $tl->verifikasi = 'tidak diterima';
                 $tl->save();
 
-                $namaNotif = 'Booking Transaksi '.$transaksi->id_transaksi;
+                $namaNotif = 'Booking Unit '.$tl->units->nama();
                 $notif = new Notifikasi();
                 $notif->nama = $namaNotif;
                 $notif->pesan = $namaNotif.' tidak diterima';
                 $notif->dibaca = 'belum';
-                $notif->customer = $transaksi->customers->idcustomers;
+                $notif->customer = $tl->customers->idcustomers;
                 $notif->save();
             }
         }

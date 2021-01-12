@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Verifikasi;
 use App\Customer;
+use App\Notifikasi;
 use Illuminate\Http\Request;
 
 class VerifikasiController extends Controller
@@ -151,6 +152,14 @@ class VerifikasiController extends Controller
             $verifikasi->tgl_diterima=null;
         }
         $verifikasi->save();
+
+        $namaNotif = 'Verifikasi Berkas '.$verifikasi->tanggal();
+        $notif = new Notifikasi();
+        $notif->nama = $namaNotif;
+        $notif->pesan = $namaNotif.' '.$request->get('aksi');
+        $notif->dibaca = 'belum';
+        $notif->customer = $verifikasi->customers->idcustomers;
+        $notif->save();
         return redirect('customers/'.$verifikasi->customer);
     }
 }

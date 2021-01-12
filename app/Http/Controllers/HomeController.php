@@ -30,6 +30,14 @@ class HomeController extends Controller
         }
         elseif(auth()->user()->pegawai != null)
         {
+            // $namaNotif = 'Unit Test';
+            // $notif = new \App\Notifikasi();
+            // $notif->nama = $namaNotif;
+            // $notif->pesan = $namaNotif.' dibooking';
+            // $notif->dibaca = 'belum';
+            // $notif->pegawai = \App\Pegawai::where('jabatan', 'admin')->first()->nip;
+            // $notif->save();
+
             $notifikasis = Notifikasi::where('pegawai', auth()->user()->pegawai->nip)->where('dibaca', 'belum')->get();
             return view('home', compact('notifikasis'));
         }

@@ -161,29 +161,29 @@
                         </div>
                       </div>
 
-                      <!-- <form action="{{route('pembayaran_bookings.update',$pembayaranBooking)}}" method="post" class="bg-light p-5 contact-form" enctype="multipart/form-data">
-                        {{csrf_field()}}
-                        {{method_field('put')}}
-                        <input type="hidden" name="transaksi" value="{{$transaksi->id_transaksi}}">
-                        <input type="hidden" name="nominal" value="{{$unit->booking()}}">
-                        <h5>Ubah bukti transfer jika salah meng-upload gambar</h5>
-                        <div class="form-group">
-                          <label>Bukti Transfer</label>
-                          <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFile" name="bukti" onchange="readURL(this)">
-                            <label class="custom-file-label" for="customFile">Choose file</label>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <img id="tampilangambar" src="{{asset($pembayaranBooking->gambar_bukti)}}" alt="Gambar bukti transfer" height="400">
-                        </div>
-                        <div class="form-group">
-                          <input type="submit" value="Upload" class="btn btn-primary py-3 px-5">
-                        </div>
-                      </form> -->
                       @elseif($pembayaranBooking->verifikasi == 'tidak diterima')
                       <p>
                         Status pembayaran booking anda : <span class="badge badge-danger">{{ $pembayaranBooking->verifikasi }}</span>
+                        <form action="{{route('pembayaran_bookings.update',$pembayaranBooking)}}" method="post" class="bg-light p-5 contact-form" enctype="multipart/form-data">
+                          {{csrf_field()}}
+                          {{method_field('put')}}
+                          <input type="hidden" name="transaksi" value="{{$transaksi->id_transaksi}}">
+                          <input type="hidden" name="nominal" value="{{$unit->booking()}}">
+                          <h5>Ubah bukti transfer jika salah meng-upload gambar</h5>
+                          <div class="form-group">
+                            <label>Bukti Transfer</label>
+                            <div class="custom-file">
+                              <input type="file" class="custom-file-input" id="customFile" name="bukti" onchange="readURL(this)">
+                              <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <img id="tampilangambar" src="{{asset($pembayaranBooking->gambar_bukti)}}" alt="Gambar bukti transfer" height="400">
+                          </div>
+                          <div class="form-group">
+                            <input type="submit" value="Upload" class="btn btn-primary py-3 px-5">
+                          </div>
+                        </form>
                       </p>
                       @else
                       <p>

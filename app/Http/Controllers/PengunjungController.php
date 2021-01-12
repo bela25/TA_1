@@ -460,14 +460,16 @@ class PengunjungController extends Controller
         $file = $request->file('bukti');
         if(isset($file))
         {
-            if(isset($pembayaranCicilan->gambar_bukticicilan))
+            if(isset($pembayaranCicilan->gambar_bukticicilan) && is_file($pembayaranCicilan->gambar_bukticicilan))
             {
                 unlink(public_path($pembayaranCicilan->gambar_bukticicilan));
             }
             $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
             $pembayaranCicilan ->gambar_bukticicilan= $nama_gambar;
         }
+        $pembayaranCicilan->verifikasi = 'diproses';
         $pembayaranCicilan->save();
+
         $namaNotif = 'Cicilan Transaksi '.$pembayaranCicilan->cicilans->transaksi;
         $notif = new Notifikasi();
         $notif->nama = $namaNotif;

@@ -124,21 +124,22 @@ class PembayaranDPController extends Controller
         $file = $request->file('bukti');
         if(isset($file))
         {
-            if(isset($pembayaranDP->gambar_bukti))
+            if(isset($pembayaranDP->gambar_bukti) && is_file($pembayaranDP->gambar_bukti))
             {
                 unlink(public_path($pembayaranDP->gambar_bukti));
             }
             $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
             $pembayaranDP ->gambar_bukti= $nama_gambar;
         }
+        $pembayaranDP->verifikasi = 'diproses';
         $pembayaranDP->save();
 
-        $namaNotif = 'DP Transaksi '.$pembayaranCicilan->cicilans->transaksi;
+        $namaNotif = 'DP Transaksi '.$transaksi->id_transaksi;
         $notif = new Notifikasi();
         $notif->nama = $namaNotif;
         $notif->pesan = $namaNotif.' gambar bukti diganti';
         $notif->dibaca = 'belum';
-        $notif->pegawai = $pembayaranCicilan->cicilans->transaksis->pegawais->nip;
+        $notif->pegawai = $transaksi->pegawais->nip;
         $notif->save();
         request()->session()->flash('pesan','Bukti pembayaran DP tersimpan');
         return redirect()->route('pengunjung.dp',$transaksi->unit);
