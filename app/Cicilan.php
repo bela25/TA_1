@@ -78,5 +78,18 @@ class Cicilan extends Model
     {
         return 'Rp'.number_format($nominal,2,'.',',');
     }
+    public function batasWaktu()
+    {
+        $pembayaran_cicilan = $this->pembayaran_cicilans->where('gambar_bukticicilan', null)->first();
+        // 6 bulan x 30 hari = 180 hari + 7 hari = 187
+        if($pembayaran_cicilan != null)
+        {
+            return Carbon::parse($pembayaran_cicilan->tenggat_waktu)->diffInDays(Carbon::now()) >= 187;
+        }
+        else
+        {
+            return false;
+        }
+    }
     //
 }

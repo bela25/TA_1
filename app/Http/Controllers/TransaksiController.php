@@ -81,7 +81,7 @@ class TransaksiController extends Controller
             $notif->nama = $namaNotif;
             $notif->pesan = $namaNotif.' dibooking';
             $notif->dibaca = 'belum';
-            $notif->pegawai = Pegawai::where('name', 'Admin')->first()->nip;
+            $notif->pegawai = Pegawai::where('nama', 'Admin')->first()->nip;
             $notif->save();
             request()->session()->flash('pesan','Berhasil booking');
         }

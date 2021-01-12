@@ -150,7 +150,6 @@
             <td>
               @if($transaksi->komisipegawai != null)
               <a href="{{route('transaksis.show',$transaksi)}}" class="btn btn-primary">Lihat</a>
-                @if(auth()->user()->pegawai->jabatan == 'admin')
                   @if($transaksi->verifikasi == 'belum diterima' || $transaksi->aktif == 'aktif')
                   <a href="{{route('transaksis.edit',$transaksi)}}" class="btn btn-primary">Ubah</a>
                   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$transaksi->id_transaksi}}">Hapus</button>
@@ -181,7 +180,6 @@
                     </div>
                     <!-- /.modal-dialog -->
                   </div>
-                  @endif
                 @endif
               @endif
             </td>

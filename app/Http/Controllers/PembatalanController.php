@@ -69,6 +69,7 @@ class PembatalanController extends Controller
         $notif->dibaca = 'belum';
         $notif->pegawai = $request->get('admin');
         $notif->save();
+        
         return redirect('pembatalan/'.$transaksi->id_transaksi)->with('pesan','Berhasil membatalkan transaksi');
         //
     }
@@ -182,12 +183,12 @@ class PembatalanController extends Controller
         }
         $pembatalan->transaksis->units->save();
 
-        $namaNotif = 'Pembatalan Transaksi '.$transaksi->id_transaksi;
+        $namaNotif = 'Pembatalan Transaksi '.$pembatalan->transaksis->id_transaksi;
         $notif = new Notifikasi();
         $notif->nama = $namaNotif;
         $notif->pesan = $namaNotif.' diurungkan';
         $notif->dibaca = 'belum';
-        $notif->customer = $transaksi->customers->idcustomers;
+        $notif->customer = $pembatalan->transaksis->customers->idcustomers;
         $notif->save();
         return redirect()->route('transaksis.show', $pembatalan->transaksis);
     }

@@ -83,5 +83,23 @@ class Transaksi extends Model
         $total = $this->units->hargaJualCash() - $booking - $dp;
         return $total;
     }
+    public function batasBayarBooking()
+    {
+        if($this->verifikasi == 'diterima')
+        {
+            if($this->pembayaranbookings == null || $this->pembayaranbookings->gambar_bukti == null)
+            {
+                return Carbon::parse($this->created_at)->diffInHours(Carbon::now()) >= 24;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
     //
 }

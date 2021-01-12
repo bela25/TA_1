@@ -122,10 +122,12 @@ class PengunjungController extends Controller
         {
             return redirect('home');
         }
-        else
+        if(auth()->check() && auth()->user()->customer != null)
         {
             $customer = auth()->user()->customer;
         }
+        $notifikasis = [];
+
         $units = Unit::with('towers')->get();
         $lokasi = $request->get('lokasi') ?? null;
         $harga_min = $request->get('harga_min') ?? null;
@@ -186,8 +188,90 @@ class PengunjungController extends Controller
                         $notif->save();
                     }
                 }
+                if($transaksi->batasBayarBooking())
+                {
+                    // otomatis dibatalkan
+                    $unit = Unit::find($transaksi->units->id_unit);
+
+                    $post = new Pembatalan();
+                    $post ->tanggal_batal = Carbon::now();
+                    $post ->transaksi = $transaksi->id_transaksi;
+                    $post ->alasan = 'tidak membayar booking dalam 24 jam';
+                    $post ->tgl_pengembalian= Carbon::now()->addDays(7);
+                    $post ->admin = $transaksi->pegawais->nip;
+                    $post->save();
+
+                    $transaksi ->status = 'tidak aktif';
+                    $transaksi->save();
+                    
+                    $unit ->status = 'tersedia';
+                    $unit->save();
+
+                    $namaNotif1 = 'Pembatalan Booking '.$transaksi->id_transaksi;
+                    if(Notifikasi::where('nama', $namaNotif1)->count() <= 0)
+                    {
+                        $notif = new Notifikasi();
+                        $notif->nama = $namaNotif1;
+                        $notif->pesan = $namaNotif1.' diajukan (otomatis)';
+                        $notif->dibaca = 'belum';
+                        $notif->pegawai = $transaksi->pegawais->nip;
+                        $notif->save();
+                    }
+                    $namaNotif2 = 'Pembatalan Booking Unit '.$transaksi->units->nama(). ' (otomatis)';
+                    if(Notifikasi::where('nama', $namaNotif2)->count() <= 0)
+                    {
+                        $notif = new Notifikasi();
+                        $notif->nama = $namaNotif2;
+                        $notif->pesan = $namaNotif2;
+                        $notif->dibaca = 'belum';
+                        $notif->customer = $transaksi->customers->idcustomers;
+                        $notif->save();
+                    }
+                }
+                // dd($transaksi->batasBayarBooking());
                 if($transaksi->cicilans != null)
                 {
+                    // lewat 6 bulan + 7 hari
+                    if($transaksi->cicilans->batasWaktu())
+                    {
+                        // otomatis dibatalkan
+                        $unit = Unit::find($transaksi->units->id_unit);
+
+                        $post = new Pembatalan();
+                        $post ->tanggal_batal = Carbon::now();
+                        $post ->transaksi = $transaksi->id_transaksi;
+                        $post ->alasan = 'tidak membayar cicilan selama 6 bulan lebih 7 hari';
+                        $post ->tgl_pengembalian= Carbon::now()->addDays(7);
+                        $post ->admin = $transaksi->pegawais->nip;
+                        $post->save();
+
+                        $transaksi ->status = 'tidak aktif';
+                        $transaksi->save();
+                        
+                        $unit ->status = 'tersedia';
+                        $unit->save();
+
+                        $namaNotif1 = 'Pembatalan Transaksi '.$transaksi->id_transaksi;
+                        if(Notifikasi::where('nama', $namaNotif1)->count() <= 0)
+                        {
+                            $notif = new Notifikasi();
+                            $notif->nama = $namaNotif1;
+                            $notif->pesan = $namaNotif1.' diajukan (otomatis)';
+                            $notif->dibaca = 'belum';
+                            $notif->pegawai = $transaksi->pegawais->nip;
+                            $notif->save();
+                        }
+                        $namaNotif2 = 'Pembatalan Unit '.$transaksi->units->nama(). ' (otomatis)';
+                        if(Notifikasi::where('nama', $namaNotif2)->count() <= 0)
+                        {
+                            $notif = new Notifikasi();
+                            $notif->nama = $namaNotif2;
+                            $notif->pesan = $namaNotif2;
+                            $notif->dibaca = 'belum';
+                            $notif->customer = $transaksi->customers->idcustomers;
+                            $notif->save();
+                        }
+                    }
                     foreach($transaksi->cicilans->pembayaran_cicilans->where('cicilan_terakhir', 'iya') as $pembayaranCicilan)
                     {
                         if($pembayaranCicilan->gambar_bukticicilan != null && $pembayaranCicilan->verifikasi == 'diterima')
@@ -206,9 +290,8 @@ class PengunjungController extends Controller
                     }
                 }
             }
+            $notifikasis = Notifikasi::where('customer', $customer->idcustomers)->where('dibaca', 'belum')->get();
         }
-
-        $notifikasis = Notifikasi::where('customer', $customer->idcustomers)->where('dibaca', 'belum')->get();
 
         return view('pengunjung.index', compact('units','feedbacks','promosis','totalLokasi','totalUnit','totalCustomer','totalTransaksi','lokasis','lokasi','harga_min','harga_max','jatuhtempos','notifikasis'));
     }
