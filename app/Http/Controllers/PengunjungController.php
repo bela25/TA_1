@@ -73,8 +73,8 @@ class PengunjungController extends Controller
         $customer ->alamat = $request->get('alamat');
         $customer ->no_telp = $request->get('notelp');
         $customer ->no_ktp = $request->get('noktp');
-        // $customer ->tempat_lahir = $request->get('tempatlahir');
-        $customer ->tgl_lahir = $request->get('tgllahir');
+        $customer ->tempat_lahir = $request->get('tempatlahir');
+        $customer ->tgl_lahir = Carbon::parse($request->get('tgllahir'))->format('Y-m-d');
         $customer ->gender = $request->get('gender');
         $customer->save();
         // simpan user
