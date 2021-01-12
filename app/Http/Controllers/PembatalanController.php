@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Transaksi;
 use App\Pegawai;
 use App\Unit;
+use App\Notifikasi;
 use Carbon\Carbon;
 
 class PembatalanController extends Controller
@@ -60,6 +61,14 @@ class PembatalanController extends Controller
         
         $unit ->status = 'tersedia';
         $unit->save();
+
+        $namaNotif = 'Pembatalan Transaksi '.$transaksi->id_transaksi;
+        $notif = new Notifikasi();
+        $notif->nama = $namaNotif;
+        $notif->pesan = $namaNotif.' diajukan';
+        $notif->dibaca = 'belum';
+        $notif->pegawai = $request->get('admin');
+        $notif->save();
         return redirect('pembatalan/'.$transaksi->id_transaksi)->with('pesan','Berhasil membatalkan transaksi');
         //
     }
@@ -116,6 +125,14 @@ class PembatalanController extends Controller
             $pembatalan ->gambar_bukti = $nama_gambar;
         }
         $pembatalan->save();
+
+        $namaNotif = 'Pembatalan Unit '.$pembatalan->transaksis->units->nama();
+        $notif = new Notifikasi();
+        $notif->nama = $namaNotif;
+        $notif->pesan = $namaNotif.' telah ditransfer';
+        $notif->dibaca = 'belum';
+        $notif->customer = $pembatalan->transaksis->customers->idcustomers;
+        $notif->save();
         // return redirect('pembatalans');
         return redirect()->route('transaksis.show', $pembatalan->transaksis);
         //
@@ -157,6 +174,21 @@ class PembatalanController extends Controller
 
         $pembatalan->transaksis->status = 'aktif';
         $pembatalan->transaksis->save();
+
+        $pembatalan->transaksis->units->status = 'booking';
+        if($pembatalan->transaksis->pembayarandps != null && $pembatalan->transaksis->pembayarandps->verifikasi == 'diterima')
+        {
+            $pembatalan->transaksis->units->status = 'terjual';
+        }
+        $pembatalan->transaksis->units->save();
+
+        $namaNotif = 'Pembatalan Transaksi '.$transaksi->id_transaksi;
+        $notif = new Notifikasi();
+        $notif->nama = $namaNotif;
+        $notif->pesan = $namaNotif.' diurungkan';
+        $notif->dibaca = 'belum';
+        $notif->customer = $transaksi->customers->idcustomers;
+        $notif->save();
         return redirect()->route('transaksis.show', $pembatalan->transaksis);
     }
 

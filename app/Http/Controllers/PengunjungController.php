@@ -17,6 +17,7 @@ use App\PembayaranCicilan;
 use App\Feedback;
 use App\Promosi;
 use App\Chatting;
+use App\Notifikasi;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use App\Classes\PHPInsight\Sentiment;
@@ -54,7 +55,7 @@ class PengunjungController extends Controller
                 ->whereDate('tenggat_waktu','<',date('Y-m-d'))
                 ->get()
                 ->filter(function ($value, $key) {
-                    return $value->cicilans->transaksis->customers->idcustomers == auth()->user()->customer->idcustomers;
+                    return ($value->cicilans->transaksis->customers->idcustomers == auth()->user()->customer->idcustomers)  && $value->cicilans->transaksis->status == 'aktif';
                 });
         }
         return view('pengunjung.auth.profil', compact('customer','transaksis','jatuhtempos'));
@@ -108,11 +109,22 @@ class PengunjungController extends Controller
         return redirect('ubahprofil/'.$customer->idcustomers);
     }
 
+    public function bacanotif(Notifikasi $notifikasi)
+    {
+        $notifikasi->dibaca = 'sudah';
+        $notifikasi->save();
+        return redirect('/');
+    }
+
     public function index(Request $request)
     {
         if(auth()->check() && auth()->user()->pegawai != null)
         {
             return redirect('home');
+        }
+        else
+        {
+            $customer = auth()->user()->customer;
         }
         $units = Unit::with('towers')->get();
         $lokasi = $request->get('lokasi') ?? null;
@@ -152,11 +164,53 @@ class PengunjungController extends Controller
                 ->whereDate('tenggat_waktu','<',date('Y-m-d'))
                 ->get()
                 ->filter(function ($value, $key) {
-                    return $value->cicilans->transaksis->customers->idcustomers == auth()->user()->customer->idcustomers;
+                    return ($value->cicilans->transaksis->customers->idcustomers == auth()->user()->customer->idcustomers) && $value->cicilans->transaksis->status == 'aktif';
                 });
         }
 
-        return view('pengunjung.index', compact('units','feedbacks','promosis','totalLokasi','totalUnit','totalCustomer','totalTransaksi','lokasis','lokasi','harga_min','harga_max','jatuhtempos'));
+        // notifikasi
+        if(isset($customer))
+        {
+            foreach($customer->transaksis as $transaksi)
+            {
+                if($transaksi->verifikasi == 'diterima')
+                {
+                    $namaNotif = 'Booking Transaksi '.$transaksi->id_transaksi;
+                    if(Notifikasi::where('nama', $namaNotif)->count() <= 0)
+                    {
+                        $notif = new Notifikasi();
+                        $notif->nama = $namaNotif;
+                        $notif->pesan = $namaNotif.' diterima';
+                        $notif->dibaca = 'belum';
+                        $notif->customer = $customer->idcustomers;
+                        $notif->save();
+                    }
+                }
+                if($transaksi->cicilans != null)
+                {
+                    foreach($transaksi->cicilans->pembayaran_cicilans->where('cicilan_terakhir', 'iya') as $pembayaranCicilan)
+                    {
+                        if($pembayaranCicilan->gambar_bukticicilan != null && $pembayaranCicilan->verifikasi == 'diterima')
+                        {
+                            $namaNotif = 'Cicilan Transaksi '.$transaksi->id_transaksi;
+                            if(Notifikasi::where('nama', $namaNotif)->count() <= 0)
+                            {
+                                $notif = new Notifikasi();
+                                $notif->nama = $namaNotif;
+                                $notif->pesan = $namaNotif.' lunas';
+                                $notif->dibaca = 'belum';
+                                $notif->customer = $customer->idcustomers;
+                                $notif->save();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        $notifikasis = Notifikasi::where('customer', $customer->idcustomers)->where('dibaca', 'belum')->get();
+
+        return view('pengunjung.index', compact('units','feedbacks','promosis','totalLokasi','totalUnit','totalCustomer','totalTransaksi','lokasis','lokasi','harga_min','harga_max','jatuhtempos','notifikasis'));
     }
 
     public function about()
@@ -331,6 +385,13 @@ class PengunjungController extends Controller
             $pembayaranCicilan ->gambar_bukticicilan= $nama_gambar;
         }
         $pembayaranCicilan->save();
+        $namaNotif = 'Cicilan Transaksi '.$pembayaranCicilan->cicilans->transaksi;
+        $notif = new Notifikasi();
+        $notif->nama = $namaNotif;
+        $notif->pesan = $namaNotif.' dibayar';
+        $notif->dibaca = 'belum';
+        $notif->pegawai = $pembayaranCicilan->cicilans->transaksis->pegawais->nip;
+        $notif->save();
         request()->session()->flash('pesan','Bukti pembayaran cicilan tersimpan');
         return redirect()->route('pengunjung.cicilan',$pembayaranCicilan->cicilans);
     }

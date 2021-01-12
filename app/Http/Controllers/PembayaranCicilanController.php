@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\PembayaranCicilan;
 use App\Cicilan;
 use App\Transaksi;
+use App\Notifikasi;
 use Illuminate\Http\Request;
 
 class PembayaranCicilanController extends Controller
@@ -138,6 +139,14 @@ class PembayaranCicilanController extends Controller
     {
         $pembayaranCicilan->verifikasi = $request->verifikasi;
         $pembayaranCicilan->save();
+
+        $namaNotif = 'Cicilan Unit '.$pembayaranCicilan->cicilans->transaksis->units->nama();
+        $notif = new Notifikasi();
+        $notif->nama = $namaNotif;
+        $notif->pesan = $namaNotif.' pembayaran '.$request->verifikasi;
+        $notif->dibaca = 'belum';
+        $notif->customer = $pembayaranCicilan->cicilans->transaksis->customers->idcustomers;
+        $notif->save();
         return redirect('transaksis/'.$pembayaranCicilan->cicilans->transaksis->id_transaksi);
     }
 }

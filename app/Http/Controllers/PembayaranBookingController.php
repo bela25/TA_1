@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\PembayaranBooking;
 use Illuminate\Http\Request;
 use App\Transaksi;
+use App\Notifikasi;
 use Carbon\Carbon;
 
 class PembayaranBookingController extends Controller
@@ -56,6 +57,15 @@ class PembayaranBookingController extends Controller
                 $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
                 $post ->gambar_bukti= $nama_gambar;
                 $post->save();
+
+                $namaNotif = 'Booking Transaksi '.$transaksi->id_transaksi;
+                $notif = new Notifikasi();
+                $notif->nama = $namaNotif;
+                $notif->pesan = $namaNotif.' dibayar';
+                $notif->dibaca = 'belum';
+                $notif->pegawai = $transaksi->pegawais->nip;
+                dd($transaksi->pegawais->nip);
+                $notif->save();
                 request()->session()->flash('pesan','Bukti pembayaran booking tersimpan');
             }
             else
@@ -121,6 +131,14 @@ class PembayaranBookingController extends Controller
             $pembayaranBooking ->gambar_bukti= $nama_gambar;
         }
         $pembayaranBooking->save();
+
+        $namaNotif = 'Booking Transaksi '.$transaksi->id_transaksi;
+        $notif = new Notifikasi();
+        $notif->nama = $namaNotif;
+        $notif->pesan = $namaNotif.' gambar bukti diganti';
+        $notif->dibaca = 'belum';
+        $notif->pegawai = $transaksis->pegawais->nip;
+        $notif->save();
         request()->session()->flash('pesan','Bukti pembayaran booking tersimpan');
         return redirect()->route('pengunjung.booking',$transaksi->unit);
         //
@@ -151,6 +169,14 @@ class PembayaranBookingController extends Controller
         }
         $pembayaranBooking->verifikasi = $request->verifikasi;
         $pembayaranBooking->save();
+
+        $namaNotif = 'Booking Unit '.$pembayaranBooking->transaksis->units->nama();
+        $notif = new Notifikasi();
+        $notif->nama = $namaNotif;
+        $notif->pesan = $namaNotif.' pembayaran '.$request->verifikasi;
+        $notif->dibaca = 'belum';
+        $notif->customer = $pembayaranBooking->transaksis->customers->idcustomers;
+        $notif->save();
         return redirect('transaksis/'.$pembayaranBooking->transaksis->id_transaksi);
     }
 }

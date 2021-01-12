@@ -56,6 +56,31 @@
     </div>
   </section>
   @endif
+  @if($notifikasis->count() > 0)
+  <section class="ftco-section ftco-no-pb">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="alert alert-info" role="alert">
+            Anda memiliki Notifikasi.
+            <ul>
+              @foreach($notifikasis as $notifikasi)
+              <li class="m-1">
+                <form action="{{ route('pengunjung.bacanotif', $notifikasi) }}" method="post" class="form-inline">
+                  {{csrf_field()}}
+                  {{method_field('put')}}
+                  {{ $notifikasi->pesan }}
+                  <button type="submit" class="btn btn-secondary btn-sm ml-2">Tandai Dibaca</button>
+                </form>
+              </li>
+              @endforeach
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  @endif
 @endif
 
 <section class="ftco-section ftco-no-pb">

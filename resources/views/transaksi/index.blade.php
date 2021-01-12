@@ -20,6 +20,7 @@
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
           <tr>
+            <th>Transaksi ID</th>
             <th>Customer</th>
             <th>Verifikasi Customer</th>
             <th>Unit</th>
@@ -38,6 +39,7 @@
         <tbody>
           @foreach($transaksis as $transaksi)
           <tr>
+            <td>{{ $transaksi->id_transaksi }}</td>
             <td><a href="{{ route('customers.show', $transaksi->customers) }}">{{$transaksi->customers->nama}}</a></td>
             <td>
               @if($transaksi->customers->verifikasis->count() > 0 && $transaksi->customers->verifikasis->last()->tgl_diterima != null)

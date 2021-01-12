@@ -9,6 +9,7 @@ use App\Pegawai;
 use App\HargaJual;
 use App\Unit;
 use App\KomisiPegawai;
+use App\Notifikasi;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -74,6 +75,14 @@ class TransaksiController extends Controller
             $unit = Unit::find($request->get('unit'));
             // $unit ->status = 'booking';
             $unit->save();
+            
+            $namaNotif = 'Unit '.$unit->nama();
+            $notif = new Notifikasi();
+            $notif->nama = $namaNotif;
+            $notif->pesan = $namaNotif.' dibooking';
+            $notif->dibaca = 'belum';
+            $notif->pegawai = Pegawai::where('name', 'Admin')->first()->nip;
+            $notif->save();
             request()->session()->flash('pesan','Berhasil booking');
         }
         else
@@ -95,7 +104,8 @@ class TransaksiController extends Controller
         $pembayaran_dp=$transaksi->pembayarandps;
         $pembayaran_booking=$transaksi->pembayaranbookings;
         $cicilan=$transaksi->cicilans;
-        $pembatalan=$transaksi->pembatalans;
+        $pembatalan=$transaksi->pembatalans->last();
+        // dd($pembatalan);
         // dd($cicilan->pembayaran_cicilans->where('cicilan_terakhir','iya')->count());
         // if($pembayaran_dp == null)
         // {
@@ -146,11 +156,27 @@ class TransaksiController extends Controller
             $unit ->status = 'booking';
             $unit->save();
 
+            $namaNotif = 'Booking Unit '.$unit->nama();
+            $notif = new Notifikasi();
+            $notif->nama = $namaNotif;
+            $notif->pesan = $namaNotif.' diterima';
+            $notif->dibaca = 'belum';
+            $notif->customer = $transaksi->customers->idcustomers;
+            $notif->save();
+
             $transaksi_lain = Transaksi::where('unit',$transaksi->unit)->where('id_transaksi','!=',$transaksi->id_transaksi)->get();
             foreach($transaksi_lain as $tl)
             {
                 $tl->verifikasi = 'tidak diterima';
                 $tl->save();
+
+                $namaNotif = 'Booking Transaksi '.$transaksi->id_transaksi;
+                $notif = new Notifikasi();
+                $notif->nama = $namaNotif;
+                $notif->pesan = $namaNotif.' tidak diterima';
+                $notif->dibaca = 'belum';
+                $notif->customer = $transaksi->customers->idcustomers;
+                $notif->save();
             }
         }
         // if($request->get('tglpelunasan') == null)

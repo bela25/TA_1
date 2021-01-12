@@ -92,3 +92,4 @@ Route::put('simpanprofil/{customer}', 'PengunjungController@simpanProfil')->name
 Route::get('ubahpassword/{customer}', 'PengunjungController@ubahPassword')->name('pengunjung.ubahpassword');
 Route::put('simpanpassword/{customer}', 'PengunjungController@simpanPassword')->name('pengunjung.simpanpassword');
 Route::post('chat', 'PengunjungController@chat')->name('pengunjung.chat');
+Route::put('bacanotif/{notifikasi}', 'PengunjungController@bacanotif')->name('pengunjung.bacanotif');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\PembayaranDP;
 use Illuminate\Http\Request;
 use App\Transaksi;
+use App\Notifikasi;
 use Carbon\Carbon;
 
 class PembayaranDPController extends Controller
@@ -56,6 +57,14 @@ class PembayaranDPController extends Controller
                 $nama_gambar = $file->move('Image/', $file->getClientOriginalName());
                 $post ->gambar_bukti= $nama_gambar;
                 $post->save();
+
+                $namaNotif = 'DP Transaksi '.$transaksi->id_transaksi;
+                $notif = new Notifikasi();
+                $notif->nama = $namaNotif;
+                $notif->pesan = $namaNotif.' dibayar';
+                $notif->dibaca = 'belum';
+                $notif->pegawai = $transaksi->pegawais->nip;
+                $notif->save();
                 request()->session()->flash('pesan','Bukti pembayaran DP tersimpan');
             }
             else
@@ -123,6 +132,14 @@ class PembayaranDPController extends Controller
             $pembayaranDP ->gambar_bukti= $nama_gambar;
         }
         $pembayaranDP->save();
+
+        $namaNotif = 'DP Transaksi '.$pembayaranCicilan->cicilans->transaksi;
+        $notif = new Notifikasi();
+        $notif->nama = $namaNotif;
+        $notif->pesan = $namaNotif.' gambar bukti diganti';
+        $notif->dibaca = 'belum';
+        $notif->pegawai = $pembayaranCicilan->cicilans->transaksis->pegawais->nip;
+        $notif->save();
         request()->session()->flash('pesan','Bukti pembayaran DP tersimpan');
         return redirect()->route('pengunjung.dp',$transaksi->unit);
         //
@@ -150,6 +167,14 @@ class PembayaranDPController extends Controller
             $pembayaranDp->transaksis->units->status = 'terjual';
             $pembayaranDp->transaksis->units->save();
         }
+
+        $namaNotif = 'DP Unit '.$pembayaranDp->transaksis->units->nama();
+        $notif = new Notifikasi();
+        $notif->nama = $namaNotif;
+        $notif->pesan = $namaNotif.' pembayaran '.$request->verifikasi;
+        $notif->dibaca = 'belum';
+        $notif->customer = $pembayaranDp->transaksis->customers->idcustomers;
+        $notif->save();
         return redirect('transaksis/'.$pembayaranDp->transaksis->id_transaksi);
     }
 }

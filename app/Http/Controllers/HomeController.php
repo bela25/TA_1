@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifikasi;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -29,7 +30,8 @@ class HomeController extends Controller
         }
         elseif(auth()->user()->pegawai != null)
         {
-            return view('home');
+            $notifikasis = Notifikasi::where('pegawai', auth()->user()->pegawai->nip)->where('dibaca', 'belum')->get();
+            return view('home', compact('notifikasis'));
         }
     }
 }

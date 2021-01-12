@@ -19,8 +19,9 @@ class FeedbackController extends Controller
     public function index()
     {
         $sentiment = new Sentiment();
-        $scores = $sentiment->score('test');
-        $class = $sentiment->categorise('test');
+        $kata = 'pelayanannya sangat cepat dan baik';
+        $scores = $sentiment->score($kata);
+        $class = $sentiment->categorise($kata);
         // dd([$scores,$class]);
         $feedbacks=Feedback::all();
         $pegawai = auth()->user()->pegawai;

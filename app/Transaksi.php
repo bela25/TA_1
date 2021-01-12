@@ -36,7 +36,7 @@ class Transaksi extends Model
 
     public function pembatalans()
     {
-    	return $this->hasOne('App\Pembatalan','transaksi','id_transaksi');
+    	return $this->hasMany('App\Pembatalan','transaksi','id_transaksi');
     }
     public function cicilans()
     {
