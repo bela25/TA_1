@@ -27,6 +27,9 @@
     </div>
     <div class="row">
       <div class="col-md-12">
+        @if($sukses = session('sukses'))
+          <p class="alert alert-success">{{$sukses}}</p>
+        @endif
         <div class="card shadow mb-4">
           <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Ubah Profil</h6>
@@ -58,7 +61,7 @@
               </div>
               <div class="form-group">
                 <label for="tgllahir">Tanggal Lahir</label>
-                <input type="text" class="form-control" id="tgllahir" placeholder="Isi Tanggal Lahir" name="tgllahir" value="{{$customer->tgl_lahir}}" required>
+                <input type="text" class="form-control" id="tgllahir" placeholder="1993-10-13" name="tgllahir" value="{{$customer->tgl_lahir}}" required>
               </div>
               <div class="form-group">
                 <label for="notelp">No Telp</label>

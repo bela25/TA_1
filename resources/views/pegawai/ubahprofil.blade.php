@@ -2,13 +2,16 @@
 
 @section('content')
 <!-- form start -->
+@if($errors->any())
+  <p class="alert alert-danger">{{$errors->first()}}</p>
+@endif
 <form role="form" action="{{route('pegawais.update', $pegawai)}}" method="post">
   {{csrf_field()}}
   {{method_field('put')}}
   <div class="card-body">
     <div class="form-group">
       <label for="nip">NIP</label>
-      <input type="text" class="form-control" id="nip" placeholder="Isi NIP" name="nip" value="{{$pegawai->nip}}" required>
+      <input type="text" class="form-control" id="nip" placeholder="Isi NIP" name="nip" value="{{$pegawai->nip}}" required disabled>
     </div>
     <div class="form-group">
       <label for="nama">Nama</label>
@@ -43,10 +46,10 @@
       <label for="email">Email</label>
       <input type="email" class="form-control" id="email" placeholder="Isi Email" name="email" value="{{$pegawai->user->email}}" required>
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="username">Username</label>
       <input type="text" class="form-control" id="username" placeholder="Isi Username" name="username" value="{{$pegawai->user->username ?? ''}}" required>
-    </div>
+    </div> -->
     <div class="form-group">
       <label for="tglbergabung">Tgl Bergabung</label>
       <div class="input-group date" id="tgllahir" data-target-input="nearest">

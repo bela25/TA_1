@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Pegawai;
 use App\User;
 use Illuminate\Http\Request;
+use Session;
 
 class PegawaiController extends Controller
 {
@@ -99,9 +100,10 @@ class PegawaiController extends Controller
      */
     public function update(Request $request, Pegawai $pegawai)
     {
+        $user = User::where('id', $pegawai->user_id)->first();
         $this->validate($request, [
             'nama' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users,email,'.$user->id.',id',
         ]);
 
         $user->name = $request->get('nama');
@@ -118,7 +120,6 @@ class PegawaiController extends Controller
         $pegawai ->tgl_bergabung = $request->get('tglbergabung');
         $pegawai->save();
         return redirect('pegawais');
-        //
     }
 
     /**

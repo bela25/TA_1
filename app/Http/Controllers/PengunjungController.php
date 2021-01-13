@@ -21,6 +21,7 @@ use App\Notifikasi;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use App\Classes\PHPInsight\Sentiment;
+use Session;
 
 class PengunjungController extends Controller
 {
@@ -82,6 +83,7 @@ class PengunjungController extends Controller
         $user ->name = $request->get('nama');
         $user ->email = $request->get('email');
         $user->save();
+        Session::flash('sukses', 'Data berhasil disimpan.');
         return redirect('ubahprofil/'.$customer->idcustomers);
     }
 
@@ -374,7 +376,11 @@ class PengunjungController extends Controller
 
     public function booking(Unit $unit)
     {
-        $customer = auth()->user()->customer;
+        try {
+            $customer = auth()->user()->customer;
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors("Anda Harus Login Terlebih Dahulu!");
+        }
         $transaksi = Transaksi::where('customer',$customer->idcustomers)->where('unit',$unit->id_unit)->latest()->first();
         $pembayaranBooking = null;
         if($transaksi == null)

@@ -111,7 +111,6 @@ $neu = array(
 'nyata',
 'akrab',
 'jauh',
-'cepat',
 'merasa',
 'perasaan',
 'terasa',

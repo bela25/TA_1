@@ -20,7 +20,7 @@
             <th>Judul Profil</th>
             <!-- <th>Tanggal Dibuat</th> -->
             <th>Keterangan</th>
-            <th>Gambar</th>
+           <!-- <th>Gambar</th>-->
             <th>Admin</th>
             <th>Created_at</th>
             <th>Updated_at</th>
@@ -34,7 +34,7 @@
             <td>{{$profil->judul_profil}}</td>
             <!-- <td>{{$profil->tgl}}</td> -->
             <td>{{$profil->keterangan}}</td>
-            <td><a href="{{asset($profil->gambar)}}" target="_blank">{{$profil->gambar}}</a></td>
+            <!-- <td><a href="{{asset($profil->gambar)}}" target="_blank">{{$profil->gambar}}</a></td> -->
             <td><a href="{{route('pegawais.index')}}">{{$profil->pegawais->nama}}</a></td>
             <td>{{$profil->created_at}}</td>
             <td>{{$profil->updated_at}}</td>

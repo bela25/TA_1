@@ -43,6 +43,9 @@
             </a>
           </div>
 
+            @if($errors->any())
+              <p class="alert alert-danger">{{$errors->first()}}</p>
+            @endif
   					<div class="text float-left">
 	  					<h2>{{$unit->tipes->nama}} No. {{$unit->no_unit}}</h2>
 	  					<span class="subheading">Tower {{$unit->towers->nama}} - {{$unit->towers->lokasis->nama_apartemen}}</span>
