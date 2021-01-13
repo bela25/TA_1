@@ -96,9 +96,11 @@
   	<div class="row">
   		<div class="col-md-12 pills">
           @if($customer != null && $customer->unitDimiliki($unit) && $customer->transaksiUnit($unit)->verifikasi == 'diterima')
-          <div class="alert alert-info mt-3" role="alert">
-            Silahkan periksa pembayaran booking Anda dengan menekan tombol TERBOOKING berwarna abu-abu di pojok kanan.
-          </div>
+            @if($unit->status == 'booking')
+              <div class="alert alert-info mt-3" role="alert">
+                Silahkan periksa pembayaran booking Anda dengan menekan tombol TERBOOKING berwarna abu-abu di pojok kanan.
+              </div>
+            @endif
           @endif
 					<div class="bd-example bd-example-tabs">
 						<div class="d-flex">

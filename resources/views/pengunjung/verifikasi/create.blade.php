@@ -76,7 +76,7 @@
                 <img id="tampilankk" src="#" alt="tampilan kk"/>
               </div>
               <div class="form-group">
-                <label>NPWP</label>
+                <label>BPHTB</label>
                 <div class="input-group">
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" id="exampleInputFile" name="npwp" onchange="readURL(this,'npwp')" required>
