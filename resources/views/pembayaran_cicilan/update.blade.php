@@ -45,11 +45,16 @@
       </div>
       <div class="custom-control custom-radio">
         @if($pembayaranCicilan->cicilan_terakhir == 'tidak')
-        <input class="custom-control-input" type="radio" id="tidak" name="cicilan_terakhir" value="tidak" checked>
+        <input class="custom-control-input" type="radio" id="tidak" name="cicilan_terakhir" value="tidak" checked onclick="cekTotalCicilan()">
         @else
-        <input class="custom-control-input" type="radio" id="tidak" name="cicilan_terakhir" value="tidak">
+        <input class="custom-control-input" type="radio" id="tidak" name="cicilan_terakhir" value="tidak" onclick="cekTotalCicilan()">
         @endif
         <label for="tidak" class="custom-control-label">Tidak</label>
+      </div>
+      <div class="cekTotalCicilan d-none">
+        <div class="alert alert-warning" role="alert">
+          <span class="pesan"></span>
+        </div>
       </div>
     </div>
     <!-- /.card-body -->
@@ -75,23 +80,23 @@
           if(nominal < selisih){
             $('.cekTotalCicilan').removeClass('d-none');
             $('.pesan').html('Total cicilan belum mencapai harga yang belum dibayarkan. Ganti nominal cicilan terakhir menjadi: Rp '+(selisih));
-            $('.submit').prop('disabled',true);
+            // $('.submit').prop('disabled',true);
           }
           else if(nominal > selisih){
             $('.cekTotalCicilan').removeClass('d-none');
             $('.pesan').html('Total cicilan telah melewati harga yang belum dibayarkan. Ganti nominal cicilan terakhir menjadi: Rp '+(selisih));
-            $('.submit').prop('disabled',true);
+            // $('.submit').prop('disabled',true);
           }
           else{
             $('.cekTotalCicilan').addClass('d-none');
             $('.pesan').html('Total cicilan sudah sesuai harga yang belum dibayarkan.');
-            $('.submit').prop('disabled',false);
+            // $('.submit').prop('disabled',false);
           }
         }
         else{
           $('.cekTotalCicilan').addClass('d-none');
           $('.pesan').html('Total cicilan sudah sesuai harga yang belum dibayarkan.');
-          $('.submit').prop('disabled',false);
+          // $('.submit').prop('disabled',false);
         }
       }
     </script>

@@ -129,11 +129,27 @@ class PengunjungController extends Controller
             $customer = auth()->user()->customer;
         }
         $notifikasis = [];
-
-        $units = Unit::with('towers')->get();
+        $sortings = ['No Unit Terkecil', 'No Unit Terbesar', 'Harga Terendah', 'Harga Tertinggi'];
+        $sort = $request->get('sorting') ?? 'No Unit Terkecil';
+        if($sort == 'No Unit Terkecil') {
+            $units = Unit::with('towers')->where('status', 'tersedia')->orderByRaw('CAST(no_unit as integer) ASC')->get();
+        }
+        elseif($sort == 'No Unit Terbesar') {
+            $units = Unit::with('towers')->where('status', 'tersedia')->orderByRaw('CAST(no_unit as integer) DESC')->get();
+        }
+        elseif($sort == 'Harga Terendah') {
+            $units = Unit::with('towers')->where('status', 'tersedia')->get()->sortBy(function ($item, $key){
+                return $item->hargaJualCash();
+            });
+        }
+        elseif($sort == 'Harga Tertinggi') {
+            $units = Unit::with('towers')->where('status', 'tersedia')->get()->sortByDesc(function ($item, $key){
+                return $item->hargaJualCash();
+            });
+        }
         $lokasi = $request->get('lokasi') ?? null;
-        $harga_min = $request->get('harga_min') ?? null;
-        $harga_max = $request->get('harga_max') ?? null;
+        $harga_min = str_replace([',','.','Rp','rp'],'',$request->get('harga_min')) ?? null;
+        $harga_max = str_replace([',','.','Rp','rp'],'',$request->get('harga_max')) ?? null;
         if($lokasi != null)
         {
             $units = $units->filter(function ($item) use($lokasi) {
@@ -295,7 +311,7 @@ class PengunjungController extends Controller
             $notifikasis = Notifikasi::where('customer', $customer->idcustomers)->where('dibaca', 'belum')->get();
         }
 
-        return view('pengunjung.index', compact('units','feedbacks','promosis','totalLokasi','totalUnit','totalCustomer','totalTransaksi','lokasis','lokasi','harga_min','harga_max','jatuhtempos','notifikasis'));
+        return view('pengunjung.index', compact('units','feedbacks','promosis','totalLokasi','totalUnit','totalCustomer','totalTransaksi','lokasis','lokasi','harga_min','harga_max','jatuhtempos','notifikasis','sortings','sort'));
     }
 
     public function about()
@@ -326,7 +342,16 @@ class PengunjungController extends Controller
         {
             $customer = auth()->user()->customer;
         }
-        return view('pengunjung.listing-single', compact('unit','customer'));
+        $lokasis = Lokasi::all();
+        $chattings = [];
+        if(auth()->check()){
+            $chattings = Chatting::where('customer',auth()->user()->customer->idcustomers)->where('unit', $unit->id_unit)->get();
+        }
+        $units_recommend = [];
+        if($customer->transaksiUnit($unit)->verifikasi == 'tidak diterima') {
+            $units_recommend = Unit::where('tower', $unit->towers->id_tower)->orWhere('arah', $unit->arahs->id_arah)->orWhere('tipe', $unit->tipes->id_tipe)->limit(3)->get();
+        }
+        return view('pengunjung.listing-single', compact('unit','customer','lokasis','chattings','units_recommend'));
     }
 
     public function contact()
@@ -349,8 +374,9 @@ class PengunjungController extends Controller
         $chat->pegawai=Pegawai::where('jabatan','admin')->first()->nip ?? Pegawai::first()->nip;
         $chat->customer=auth()->user()->customer->idcustomers;
         $chat->pengirim='customer';
+        $chat->unit=$request->get('unit');
         $chat->save();
-        return redirect('contact');
+        return redirect('listing/'.$request->get('unit'))->with('pesan', 'Chat sudah terkirim');
     }
 
     public function feedback(Request $request)
@@ -365,12 +391,13 @@ class PengunjungController extends Controller
         $post ->lokasi = $request->get('lokasi');
         $post ->pegawai = $lokasi->lokasipegawais->first()->nip ?? Pegawai::first()->nip;
         $post ->customer = $request->get('customer');
+        $post ->transaksi = Transaksi::where('customer', $request->get('customer'))->where('unit', $request->get('unit'))->first()->id_transaksi;
         $post ->isi = $request->get('isi');
         // $post ->reply = $request->get('reply');
         $post ->sentimen = $class;
         // $post ->reply = date('Y-m-d');
         $post->save();
-        return redirect('contact');
+        return redirect('listing/'.$request->get('unit'))->with('pesan', 'Feedback sudah terkirim');
         //
     }
 

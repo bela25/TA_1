@@ -106,23 +106,23 @@
           if(nominal < selisih){
             $('.cekTotalCicilan').removeClass('d-none');
             $('.pesan').html('Total cicilan belum mencapai harga yang belum dibayarkan. Ganti nominal cicilan terakhir menjadi: Rp '+(selisih));
-            $('.submit').prop('disabled',true);
+            // $('.submit').prop('disabled',true);
           }
           else if(nominal > selisih){
             $('.cekTotalCicilan').removeClass('d-none');
             $('.pesan').html('Total cicilan telah melewati harga yang belum dibayarkan. Ganti nominal cicilan terakhir menjadi: Rp '+(selisih));
-            $('.submit').prop('disabled',true);
+            // $('.submit').prop('disabled',true);
           }
           else{
             $('.cekTotalCicilan').addClass('d-none');
             $('.pesan').html('Total cicilan sudah sesuai harga yang belum dibayarkan.');
-            $('.submit').prop('disabled',false);
+            // $('.submit').prop('disabled',false);
           }
         }
         else{
           $('.cekTotalCicilan').addClass('d-none');
           $('.pesan').html('Total cicilan sudah sesuai harga yang belum dibayarkan.');
-          $('.submit').prop('disabled',false);
+          // $('.submit').prop('disabled',false);
         }
       }
     </script>

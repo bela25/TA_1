@@ -93,6 +93,35 @@
   			</div>
   		</div>
   	</div>
+
+    <!-- Recommended Units -->
+    @if($units_recommend->count() > 0)
+    <h5 class="font-weight-bold text-primary mt-5">Recommended Units</h5>
+    <div class="row">
+      @foreach($units_recommend as $recommend)
+    	<div class="col-md-4">
+    		<div class="property-wrap ftco-animate">
+    			<div class="img d-flex align-items-center justify-content-center" style="background-image: url('{{$recommend->gambar()}}');">
+    				<a href="{{route('pengunjung.listing.single',$recommend)}}" class="icon d-flex align-items-center justify-content-center btn-custom">
+    					<span class="ion-ios-link"></span>
+    				</a>
+    			</div>
+    			<div class="text">
+    				<p class="price mb-3"><!-- <span class="old-price">800,000</span> --><span class="orig-price">{{$recommend->hargaJual()}}<small>/mo</small></span></p>
+    				<h3 class="mb-0"><a href="{{route('pengunjung.listing.single',$recommend)}}">{{$recommend->tipes->nama}} No. {{$recommend->no_unit}}</a></h3>
+    				<span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>
+              Tower {{$recommend->towers->nama}}, 
+              <a href="{{route('pengunjung.map', $recommend->towers->lokasis)}}">
+                {{$recommend->towers->lokasis->nama_apartemen}}
+              </a>
+            </span>
+    			</div>
+    		</div>
+    	</div>
+      @endforeach
+    </div>
+    @endif
+
   	<div class="row">
   		<div class="col-md-12 pills">
           @if($customer != null && $customer->unitDimiliki($unit) && $customer->transaksiUnit($unit)->verifikasi == 'diterima')
@@ -184,6 +213,97 @@
 					    </div>
 
 					  </div>
+
+            @if(auth()->user()->customer != null)
+            @if(session('pesan'))
+            <div class="alert alert-success mt-3" role="alert">
+              {{ session('pesan') }}
+            </div>
+            @endif
+            <div class="row justify-content-center mt-3">
+              <div class="col-md-6 align-items-stretch d-flex">
+                <div class="card w-100">
+                  <div class="card-header">
+                    Chat (<strong>Unit {{ $unit->nama() }} - {{ $unit->towers->lokasis->nama_apartemen }}</strong>)
+                  </div>
+                  <div class="card-body overflow-auto" style="height: 240px">
+                      @foreach($chattings as $chat)
+                        @if($chat->pengirim == 'customer')
+                        <div class="alert alert-warning text-right">
+                          <small class="float-left">{{$chat->tanggal()}}</small>
+                          <strong>{{$chat->customers->nama}}</strong>
+                          <br>
+                          {{$chat->pesan}}
+                        </div>
+                        @else
+                        <div class="alert alert-secondary">
+                          <strong>{{$chat->pegawais->nama}}</strong>
+                          <small class="float-right">{{$chat->tanggal()}}</small>
+                          <br>
+                          {{$chat->pesan}}
+                        </div>
+                        @endif
+                      @endforeach
+                  </div>
+                  <div class="card-footer">
+                    <form action="{{route('pengunjung.chat')}}" method="post">
+                      {{csrf_field()}}
+                      <input type="hidden" name="unit" value="{{ $unit->id_unit }}">
+                      <div class="input-group">
+                        <input type="text" class="form-control" name="pesan" placeholder="Pesan" required>
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-success" type="submit" id="button-addon2"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              @if($customer->unitDimiliki($unit) && $customer->transaksiUnit($unit))
+              <div class="col-md-6 align-items-stretch d-flex">
+                <form action="{{route('pengunjung.feedback')}}" method="post" class="bg-light p-5 contact-form w-100">
+                  <h5><strong>Feedback</strong></h5>
+                  {{csrf_field()}}
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="nama_unit" value="{{$unit->nama()}}" required readonly>
+                    <input type="hidden" name="unit" value="{{$unit->id_unit}}">
+                  </div>
+                  <div class="form-group">
+                    <!-- <label>Lokasi</label> -->
+                    <!-- <select class="form-control" name="lokasi" required>
+                      @foreach($lokasis as $lokasi)
+                      <option value="{{$lokasi->idlokasi}}">{{$lokasi->nama_apartemen}}</option>
+                      @endforeach
+                    </select> -->
+                    <input type="text" class="form-control" name="lokasi_name" value="{{$unit->towers->lokasis->nama_apartemen}}" required readonly>
+                    <input type="hidden" name="lokasi" value="{{$unit->towers->lokasis->idlokasi}}">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="tanggal_feedback" value="{{date('Y-m-d')}}" required readonly>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="customer_name" value="{{auth()->user()->customer->nama}}" required readonly>
+                    <input type="hidden" name="customer" value="{{auth()->user()->customer->idcustomers}}">
+                  </div>
+                  <div class="form-group">
+                    <textarea name="isi" id="isi" cols="30" rows="7" class="form-control" placeholder="Berikan feedback" required></textarea>
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" value="Send Feedback" class="btn btn-primary py-3 px-5">
+                  </div>
+                </form>
+              </div>
+              @else
+              <div class="col-md-6 align-items-start d-flex">
+                <div class="alert alert-info" role="alert">
+                  <p>Berikan feedback jika Anda sudah memesan unit ini agar kami dapat meningkatkan pelayanan kami.</p>
+                </div>
+              </div>
+              @endif
+            </div>
+            @endif
+            
 					</div>
 	      </div>
 			</div>

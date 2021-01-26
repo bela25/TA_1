@@ -17,6 +17,10 @@ class Chatting extends Model
     {
     	return $this->belongsTo('App\Pegawai','pegawai','nip');
     }
+    public function units()
+    {
+    	return $this->belongsTo('App\Unit','unit','id_unit');
+    }
     public function tanggal()
     {
         return Carbon::parse($this->tgl_pesan)->format('H:i, d M Y');

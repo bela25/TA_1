@@ -40,7 +40,7 @@
 	        </div>
       </div>
     </div>
-    <div class="row block-9 justify-content-center mb-5">
+    <!-- <div class="row block-9 justify-content-center mb-5">
       <div class="col-md-6 align-items-stretch d-flex">
         @if(auth()->check() && auth()->user()->customer != null)
         <form action="{{route('pengunjung.feedback')}}" method="post" class="bg-light p-5 contact-form">
@@ -54,7 +54,6 @@
             <input type="hidden" name="customer" value="{{auth()->user()->customer->idcustomers}}">
           </div>
           <div class="form-group">
-            <!-- <label>Lokasi</label> -->
             <select class="form-control" name="lokasi" required>
               @foreach($lokasis as $lokasi)
               <option value="{{$lokasi->idlokasi}}">{{$lokasi->nama_apartemen}}</option>
@@ -76,7 +75,6 @@
         @endif
       </div>
       <div class="col-md-6 align-items-stretch d-flex">
-    		<!-- <div id="map" class="bg-white border"></div> -->
         @if(auth()->check())
         <div class="card w-100">
           <div class="card-header">
@@ -113,10 +111,9 @@
             </form>
           </div>
         </div>
-        <!-- card -->
         @endif
       </div>
-    </div>
+    </div> -->
   </div>
 </section>
 @endsection
