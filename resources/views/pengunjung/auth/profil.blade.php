@@ -64,7 +64,7 @@
                     <th>Status</th>
                     <th>KTP</th>
                     <th>KK</th>
-                    <th>NPWP</th>
+                    <th>BPHTB</th>
                     <th>Tanggal Diterima</th>
                     <th>Interaksi</th>
                   </tr>

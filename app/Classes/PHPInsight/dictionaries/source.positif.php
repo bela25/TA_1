@@ -590,6 +590,7 @@ $pos = array(
 'maju',
 'makanan',
 'makmur',
+'maksimal',
 'malaikat',
 'mampu',
 'manfaat',

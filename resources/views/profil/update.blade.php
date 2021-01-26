@@ -32,7 +32,7 @@
       <label>Keterangan</label>
       <textarea class="form-control" rows="3" placeholder="Keterangan ..." id="keterangan" name="keterangan" required>{{$profil->keterangan}}</textarea>
     </div>
-    <div class="from-group">
+  <!--  <div class="from-group">
       <label for="exampleInputFile">Gambar</label>
       <div class="input-group">
         <div class="custom-file">
@@ -41,12 +41,12 @@
         </div>
         <div class="input-group-append">
           <span class="input-group-text" id="">Upload</span>
-        </div>
+        </div>-->
       </div>
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
       <img id="tampilangambar" src="{{$profil->gambar}}" alt="Gambar">
-    </div>
+    </div> -->
   </div>
   <!-- /.card-body -->
 
