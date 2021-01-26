@@ -342,8 +342,10 @@ class PengunjungController extends Controller
         if(auth()->check())
         {
             $customer = auth()->user()->customer;
-            if($customer->transaksiUnit($unit)->verifikasi == 'tidak diterima') {
-                $units_recommend = Unit::where('tower', $unit->towers->id_tower)->orWhere('arah', $unit->arahs->id_arah)->orWhere('tipe', $unit->tipes->id_tipe)->limit(3)->get();
+            if($customer->unitDimiliki($unit)) {
+                if($customer->transaksiUnit($unit)->verifikasi == 'tidak diterima') {
+                    $units_recommend = Unit::where('tower', $unit->towers->id_tower)->orWhere('arah', $unit->arahs->id_arah)->orWhere('tipe', $unit->tipes->id_tipe)->limit(3)->get();
+                }
             }
         }
         $lokasis = Lokasi::all();
