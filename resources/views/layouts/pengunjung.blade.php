@@ -169,8 +169,8 @@
   <script src="{{asset('web/js/bootstrap-datepicker.js')}}"></script>
   <script src="{{asset('web/js/jquery.timepicker.min.js')}}"></script>
   <script src="{{asset('web/js/scrollax.min.js')}}"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="{{asset('web/js/google-map.js')}}"></script>
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
+  <!-- <script src="{{asset('web/js/google-map.js')}}"></script> -->
   <script src="{{asset('web/js/main.js')}}"></script>
 
   <script type="text/javascript">
@@ -183,6 +183,50 @@
      window.print();
 
      document.body.innerHTML = originalContents;
+    }
+
+    function NumericInput(inp, locale) {
+      var numericKeys = '0123456789';
+
+      // restricts input to numeric keys 0-9
+      inp.addEventListener('keypress', function(e) {
+        var event = e || window.event;
+        var target = event.target;
+
+        if (event.charCode == 0) {
+          return;
+        }
+
+        if (-1 == numericKeys.indexOf(event.key)) {
+          // Could notify the user that 0-9 is only acceptable input.
+          event.preventDefault();
+          return;
+        }
+      });
+
+      // add the thousands separator when the user blurs
+      inp.addEventListener('blur', function(e) {
+        var event = e || window.event;
+        var target = event.target;
+
+        var tmp = target.value.replace(/[,.RrPp]/g, '');
+        var val = Number(tmp).toLocaleString(locale);
+
+        if (tmp == '') {
+          target.value = '';
+        } else {
+          target.value = 'Rp'+val;
+        }
+      });
+
+      // strip the thousands separator when the user puts the input in focus.
+      inp.addEventListener('focus', function(e) {
+        var event = e || window.event;
+        var target = event.target;
+        var val = target.value.replace(/[,.RrPp]/g, '');
+
+        target.value = val;
+      });
     }
   </script>
 

@@ -154,7 +154,7 @@
                 <div class="form-group">
                   <label for="#">Harga Terendah</label>
                   <div class="form-field">
-                    <input type="number" name="harga_min" class="form-control" placeholder="Harga Terendah" step="100000000" value="{{$harga_min}}">
+                    <input type="text" id="harga_min" name="harga_min" class="form-control" placeholder="Harga Terendah" step="100000000" value="{{$harga_min}}" onchange="NumericInput(this);">
                   </div>
                 </div>
               </div>
@@ -162,7 +162,7 @@
         				<div class="form-group">
         					<label for="#">Harga Tertinggi</label>
         					<div class="form-field">
-                    <input type="number" name="harga_max" class="form-control" placeholder="Harga Tertinggi" step="100000000" value="{{$harga_max}}">
+                    <input type="text" id="harga_max" name="harga_max" class="form-control" placeholder="Harga Tertinggi" step="100000000" value="{{$harga_max}}" onchange="NumericInput(this);">
 		              </div>
 	              </div>
         			</div>
@@ -173,6 +173,35 @@
 		              </div>
 	              </div>
         			</div>
+        		</div>
+        	</form>
+        </div>
+			</div>
+  	</div>
+    <div class="row">
+			<div class="col-md-12">
+				<div class="search-wrap-1 ftco-animate">
+					<form action="{{route('pengunjung.index')}}" method="get" class="search-property-1">
+        		<div class="row">
+        			<div class="col-lg-6 align-items-end">
+                <div class="form-group">
+                  <label for="#">Urutkan</label>
+                  <div class="form-field">
+                    <div class="select-wrap">
+                      <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                      <select name="sorting" id="sorting" class="form-control" onchange="this.form.submit()">
+                        @foreach($sortings as $sorting)
+                          @if($sorting == $sort)
+                          <option value="{{$sorting}}" selected>{{$sorting}}</option>
+                          @else
+                          <option value="{{$sorting}}">{{$sorting}}</option>
+                          @endif
+                        @endforeach
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
         		</div>
         	</form>
         </div>
@@ -307,3 +336,32 @@
   </div>
 </section>
 @endsection
+
+@push('scripts')
+<script>
+$(document).ready(function () {
+  var numericKeys = '0123456789';
+
+  // add the thousands separator first time
+  var hargaMin = $('#harga_min');
+  var hargaMax = $('#harga_max');
+  NumericInputFormat(hargaMin);
+  NumericInputFormat(hargaMax);
+  NumericInput(document.getElementById('harga_min'));
+  NumericInput(document.getElementById('harga_max'));
+  // console.log(hargaMin.val(), hargaMax.val(), min, max)
+});
+
+function NumericInputFormat(input) {
+  var tmp = input.val().replace(/[,.RrPp]/g, '');
+  var val = Number(tmp).toLocaleString();
+
+  if (tmp == '') {
+    input.val('');
+  } else {
+    input.val('Rp'+val);
+  }
+  // return val;
+}
+</script>
+@endpush

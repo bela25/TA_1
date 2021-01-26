@@ -44,7 +44,7 @@
             <td>{{$unit->updated_at}}</td>
             <td>
             @if(auth()->user()->pegawai->jabatan == 'admin')
-              @if($unit->transaksis->count() <= 0)
+              @if($unit->transaksis->count() <= 0 || $unit->status == 'tersedia')
               <a href="{{route('units.edit',$unit)}}" class="btn btn-primary">Ubah</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$unit->id_unit}}">Hapus</button>
               <div class="modal fade" id="delete{{$unit->id_unit}}">

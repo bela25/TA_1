@@ -20,5 +20,9 @@ class Feedback extends Model
     {
         return $this->belongsTo('App\Lokasi','lokasi','idlokasi');
     }
+    public function transaksis()
+    {
+        return $this->belongsTo('App\Transaksi','transaksi','id_transaksi');
+    }
     //
 }

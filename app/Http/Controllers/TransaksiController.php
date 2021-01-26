@@ -25,12 +25,25 @@ class TransaksiController extends Controller
         // pegawai yang login
         $pegawai = auth()->user()->pegawai;
         // $transaksis = Transaksi::all();
-        $transaksis = Transaksi::all()->filter(function ($item, $key) use($pegawai) {
+        $transaksis = Transaksi::orderBy('verifikasi', 'asc')->get()->filter(function ($item, $key) use($pegawai) {
             return in_array($item->lokasi()->idlokasi, $pegawai->lokasipegawais->pluck('lokasi')->toArray());
         });
+        $tangani = $transaksis->where('verifikasi', 'belum diterima')->first();
+        // ->sortBy(function ($item, $key) {
+        //     if($item->verifikasi == 'tidak diterima') {
+        //         return 0;
+        //     }
+        //     elseif($item->verifikasi == 'belum diterima') {
+        //         return 1;
+        //     }
+        //     elseif($item->verifikasi == 'diterima') {
+        //         return 2;
+        //     }
+        // })
+        
         // dd($transaksis[1]->customers->verifikasis->last()->tgl_diterima);
         // $transaksis = $pegawai->transaksis;
-        return view('transaksi.index',compact('transaksis','pegawai'));
+        return view('transaksi.index',compact('transaksis','pegawai','tangani'));
         //
     }
 
