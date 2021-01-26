@@ -338,18 +338,18 @@ class PengunjungController extends Controller
     public function listingSingle(Unit $unit)
     {
         $customer = null;
+        $units_recommend = collect([]);
         if(auth()->check())
         {
             $customer = auth()->user()->customer;
+            if($customer->transaksiUnit($unit)->verifikasi == 'tidak diterima') {
+                $units_recommend = Unit::where('tower', $unit->towers->id_tower)->orWhere('arah', $unit->arahs->id_arah)->orWhere('tipe', $unit->tipes->id_tipe)->limit(3)->get();
+            }
         }
         $lokasis = Lokasi::all();
         $chattings = [];
         if(auth()->check()){
             $chattings = Chatting::where('customer',auth()->user()->customer->idcustomers)->where('unit', $unit->id_unit)->get();
-        }
-        $units_recommend = collect([]);
-        if($customer->transaksiUnit($unit)->verifikasi == 'tidak diterima') {
-            $units_recommend = Unit::where('tower', $unit->towers->id_tower)->orWhere('arah', $unit->arahs->id_arah)->orWhere('tipe', $unit->tipes->id_tipe)->limit(3)->get();
         }
         return view('pengunjung.listing-single', compact('unit','customer','lokasis','chattings','units_recommend'));
     }

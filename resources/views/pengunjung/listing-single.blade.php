@@ -214,7 +214,7 @@
 
 					  </div>
 
-            @if(auth()->user()->customer != null)
+            @if(auth()->check() && auth()->user()->customer != null)
             @if(session('pesan'))
             <div class="alert alert-success mt-3" role="alert">
               {{ session('pesan') }}
