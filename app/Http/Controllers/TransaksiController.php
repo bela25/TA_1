@@ -206,7 +206,7 @@ class TransaksiController extends Controller
         }
         elseif($request->get('jenisbayar') == 'in house')
         {
-            $transaksi ->tgl_pelunasan = Carbon::now()->addYears(10);
+        	 $transaksi ->tgl_pelunasan = Carbon::now()->addYears(3);
         }
         $transaksi->save();
         // check hak akses user, jika customer kembali ke halaman pengunjung
