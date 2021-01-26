@@ -128,7 +128,7 @@ class PengunjungController extends Controller
         }
         $notifikasis = [];
 
-        $units = Unit::with('towers')->get();
+        $units = Unit::with('towers')->orderBy('tower')->orderBy('tipe')->orderByRaw('CAST(no_unit as integer)')->get();
         $lokasi = $request->get('lokasi') ?? null;
         $harga_min = $request->get('harga_min') ?? null;
         $harga_max = $request->get('harga_max') ?? null;

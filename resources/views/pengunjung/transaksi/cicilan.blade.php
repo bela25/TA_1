@@ -45,6 +45,13 @@
             {{session('pesan')}}
           </div>
         @endif
+          <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>Info!</strong> Jika Anda mengalami kesulitas dalam pembayaran cicilan, silahkan menghubungi bagian marketing di 
+            <strong>{{ $transaksi->pegawais->no_telp }}</strong> atau <strong>{{ $transaksi->pegawais->user->email }}</strong> (<strong>{{ $transaksi->pegawais->nama }}</strong>)
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
 					<div class="bd-example bd-example-tabs">
 						<div class="d-flex">
 						  <ul class="nav nav-pills mb-2" id="pills-tab" role="tablist">

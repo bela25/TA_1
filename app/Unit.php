@@ -31,7 +31,16 @@ class Unit extends Model
     }
     public function hargaJualCash()
     {
-        return $this->tipes->hargaJuals->last()->hargajual_cash;
+        // return $this->tipes->hargaJuals->last()->hargajual_cash;
+        // return HargaJual::where('tower', $this->towers->id_tower)->where('arah', $this->arahs->id_arah)->where('tipe', $this->tipes->id_tipe)->orderBy('tgl_akhir', 'desc')->first()->hargajual_cash ?? 0;
+        $hargaJual = HargaJual::where('tipe', $this->tipes->id_tipe)->orderBy('tgl_akhir', 'desc')->get();
+        if($hargaJual->where('tower', $this->towers->id_tower)->count() > 0) {
+            $hargaJual = $hargaJual->where('tower', $this->towers->id_tower);
+        }
+        if($hargaJual->where('arah', $this->arahs->id_arah)->count() > 0) {
+            $hargaJual = $hargaJual->where('arah', $this->arahs->id_arah);
+        }
+        return $hargaJual->first()->hargajual_cash;  
     }
     public function hargaJual()
     {
