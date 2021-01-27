@@ -304,8 +304,8 @@
             </div>
             @else
             <div class="alert alert-light w-100" role="alert">
-              <p>Untuk memberikan <strong>Feedback</strong> dan <strong>Chatting</strong>, Harap login terlebih dahulu.</p>
-              <p><a href="{{route('pengunjung.login')}}" class="btn btn-primary py-3 px-5">Login</a></p>
+              <p>Untuk <strong>Chatting</strong>, Harap login terlebih dahulu.</p>
+              <p><a href="{{route('pengunjung.login')}}" class="btn btn-primary py-3 px-5">Chatting</a></p>
             </div>
             @endif
             
