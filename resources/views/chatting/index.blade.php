@@ -13,14 +13,25 @@
         <div class="list-group w-100 overflow-auto" style="height: 360px">
           @foreach($customers as $item)
             @if($item->idcustomers == $customer->idcustomers)
-            <a href="{{route('chattings.index', ['customer'=>$item])}}" class="list-group-item list-group-item-action active">{{$item->nama}}</a>
+            <a href="{{route('chattings.index', ['customer'=>$item, 'unit'=>$unit])}}" class="list-group-item list-group-item-action active">{{$item->nama}}</a>
             @else
-            <a href="{{route('chattings.index', ['customer'=>$item])}}" class="list-group-item list-group-item-action">{{$item->nama}}</a>
+            <a href="{{route('chattings.index', ['customer'=>$item, 'unit'=>$unit])}}" class="list-group-item list-group-item-action">{{$item->nama}}</a>
             @endif
           @endforeach
         </div>
       </div>
-      <div class="col-9 align-items-stretch d-flex">
+      <div class="col-3 align-items-stretch d-flex">
+        <div class="list-group w-100 overflow-auto" style="height: 360px">
+          @foreach($units as $item)
+            @if($item->id_unit == $unit->id_unit)
+            <a href="{{route('chattings.index', ['customer'=>$customer, 'unit'=>$item])}}" class="list-group-item list-group-item-action active">{{$item->nama()}} - {{$item->towers->lokasis->nama_apartemen}}</a>
+            @else
+            <a href="{{route('chattings.index', ['customer'=>$customer, 'unit'=>$item])}}" class="list-group-item list-group-item-action">{{$item->nama()}} - {{$item->towers->lokasis->nama_apartemen}}</a>
+            @endif
+          @endforeach
+        </div>
+      </div>
+      <div class="col-6 align-items-stretch d-flex">
         <div class="card w-100">
           <div class="card-header">
             Chat
@@ -53,6 +64,7 @@
               <div class="input-group">
                 <input type="text" class="form-control" name="pesan" placeholder="Pesan" required>
                 <input type="hidden" name="customer" value="{{$customer->idcustomers}}">
+                <input type="hidden" name="unit" value="{{ $unit->id_unit }}">
                 <div class="input-group-append">
                   <button class="btn btn-outline-success" type="submit" id="button-addon2"><i class="fas fa-paper-plane"></i></button>
                 </div>

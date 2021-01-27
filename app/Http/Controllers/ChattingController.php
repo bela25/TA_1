@@ -6,6 +6,8 @@ use App\Chatting;
 use Illuminate\Http\Request;
 use App\Pegawai;
 use App\Customer;
+use App\Unit;
+use App\LokasiPegawai;
 use Carbon\Carbon;
 
 class ChattingController extends Controller
@@ -19,14 +21,25 @@ class ChattingController extends Controller
     {
         $customers=Customer::all();
         $customer=Customer::first();
+        if (auth()->user()->pegawai->jabatan == 'admin') {
+            $units=Unit::all();
+            $unit=Unit::first();
+        } else {
+            $lokasi=LokasiPegawai::where('pegawai', auth()->user()->pegawai->nip)->first();
+            $units=Unit::join('towers', 'tower', 'id_tower')->where('towers.lokasi', $lokasi->lokasi)->get();
+            $unit=Unit::join('towers', 'tower', 'id_tower')->where('towers.lokasi', $lokasi->lokasi)->first();
+        }
         if(count($request->all()) > 0)
         {
             $customer=Customer::find($request->get('customer'));
+            if ($request->get('unit')) {
+                $unit=Unit::find($request->get('unit'));
+            }
         }
         // dd($customer);
-        $chattings=Chatting::where('customer', $customer->idcustomers)->get();
-        return view('chatting.index',compact('chattings','customers','customer'));
-        //
+        $chattings=Chatting::where('customer', $customer->idcustomers)->where('unit', $unit->id_unit)->get();
+        return view('chatting.index',compact('chattings','customers','customer', 'units', 'unit'));
+        // return $lokasi;
     }
 
     /**
@@ -55,8 +68,9 @@ class ChattingController extends Controller
         $post ->tgl_pesan = Carbon::now();
         $post ->pegawai = auth()->user()->pegawai->nip;
         $post ->customer = $request->get('customer');
+        $post ->unit = $request->get('unit');
         $post->save();
-        return redirect('chattings');
+        return redirect()->back();
         //
     }
 
