@@ -8,6 +8,7 @@ use App\Pegawai;
 use App\Customer;
 use App\Unit;
 use App\LokasiPegawai;
+use App\Notifikasi;
 use Carbon\Carbon;
 
 class ChattingController extends Controller
@@ -70,6 +71,23 @@ class ChattingController extends Controller
         $post ->customer = $request->get('customer');
         $post ->unit = $request->get('unit');
         $post->save();
+
+        $unit=Unit::where('id_unit', $request->get('unit'))->first();
+        $namaNotif = 'Pesan Customer '.$request->get('customer').' pada '.$unit->nama().' - '.$unit->towers->lokasis->nama_apartemen;
+
+        if (Notifikasi::where('nama', $namaNotif)->count() <= 0) {
+            $notif = new Notifikasi();
+            $notif->nama = $namaNotif;
+            $notif->pesan = 'Pesan Baru pada '.$unit->nama().' - '.$unit->towers->lokasis->nama_apartemen;
+            $notif->dibaca = 'belum';
+            $notif->customer = $request->get('customer');
+            $notif->save();
+        } else {
+            $notif = Notifikasi::where('nama', $namaNotif)->first();
+            $notif->dibaca = 'belum';
+            $notif->save();
+        }
+
         return redirect()->back();
         //
     }
