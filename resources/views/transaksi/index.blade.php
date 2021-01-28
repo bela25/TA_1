@@ -77,7 +77,7 @@
             @if($transaksi->pegawais == null)
             <!-- <td><a href="{{route('transaksis.pegawai',$transaksi)}}">Tentukan pegawai</a></td> -->
             <td>
-              @if($transaksi->verifikasi == 'belum diterima' && $transaksi->status == 'aktif' && $transaksi->id_transaksi == $tangani->id_transaksi)
+              @if($transaksi->verifikasi == 'belum diterima' && $transaksi->status == 'aktif' && $transaksi->id_transaksi == $tangani[$transaksi->unit]->last()->id_transaksi)
               <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#handle{{$transaksi->id_transaksi}}">Tangani</button>
               <div class="modal fade" id="handle{{$transaksi->id_transaksi}}">
                 <div class="modal-dialog">
@@ -150,7 +150,7 @@
             <td>
               @if($transaksi->komisipegawai != null)
               <a href="{{route('transaksis.show',$transaksi)}}" class="btn btn-primary">Lihat</a>
-                  @if(($transaksi->verifikasi == 'belum diterima' || $transaksi->aktif == 'aktif') && $transaksi->id_transaksi == $tangani->id_transaksi)
+                  @if(($transaksi->verifikasi == 'belum diterima' || $transaksi->aktif == 'aktif') && $transaksi->id_transaksi == $tangani[$transaksi->unit]->last()->id_transaksi)
                   <a href="{{route('transaksis.edit',$transaksi)}}" class="btn btn-primary">Ubah</a>
                   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{$transaksi->id_transaksi}}">Hapus</button>
                   <div class="modal fade" id="delete{{$transaksi->id_transaksi}}">
