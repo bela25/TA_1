@@ -370,14 +370,28 @@ class PengunjungController extends Controller
 
     public function chat(Request $request)
     {
+        $pegawai = Pegawai::where('jabatan','admin')->first()->nip ?? Pegawai::first()->nip;
+        $customer = auth()->user()->customer;
+
         $chat= new Chatting();
         $chat->pesan=$request->get('pesan');
         $chat->tgl_pesan=Carbon::now();
-        $chat->pegawai=Pegawai::where('jabatan','admin')->first()->nip ?? Pegawai::first()->nip;
-        $chat->customer=auth()->user()->customer->idcustomers;
+        $chat->pegawai=$pegawai;
+        $chat->customer=$customer->idcustomers;
         $chat->pengirim='customer';
         $chat->unit=$request->get('unit');
         $chat->save();
+
+        $namaNotif = 'Chat '.$chat->id_chat;
+        if(Notifikasi::where('nama', $namaNotif)->count() <= 0)
+        {
+            $notif = new Notifikasi();
+            $notif->nama = $namaNotif;
+            $notif->pesan = $namaNotif.'. Customer: '.$customer->nama.', Unit: '.Unit::find($request->get('unit'))->nama();
+            $notif->dibaca = 'belum';
+            $notif->pegawai = $pegawai;
+            $notif->save();
+        }
         return redirect('listing/'.$request->get('unit'))->with('pesan', 'Chat sudah terkirim');
     }
 

@@ -12,7 +12,7 @@ class Customer extends Authenticatable
 
     public function chats()
     {
-    	return $this->hasMany('App\Chatting');
+    	return $this->hasMany('App\Chatting', 'customer', 'idcustomers');
     }
     public function feedbacks()
     {

@@ -28,7 +28,8 @@ class TransaksiController extends Controller
         $transaksis = Transaksi::orderBy('verifikasi', 'asc')->get()->filter(function ($item, $key) use($pegawai) {
             return in_array($item->lokasi()->idlokasi, $pegawai->lokasipegawais->pluck('lokasi')->toArray());
         });
-        $tangani = $transaksis->where('verifikasi', 'belum diterima')->first();
+        // $tangani = $transaksis->where('verifikasi', 'belum diterima')->first();
+        $tangani = $transaksis->where('verifikasi', 'belum diterima')->sortBy('created_at')->unique('unit')->pluck('id_transaksi')->toArray();
         // ->sortBy(function ($item, $key) {
         //     if($item->verifikasi == 'tidak diterima') {
         //         return 0;
@@ -41,6 +42,7 @@ class TransaksiController extends Controller
         //     }
         // })
         
+        // dd(in_array($transaksis[0]->id_transaksi, $tangani));
         // dd($transaksis[1]->customers->verifikasis->last()->tgl_diterima);
         // $transaksis = $pegawai->transaksis;
         return view('transaksi.index',compact('transaksis','pegawai','tangani'));

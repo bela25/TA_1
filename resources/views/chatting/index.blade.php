@@ -9,13 +9,20 @@
   </div>
   <div class="card-body">
     <div class="row">
-      <div class="col-3 align-items-stretch d-flex">
+      <div class="col-3">
+        <form method="GET" action="{{route('chattings.index') }}" class="mb-3">
+          <select name="customer" class="form-control select2" style="width: 100%;" onchange="this.form.submit()">
+            @foreach($customers as $item)
+              <option value="{{$item->idcustomers}}" @if($customer != null) {{ $customer->idcustomers == $item->idcustomers ? 'selected' : '' }} @endif>{{$item->nama}}</option>
+            @endforeach
+          </select>
+        </form>
         <div class="list-group w-100 overflow-auto" style="height: 360px">
-          @foreach($customers as $item)
-            @if($item->idcustomers == $customer->idcustomers)
-            <a href="{{route('chattings.index', ['customer'=>$item])}}" class="list-group-item list-group-item-action active">{{$item->nama}}</a>
+          @foreach($units as $item)
+            @if($item->id_unit == $unit->id_unit)
+            <a href="{{route('chattings.index', ['customer'=>$customer->idcustomers, 'unit'=>$item->id_unit])}}" class="list-group-item list-group-item-action active">{{$item->nama()}}</a>
             @else
-            <a href="{{route('chattings.index', ['customer'=>$item])}}" class="list-group-item list-group-item-action">{{$item->nama}}</a>
+            <a href="{{route('chattings.index', ['customer'=>$customer->idcustomers, 'unit'=>$item->id_unit])}}" class="list-group-item list-group-item-action">{{$item->nama()}}</a>
             @endif
           @endforeach
         </div>
@@ -48,8 +55,10 @@
             @endforeach
           </div>
           <div class="card-footer">
+          @if($chattings->count() > 0)
             <form action="{{route('chattings.store')}}" method="post">
               {{csrf_field()}}
+              <input type="hidden" name="unit" value="{{ $unit->id_unit }}">
               <div class="input-group">
                 <input type="text" class="form-control" name="pesan" placeholder="Pesan" required>
                 <input type="hidden" name="customer" value="{{$customer->idcustomers}}">
@@ -58,6 +67,9 @@
                 </div>
               </div>
             </form>
+          @else
+          Belum ada chat
+          @endif
           </div>
         </div>
         <!-- card -->

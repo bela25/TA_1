@@ -6,6 +6,8 @@ use App\Chatting;
 use Illuminate\Http\Request;
 use App\Pegawai;
 use App\Customer;
+use App\Notifikasi;
+use App\Unit;
 use Carbon\Carbon;
 
 class ChattingController extends Controller
@@ -19,13 +21,20 @@ class ChattingController extends Controller
     {
         $customers=Customer::all();
         $customer=Customer::first();
+        // $units=Unit::all();
+        // $unit=Unit::first();
         if(count($request->all()) > 0)
         {
-            $customer=Customer::find($request->get('customer'));
+            $customer = Customer::find($request->get('customer'));
+            $unit_ids = $customer->chats->unique('unit')->pluck('unit');
+            $units = Unit::whereIn('id_unit', $unit_ids)->get();
+            $unit = Unit::find($request->get('unit')) ?? $units->first();
         }
-        // dd($customer);
         $chattings=Chatting::where('customer', $customer->idcustomers)->get();
-        return view('chatting.index',compact('chattings','customers','customer'));
+        if($unit != null) {
+            $chattings = $chattings->where('unit', $unit->id_unit);
+        }
+        return view('chatting.index',compact('chattings','customers','customer','units','unit'));
         //
     }
 
@@ -50,12 +59,26 @@ class ChattingController extends Controller
      */
     public function store(Request $request)
     {
+        $pegawai = auth()->user()->pegawai;
+        $customer = Customer::find($request->get('customer'));
         $post = new Chatting();
         $post ->pesan = $request->get('pesan');
         $post ->tgl_pesan = Carbon::now();
-        $post ->pegawai = auth()->user()->pegawai->nip;
-        $post ->customer = $request->get('customer');
+        $post ->pegawai = $pegawai->nip;
+        $post ->customer = $customer->idcustomers;
+        $post ->unit = $request->get('unit');
         $post->save();
+
+        $namaNotif = 'Chat '.$chat->id_chat;
+        if(Notifikasi::where('nama', $namaNotif)->count() <= 0)
+        {
+            $notif = new Notifikasi();
+            $notif->nama = $namaNotif;
+            $notif->pesan = $namaNotif.'. Unit: '.Unit::find($request->get('unit'))->nama();
+            $notif->dibaca = 'belum';
+            $notif->customer = $customer->idcustomers;
+            $notif->save();
+        }
         return redirect('chattings');
         //
     }
