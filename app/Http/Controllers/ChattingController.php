@@ -6,8 +6,9 @@ use App\Chatting;
 use Illuminate\Http\Request;
 use App\Pegawai;
 use App\Customer;
-use App\Notifikasi;
 use App\Unit;
+use App\LokasiPegawai;
+use App\Notifikasi;
 use Carbon\Carbon;
 
 class ChattingController extends Controller
@@ -21,21 +22,39 @@ class ChattingController extends Controller
     {
         $customers=Customer::all();
         $customer=Customer::first();
-        // $units=Unit::all();
-        // $unit=Unit::first();
+
+        // if(count($request->all()) > 0)
+        // {
+        //     $customer = Customer::find($request->get('customer'));
+        //     $unit_ids = $customer->chats->unique('unit')->pluck('unit');
+        //     $units = Unit::whereIn('id_unit', $unit_ids)->get();
+        //     $unit = Unit::find($request->get('unit')) ?? $units->first();
+        // }
+        // $chattings=Chatting::where('customer', $customer->idcustomers)->get();
+        // if($unit != null) {
+        //     $chattings = $chattings->where('unit', $unit->id_unit);
+        // }
+        // return view('chatting.index',compact('chattings','customers','customer','units','unit'));
+       
+        if (auth()->user()->pegawai->jabatan == 'admin') {
+            $units=Unit::all();
+            $unit=Unit::first();
+        } else {
+            $lokasi=LokasiPegawai::where('pegawai', auth()->user()->pegawai->nip)->first();
+            $units=Unit::join('towers', 'tower', 'id_tower')->where('towers.lokasi', $lokasi->lokasi)->get();
+            $unit=Unit::join('towers', 'tower', 'id_tower')->where('towers.lokasi', $lokasi->lokasi)->first();
+        }
         if(count($request->all()) > 0)
         {
-            $customer = Customer::find($request->get('customer'));
-            $unit_ids = $customer->chats->unique('unit')->pluck('unit');
-            $units = Unit::whereIn('id_unit', $unit_ids)->get();
-            $unit = Unit::find($request->get('unit')) ?? $units->first();
+            $customer=Customer::find($request->get('customer'));
+            if ($request->get('unit')) {
+                $unit=Unit::find($request->get('unit'));
+            }
         }
-        $chattings=Chatting::where('customer', $customer->idcustomers)->get();
-        if($unit != null) {
-            $chattings = $chattings->where('unit', $unit->id_unit);
-        }
-        return view('chatting.index',compact('chattings','customers','customer','units','unit'));
-        //
+        // dd($customer);
+        $chattings=Chatting::where('customer', $customer->idcustomers)->where('unit', $unit->id_unit)->get();
+        return view('chatting.index',compact('chattings','customers','customer', 'units', 'unit'));
+        // return $lokasi;
     }
 
     /**
@@ -64,22 +83,46 @@ class ChattingController extends Controller
         $post = new Chatting();
         $post ->pesan = $request->get('pesan');
         $post ->tgl_pesan = Carbon::now();
-        $post ->pegawai = $pegawai->nip;
-        $post ->customer = $customer->idcustomers;
+
+        // $post ->pegawai = $pegawai->nip;
+        // $post ->customer = $customer->idcustomers;
+        // $post ->unit = $request->get('unit');
+        // $post->save();
+
+        // $namaNotif = 'Chat '.$chat->id_chat;
+        // if(Notifikasi::where('nama', $namaNotif)->count() <= 0)
+        // {
+        //     $notif = new Notifikasi();
+        //     $notif->nama = $namaNotif;
+        //     $notif->pesan = $namaNotif.'. Unit: '.Unit::find($request->get('unit'))->nama();
+        //     $notif->dibaca = 'belum';
+        //     $notif->customer = $customer->idcustomers;
+        //     $notif->save();
+        // }
+        // return redirect('chattings');
+
+        $post ->pegawai = auth()->user()->pegawai->nip;
+        $post ->customer = $request->get('customer');
         $post ->unit = $request->get('unit');
         $post->save();
 
-        $namaNotif = 'Chat '.$chat->id_chat;
-        if(Notifikasi::where('nama', $namaNotif)->count() <= 0)
-        {
+        $unit=Unit::where('id_unit', $request->get('unit'))->first();
+        $namaNotif = 'Pesan Customer '.$request->get('customer').' pada '.$unit->nama().' - '.$unit->towers->lokasis->nama_apartemen;
+
+        if (Notifikasi::where('nama', $namaNotif)->count() <= 0) {
             $notif = new Notifikasi();
             $notif->nama = $namaNotif;
-            $notif->pesan = $namaNotif.'. Unit: '.Unit::find($request->get('unit'))->nama();
+            $notif->pesan = 'Pesan Baru pada '.$unit->nama().' - '.$unit->towers->lokasis->nama_apartemen;
             $notif->dibaca = 'belum';
-            $notif->customer = $customer->idcustomers;
+            $notif->customer = $request->get('customer');
+            $notif->save();
+        } else {
+            $notif = Notifikasi::where('nama', $namaNotif)->first();
+            $notif->dibaca = 'belum';
             $notif->save();
         }
-        return redirect('chattings');
+
+        return redirect()->back();
         //
     }
 

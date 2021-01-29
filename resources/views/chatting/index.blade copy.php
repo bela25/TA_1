@@ -18,11 +18,11 @@
           </select>
         </form>
         <div class="list-group w-100 overflow-auto" style="height: 360px">
-          @foreach($customers as $item)
-            @if($item->idcustomers == $customer->idcustomers)
-            <a href="{{route('chattings.index', ['customer'=>$item, 'unit'=>$unit])}}" class="list-group-item list-group-item-action active">{{$item->nama}}</a>
+          @foreach($units as $item)
+            @if($item->id_unit == $unit->id_unit)
+            <a href="{{route('chattings.index', ['customer'=>$customer->idcustomers, 'unit'=>$item->id_unit])}}" class="list-group-item list-group-item-action active">{{$item->nama()}}</a>
             @else
-            <a href="{{route('chattings.index', ['customer'=>$item, 'unit'=>$unit])}}" class="list-group-item list-group-item-action">{{$item->nama}}</a>
+            <a href="{{route('chattings.index', ['customer'=>$customer->idcustomers, 'unit'=>$item->id_unit])}}" class="list-group-item list-group-item-action">{{$item->nama()}}</a>
             @endif
           @endforeach
         </div>

@@ -182,13 +182,13 @@
 			<div class="col-md-12">
 				<div class="search-wrap-1 ftco-animate">
 					<form action="{{route('pengunjung.index')}}" method="get" class="search-property-1">
-        		<div class="row">
-        			<div class="col-lg-6 align-items-end">
+        		<div class="row justify-content-center">
+        			<div class="col-lg-3">
                 <div class="form-group">
                   <label for="#">Urutkan</label>
                   <div class="form-field">
                     <div class="select-wrap">
-                      <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                      <div class="icon" align="center"><span class="ion-ios-arrow-down" ></span></div>
                       <select name="sorting" id="sorting" class="form-control" onchange="this.form.submit()">
                         @foreach($sortings as $sorting)
                           @if($sorting == $sort)
